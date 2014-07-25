@@ -1,0 +1,11 @@
+************************************
+* TTTTTTT  OOOOOOO  DDD    OOOOOOO *
+*   TTT    O     O  D  D   O     O *
+*   TTT    O     O  D   D  O     O *
+*   TTT    OOOOOOO  DDDD   OOOOOOO *
+************************************
+
+- Docs
+- collider rotation
+- GLSL support (shaders)
+- Fractal (http://nuclear.mutantstargoat.com/articles/sdr_fract/)
