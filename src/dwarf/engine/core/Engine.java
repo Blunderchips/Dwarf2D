@@ -21,7 +21,7 @@ public abstract class Engine extends java.lang.Object {
     }
 
     /**
-     * Run main loop of application.
+     * Main loop of application.
      */
     private void run() {
         while (true) {
