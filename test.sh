@@ -1,4 +1,4 @@
 git add *
-git commit -m "first cgommit"
+git commit -m "master"
 git push origin master
 git push
