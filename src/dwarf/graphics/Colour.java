@@ -84,6 +84,15 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
         super(red, green, blue);
         this.alpha = alpha;
     }
+    
+    public Colour(byte red, byte green, byte blue, byte alpha) {
+        super(red, green, blue);
+        this.alpha = alpha;
+    }
+    
+    public Colour(byte red, byte green, byte blue) {
+        super(red, green, blue);
+    }
 
     /**
      * Create a colour from an evil integer packed 0xAARRGGBB. If AA is

@@ -68,4 +68,25 @@ public final class util {
         return new byte[]{(byte) (value >>> 24), (byte) (value >>> 16),
             (byte) (value >>> 8), (byte) value};
     }
+
+    /**
+     * Flip an array of pixels vertically
+     *
+     * @param imgPixels
+     * @param imgw
+     * @param imgh
+     * @return int[]
+     */
+    public static int[] flipPixels(int[] imgPixels, int imgw, int imgh) {
+        int[] flippedPixels = null;
+        if (imgPixels != null) {
+            flippedPixels = new int[imgw * imgh];
+            for (int y = 0; y < imgh; y++) {
+                for (int x = 0; x < imgw; x++) {
+                    flippedPixels[ ((imgh - y - 1) * imgw) + x] = imgPixels[ (y * imgw) + x];
+                }
+            }
+        }
+        return flippedPixels;
+    }
 }

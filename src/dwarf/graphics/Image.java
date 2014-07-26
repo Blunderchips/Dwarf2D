@@ -12,6 +12,8 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 
 /**
+ * Texture functions
+ *
  * @author sid_th3_sl0th
  */
 public class Image extends GameObject {

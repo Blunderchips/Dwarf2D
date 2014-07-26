@@ -20,6 +20,9 @@ public abstract class Engine extends java.lang.Object {
         this.run();
     }
 
+    /**
+     * Run main loop of application.
+     */
     private void run() {
         while (true) {
             long lastFPS = Time.getNano();

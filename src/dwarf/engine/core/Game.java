@@ -96,12 +96,19 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * starts and runs the main game loop
+     * starts the main game loop.
      */
     private void run() {
         this.start(WIDTH, HIEGHT, TITLE);
     }
 
+    /**
+     * Same as update(). Subclass can override refresh() instead of update(). Same
+     * thing, just a matter of taste. by default will update all gameObjects and
+     * their children, will then call update()
+     *
+     * @see update()
+     */
     @Override
     protected void refresh() {
         if (loaded) {
@@ -116,6 +123,13 @@ public abstract class Game extends Engine {
         }
     }
 
+    /**
+     * Same as draw(). Subclass can override render() instead of draw(). Same
+     * thing, just a matter of taste. by default will render all gameObjects and
+     * their children, will then call draw()
+     *
+     * @see draw()
+     */
     @Override
     protected void render() {
         for (GameObject item : gameObjects) {

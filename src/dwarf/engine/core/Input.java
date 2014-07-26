@@ -8,7 +8,7 @@ import dwarf.util.Vector2;
 import javax.swing.JOptionPane;
 
 /**
- * handles all user input
+ * Handle mouse and keyboard input.
  *
  * @author sid_th3_sl0th
  */
@@ -377,6 +377,10 @@ public final class Input {
         Keyboard.destroy();
     }
 
+    //========================================================================
+    // Keyboard events
+    //========================================================================
+    
     /**
      * checks if a key is pressed
      *
@@ -437,6 +441,10 @@ public final class Input {
         return upKeys.contains(Input.getKeyCode(keyName));
     }
 
+    //========================================================================
+    // Mouse events
+    //========================================================================
+    
     /**
      * checks if a mouse key is down
      *
