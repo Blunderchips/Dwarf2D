@@ -3,6 +3,7 @@ package dwarf.graphics;
 import static dwarf.util.math.sin;
 import dwarf.util.Vector2;
 import dwarf.util.math;
+import static java.lang.Math.abs;
 import static java.lang.Math.tan;
 
 /**
@@ -15,6 +16,8 @@ public class Shape extends Polygon {
 
     public Shape(int numSides, double lineLength, Vector2 position, String state, Colour colour) {
         super(position, state, colour);
+
+        numSides = abs(numSides);
 
         if (numSides >= 3) {
 

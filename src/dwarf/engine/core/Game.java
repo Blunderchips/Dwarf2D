@@ -18,6 +18,8 @@ public abstract class Game extends Engine {
     public static ArrayList<GameObject> gameObjects;
     public static boolean debug = true;
     private boolean loaded = false;
+    private boolean useDefaultRender = true;
+    private boolean useDefaultUpdate = true;
     //NetBeans wanted these:
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
     private final transient PropertyChangeSupport propertyChangeSupport;
@@ -103,18 +105,20 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * Same as update(). Subclass can override refresh() instead of update(). Same
-     * thing, just a matter of taste. by default will update all gameObjects and
-     * their children, will then call update()
+     * Same as update(). Subclass can override refresh() instead of update().
+     * Same thing, just a matter of taste. by default will update all
+     * gameObjects and their children, will then call update()
      *
      * @see update()
      */
     @Override
     protected void refresh() {
         if (loaded) {
-            for (GameObject item : gameObjects) {
-                item.update();
-                item.updateChildren();
+            if (useDefaultUpdate) {
+                for (GameObject obj : gameObjects) {
+                    obj.update();
+                    obj.updateChildren();
+                }
             }
             this.update();
         } else {
@@ -126,17 +130,18 @@ public abstract class Game extends Engine {
     /**
      * Same as draw(). Subclass can override render() instead of draw(). Same
      * thing, just a matter of taste. by default will render all gameObjects and
-     * their children, will then call draw()
+     * their children, will then call draw().
      *
      * @see draw()
      */
     @Override
     protected void render() {
-        for (GameObject item : gameObjects) {
-            item.render();
-            item.renderChildren();
+        if (useDefaultRender) {
+            for (GameObject obj : gameObjects) {
+                obj.render();
+                obj.renderChildren();
+            }
         }
-
         this.draw();
     }
 
@@ -248,5 +253,21 @@ public abstract class Game extends Engine {
 
     public boolean isLoaded() {
         return this.loaded;
+    }
+
+    public boolean useDefaultRender() {
+        return this.useDefaultRender;
+    }
+
+    public void setUseDefaultRender(boolean useDefaultRender) {
+        this.useDefaultRender = useDefaultRender;
+    }
+
+    public boolean useDefaultUpdate() {
+        return this.useDefaultUpdate;
+    }
+
+    public void setUseDefaultUpdate(boolean useDefaultUpdate) {
+        this.useDefaultUpdate = useDefaultUpdate;
     }
 }

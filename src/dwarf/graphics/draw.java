@@ -1,7 +1,9 @@
 package dwarf.graphics;
 
+import dwarf.lib.Slick2D.Texture;
 import dwarf.util.Vector2;
 import static dwarf.util.math.TWO_PI;
+import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.GL_POINTS;
@@ -20,7 +22,6 @@ import static org.lwjgl.opengl.GL11.glTexCoord2f;
 import static org.lwjgl.opengl.GL11.glTranslated;
 import static org.lwjgl.opengl.GL11.glVertex2d;
 import static org.lwjgl.opengl.GL11.glVertex2f;
-import dwarf.lib.Slick2D.Texture;
 
 /**
  * draws shapes to the screen
@@ -672,6 +673,8 @@ public final class draw {
 
         if (numSides >= 3) {
 
+            numSides = abs(numSides);
+
             if (numSides >= 60) {
                 numSides = 60;
             }
@@ -762,6 +765,8 @@ public final class draw {
     }
 
     public static void strokeShape(int numSides, double lineLength, Vector2 translation, Colour colour) {
+
+        numSides = abs(numSides);
 
         if (numSides >= 3) {
 
