@@ -88,6 +88,14 @@ public class Image extends GameObject {
         this.init(texture);
     }
 
+    /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -95,6 +103,15 @@ public class Image extends GameObject {
         return hash;
     }
 
+    /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

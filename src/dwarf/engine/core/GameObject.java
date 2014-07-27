@@ -31,7 +31,7 @@ public abstract class GameObject extends Collidable {
 
     public abstract void render();
 
-    public ArrayList getChildren() {
+    public ArrayList<GameObject> getChildren() {
         return this.children;
     }
 
@@ -40,24 +40,41 @@ public abstract class GameObject extends Collidable {
     }
 
     public void updateChildren() {
-        for (GameObject child : children) {
+        for (GameObject child : getChildren()) {
             child.update();
         }
     }
 
     public void renderChildren() {
-        for (GameObject child : children) {
+        for (GameObject child : getChildren()) {
             child.render();
         }
     }
 
+    /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(children);
+        hash = 67 * hash + Objects.hashCode(getChildren());
         return hash;
     }
 
+    /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -67,9 +84,9 @@ public abstract class GameObject extends Collidable {
         } else if (!super.equals(obj)) {
             return false;
         }
-        
+
         final GameObject other = (GameObject) obj;
-        
+
         return Objects.equals(this.getChildren(), other.getChildren());
     }
 
@@ -77,7 +94,7 @@ public abstract class GameObject extends Collidable {
     public String toString() {
         return "GameObject{" + "children=" + getChildren() + '}' + " " + super.toString();
     }
-    
+
 //    @Override
 //    public boolean intersects(Collidable coll) {
 //        if (super.intersects(this)) {

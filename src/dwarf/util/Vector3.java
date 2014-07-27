@@ -13,11 +13,11 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     private static final long serialVersionUID = 1339934L;
 
     public final static Vector3 ZERO = new Vector3(0, 0, 0);
-    public final static Vector3 NaN = new Vector3(Double.NaN, Double.NaN, Double.NaN);
     public final static Vector3 UNIT_X = new Vector3(1, 0, 0);
     public final static Vector3 UNIT_Y = new Vector3(0, 1, 0);
     public final static Vector3 UNIT_Z = new Vector3(0, 0, 1);
     public final static Vector3 UNIT_XYZ = new Vector3(1, 1, 1);
+    public final static Vector3 NaN = new Vector3(Double.NaN, Double.NaN, Double.NaN);
     public final static Vector3 POSITIVE_INFINITY = new Vector3(
             Double.POSITIVE_INFINITY,
             Double.POSITIVE_INFINITY,
@@ -99,21 +99,21 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public double length() {
-        return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+        return Math.sqrt(this.getX() * this.getX() + this.getY() * this.getY() + this.getZ() * this.getZ());
     }
 
     public double max() {
-        return Math.max(this.x, Math.max(this.y, this.z));
+        return Math.max(this.getX(), Math.max(this.getY(), this.getZ()));
     }
 
     public double dot(Vector3 input) {
-        return (this.x * input.getX()) + (this.y * input.getY()) + (this.z * input.getZ());
+        return (this.getX() * input.getX()) + (this.getY() * input.getY()) + (this.z * input.getZ());
     }
 
     public Vector3 cross(Vector3 input) {
-        double deltaX = (this.y * input.getZ()) - (this.z * input.getY());
-        double deltaY = (this.z * input.getX()) - (this.x * input.getZ());
-        double deltaZ = (this.x * input.getY()) - (this.y * input.getX());
+        double deltaX = (this.getY() * input.getZ()) - (this.getZ() * input.getY());
+        double deltaY = (this.getZ() * input.getX()) - (this.getX() * input.getZ());
+        double deltaZ = (this.getX() * input.getY()) - (this.getY() * input.getX());
 
         return new Vector3(deltaX, deltaY, deltaZ);
     }
@@ -121,7 +121,7 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     public Vector3 normalized() {
         double length = length();
 
-        return new Vector3(this.x / length, this.y / length, this.z / length);
+        return new Vector3(this.getX() / length, this.y / length, this.getZ() / length);
     }
 
     /**
@@ -147,76 +147,76 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public Vector3 add(Vector3 input) {
-        return new Vector3(this.x + input.getX(), this.y + input.getY(), this.z + input.getZ());
+        return new Vector3(this.getX() + input.getX(), this.getY() + input.getY(), this.getZ() + input.getZ());
     }
 
     public Vector3 add(double input) {
-        return new Vector3(this.x + input, this.y + input, this.z + input);
+        return new Vector3(this.getX() + input, this.getY() + input, this.getZ() + input);
     }
 
     public Vector3 sub(Vector3 input) {
-        return new Vector3(this.x - input.getX(), this.y - input.getY(), this.z - input.getZ());
+        return new Vector3(this.getX() - input.getX(), this.getY() - input.getY(), this.z - input.getZ());
     }
 
     public Vector3 sub(double input) {
-        return new Vector3(this.x - input, this.y - input, this.z - input);
+        return new Vector3(this.getX() - input, this.getY() - input, this.getZ() - input);
     }
 
     public Vector3 mul(Vector3 input) {
-        return new Vector3(this.x * input.getX(), this.y * input.getY(), this.z * input.getZ());
+        return new Vector3(this.getX() * input.getX(), this.getY() * input.getY(), this.getZ() * input.getZ());
     }
 
     public Vector3 mul(double input) {
-        return new Vector3(this.x * input, this.y * input, this.z * input);
+        return new Vector3(this.getX() * input, this.getY() * input, this.getZ() * input);
     }
 
     public Vector3 div(Vector3 input) {
-        return new Vector3(this.x / input.getX(), this.y / input.getY(), this.z / input.getZ());
+        return new Vector3(this.getX() / input.getX(), this.getY() / input.getY(), this.getZ() / input.getZ());
     }
 
     public Vector3 div(double input) {
-        return new Vector3(this.x / input, this.y / input, this.z / input);
+        return new Vector3(this.getX() / input, this.getY() / input, this.getZ() / input);
     }
 
     public Vector3 mod(Vector3 input) {
-        return new Vector3(this.x % input.getX(), this.y % input.getY(), this.z % input.getZ());
+        return new Vector3(this.getX() % input.getX(), this.getY() % input.getY(), this.getZ() % input.getZ());
     }
 
     public Vector3 mod(double input) {
-        return new Vector3(this.x % input, this.y % input, this.z % input);
+        return new Vector3(this.getX() % input, this.getY() % input, this.getZ() % input);
     }
 
     public Vector3 abs() {
-        return new Vector3(Math.abs(this.x), Math.abs(this.y), Math.abs(this.z));
+        return new Vector3(Math.abs(this.getX()), Math.abs(this.getY()), Math.abs(this.getZ()));
     }
 
     @Override
     public String toString() {
-        return "Vector3d[" + this.x + ", " + this.y + ", " + this.z + "]";
+        return "Vector3d[" + this.getX() + ", " + this.getY() + ", " + this.z + "]";
     }
 
     public Vector2 getXY() {
-        return new Vector2(this.x, this.y);
+        return new Vector2(this.getX(), this.getY());
     }
 
     public Vector2 getYZ() {
-        return new Vector2(this.y, this.z);
+        return new Vector2(this.getY(), this.getZ());
     }
 
     public Vector2 getZX() {
-        return new Vector2(this.z, this.x);
+        return new Vector2(this.getZ(), this.getX());
     }
 
     public Vector2 getYX() {
-        return new Vector2(this.y, this.x);
+        return new Vector2(this.getY(), this.getX());
     }
 
     public Vector2 getZY() {
-        return new Vector2(this.z, this.y);
+        return new Vector2(this.getZ(), this.getY());
     }
 
     public Vector2 getXZ() {
-        return new Vector2(this.x, this.z);
+        return new Vector2(this.getX(), this.getZ());
     }
 
     public Vector3 set(double x, double y, double z) {
@@ -257,18 +257,29 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     /**
-     * @see java.lang.Object#hashCode()
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
+     * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 43 * hash + (int) (Double.doubleToLongBits(this.x) ^ (Double.doubleToLongBits(this.x) >>> 32));
-        hash = 43 * hash + (int) (Double.doubleToLongBits(this.y) ^ (Double.doubleToLongBits(this.y) >>> 32));
-        hash = 43 * hash + (int) (Double.doubleToLongBits(this.z) ^ (Double.doubleToLongBits(this.z) >>> 32));
+        hash = 43 * hash + (int) (Double.doubleToLongBits(getX()) ^ (Double.doubleToLongBits(getX()) >>> 32));
+        hash = 43 * hash + (int) (Double.doubleToLongBits(getY()) ^ (Double.doubleToLongBits(getY()) >>> 32));
+        hash = 43 * hash + (int) (Double.doubleToLongBits(getZ()) ^ (Double.doubleToLongBits(getZ()) >>> 32));
         return hash;
     }
 
     /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -277,13 +288,15 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
             return false;
         } else if (getClass() != obj.getClass()) {
             return false;
+        } else if (!super.equals(obj)) {
+            return false;
         }
         final Vector3 other = (Vector3) obj;
-        if (Double.doubleToLongBits(this.x) != Double.doubleToLongBits(other.getX())) {
+        if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(other.getX())) {
             return false;
-        } else if (Double.doubleToLongBits(this.y) != Double.doubleToLongBits(other.getY())) {
+        } else if (Double.doubleToLongBits(getY()) != Double.doubleToLongBits(other.getY())) {
             return false;
-        } else if (Double.doubleToLongBits(this.z) != Double.doubleToLongBits(other.getZ())) {
+        } else if (Double.doubleToLongBits(getZ()) != Double.doubleToLongBits(other.getZ())) {
             return false;
         }
         return true;
@@ -332,15 +345,15 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public double absX() {
-        return Math.abs(this.x);
+        return Math.abs(this.getX());
     }
 
     public double absY() {
-        return Math.abs(this.y);
+        return Math.abs(this.getY());
     }
 
     public double absZ() {
-        return Math.abs(this.z);
+        return Math.abs(this.getZ());
     }
 
     /**
@@ -372,11 +385,11 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     public double get(int index) {
         switch (index) {
             case 0:
-                return x;
+                return getX();
             case 1:
-                return y;
+                return getY();
             case 2:
-                return z;
+                return getZ();
         }
         throw new IllegalArgumentException("index must be either 0, 1 or 2");
     }

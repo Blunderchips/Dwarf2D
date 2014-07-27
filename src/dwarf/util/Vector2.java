@@ -14,10 +14,10 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     private static final long serialVersionUID = 1339934L;
 
     public static final Vector2 ZERO = new Vector2(0, 0);
-    public final static Vector2 NaN = new Vector2(Double.NaN, Double.NaN);
     public static final Vector2 UNIT_X = new Vector2(1, 0);
     public static final Vector2 UNIT_Y = new Vector2(0, 1);
     public static final Vector2 UNIT_XY = new Vector2(1, 1);
+    public final static Vector2 NaN = new Vector2(Double.NaN, Double.NaN);
     public static final Vector2 POSITIVE_INFINITY = new Vector2(
             Double.POSITIVE_INFINITY,
             Double.POSITIVE_INFINITY);
@@ -134,7 +134,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public double cross(Vector2 input) {
-        return (this.x * input.getX()) - (this.getY() * input.getY());
+        return (this.getX() * input.getX()) - (this.getY() * input.getY());
     }
 
     public Vector2 lerp(Vector2 dest, double lerpFactor) {
@@ -249,18 +249,29 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     }
 
     /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + (int) (Double.doubleToLongBits(rotation) ^ (Double.doubleToLongBits(rotation) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(x) ^ (Double.doubleToLongBits(x) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(y) ^ (Double.doubleToLongBits(y) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(getRotation()) ^ (Double.doubleToLongBits(getRotation()) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(getX()) ^ (Double.doubleToLongBits(getX()) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(getY()) ^ (Double.doubleToLongBits(getY()) >>> 32));
         return hash;
     }
 
     /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -269,16 +280,18 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
             return false;
         } else if (getClass() != obj.getClass()) {
             return false;
+        } else if (!super.equals(obj)) {
+            return false;
         }
 
         final Vector2 other = (Vector2) obj;
 
-        if (Double.doubleToLongBits(rotation) != Double.doubleToLongBits(other.getRotation())) {
+        if (Double.doubleToLongBits(getRotation()) != Double.doubleToLongBits(other.getRotation())) {
             return false;
-        } else if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.getX())) {
+        } else if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(other.getX())) {
             return false;
         } else {
-            return Double.doubleToLongBits(y) == Double.doubleToLongBits(other.getY());
+            return Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.getY());
         }
     }
 
@@ -451,7 +464,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * move backwards
      */
     public void move(int distance) {
-        double radians = Math.toRadians(rotation);
+        double radians = Math.toRadians(getRotation());
 
         // We round to the nearest integer, to allow moving one unit at an angle
         // to actually move.
@@ -471,7 +484,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * move backwards
      */
     public void move(double distance) {
-        double radians = Math.toRadians(rotation);
+        double radians = Math.toRadians(getRotation());
 
         // We round to the nearest integer, to allow moving one unit at an angle
         // to actually move.
@@ -489,7 +502,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * @see #setRotation(double)
      */
     public void rotate(double amount) {
-        setRotation((rotation + amount));
+        setRotation((getRotation() + amount));
     }
 
     public void turnTowards(Vector2 input) {

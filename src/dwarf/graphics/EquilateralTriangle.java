@@ -13,6 +13,7 @@ public class EquilateralTriangle extends Shape {
         super(3, sideLength, position, state, colour);
     }
 
+    @Override
     public double getArea() {
         return math.sqrt(3) / 4 * sqr(getLineLength());
     }

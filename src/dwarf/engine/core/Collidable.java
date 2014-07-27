@@ -145,13 +145,13 @@ public class Collidable extends java.lang.Object {
 
         int hits = 0;
 
-        double lastPosX = getPoints()[getNumPoints() - 1].getX() + this.getCenter().getX() + 1;
-        double lastPosY = getPoints()[getNumPoints() - 1].getY() + this.getCenter().getY() + 1;
+        double lastPosX = getPoints()[getNumPoints() - 1].getX() + getCenter().getX() + 1;
+        double lastPosY = getPoints()[getNumPoints() - 1].getY() + getCenter().getY() + 1;
         double curPosX, curPosY;
 
         for (int i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {
-            curPosX = getPoints()[i].getX() + this.getCenter().getX() + 1;
-            curPosY = getPoints()[i].getY() + this.getCenter().getY() + 1;
+            curPosX = getPoints()[i].getX() + getCenter().getX() + 1;
+            curPosY = getPoints()[i].getY() + getCenter().getY() + 1;
 
             if (curPosY == lastPosY) {
                 continue;
@@ -317,6 +317,11 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -328,6 +333,12 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -452,4 +463,17 @@ public class Collidable extends java.lang.Object {
         return isClickedOn(MOUSE_LEFT);
     }
 
+    public boolean atEdge() {
+        if (this.getPosition().getX() > (Window.getWidth() + camera.getPosition().getX())) {
+            return true;
+        } else if (this.getPosition().getX() < (0 + camera.getPosition().getX())) {
+            return true;
+        } else if (this.getPosition().getY() > (Window.getHeight() + camera.getPosition().getY())) {
+            return true;
+        } else if (this.getPosition().getY() < (0 + camera.getPosition().getY())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

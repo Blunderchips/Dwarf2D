@@ -67,11 +67,20 @@ public class Polygon extends GameObject {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.colour);
-        hash = 47 * hash + Objects.hashCode(this.state);
+        hash = 47 * hash + Objects.hashCode(getColour());
+        hash = 47 * hash + Objects.hashCode(getState());
         return hash;
     }
 
+    /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

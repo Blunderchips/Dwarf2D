@@ -84,12 +84,12 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
         super(red, green, blue);
         this.alpha = alpha;
     }
-    
+
     public Colour(byte red, byte green, byte blue, byte alpha) {
         super(red, green, blue);
         this.alpha = alpha;
     }
-    
+
     public Colour(byte red, byte green, byte blue) {
         super(red, green, blue);
     }
@@ -240,6 +240,11 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     }
 
     /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -249,6 +254,16 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
         return hash;
     }
 
+    /**
+     * Returns true if the arguments are equal to each other and false
+     * otherwise. Consequently, if both arguments are null, true is returned and
+     * if exactly one argument is null, false is returned. Otherwise, equality
+     * is determined by using the equals method of the first argument.
+     *
+     * @return true if the arguments are equal to each other and false otherwise
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
     public boolean equals(Object obj) {
         return (obj != null)
                 && (obj instanceof Colour)

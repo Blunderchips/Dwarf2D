@@ -31,6 +31,6 @@ public class Quadrilateral extends Polygon {
 
     @Override
     public void addPoint(Vector2 point) {
-        System.err.println("This method is unsuported with Quadrilateral.");
+        System.err.println("This method is unsuported with the Quadrilateral class.");
     }
 }
