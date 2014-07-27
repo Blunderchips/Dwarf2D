@@ -2,7 +2,7 @@ Dwarf2D Readme
 =======
 
 <div align='center'>
-  ![Alt text](http://t3.gstatic.com/images?q=tbn:ANd9GcQPBbPxTZANOmB21QM7mVbuySECwZCpSHrT-oerWYwHzosCoSBB_g ".:Dwarf2D:.")
+  <img href='http://t3.gstatic.com/images?q=tbn:ANd9GcQPBbPxTZANOmB21QM7mVbuySECwZCpSHrT-oerWYwHzosCoSBB_g' title='.:Dwarf2D:.'>
 </div>
 
 Getting started:
