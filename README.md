@@ -1,9 +1,7 @@
 Dwarf2D Readme
 =======
 
-<div align='center'>
-  <img href='http://t3.gstatic.com/images?q=tbn:ANd9GcQPBbPxTZANOmB21QM7mVbuySECwZCpSHrT-oerWYwHzosCoSBB_g' title='.:Dwarf2D:.'>
-</div>
+![alt text](http://t3.gstatic.com/images?q=tbn:ANd9GcQPBbPxTZANOmB21QM7mVbuySECwZCpSHrT-oerWYwHzosCoSBB_g ".:Dwarf2D:.")
 
 Getting started:
 
