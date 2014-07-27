@@ -11,7 +11,8 @@ public final class camera {
 
     public camera() {
         // Prevents instantiation of this class.
-        throw new Error("you can not instantiate this class.");
+        throw new Error(
+                "you can not instantiate this class.");
     }
 
     public static Vector2 getPosition() {

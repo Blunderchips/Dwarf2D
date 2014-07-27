@@ -1,6 +1,7 @@
 package dwarf.engine.core;
 
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
 import static org.lwjgl.openal.AL10.AL_EXTENSIONS;
@@ -34,7 +35,7 @@ public final class openAL {
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }

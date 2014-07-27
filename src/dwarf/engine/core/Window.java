@@ -6,6 +6,7 @@ import dwarf.util.Vector2;
 import java.awt.Canvas;
 import java.nio.ByteBuffer;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -166,7 +167,7 @@ public final class Window {
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    getParent(), ex, getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }
@@ -209,7 +210,7 @@ public final class Window {
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    getParent(), ex, getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }
@@ -242,7 +243,7 @@ public final class Window {
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    getParent(), ex, getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(1);
         }

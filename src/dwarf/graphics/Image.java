@@ -10,6 +10,7 @@ import dwarf.util.Vector2;
 import java.io.IOException;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Texture functions
@@ -35,7 +36,7 @@ public class Image extends GameObject {
         } catch (IOException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }
@@ -80,7 +81,7 @@ public class Image extends GameObject {
         } catch (IOException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }

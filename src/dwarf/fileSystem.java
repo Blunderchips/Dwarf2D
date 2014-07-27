@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Provides an interface to the user's file system.
@@ -159,7 +160,7 @@ public final class fileSystem {
             return output;
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
-            JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex, "ERROR", ERROR_MESSAGE);
             Game.close(1);
         }
         return null;

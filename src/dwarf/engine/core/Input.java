@@ -1,11 +1,12 @@
 package dwarf.engine.core;
 
+import dwarf.util.Vector2;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import dwarf.util.Vector2;
-import javax.swing.JOptionPane;
 
 /**
  * Handle mouse and keyboard input.
@@ -308,7 +309,7 @@ public final class Input {
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }
