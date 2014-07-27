@@ -1,7 +1,7 @@
 Dwarf2D Readme
 =======
 
-![Alt text](http://t3.gstatic.com/images?q=tbn:ANd9GcQPBbPxTZANOmB21QM7mVbuySECwZCpSHrT-oerWYwHzosCoSBB_g ".:Dwarf2D:.")
+![Alt text](http://t3.gstatic.com/images?q=tbn:ANd9GcQPBbPxTZANOmB21QM7mVbuySECwZCpSHrT-oerWYwHzosCoSBB_g ".:Dwarf2D:.") { float: center; }
 
 Getting started:
 
