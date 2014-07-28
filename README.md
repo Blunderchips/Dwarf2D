@@ -8,4 +8,4 @@ Dwarf2D Readme
 
 Getting started:
 
-1. Install the latest version of netbeans: https://netbeans.org/downloads/
+1. Download and Install the latest version of NetBeans: https://netbeans.org/downloads/
