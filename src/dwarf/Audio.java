@@ -29,7 +29,6 @@ public class Audio extends java.lang.Object {
 
     private int source;
     private int buffer;
-
     private WaveData data;
 
     public Audio(String key) {
@@ -40,8 +39,7 @@ public class Audio extends java.lang.Object {
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
+                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE);
             Game.close(ex);
         }
     }
@@ -57,6 +55,9 @@ public class Audio extends java.lang.Object {
         alSourcei(getSource(), AL_BUFFER, getBuffer());
     }
 
+    /**
+     * plays the sound
+     */
     public void play() {
         alSourcePlay(getSource());
     }
@@ -152,14 +153,23 @@ public class Audio extends java.lang.Object {
                 + '}';
     }
 
+    /**
+     * pauses the sound
+     */
     public void pause() {
         alSourcePause(getSource());
     }
 
+    /**
+     * stops the sound
+     */
     public void stop() {
         alSourceStop(getSource());
     }
 
+    /**
+     * rewinds the sound
+     */
     public void rewind() {
         alSourceRewind(getSource());
     }
