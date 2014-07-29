@@ -144,7 +144,12 @@ public class Audio extends java.lang.Object {
 
     @Override
     public String toString() {
-        return "Sound{" + "source=" + getSource() + ", buffer=" + getBuffer() + ", data=" + getData() + '}';
+        return "Sound = {" + "\n"
+                + "\t" + "source: " + getSource() + "\n"
+                + "\t" + "buffer: " + getBuffer() + "\n"
+                + "\t" + "data: " + getData() + "\n"
+                + "\t" + "super: " + super.toString() + "\n"
+                + '}';
     }
 
     public void pause() {
