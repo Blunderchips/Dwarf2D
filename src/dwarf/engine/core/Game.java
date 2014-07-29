@@ -43,6 +43,15 @@ public abstract class Game extends Engine {
         this.init(width, hieght, title);
     }
 
+    public Game(float width, float hieght, String title) {
+        super();
+
+        this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
+        this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
+
+        this.init((int) width, (int) hieght, title);
+    }
+
     public Game(String title) {
         super();
 
@@ -61,12 +70,21 @@ public abstract class Game extends Engine {
         this.init(width, hieght, null);
     }
 
+    public Game(float width, float hieght) {
+        super();
+
+        this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
+        this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
+
+        this.init((int) width, (int) hieght, null);
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-        Game defaultGame = new Game("Dwarf 2D") {
+        Game defaultGame = new Game(".:Dwarf 2D:.") {
 
             @Override
             public void load() {
@@ -155,20 +173,98 @@ public abstract class Game extends Engine {
         return Game.gameObjects;
     }
 
-    public void setGameObjects(ArrayList<GameObject> gameObjects) {
-        Game.gameObjects = gameObjects;
+    /**
+     * tries to set the main GameObject list to a inputed ArrayList of
+     * GameObects
+     *
+     * @param gameObjects
+     * @gameObjects an ArrayList of GameObjects
+     * @return true if successful and false if it fails
+     */
+    public boolean setGameObjects(ArrayList<GameObject> gameObjects) {
+        try {
+            Game.gameObjects = gameObjects;
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
-    public void addGameObject(GameObject input) {
-        this.getGameObjects().add(input);
+    /**
+     * tries to add a GameObject to the main GameObject list
+     *
+     * @param input the GameObeject to be added
+     * @return true if successful and false if it fails
+     */
+    public boolean addGameObject(GameObject input) {
+        try {
+            return this.getGameObjects().add(input);
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
-    public void removeGameObject(GameObject input) {
-        this.getGameObjects().remove(input);
+    /**
+     * tries to add a GameObject to the main GameObject list
+     *
+     * @param input the GameObeject to be added
+     * @return true if successful and false if it fails
+     */
+    public boolean addGameObject(Object input) {
+        try {
+            return this.getGameObjects().add((GameObject) input);
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
-    public void removeGameObject(int index) {
-        this.getGameObjects().remove(index);
+    /**
+     * tries to remove a GameObject to the main GameObject list
+     *
+     * @param input the GameObeject to be removed
+     * @return true if successful and false if it fails
+     */
+    public boolean removeGameObject(GameObject input) {
+        try {
+            return this.getGameObjects().remove(input);
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+
+    /**
+     * tries to remove a GameObject to the main GameObject list
+     *
+     * @param input the GameObeject to be removed
+     * @return true if successful and false if it fails
+     */
+    public boolean removeGameObject(Object input) {
+        try {
+            return this.getGameObjects().remove(input);
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+
+    /**
+     * tries to remove a GameObject to the main GameObject list
+     *
+     * @param index of the GameObject to be removed
+     * @return true if successful and false if it fails
+     */
+    public boolean removeGameObject(int index) {
+        try {
+            this.getGameObjects().remove(index);
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
     public static void close(int status) {
