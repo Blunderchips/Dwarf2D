@@ -364,9 +364,9 @@ public class Collidable extends java.lang.Object {
     @Override
     public String toString() {
         return "Collidable = {" + "\n"
-                + "\t" + "points = " + Arrays.toString(getPoints()) + "\n"
-                + "\t" + "position = " + getPosition() + "\n"
-                + "\t" + super.toString() + "\n"
+                + "\t" + "points: " + Arrays.toString(getPoints()) + "\n"
+                + "\t" + "position: " + getPosition() + "\n"
+                + "\t" + "super: " + super.toString() + "\n"
                 + "}";
     }
 
