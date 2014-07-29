@@ -26,17 +26,20 @@ public class Collidable extends java.lang.Object {
 
     private void init(Vector2 position) {
         this.setPosition(position);
-        this.vertices = new ArrayList<>();
+        this.vertices = new ArrayList<Vector2>();
     }
-
+    
+    /**
+     * @return all vertices as a Vector2 array
+     */
     public Vector2[] getPoints() {
-        Vector2[] tuna = new Vector2[vertices.size()];
+        Vector2[] points = new Vector2[vertices.size()];
 
         for (int i = 0; i < vertices.size(); i++) {
-            tuna[i] = new Vector2(vertices.get(i));
+            points[i] = new Vector2(vertices.get(i));
         }
 
-        return tuna;
+        return points;
     }
 
     public void addPoint(Vector2 point) {
@@ -170,7 +173,7 @@ public class Collidable extends java.lang.Object {
                 leftPosX = lastPosX;
             }
 
-            double test1, test2;
+            double testA, testB;
             if (curPosY < lastPosY) {
                 if (yPos < curPosY || yPos >= lastPosY) {
                     continue;
@@ -179,8 +182,8 @@ public class Collidable extends java.lang.Object {
                     hits++;
                     continue;
                 }
-                test1 = xPos - curPosX;
-                test2 = yPos - curPosY;
+                testA = xPos - curPosX;
+                testB = yPos - curPosY;
             } else {
                 if (yPos < lastPosY || yPos >= curPosY) {
                     continue;
@@ -189,11 +192,11 @@ public class Collidable extends java.lang.Object {
                     hits++;
                     continue;
                 }
-                test1 = xPos - lastPosX;
-                test2 = yPos - lastPosY;
+                testA = xPos - lastPosX;
+                testB = yPos - lastPosY;
             }
 
-            if (test1 < (test2 / (lastPosY - curPosY) * (lastPosX - curPosX))) {
+            if (testA < (testB / (lastPosY - curPosY) * (lastPosX - curPosX))) {
                 hits++;
             }
         }
