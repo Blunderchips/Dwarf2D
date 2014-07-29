@@ -24,11 +24,17 @@ import static org.lwjgl.opengl.GL11.glVertex2d;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
 /**
- * draws shapes to the screen
+ * draws shapes to the screen using openGL
  *
  * @author sid_th3_sl0th
  */
 public final class draw {
+
+    public draw() {
+        // Prevents instantiation of this class.
+        throw new Error(
+                "you can not instantiate this class.");
+    }
 
     /**
      * 3 sided shape
@@ -121,12 +127,6 @@ public final class draw {
 
     public final static String STATE_FILL = "fill";
     public final static String STATE_STROKE = "stroke";
-
-    public draw() {
-        // Prevents instantiation of this class.
-        throw new Error(
-                "you can not instantiate this class.");
-    }
 
     public static void fillRect(float width, float hieght, Vector2 translation, Colour colour) {
         glPushMatrix();

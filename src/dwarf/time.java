@@ -1,18 +1,20 @@
-package dwarf.engine.core;
+package dwarf;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * Provides an interface to your system's clock.
+ *
  * @author sid_th3_sl0th
  */
-public final class Time {
+public final class time {
 
-    private static Long sleepPrecision;
+    private static long sleepPrecision;
     private static long worstYieldTime;
 
-    public Time() {
+    public time() {
         // Prevents instantiation of this class.
         throw new Error(
                 "you can not instantiate this class.");
@@ -23,10 +25,17 @@ public final class Time {
      */
     public static final long SECOND = 0x5f5e100L;
 
-    private static double delta;
+    /**
+     * Delta Time is the time it takes for the computer to go through all the
+     * processing/rendering for a single frame. It is dynamically updated, so it
+     * can fluctuate depending on what level of processing the last frame
+     * required.
+     */
+    private static double dt;
 
     /**
-     * @return System.nanoTime()
+     * @return Returns the value of a timer with an unspecified starting time.
+     * The time is accurate to the microsecond.
      */
     public static long getNano() {
         return System.nanoTime();
@@ -47,25 +56,30 @@ public final class Time {
     }
 
     /**
-     * @return return time.delta
+     * Delta Time is the time it takes for the computer to go through all the
+     * processing/rendering for a single frame. It is dynamically updated, so it
+     * can fluctuate depending on what level of processing the last frame
+     * required.
+     *
+     * @return Returns the time between the last two frames.
      */
     public static double getDelta() {
-        return Time.delta;
+        return time.dt;
     }
 
     /**
-     * time.delta = (time.getNano() - (double)lastTime) / time.SECOND
+     * time.dt = (time.getNano() - (double)lastTime) / time.SECOND
      *
      * @param lastTime
      */
     public static void setDelta(long lastTime) {
-        Time.delta = (Time.getNano() - (double) lastTime) / Time.SECOND;
+        time.dt = (time.getNano() - (double) lastTime) / time.SECOND;
     }
 
     /**
      * Sleep for the specified amount of time.
      *
-     * @param nanos Time to wait in nanoseconds.
+     * @param nanos time to wait in nanoseconds.
      * @param tStart The time from which the waiting should start.
      *
      * @throws InterruptedException if another thread has interrupted the
@@ -106,6 +120,12 @@ public final class Time {
         }
     }
 
+    /**
+     * Causes the currently executing thread to sleep for the specified number
+     * of milliseconds.
+     *
+     * @param millis the length of time to sleep in milliseconds
+     */
     public static void sleep(Long millis) {
         try {
             Thread.sleep(millis);

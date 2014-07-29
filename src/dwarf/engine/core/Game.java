@@ -163,12 +163,27 @@ public abstract class Game extends Engine {
         this.draw();
     }
 
+    /**
+     * This function is called exactly once at the beginning of the game.
+     */
     public abstract void load();
 
+    /**
+     * Callback function used to update the state of the game every frame.
+     */
     public abstract void update();
 
+    /**
+     * Callback function used to draw on the screen every frame.
+     */
     public abstract void draw();
 
+    /**
+     * returns all GameObjects added to the main GameObject ArrayList as a new
+     * ArrayList
+     *
+     * @return ArrayList of all added GameObjects
+     */
     public ArrayList<GameObject> getGameObjects() {
         return Game.gameObjects;
     }

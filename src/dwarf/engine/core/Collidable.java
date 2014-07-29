@@ -28,7 +28,7 @@ public class Collidable extends java.lang.Object {
         this.setPosition(position);
         this.vertices = new ArrayList<Vector2>();
     }
-    
+
     /**
      * @return all vertices as a Vector2 array
      */
@@ -450,10 +450,21 @@ public class Collidable extends java.lang.Object {
         this.setPosition(new Vector2(xPos, yPos));
     }
 
+    /**
+     * tests if the mouse is hovering over the Collidable
+     *
+     * @return true if the mouse is hovering over the Collidable otherwise false
+     */
     public boolean isMouseHover() {
         return intersects(new Circle(1, getMousePosition(), "stroke", Colour.white));
     }
 
+    /**
+     * tests if the Collidable is clicked of by a mouse button
+     *
+     * @param button the that needs to be clicked
+     * @return true if the Collidable is clicked on
+     */
     public boolean isClickedOn(int button) {
         if (Input.isMouseClicked(button)) {
             return isMouseHover();
@@ -462,10 +473,21 @@ public class Collidable extends java.lang.Object {
         }
     }
 
+    /**
+     * tests if the Collidable is clicked of by the left mouse button
+     *
+     * @return true is the Collidable is clicked on by the left mouse button
+     */
     public boolean isClickedOn() {
         return isClickedOn(MOUSE_LEFT);
     }
 
+    /**
+     * tests if the Collidable in the current view screen
+     *
+     * @return true if the Collidable position bigger than or equal to the
+     * camera's position at all four sides
+     */
     public boolean atEdge() {
         if (this.getPosition().getX() > (Window.getWidth() + camera.getPosition().getX())) {
             return true;

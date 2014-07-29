@@ -1,5 +1,7 @@
 package dwarf.engine.core;
 
+import dwarf.time;
+
 /**
  * the main engine file
  *
@@ -25,7 +27,7 @@ public abstract class Engine extends java.lang.Object {
      */
     private void run() {
         while (true) {
-            long lastFPS = Time.getNano();
+            long lastFPS = time.getNano();
 
             if (!Window.isCloseRequested()) {
                 this.refresh();
@@ -41,7 +43,7 @@ public abstract class Engine extends java.lang.Object {
                 break;
             }
 
-            Time.setDelta(lastFPS);
+            time.setDelta(lastFPS);
         }
         System.exit(0);
     }
