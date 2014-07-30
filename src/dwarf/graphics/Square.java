@@ -3,6 +3,11 @@ package dwarf.graphics;
 import dwarf.util.Vector2;
 
 /**
+ * In geometry, a square is a regular quadrilateral, which means that it has
+ * four equal sides and four equal angles (90-degree angles, or right
+ * angles). It can also be defined as a rectangle in which two adjacent sides
+ * have equal length. A square with vertices ABCD would be denoted ABCD.
+ *
  * @author sid_th3_sl0th
  */
 public class Square extends Rectangle {
