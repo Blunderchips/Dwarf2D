@@ -7,6 +7,12 @@ import static java.lang.Math.PI;
 import java.util.Objects;
 
 /**
+ * A circle is a simple shape of Euclidean geometry that is the set of all
+ * points in a plane that are at a given distance from a given point, the
+ * center. The distance between any of the points and the center is called the
+ * radius. It can also be defined as the locus of a point equidistant from a
+ * fixed point.
+ *
  * @author sid_th3_sl0th
  */
 public class Circle extends Shape {
