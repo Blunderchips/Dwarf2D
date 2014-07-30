@@ -3,6 +3,11 @@ package dwarf.graphics;
 import dwarf.util.Vector2;
 
 /**
+ * In Euclidean plane geometry, a quadrilateral is a polygon with four sides (or
+ * edges) and four vertices or corners. Sometimes, the term quadrangle is used,
+ * by analogy with triangle, and sometimes tetragon for consistency with
+ * pentagon (5-sided), hexagon (6-sided) and so on.
+ *
  * @author sid_th3_sl0th
  */
 public class Quadrilateral extends Polygon {
