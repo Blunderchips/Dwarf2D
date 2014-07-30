@@ -4,6 +4,14 @@ import dwarf.engine.core.Collidable;
 import dwarf.util.Vector2;
 
 /**
+ * In Euclidean plane geometry, a rectangle is any quadrilateral with four right
+ * angles. It can also be defined as an equiangular quadrilateral, since
+ * equiangular means that all of its angles are equal (360°/4 = 90°). It can
+ * also be defined as a parallelogram containing a right angle. A rectangle with
+ * four sides of equal length is a square. The term oblong is occasionally used
+ * to refer to a non-square rectangle. A rectangle with vertices ABCD
+ * would be denoted as rectangle.
+ *
  * @author sid_th3_sl0th
  */
 public class Rectangle extends Quadrilateral {
