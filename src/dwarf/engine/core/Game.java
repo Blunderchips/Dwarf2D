@@ -1,5 +1,6 @@
 package dwarf.engine.core;
 
+import dwarf.util.Vector2;
 import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeSupport;
 import static java.lang.Math.abs;
@@ -11,15 +12,8 @@ import java.util.Objects;
  */
 public abstract class Game extends Engine {
 
-    private int WIDTH;
-    private int HIEGHT;
-    private String TITLE;
-
     public static ArrayList<GameObject> gameObjects;
     public static boolean debug = true;
-    private boolean loaded = false;
-    private boolean useDefaultRender = true;
-    private boolean useDefaultUpdate = true;
     //NetBeans wanted these:
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
     private final transient PropertyChangeSupport propertyChangeSupport;
@@ -43,15 +37,6 @@ public abstract class Game extends Engine {
         this.init(width, hieght, title);
     }
 
-    public Game(float width, float hieght, String title) {
-        super();
-
-        this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
-        this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
-
-        this.init((int) width, (int) hieght, title);
-    }
-
     public Game(String title) {
         super();
 
@@ -70,13 +55,22 @@ public abstract class Game extends Engine {
         this.init(width, hieght, null);
     }
 
-    public Game(float width, float hieght) {
+    public Game(Vector2 dimensions) {
         super();
 
         this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
         this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
 
-        this.init((int) width, (int) hieght, null);
+        this.init((int) dimensions.getX(), (int) dimensions.getY(), null);
+    }
+
+    public Game(Vector2 dimensions, String title) {
+        super();
+
+        this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
+        this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
+
+        this.init((int) dimensions.getX(), (int) dimensions.getY(), title);
     }
 
     /**
@@ -106,76 +100,28 @@ public abstract class Game extends Engine {
                     "the width nor the hieght can be equal to zero.");
         }
 
-        this.WIDTH = abs(width);
-        this.HIEGHT = abs(hieght);
-        this.TITLE = title;
+        gameObjects = new ArrayList<GameObject>();
 
-        gameObjects = new ArrayList<>();
-
-        this.run();
-    }
-
-    /**
-     * starts the main game loop.
-     */
-    private void run() {
-        this.start(WIDTH, HIEGHT, TITLE);
-    }
-
-    /**
-     * Same as update(). Subclass can override refresh() instead of update().
-     * Same thing, just a matter of taste. by default will update all
-     * gameObjects and their children, will then call update()
-     *
-     * @see update()
-     */
-    @Override
-    protected void refresh() {
-        if (loaded) {
-            if (useDefaultUpdate) {
-                for (GameObject obj : gameObjects) {
-                    obj.update();
-                    obj.updateChildren();
-                }
-            }
-            this.update();
-        } else {
-            this.load();
-            this.loaded = true;
-        }
-    }
-
-    /**
-     * Same as draw(). Subclass can override render() instead of draw(). Same
-     * thing, just a matter of taste. by default will render all gameObjects and
-     * their children, will then call draw().
-     *
-     * @see draw()
-     */
-    @Override
-    protected void render() {
-        if (useDefaultRender) {
-            for (GameObject obj : gameObjects) {
-                obj.render();
-                obj.renderChildren();
-            }
-        }
-        this.draw();
+        //starts the main game loop.
+        this.start(abs(width), abs(hieght), title);
     }
 
     /**
      * This function is called exactly once at the beginning of the game.
      */
+    @Override
     public abstract void load();
 
     /**
      * Callback function used to update the state of the game every frame.
      */
+    @Override
     public abstract void update();
 
     /**
      * Callback function used to draw on the screen every frame.
      */
+    @Override
     public abstract void draw();
 
     /**
@@ -296,18 +242,6 @@ public abstract class Game extends Engine {
         throw new RuntimeException(ex);
     }
 
-    public int getHieght() {
-        return this.HIEGHT;
-    }
-
-    public int getWidth() {
-        return this.WIDTH;
-    }
-
-    public String getTitle() {
-        return this.TITLE;
-    }
-
     /**
      * Class Object is the root of the class hierarchy. Every class has Object
      * as a superclass. All objects, including arrays, implement the methods of
@@ -319,9 +253,6 @@ public abstract class Game extends Engine {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + WIDTH;
-        hash = 37 * hash + HIEGHT;
-        hash = 37 * hash + Objects.hashCode(TITLE);
         hash = 37 * hash + Objects.hashCode(propertyChangeSupport);
         hash = 37 * hash + Objects.hashCode(vetoableChangeSupport);
         return hash;
@@ -347,14 +278,7 @@ public abstract class Game extends Engine {
         }
 
         final Game game = (Game) obj;
-
-        if (this.getWidth() != game.getWidth()) {
-            return false;
-        } else if (this.getHieght() != game.getHieght()) {
-            return false;
-        } else if (!Objects.equals(this.getTitle(), game.getHieght())) {
-            return false;
-        } else if (!Objects.equals(this.propertyChangeSupport, game.propertyChangeSupport)) {
+        if (!Objects.equals(this.propertyChangeSupport, game.propertyChangeSupport)) {
             return false;
         } else {
             return Objects.equals(this.vetoableChangeSupport, game.vetoableChangeSupport);
@@ -363,12 +287,11 @@ public abstract class Game extends Engine {
 
     @Override
     public String toString() {
-        return "Game = {" + "\n"
-                + "\t" + "width: " + this.getWidth() + "\n"
-                + "\t" + "hieght: " + this.getHieght() + "\n"
-                + "\t" + "title: " + this.getTitle() + "\n"
-                + "\t" + "super: " + super.toString() + "\n"
-                + "}";
+        return "Game = {"
+                + "propertyChangeSupport: " + propertyChangeSupport + ", "
+                + "vetoableChangeSupport: " + vetoableChangeSupport + ", "
+                + "super: " + super.toString()
+                + '}';
     }
 
     public boolean isDebug() {
@@ -379,23 +302,30 @@ public abstract class Game extends Engine {
         Game.debug = mode;
     }
 
-    public boolean isLoaded() {
-        return this.loaded;
+    /**
+     * renders all GameObjects in the main GameObject ArrayList.
+     */
+    public void renderAllGameObjects() {
+        for (GameObject obj : getGameObjects()) {
+            obj.render();
+            obj.renderChildren();
+        }
     }
 
-    public boolean useDefaultRender() {
-        return this.useDefaultRender;
+    /**
+     * updates all GameObjects in the main GameObject ArrayList.
+     */
+    public void updateAllGameObjects() {
+        for (GameObject obj : getGameObjects()) {
+            obj.update();
+            obj.updateChildren();
+        }
     }
 
-    public void setUseDefaultRender(boolean useDefaultRender) {
-        this.useDefaultRender = useDefaultRender;
-    }
-
-    public boolean useDefaultUpdate() {
-        return this.useDefaultUpdate;
-    }
-
-    public void setUseDefaultUpdate(boolean useDefaultUpdate) {
-        this.useDefaultUpdate = useDefaultUpdate;
+    /**
+     * all GameObjects in the main GameObject ArrayList
+     */
+    public void clearGameObjects() {
+        this.gameObjects = new ArrayList<GameObject>();
     }
 }

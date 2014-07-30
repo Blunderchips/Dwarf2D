@@ -86,7 +86,7 @@ public class Collidable extends java.lang.Object {
      * @return this.getPoints().size()
      */
     public int getNumPoints() {
-        return this.getPoints().length;
+        return this.vertices.size();
     }
 
     /**
@@ -253,7 +253,7 @@ public class Collidable extends java.lang.Object {
      * the data from before the reset.
      */
     public void reset() {
-        this.vertices = null;
+        this.vertices = new ArrayList<Vector2>();
     }
 
     public java.awt.Polygon toPolygon() {
@@ -363,10 +363,10 @@ public class Collidable extends java.lang.Object {
 
     @Override
     public String toString() {
-        return "Collidable = {" + "\n"
-                + "\t" + "points: " + Arrays.toString(getPoints()) + "\n"
-                + "\t" + "position: " + getPosition() + "\n"
-                + "\t" + "super: " + super.toString() + "\n"
+        return "Collidable = {"
+                + "points: " + Arrays.toString(getPoints()) + ", "
+                + "position: " + getPosition() + ", "
+                + "super: " + super.toString()
                 + "}";
     }
 

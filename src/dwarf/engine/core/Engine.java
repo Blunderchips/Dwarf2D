@@ -19,6 +19,7 @@ public abstract class Engine extends java.lang.Object {
         openGL.init();
         Input.init();
 
+        this.load();
         this.run();
     }
 
@@ -30,11 +31,11 @@ public abstract class Engine extends java.lang.Object {
             long lastFPS = time.getNano();
 
             if (!Window.isCloseRequested()) {
-                this.refresh();
+                this.update();
                 Window.update();
 
                 Window.clear();
-                this.render();
+                this.draw();
                 Window.render();
 
                 Input.update();
@@ -48,9 +49,20 @@ public abstract class Engine extends java.lang.Object {
         System.exit(0);
     }
 
-    protected abstract void refresh();
+    /**
+     * This function is called exactly once at the beginning of the game.
+     */
+    protected abstract void load();
 
-    protected abstract void render();
+    /**
+     * Callback function used to update the state of the game every frame.
+     */
+    protected abstract void update();
+
+    /**
+     * Callback function used to draw on the screen every frame.
+     */
+    protected abstract void draw();
 
     protected static void dispose() {
         Input.dispose();

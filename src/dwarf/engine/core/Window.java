@@ -261,4 +261,5 @@ public final class Window {
     public static Vector2 getDimensions() {
         return new Vector2(Display.getWidth(), Display.getHeight());
     }
+
 }

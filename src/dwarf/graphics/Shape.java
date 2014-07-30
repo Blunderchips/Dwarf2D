@@ -133,6 +133,17 @@ public class Shape extends Polygon {
         }
     }
 
+    /**
+     * calculates the area of any regular polygon using the length of each line
+     * segment and the number of line segments. Rounds off to three decimal
+     * places.
+     *
+     * @author Shane Acton
+     * @author Issa
+     * @author Matthew Van der Bijl
+     *
+     * @return returns the area of the Shape
+     */
     public double getArea() {
         return (Math.round((math.sqr(getLineLength() / 2) * Math.tan(Math.toRadians(180 - (360 / getNumSides())) / 2)) * getNumSides()) * 1000) / 1000;
     }

@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Polygon extends GameObject {
 
     private Colour colour;
-    private String state;
+    private String mode;
 
     public Polygon(Vector2 position, String state, Colour colour) {
         super(position);
@@ -28,7 +28,7 @@ public class Polygon extends GameObject {
 
     private void init(String state, Colour colour) {
         this.setColour(colour);
-        this.setState(state);
+        this.setMode(state);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Polygon extends GameObject {
     }
 
     public boolean isFill() {
-        return this.state.equals("fill");
+        return this.mode.equals("fill");
     }
 
     public boolean isStroke() {
@@ -60,14 +60,14 @@ public class Polygon extends GameObject {
         this.colour = colour;
     }
 
-    public void setState(String state) {
-        if (state.equals("fill") || state.equals("stroke")) {
-            this.state = state;
-        }//else if (state == null) {
-        //  throw new NullPointerException("the state can not be null. (stroke/fill only)");
+    public void setMode(String mode) {
+        if (mode.equals("fill") || mode.equals("stroke")) {
+            this.mode = mode;
+        }//else if (mode == null) {
+        //  throw new NullPointerException("the mode can not be null. (stroke/fill only)");
         //} 
         else {
-            throw new IllegalArgumentException("the state '" + state + "' is unknown. (stroke/fill only)");
+            throw new IllegalArgumentException("the state '" + mode + "' is unknown. (stroke/fill only)");
         }
     }
 
@@ -75,7 +75,7 @@ public class Polygon extends GameObject {
     public int hashCode() {
         int hash = 3;
         hash = 47 * hash + Objects.hashCode(getColour());
-        hash = 47 * hash + Objects.hashCode(getState());
+        hash = 47 * hash + Objects.hashCode(getMode());
         return hash;
     }
 
@@ -102,11 +102,11 @@ public class Polygon extends GameObject {
         if (!Objects.equals(this.getColour(), other.getColour())) {
             return false;
         } else {
-            return Objects.equals(this.getState(), other.getState());
+            return Objects.equals(this.getMode(), other.getMode());
         }
     }
 
-    public String getState() {
-        return this.state;
+    public String getMode() {
+        return this.mode;
     }
 }

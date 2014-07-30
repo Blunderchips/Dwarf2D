@@ -145,11 +145,11 @@ public class Audio extends java.lang.Object {
 
     @Override
     public String toString() {
-        return "Sound = {" + "\n"
-                + "\t" + "source: " + getSource() + "\n"
-                + "\t" + "buffer: " + getBuffer() + "\n"
-                + "\t" + "data: " + getData() + "\n"
-                + "\t" + "super: " + super.toString() + "\n"
+        return "Sound = {"
+                + "source: " + getSource() + ", "
+                + "buffer: " + getBuffer() + ", "
+                + "data: " + getData() + ", "
+                + "super: " + super.toString()
                 + '}';
     }
 
@@ -174,4 +174,3 @@ public class Audio extends java.lang.Object {
         alSourceRewind(getSource());
     }
 }
-
