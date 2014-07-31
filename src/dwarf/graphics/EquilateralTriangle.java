@@ -23,4 +23,9 @@ public class EquilateralTriangle extends Shape {
     public double getArea() {
         return math.sqrt(3) / 4 * sqr(getLineLength());
     }
+
+    @Override
+    public void addPoint(Vector2 point) {
+        System.err.println("This method is unsuported with the Quadrilateral class.");
+    }
 }
