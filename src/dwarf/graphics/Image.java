@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
- * Texture functions
+ * A set of functions and variables required to create a malleable class for
+ * drawing pictures to the window
  *
  * @author sid_th3_sl0th
  */
@@ -125,6 +126,34 @@ public class Image extends GameObject {
 
         final Image other = (Image) obj;
         return Objects.equals(this.getTexture(), other.getTexture());
+    }
+    
+    /**
+     * Gets the height of the Image as a float.
+     *
+     * @return the height of the image
+     */
+    public float getHeight() {
+        return this.getTexture().getHeight();
+    }
+
+    /**
+     * Gets the width of the Image as a float.
+     *
+     * @return the width of the texture
+     */
+    public float getWidth() {
+        return this.getTexture().getHeight();
+    }
+
+    /**
+     * Gets the width and height of the Image as a new Vector2.
+     *
+     * @return the width and the hight of the image
+     */
+    public Vector2 getDimensions() {
+        return new Vector2(
+                this.getWidth(), this.getHeight());
     }
 
 }
