@@ -11,10 +11,10 @@ import java.util.Objects;
 
 /**
  * a wrapper around the values needed for a malleable 2D polygon collision <br/>
- * class. will automatically detect - but not resolve - collisions. It uses an
- * efficient data search structure to quickly find intersecting
+ * class. <p>will automatically detect - but not resolve - collisions. It uses
+ * an efficient data search structure to quickly find intersecting
  * <code>Collidable</code> as well as offering general utilities to the
- * <code>Collidable</code>.
+ * <code>Collidable</code>.</p>
  *
  * @author sid_th3_sl0th
  */
@@ -23,18 +23,32 @@ public class Collidable extends java.lang.Object {
     private ArrayList<Vector2> vertices;
     private Vector2 position;
 
+    /**
+     * creates a new
+     * <code>Collidable</code>
+     *
+     * @param position the location of the <code>Collidable</code> of the game
+     * window (Vector2)
+     */
     public Collidable(Vector2 position) {
         super();
         this.init(position);
     }
 
+    /**
+     * initialises the
+     * <code>Collidable</code>.
+     *
+     * @param position the location of the <code>Collidable</code> of the game
+     * window
+     */
     private void init(Vector2 position) {
         this.setPosition(position);
         this.vertices = new ArrayList<Vector2>();
     }
 
     /**
-     * @return all vertices as a Vector2 array
+     * @return all vertices as a Vector2 array of the <code>Collidable</code>.
      */
     public Vector2[] getPoints() {
         Vector2[] points = new Vector2[vertices.size()];
@@ -65,9 +79,9 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new polygon with the arrays given
+     * creates a new polygon with the Vector2 arrays given
      *
-     * @param points an array of the Vector2d coordinates of the polygon
+     * @param points an array of the Vector2d coordinates of      * the <code>Collidable</code>
      */
     public void setPoints(Vector2[] points) {
         double[] x = new double[points.length];
@@ -95,31 +109,32 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new polygon with the arrays given
+     * creates a new
+     * <code>Collidable</code> with the arrays given
      *
-     * @param x an array of the x coordinates of the polygon
-     * @param y an array of the y coordinates of the polygon
+     * @param xPoints an array of the x coordinates of the polygon
+     * @param yPoints an array of the y coordinates of the polygon
      */
-    public void setPoints(double[] x, double[] y) {
+    public void setPoints(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");
 //        } else
-        if (x.length < 3) {
+        if (xPoints.length < 3) {
             throw new IllegalArgumentException(
-                    "Polygon requires at least 3 x values. Found " + x.length);
-        } else if (y.length < 3) {
+                    "Polygon requires at least 3 x values. Found " + xPoints.length);
+        } else if (yPoints.length < 3) {
             throw new IllegalArgumentException(
-                    "Polygon requires at least 3 y values. Found " + y.length);
-        } else if (x.length != y.length) {
+                    "Polygon requires at least 3 y values. Found " + yPoints.length);
+        } else if (xPoints.length != yPoints.length) {
             throw new IllegalArgumentException(
                     "Polygon requires the same amount of x and y values. Found "
-                    + x.length + "," + y.length);
+                    + xPoints.length + "," + yPoints.length);
         } else {
-            ArrayList<Vector2> temp = new ArrayList<>(x.length);
+            ArrayList<Vector2> temp = new ArrayList<>(xPoints.length);
 
-            for (int i = 0; i < x.length; i++) {
-                temp.add(new Vector2(x[i], y[i]));
+            for (int i = 0; i < xPoints.length; i++) {
+                temp.add(new Vector2(xPoints[i], yPoints[i]));
             }
 
             this.vertices = temp;
@@ -250,16 +265,14 @@ public class Collidable extends java.lang.Object {
 
     /**
      * Resets this
-     * <code>Collidable</code> object to an empty polygon. The coordinate arrays
-     * and the data in them are left untouched but the number of points is reset
-     * to zero to mark the old vertex data as invalid and to start accumulating
-     * new vertex data at the beginning. All internally-cached data relating to
-     * the old vertices are discarded. Note that since the coordinate arrays
-     * from before the reset are reused, creating a new empty
-     * <code>Collidable</code> might be more memory efficient than resetting the
-     * current one if the number of vertices in the new polygon data is
-     * significantly smaller than the number of vertices in the data from before
-     * the reset.
+     * <code>Collidable</code> object to an empty
+     * <code>Collidable</code> by setting the vertices ArrayList equal to null .
+     * The coordinate arrays and the data in them are left untouched but the
+     * number of points is reset to zero to mark the old vertex data as invalid
+     * and to start accumulating new vertex data at the beginning. All
+     * internally-cached data relating to the old vertices are discarded. Note
+     * that since the coordinate arrays from before the reset are reused,
+     * creating a new empty
      */
     public void reset() {
         this.vertices = new ArrayList<Vector2>();
