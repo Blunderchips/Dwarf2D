@@ -139,7 +139,7 @@ public class Shape extends Polygon {
      * places.
      *
      * @author Shane Acton
-     * @author Issa
+     * @author Isa 
      * @author Matthew Van der Bijl
      *
      * @return returns the area of the Shape
