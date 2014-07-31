@@ -10,7 +10,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * a wrapper around the values needed for a malleable 2D polygon collision class
+ * a wrapper around the values needed for a malleable 2D polygon collision <br/>
+ * class. will automatically detect - but not resolve - collisions. It uses an
+ * efficient data search structure to quickly find intersecting
+ * <code>Collidable</code> as well as offering general utilities to the
+ * <code>Collidable</code>.
  *
  * @author sid_th3_sl0th
  */
@@ -78,10 +82,11 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * The total number of points. The value of <code>getPoints().size()</code>
-     * represents the number of valid points in this <code>Collidable</code> and
-     * might be less than the number of elements in {@link #vertices} or
-     * {@link #vertices}. This value can be NULL.
+     * The total number of points. The value of
+     * <code>getPoints().size()</code> represents the number of valid points in
+     * this
+     * <code>Collidable</code> and might be less than the number of elements in
+     * {@link #vertices} or {@link #vertices}. This value can be NULL.
      *
      * @return this.getPoints().size()
      */
@@ -125,9 +130,10 @@ public class Collidable extends java.lang.Object {
      * Determines whether the specified coordinates are inside this
      * <code>Collidable</code>.
      * <p>
+     *
      * @param point - Vector2d
-     * @return {@code true} if this {@code Collidable} contains the specified
-     * coordinates {@code (x,y)};
+     * @return {@code true} if this {@code <code>Collidable</code>} contains the
+     * specified coordinates {@code (x,y)};
      *         {@code false} otherwise.
      */
     public boolean contains(Vector2 point) {
@@ -138,10 +144,11 @@ public class Collidable extends java.lang.Object {
      * Determines whether the specified coordinates are inside this
      * <code>Collidable</code>.
      * <p>
+     *
      * @param xPos the specified X coordinate to be tested
      * @param yPos the specified Y coordinate to be tested
-     * @return {@code true} if this {@code Collidable} contains the specified
-     * coordinates {@code (x,y)};
+     * @return {@code true} if this {@code <code>Collidable</code>} contains the
+     * specified coordinates {@code (x,y)};
      *         {@code false} otherwise.
      */
     public boolean contains(double xPos, double yPos) {
@@ -205,9 +212,10 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Translates the vertices of the <code>Collidable</code> by
-     * <code>deltaX</code> along the x axis and by <code>deltaY</code> along the
-     * y axis.
+     * Translates the vertices of the
+     * <code>Collidable</code> by
+     * <code>deltaX</code> along the x axis and by
+     * <code>deltaY</code> along the y axis.
      *
      * @param deltaX the amount to translate along the X axis
      * @param deltaY the amount to translate along the Y axis
@@ -241,16 +249,17 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Resets this <code>Collidable</code> object to an empty polygon. The
-     * coordinate arrays and the data in them are left untouched but the number
-     * of points is reset to zero to mark the old vertex data as invalid and to
-     * start accumulating new vertex data at the beginning. All
-     * internally-cached data relating to the old vertices are discarded. Note
-     * that since the coordinate arrays from before the reset are reused,
-     * creating a new empty <code>Collidable</code> might be more memory
-     * efficient than resetting the current one if the number of vertices in the
-     * new polygon data is significantly smaller than the number of vertices in
-     * the data from before the reset.
+     * Resets this
+     * <code>Collidable</code> object to an empty polygon. The coordinate arrays
+     * and the data in them are left untouched but the number of points is reset
+     * to zero to mark the old vertex data as invalid and to start accumulating
+     * new vertex data at the beginning. All internally-cached data relating to
+     * the old vertices are discarded. Note that since the coordinate arrays
+     * from before the reset are reused, creating a new empty
+     * <code>Collidable</code> might be more memory efficient than resetting the
+     * current one if the number of vertices in the new polygon data is
+     * significantly smaller than the number of vertices in the data from before
+     * the reset.
      */
     public void reset() {
         this.vertices = new ArrayList<Vector2>();
@@ -280,7 +289,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns Average of the height of the Collidable, in pixels.
+     * Returns Average of the height of the
+     * <code>Collidable</code>, in pixels.
      *
      * @return Average of the height, in pixels
      */
@@ -297,7 +307,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns average of the width of the Collidable, in pixels.
+     * Returns average of the width of the
+     * <code>Collidable</code>, in pixels.
      *
      * @return average of the width, in pixels
      */
@@ -371,53 +382,53 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns the position of the center of the rectangle.
+     * Returns the position of the center of the
+     * <code>Collidable</code>.
      *
-     * @return the position of the center of the rectangle
+     * @return the position of the center of the <code>Collidable</code>
      */
     public Vector2 getCenter() {
         return new Vector2(
                 this.getCenterX().getX(),
                 this.getCenterY().getY(),
-                this.getPosition().getRotation()
-        );
+                this.getPosition().getRotation());
     }
 
     /**
-     * Returns the coordinate of the center of the rectangle in the horizontal
-     * axis.
+     * Returns the coordinate of the center of the
+     * <code>Collidable</code> in the horizontal axis.
      *
-     * @return the coordinate of the center of the rectangle in the horizontal
-     * axis
+     * @return the coordinate of the center of the <code>Collidable</code> in
+     * the horizontal axis
      */
     public Vector2 getCenterX() {
         return new Vector2(
                 this.getPosition().getX() - this.getAverageWidth(),
                 this.getPosition().getY(),
-                this.getPosition().getRotation()
-        );
+                this.getPosition().getRotation());
     }
 
     /**
-     * Returns the coordinate of the center of the rectangle in the vertical
-     * axis.
+     * Returns the coordinate of the center of the
+     * <code>Collidable</code> in the vertical axis.
      *
-     * @return the coordinate of the center of the rectangle in the vertical
-     * axis
+     * @return the coordinate of the center of the <code>Collidable</code> in
+     * the vertical axis
      */
     public Vector2 getCenterY() {
         return new Vector2(
                 this.getPosition().getX(),
                 this.getPosition().getY() - this.getAverageWidth(),
-                this.getPosition().getRotation()
-        );
+                this.getPosition().getRotation());
     }
 
     /**
-     * returns true if the Collidable have intersected with this Collidable
+     * returns true if the Collidable have intersected with this
+     * <code>Collidable</code>
      *
-     * @param coll - the Collidable to be tested
-     * @return true if the Collidable has intersected/collided with this
+     * @param coll - the <code>Collidable</code> to be tested
+     * @return true if the <code>Collidable</code> has intersected/collided with
+     * this
      */
     public boolean intersects(Collidable coll) {
         for (int i = 0; i < coll.getNumPoints();) {
@@ -451,16 +462,19 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the mouse is hovering over the Collidable
+     * tests if the mouse is hovering over the
+     * <code>Collidable</code>
      *
-     * @return true if the mouse is hovering over the Collidable otherwise false
+     * @return true if the mouse is hovering over the <code>Collidable</code>
+     * otherwise false
      */
     public boolean isMouseHover() {
         return intersects(new Circle(1, getMousePosition(), "stroke", Colour.white));
     }
 
     /**
-     * tests if the Collidable is clicked of by a mouse button
+     * tests if the
+     * <code>Collidable</code> is clicked of by a mouse button
      *
      * @param button the that needs to be clicked
      * @return true if the Collidable is clicked on
@@ -474,7 +488,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the Collidable is clicked of by the left mouse button
+     * tests if the
+     * <code>Collidable</code> is clicked of by the left mouse button
      *
      * @return true is the Collidable is clicked on by the left mouse button
      */
@@ -483,10 +498,11 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the Collidable in the current view screen
+     * tests if the
+     * <code>Collidable</code> in the current view screen
      *
-     * @return true if the Collidable position bigger than or equal to the
-     * camera's position at all four sides
+     * @return true if the <code>Collidable</code> position bigger than or equal
+     * to the camera's position at all four sides
      */
     public boolean atEdge() {
         if (this.getPosition().getX() > (Window.getWidth() + camera.getPosition().getX())) {
