@@ -1,20 +1,30 @@
 package dwarf.engine.core;
 
+import dwarf.Input;
 import dwarf.time;
 
 /**
- * the main engine file
+ * the main engine file for the <a href='http:/95.85.60.226/'>Dwarf2D Engine</a>
  *
  * @author sid_th3_sl0th
+ *
+ * @see java.lang.Object
+ * @see dwarf.Input#init()
+ * @see dwarf.Input#dispose()
+ * @see dwarf.engine.core.Window#create(int, int, java.lang.String)
+ * @see dwarf.engine.core.openAL#init()
+ * @see dwarf.engine.core.openGL#init()
+ * @see dwarf.engine.core.openAL#dispose()
+ * @see dwarf.engine.core.Window#dispose()
  */
 public abstract class Engine extends java.lang.Object {
 
-    protected Engine() {
+    public Engine() {
         super();
         openAL.init();
     }
 
-    protected void start(int width, int hieght, String title) {
+    public void start(int width, int hieght, String title) {
         Window.create(width, hieght, title);
         openGL.init();
         Input.init();
@@ -52,19 +62,19 @@ public abstract class Engine extends java.lang.Object {
     /**
      * This function is called exactly once at the beginning of the game.
      */
-    protected abstract void load();
+    public abstract void load();
 
     /**
      * Callback function used to update the state of the game every frame.
      */
-    protected abstract void update();
+    public abstract void update();
 
     /**
      * Callback function used to draw on the screen every frame.
      */
-    protected abstract void draw();
+    public abstract void draw();
 
-    protected static void dispose() {
+    public static void dispose() {
         Input.dispose();
         Window.dispose();
         openAL.dispose();

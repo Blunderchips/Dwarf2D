@@ -1,10 +1,9 @@
 package dwarf;
 
-import dwarf.engine.core.Input;
 import dwarf.engine.core.Window;
 import dwarf.engine.core.camera;
-import static dwarf.engine.core.Input.MOUSE_LEFT;
-import static dwarf.engine.core.Input.getMousePosition;
+import static dwarf.Input.MOUSE_LEFT;
+import static dwarf.Input.getMousePosition;
 import dwarf.graphics.Circle;
 import dwarf.graphics.Colour;
 import dwarf.util.Vector2;
