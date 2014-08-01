@@ -8,7 +8,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
+ * the main <code>Game</code> file and is the entry point to the
+ * <code>Dwarf2D Engine</code>. Create and runs the main game window and acts as
+ * a buffer between the user and the main <code>Engine</code> file.
+ *
  * @author sid_th3_sl0th
+ * @see dwarf.engine.core.Engine
+ * @see dwarf.engine.core.Window
  */
 public abstract class Game extends Engine {
 
@@ -79,21 +85,28 @@ public abstract class Game extends Engine {
     public static void main(String[] args) {
 
         Game defaultGame = new Game(".:Dwarf 2D:.") {
-
             @Override
             public void load() {
+                //This function is called exactly once at the beginning of the game.
             }
 
             @Override
             public void update() {
+                //Callback function used to update the state of the game every frame.
             }
 
             @Override
             public void draw() {
+                //Callback function used to draw on the screen every frame.
             }
         };
     }
 
+    /**
+     * initialises the Game.
+     *
+     * @param position the location of the game of the game window
+     */
     private void init(int width, int hieght, String title) {
         if (width == 0 || hieght == 0) {
             throw new IllegalArgumentException(
@@ -125,21 +138,22 @@ public abstract class Game extends Engine {
     public abstract void draw();
 
     /**
-     * returns all GameObjects added to the main GameObject ArrayList as a new
-     * ArrayList
+     * returns all <code>GameObject</code> added to the main
+     * <code>GameObject</code> <code>ArrayList</code> as a new
+     * <code>ArrayList</code>
      *
-     * @return ArrayList of all added GameObjects
+     * @return <code>ArrayList</code> of all added <code>GameObject</code>
      */
     public ArrayList<GameObject> getGameObjects() {
         return Game.gameObjects;
     }
 
     /**
-     * tries to set the main GameObject list to a inputed ArrayList of
-     * GameObects
+     * tries to set the main <code>GameObject</code> list to a inputed
+     * <code>ArrayList</code> of <code>GameObject</code>
      *
      * @param gameObjects
-     * @gameObjects an ArrayList of GameObjects
+     * @gameObjects an <code>ArrayList</code> of <code>GameObject</code>
      * @return true if successful and false if it fails
      */
     public boolean setGameObjects(ArrayList<GameObject> gameObjects) {
@@ -153,9 +167,10 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * tries to add a GameObject to the main GameObject list
+     * tries to add a <code>GameObject</code> to the main
+     * <code>GameObject</code> <code>ArrayList</code>
      *
-     * @param input the GameObeject to be added
+     * @param input the <code>GameObject</code> to be added
      * @return true if successful and false if it fails
      */
     public boolean addGameObject(GameObject input) {
@@ -168,9 +183,10 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * tries to add a GameObject to the main GameObject list
+     * tries to add a <code>GameObject</code> to the main
+     * <code>GameObject</code> <code>ArrayList</code>
      *
-     * @param input the GameObeject to be added
+     * @param input the <code>GameObject</code> to be added
      * @return true if successful and false if it fails
      */
     public boolean addGameObject(Object input) {
@@ -183,9 +199,10 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * tries to remove a GameObject to the main GameObject list
+     * tries to remove a <code>GameObject</code> to the main
+     * <code>GameObject</code> <code>ArrayList</code>
      *
-     * @param input the GameObeject to be removed
+     * @param input the <code>GameObject</code> to be removed
      * @return true if successful and false if it fails
      */
     public boolean removeGameObject(GameObject input) {
@@ -198,9 +215,10 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * tries to remove a GameObject to the main GameObject list
+     * tries to remove a <code>GameObject</code> to the main
+     * <code>GameObject</code> <code>ArrayList</code>
      *
-     * @param input the GameObeject to be removed
+     * @param input the <code>GameObject</code> to be removed
      * @return true if successful and false if it fails
      */
     public boolean removeGameObject(Object input) {
@@ -213,9 +231,10 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * tries to remove a GameObject to the main GameObject list
+     * tries to remove a <code>GameObject</code> to the main
+     * <code>GameObject</code> <code>ArrayList</code>
      *
-     * @param index of the GameObject to be removed
+     * @param index of the <code>GameObject</code> to be removed
      * @return true if successful and false if it fails
      */
     public boolean removeGameObject(int index) {
@@ -259,12 +278,13 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * Returns true if the arguments are equal to each other and false
-     * otherwise. Consequently, if both arguments are null, true is returned and
-     * if exactly one argument is null, false is returned. Otherwise, equality
-     * is determined by using the equals method of the first argument.
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
      *
-     * @return true if the arguments are equal to each other and false otherwise
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -294,6 +314,11 @@ public abstract class Game extends Engine {
                 + '}';
     }
 
+    /**
+     * returns true if the game is in debug mode otherwise false
+     *
+     * @return if the game in in debug mode
+     */
     public boolean isDebug() {
         return Game.debug;
     }
@@ -303,7 +328,8 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * renders all GameObjects in the main GameObject ArrayList.
+     * renders all <code>GameObject</code> in the main <code>GameObject</code>
+     * <code>ArrayList</code>.
      */
     public void renderAllGameObjects() {
         for (GameObject obj : getGameObjects()) {
@@ -313,7 +339,8 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * updates all GameObjects in the main GameObject ArrayList.
+     * updates all <code>GameObject</code> in the main <code>GameObject</code>
+     * <code>ArrayList</code>.
      */
     public void updateAllGameObjects() {
         for (GameObject obj : getGameObjects()) {
@@ -323,7 +350,8 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * all GameObjects in the main GameObject ArrayList
+     * all <code>GameObject</code> in the main <code>GameObject</code>
+     * <code>ArrayList</code>
      */
     public void clearGameObjects() {
         this.gameObjects = new ArrayList<GameObject>();

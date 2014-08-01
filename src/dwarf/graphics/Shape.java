@@ -8,6 +8,7 @@ import static java.lang.Math.tan;
 
 /**
  * @author sid_th3_sl0th
+ * @see dwarf.graphics.Polygon
  */
 public class Shape extends Polygon {
 

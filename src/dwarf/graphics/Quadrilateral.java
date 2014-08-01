@@ -9,6 +9,7 @@ import dwarf.util.Vector2;
  * pentagon (5-sided), hexagon (6-sided) and so on.
  *
  * @author sid_th3_sl0th
+ * @see dwarf.graphics.Polygon
  */
 public class Quadrilateral extends Polygon {
 

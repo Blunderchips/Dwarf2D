@@ -15,6 +15,8 @@ import java.util.Objects;
  * more general polytope in any number of dimensions.
  *
  * @author sid_th3_sl0th
+ * @see dwarf.engine.core.GameObject
+ * @see dwarf.engine.core.Collidable
  */
 public class Polygon extends GameObject {
 

@@ -14,6 +14,8 @@ import java.util.Objects;
  * fixed point.
  *
  * @author sid_th3_sl0th
+ * @see dwarf.graphics.Shape
+ * @see dwarf.graphics.Polygon
  */
 public class Circle extends Shape {
 

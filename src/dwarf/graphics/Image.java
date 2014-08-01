@@ -17,6 +17,9 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  * drawing pictures to the window
  *
  * @author sid_th3_sl0th
+ * @see dwarf.engine.core.GameObject
+ * @see dwarf.engine.core.Collidable
+ * @see java.lang.Object
  */
 public class Image extends GameObject {
 
@@ -127,7 +130,7 @@ public class Image extends GameObject {
         final Image other = (Image) obj;
         return Objects.equals(this.getTexture(), other.getTexture());
     }
-    
+
     /**
      * Gets the height of the Image as a float.
      *

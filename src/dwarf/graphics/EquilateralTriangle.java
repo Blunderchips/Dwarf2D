@@ -12,6 +12,8 @@ import dwarf.util.Vector2;
  * also be referred to as regular triangles.
  *
  * @author sid_th3_sl0th
+ * @see dwarf.graphics.Shape
+ * @see dwarf.graphics.Polygon
  */
 public class EquilateralTriangle extends Shape {
 

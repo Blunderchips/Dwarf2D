@@ -9,10 +9,12 @@ import dwarf.util.Vector2;
  * equiangular means that all of its angles are equal (360°/4 = 90°). It can
  * also be defined as a parallelogram containing a right angle. A rectangle with
  * four sides of equal length is a square. The term oblong is occasionally used
- * to refer to a non-square rectangle. A rectangle with vertices ABCD
- * would be denoted as rectangle.
+ * to refer to a non-square rectangle. A rectangle with vertices ABCD would be
+ * denoted as rectangle.
  *
  * @author sid_th3_sl0th
+ * @see dwarf.graphics.Quadrilateral
+ * @see dwarf.graphics.Polygon
  */
 public class Rectangle extends Quadrilateral {
 
@@ -127,7 +129,7 @@ public class Rectangle extends Quadrilateral {
                 };
 
                 collFace.setPoints(ham);
-                
+
                 return collFace.intersects(coll);
 
             default:

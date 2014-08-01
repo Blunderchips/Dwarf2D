@@ -8,6 +8,8 @@ import java.util.Objects;
  * basic game object
  *
  * @author sid_th3_sl0th
+ * @see java.lang.Object
+ * @see dwarf.engine.core.Collidable
  */
 public abstract class GameObject extends Collidable {
 
@@ -27,8 +29,14 @@ public abstract class GameObject extends Collidable {
         this.children = new ArrayList<>();
     }
 
+    /**
+     * Callback function used to update the state of the game every frame.
+     */
     public abstract void update();
 
+    /**
+     * Callback function used to draw on the screen every frame.
+     */
     public abstract void render();
 
     public ArrayList<GameObject> getChildren() {
@@ -92,9 +100,11 @@ public abstract class GameObject extends Collidable {
 
     @Override
     public String toString() {
-        return "GameObject{" + "children=" + getChildren() + '}' + " " + super.toString();
+        return "GameObject = {"
+                + "children: " + getChildren() + ", "
+                + "super:" + super.toString()
+                + "}";
     }
-
 //    @Override
 //    public boolean intersects(Collidable coll) {
 //        if (super.intersects(this)) {

@@ -11,12 +11,16 @@ import java.util.Objects;
 
 /**
  * a wrapper around the values needed for a malleable 2D polygon collision <br/>
- * class. <p>will automatically detect - but not resolve - collisions. It uses
- * an efficient data search structure to quickly find intersecting
+ * class.
+ * <p>
+ * will automatically detect - but not resolve - collisions. It uses an
+ * efficient data search structure to quickly find intersecting
  * <code>Collidable</code> as well as offering general utilities to the
- * <code>Collidable</code>.</p>
+ * <code>Collidable</code>.
+ * </p>
  *
  * @author sid_th3_sl0th
+ * @see java.lang.Object
  */
 public class Collidable extends java.lang.Object {
 
@@ -24,8 +28,7 @@ public class Collidable extends java.lang.Object {
     private Vector2 position;
 
     /**
-     * creates a new
-     * <code>Collidable</code>
+     * creates a new <code>Collidable</code>
      *
      * @param position the location of the <code>Collidable</code> of the game
      * window (Vector2)
@@ -36,8 +39,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * initialises the
-     * <code>Collidable</code>.
+     * initialises the <code>Collidable</code>.
      *
      * @param position the location of the <code>Collidable</code> of the game
      * window
@@ -81,7 +83,8 @@ public class Collidable extends java.lang.Object {
     /**
      * creates a new polygon with the Vector2 arrays given
      *
-     * @param points an array of the Vector2d coordinates of      * the <code>Collidable</code>
+     * @param points an array of the Vector2d coordinates of * the
+     * <code>Collidable</code>
      */
     public void setPoints(Vector2[] points) {
         double[] x = new double[points.length];
@@ -96,11 +99,10 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * The total number of points. The value of
-     * <code>getPoints().size()</code> represents the number of valid points in
-     * this
-     * <code>Collidable</code> and might be less than the number of elements in
-     * {@link #vertices} or {@link #vertices}. This value can be NULL.
+     * The total number of points. The value of <code>getPoints().size()</code>
+     * represents the number of valid points in this <code>Collidable</code> and
+     * might be less than the number of elements in {@link #vertices} or
+     * {@link #vertices}. This value can be NULL.
      *
      * @return this.getPoints().size()
      */
@@ -109,8 +111,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new
-     * <code>Collidable</code> with the arrays given
+     * creates a new <code>Collidable</code> with the arrays given
      *
      * @param xPoints an array of the x coordinates of the polygon
      * @param yPoints an array of the y coordinates of the polygon
@@ -227,10 +228,9 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Translates the vertices of the
-     * <code>Collidable</code> by
-     * <code>deltaX</code> along the x axis and by
-     * <code>deltaY</code> along the y axis.
+     * Translates the vertices of the <code>Collidable</code> by
+     * <code>deltaX</code> along the x axis and by <code>deltaY</code> along the
+     * y axis.
      *
      * @param deltaX the amount to translate along the X axis
      * @param deltaY the amount to translate along the Y axis
@@ -264,8 +264,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Resets this
-     * <code>Collidable</code> object to an empty
+     * Resets this <code>Collidable</code> object to an empty
      * <code>Collidable</code> by setting the vertices ArrayList equal to null .
      * The coordinate arrays and the data in them are left untouched but the
      * number of points is reset to zero to mark the old vertex data as invalid
@@ -302,8 +301,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns Average of the height of the
-     * <code>Collidable</code>, in pixels.
+     * Returns Average of the height of the <code>Collidable</code>, in pixels.
      *
      * @return Average of the height, in pixels
      */
@@ -320,8 +318,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns average of the width of the
-     * <code>Collidable</code>, in pixels.
+     * Returns average of the width of the <code>Collidable</code>, in pixels.
      *
      * @return average of the width, in pixels
      */
@@ -395,8 +392,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns the position of the center of the
-     * <code>Collidable</code>.
+     * Returns the position of the center of the <code>Collidable</code>.
      *
      * @return the position of the center of the <code>Collidable</code>
      */
@@ -408,8 +404,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns the coordinate of the center of the
-     * <code>Collidable</code> in the horizontal axis.
+     * Returns the coordinate of the center of the <code>Collidable</code> in
+     * the horizontal axis.
      *
      * @return the coordinate of the center of the <code>Collidable</code> in
      * the horizontal axis
@@ -422,8 +418,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * Returns the coordinate of the center of the
-     * <code>Collidable</code> in the vertical axis.
+     * Returns the coordinate of the center of the <code>Collidable</code> in
+     * the vertical axis.
      *
      * @return the coordinate of the center of the <code>Collidable</code> in
      * the vertical axis
@@ -475,8 +471,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the mouse is hovering over the
-     * <code>Collidable</code>
+     * tests if the mouse is hovering over the <code>Collidable</code>
      *
      * @return true if the mouse is hovering over the <code>Collidable</code>
      * otherwise false
@@ -486,8 +481,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the
-     * <code>Collidable</code> is clicked of by a mouse button
+     * tests if the <code>Collidable</code> is clicked of by a mouse button
      *
      * @param button the that needs to be clicked
      * @return true if the Collidable is clicked on
@@ -501,8 +495,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the
-     * <code>Collidable</code> is clicked of by the left mouse button
+     * tests if the <code>Collidable</code> is clicked of by the left mouse
+     * button
      *
      * @return true is the Collidable is clicked on by the left mouse button
      */
@@ -511,8 +505,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the
-     * <code>Collidable</code> in the current view screen
+     * tests if the <code>Collidable</code> in the current view screen
      *
      * @return true if the <code>Collidable</code> position bigger than or equal
      * to the camera's position at all four sides

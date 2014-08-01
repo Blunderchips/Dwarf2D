@@ -9,6 +9,9 @@ import dwarf.util.Vector2;
  * have equal length. A square with vertices ABCD would be denoted ABCD.
  *
  * @author sid_th3_sl0th
+ * @see dwarf.graphics.Rectangle
+ * @see dwarf.graphics.Quadrilateral
+ * @see dwarf.graphics.Polygon
  */
 public class Square extends Rectangle {
 
