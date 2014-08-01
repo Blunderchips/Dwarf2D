@@ -1,5 +1,6 @@
 package dwarf.engine.core;
 
+import dwarf.Game;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import org.lwjgl.LWJGLException;

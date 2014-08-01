@@ -1,6 +1,5 @@
 package dwarf;
 
-import dwarf.engine.core.Game;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

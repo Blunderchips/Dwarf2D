@@ -1,5 +1,6 @@
 package dwarf.engine.core;
 
+import dwarf.Game;
 import dwarf.graphics.draw;
 import static dwarf.graphics.util.getBackgroundColour;
 import dwarf.util.Vector2;

@@ -5,7 +5,7 @@ package dwarf.util;
  *
  * @author sid_th3_sl0th
  */
-import dwarf.engine.core.Game;
+import dwarf.Game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

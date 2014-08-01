@@ -1,14 +1,10 @@
 package dwarf;
 
-import dwarf.engine.core.Game;
-import dwarf.engine.core.Window;
 import dwarf.lib.LWJGL.WaveData;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Objects;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static org.lwjgl.openal.AL10.AL_BUFFER;
 import static org.lwjgl.openal.AL10.alBufferData;
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
@@ -21,27 +17,27 @@ import static org.lwjgl.openal.AL10.alSourceStop;
 import static org.lwjgl.openal.AL10.alSourcei;
 
 /**
- * play sounds using OpenAL (Open Audio Library)
+ * play sounds using <a href='http://www.openal.org/'>OpenAL</a> (Open Audio
+ * Library)
  *
  * @author sid_th3_sl0th
+ * @see java.lang.Object
  */
 public class Audio extends java.lang.Object {
 
+    private String key;
     private int source;
     private int buffer;
     private WaveData data;
 
-    public Audio(String key) {
+    public Audio(String key) throws FileNotFoundException {
         super();
+        this.init(key);
+    }
 
-        try {
-            this.init(key);
-        } catch (FileNotFoundException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE);
-            Game.close(ex);
-        }
+    public Audio(Audio audio) throws FileNotFoundException {
+        super();
+        this.init(audio.getKey());
     }
 
     private void init(String key) throws FileNotFoundException {
@@ -51,6 +47,7 @@ public class Audio extends java.lang.Object {
         alBufferData(getBuffer(), getData().getFormat(), getData().getData(), getData().getSamplerate());
         this.getData().dispose();
 
+        this.key = key;
         this.setSource(alGenSources());
         alSourcei(getSource(), AL_BUFFER, getBuffer());
     }
@@ -62,6 +59,30 @@ public class Audio extends java.lang.Object {
         alSourcePlay(getSource());
     }
 
+    /**
+     * pauses the sound
+     */
+    public void pause() {
+        alSourcePause(getSource());
+    }
+
+    /**
+     * stops the sound
+     */
+    public void stop() {
+        alSourceStop(getSource());
+    }
+
+    /**
+     * rewinds the sound
+     */
+    public void rewind() {
+        alSourceRewind(getSource());
+    }
+
+    /**
+     * dispose if the sound
+     */
     public void destroy() {
         alDeleteBuffers(getBuffer());
     }
@@ -116,12 +137,13 @@ public class Audio extends java.lang.Object {
     }
 
     /**
-     * Returns true if the arguments are equal to each other and false
-     * otherwise. Consequently, if both arguments are null, true is returned and
-     * if exactly one argument is null, false is returned. Otherwise, equality
-     * is determined by using the equals method of the first argument.
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
      *
-     * @return true if the sounds are equal other wise false.
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -153,24 +175,7 @@ public class Audio extends java.lang.Object {
                 + '}';
     }
 
-    /**
-     * pauses the sound
-     */
-    public void pause() {
-        alSourcePause(getSource());
-    }
-
-    /**
-     * stops the sound
-     */
-    public void stop() {
-        alSourceStop(getSource());
-    }
-
-    /**
-     * rewinds the sound
-     */
-    public void rewind() {
-        alSourceRewind(getSource());
+    public String getKey() {
+        return this.key;
     }
 }

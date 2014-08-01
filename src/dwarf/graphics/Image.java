@@ -1,7 +1,7 @@
 package dwarf.graphics;
 
-import dwarf.engine.core.Game;
-import dwarf.engine.core.GameObject;
+import dwarf.Game;
+import dwarf.GameObject;
 import dwarf.engine.core.Window;
 import dwarf.lib.Slick2D.ResourceLoader;
 import dwarf.lib.Slick2D.Texture;
@@ -14,11 +14,11 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * A set of functions and variables required to create a malleable class for
- * drawing pictures to the window
+ * drawing pictures to the game window.
  *
  * @author sid_th3_sl0th
- * @see dwarf.engine.core.GameObject
- * @see dwarf.engine.core.Collidable
+ * @see dwarf.GameObject
+ * @see dwarf.Collidable
  * @see java.lang.Object
  */
 public class Image extends GameObject {
@@ -48,13 +48,19 @@ public class Image extends GameObject {
         this.init(texture);
     }
 
-    @Override
-    public void render() {
-        draw.texture(getPosition(), getTexture());
-    }
-
+    /**
+     * Callback function used to update the state of the game every frame.
+     */
     @Override
     public void update() {
+    }
+
+    /**
+     * Callback function used to draw on the screen every frame.
+     */
+    @Override
+    public void draw() {
+        draw.texture(getPosition(), getTexture());
     }
 
     private void init(Texture texture) {
@@ -109,12 +115,13 @@ public class Image extends GameObject {
     }
 
     /**
-     * Returns true if the arguments are equal to each other and false
-     * otherwise. Consequently, if both arguments are null, true is returned and
-     * if exactly one argument is null, false is returned. Otherwise, equality
-     * is determined by using the equals method of the first argument.
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
      *
-     * @return true if the arguments are equal to each other and false otherwise
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -156,7 +163,8 @@ public class Image extends GameObject {
      */
     public Vector2 getDimensions() {
         return new Vector2(
-                this.getWidth(), this.getHeight());
+                this.getWidth(), this.getHeight()
+        );
     }
 
 }

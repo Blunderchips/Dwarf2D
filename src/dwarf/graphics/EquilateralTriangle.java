@@ -17,8 +17,12 @@ import dwarf.util.Vector2;
  */
 public class EquilateralTriangle extends Shape {
 
-    public EquilateralTriangle(double sideLength, Vector2 position, String state, Colour colour) {
-        super(3, sideLength, position, state, colour);
+    public EquilateralTriangle(double sideLength, Vector2 position, String mode, Colour colour) {
+        super(3, sideLength, position, mode, colour);
+    }
+
+    public EquilateralTriangle(EquilateralTriangle equilateralTriangle) {
+        super(3, equilateralTriangle.getLineLength(), equilateralTriangle.getPosition(), equilateralTriangle.getMode(), equilateralTriangle.getColour());
     }
 
     @Override
@@ -28,6 +32,6 @@ public class EquilateralTriangle extends Shape {
 
     @Override
     public void addPoint(Vector2 point) {
-        System.err.println("This method is unsuported with the Quadrilateral class.");
+        System.err.println("This method is unsuported with the EquilateralTriangle class.");
     }
 }

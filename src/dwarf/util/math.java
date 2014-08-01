@@ -1,8 +1,10 @@
 package dwarf.util;
 
 /**
- * @title math
+ * Utility and fast math functions.
+ *
  * @author sid_th3_sl0th
+ * @see java.lang.Math
  */
 public final class math {
 

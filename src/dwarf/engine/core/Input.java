@@ -1,5 +1,6 @@
 package dwarf.engine.core;
 
+import dwarf.Game;
 import dwarf.util.Vector2;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

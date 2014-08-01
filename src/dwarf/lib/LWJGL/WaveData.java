@@ -32,7 +32,7 @@
 package dwarf.lib.LWJGL;
 
 import com.sun.media.sound.WaveFileReader;
-import dwarf.engine.core.Game;
+import dwarf.Game;
 import dwarf.engine.core.Window;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;

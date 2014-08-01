@@ -1,5 +1,12 @@
 package dwarf;
 
+import dwarf.engine.core.Window;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+
 /**
  * @author sid_th3_sl0th
  */
@@ -10,7 +17,7 @@ public final class system {
         throw new Error(
                 "you can not instantiate this class.");
     }
-    
+
     /**
      * @return Operating system version
      */
@@ -130,5 +137,30 @@ public final class system {
      */
     public static String getJavaCompiler() {
         return System.getProperty("java.compiler");
+    }
+
+    public String executeCommand(String command) {
+        StringBuilder output = new StringBuilder();
+
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec(command);
+            p.waitFor();
+            BufferedReader reader
+                    = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+
+        } catch (IOException | InterruptedException ex) {
+            System.err.println(ex);
+            JOptionPane.showMessageDialog(
+                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE);
+            Game.close(ex);
+        }
+
+        return output.toString();
     }
 }

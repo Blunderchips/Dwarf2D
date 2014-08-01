@@ -1,6 +1,6 @@
 package dwarf.graphics;
 
-import dwarf.engine.core.Collidable;
+import dwarf.Collidable;
 import dwarf.util.Vector2;
 
 /**
@@ -25,19 +25,24 @@ public class Rectangle extends Quadrilateral {
 
     private Vector2 size;
 
-    public Rectangle(float width, float height, Vector2 position, String state, Colour colour) {
-        super(null, position, state, colour);
+    public Rectangle(float width, float height, Vector2 position, String mode, Colour colour) {
+        super(null, position, mode, colour);
         this.setPoints(width, height);
     }
 
-    public Rectangle(double width, double height, Vector2 position, String state, Colour colour) {
-        super(null, position, state, colour);
+    public Rectangle(double width, double height, Vector2 position, String mode, Colour colour) {
+        super(null, position, mode, colour);
         this.setPoints(width, height);
     }
 
-    public Rectangle(Vector2 size, Vector2 position, String state, Colour colour) {
-        super(null, position, state, colour);
+    public Rectangle(Vector2 size, Vector2 position, String mode, Colour colour) {
+        super(null, position, mode, colour);
         this.setPoints(size.getX(), size.getY());
+    }
+
+    public Rectangle(Rectangle rectangle) {
+        super(null, rectangle.getPosition(), rectangle.getMode(), rectangle.getColour());
+        this.setPoints(rectangle.getSize().getX(), rectangle.getSize().getY());
     }
 
     private void setPoints(double width, double height) {
