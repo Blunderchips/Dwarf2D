@@ -19,7 +19,7 @@ import java.util.Objects;
  */
 public abstract class Game extends Engine {
 
-    public ArrayList<GameObject> gameObjects;
+    public static ArrayList<GameObject> gameObjects;
     public static boolean debug = true;
     //NetBeans wanted these:
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
