@@ -5,17 +5,9 @@ import dwarf.util.Vector2;
 import java.util.Objects;
 
 /**
- * A simple wrapper round the values required for a mutable <code>Polygon</code>
- * class. <br/>
- * In geometry a polygon is traditionally a plane figure that is bounded by a
- * finite chain of straight line segments closing in a loop to form a closed
- * chain or circuit. These segments are called its edges or sides, and the
- * points where two edges meet are the polygon's vertices (singular: vertex) or
- * corners. The interior of the polygon is sometimes called its body. An n-gon
- * is a polygon with n sides. A polygon is a 2-dimensional example of the more
- * general polytope in any number of dimensions.
- *
  * @author sid_th3_sl0th
+ *
+ * @see <a href='http://en.wikipedia.org/wiki/Polygon'>wikipedia</a>
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  */
@@ -73,9 +65,9 @@ public class Polygon extends GameObject {
     @Override
     public void draw() {
         if (isFill()) {
-            draw.fillPolygon(getPoints(), getCenter(), getColour());
+            draw.fillPolygon(getPoints(), getPosition(), getColour());
         } else {
-            draw.strokePolygon(getPoints(), getCenter(), getColour());
+            draw.strokePolygon(getPoints(), getPosition(), getColour());
         }
     }
 
@@ -110,7 +102,7 @@ public class Polygon extends GameObject {
         //  throw new NullPointerException("the mode can not be null. (stroke/fill only)");
         //} 
         else {
-            throw new IllegalArgumentException("the state '" + mode + "' is unknown. (stroke/fill only)");
+            throw new IllegalArgumentException("the state '" + mode + "' is unrecognised. (stroke/fill only)");
         }
     }
 

@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Provides an interface to your system's clock.
+ * Provides an interface to your system's clock and other time base utilities.
  *
  * @author sid_th3_sl0th
  */
@@ -21,7 +21,7 @@ public final class time {
     }
 
     /**
-     * amount of millisecond is a second
+     * Amount of millisecond is a second.
      */
     public static final long SECOND = 0x5f5e100L;
 
@@ -85,8 +85,7 @@ public final class time {
      * @throws InterruptedException if another thread has interrupted the
      * current thread
      */
-    public static void sleepFromTime(long nanos, long tStart)
-            throws InterruptedException {
+    public static void sleepFromTime(long nanos, long tStart) throws InterruptedException {
         long sleepNanos = nanos - sleepPrecision;
 
         // First, use Java's Thread.sleep() if it is precise enough

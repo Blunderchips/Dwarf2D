@@ -74,7 +74,7 @@ public final class Window {
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
-                    Window.getParent(), "The display wasn't initialized correctly :(", title + " - ERROR", JOptionPane.ERROR_MESSAGE
+                    Window.getParent(), "The display wasn't initialized correctly :(", title + " - ERROR", ERROR_MESSAGE
             );
             Game.close(ex);
         }

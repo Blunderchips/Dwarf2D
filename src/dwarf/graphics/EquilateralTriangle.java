@@ -5,13 +5,9 @@ import static dwarf.util.math.sqr;
 import dwarf.util.Vector2;
 
 /**
- * In geometry, an equilateral triangle is a triangle in which all three sides
- * are equal. In traditional or Euclidean geometry, equilateral triangles are
- * also equiangular; that is, all three internal angles are also congruent to
- * each other and are each 60°. They are regular polygons, and can therefore
- * also be referred to as regular triangles.
- *
  * @author sid_th3_sl0th
+ * 
+ * @see <a href='http://en.wikipedia.org/wiki/Equilateral_triangle'>wikipedia</a>
  * @see dwarf.graphics.Shape
  * @see dwarf.graphics.Polygon
  */

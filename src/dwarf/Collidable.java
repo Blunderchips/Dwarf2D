@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
- * class. <br/>
+ * class.
  * <p>
  * will detect - but not resolve - collisions. It uses an efficient data search
  * structure to quickly find intersecting <code>Collidable</code> as well as
@@ -160,7 +160,7 @@ public class Collidable extends java.lang.Object {
      * <p>
      *
      * @param point - Vector2d
-     * @return {@code true} if this {@code <code>Collidable</code>} contains the
+     * @return {@code true} if this <code>Collidable</code> contains the
      * specified coordinates {@code (x,y)};
      *         {@code false} otherwise.
      */
@@ -175,7 +175,7 @@ public class Collidable extends java.lang.Object {
      *
      * @param xPos the specified X coordinate to be tested
      * @param yPos the specified Y coordinate to be tested
-     * @return {@code true} if this {@code <code>Collidable</code>} contains the
+     * @return {@code true} if this <code>Collidable</code> contains the
      * specified coordinates {@code (x,y)};
      *         {@code false} otherwise.
      */
@@ -183,8 +183,8 @@ public class Collidable extends java.lang.Object {
 
         int hits = 0;
 
-        double lastPosX = getPoints()[getNumPoints() - 1].getX() + getCenter().getX() + 1;
-        double lastPosY = getPoints()[getNumPoints() - 1].getY() + getCenter().getY() + 1;
+        double lastPosX = getPoints()[getNumPoints() - 1].getX() + getPosition().getX() + 1;
+        double lastPosY = getPoints()[getNumPoints() - 1].getY() + getPosition().getY() + 1;
         double curPosX, curPosY;
 
         for (int i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {

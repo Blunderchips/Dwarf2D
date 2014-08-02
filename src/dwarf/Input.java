@@ -1,6 +1,5 @@
 package dwarf;
 
-import dwarf.Game;
 import dwarf.engine.core.Window;
 import dwarf.util.Vector2;
 import java.util.ArrayList;

@@ -14,7 +14,7 @@ import java.util.Objects;
 public abstract class GameObject extends Collidable {
 
     private ArrayList<GameObject> children;
-
+    
     public GameObject(Vector2 position) {
         super(position);
         this.init();
@@ -32,8 +32,9 @@ public abstract class GameObject extends Collidable {
         this.init();
     }
 
+    @SuppressWarnings("Convert2Diamond")
     private void init() {
-        this.children = new ArrayList<>();
+        this.children = new ArrayList<GameObject>();
     }
 
     /**
