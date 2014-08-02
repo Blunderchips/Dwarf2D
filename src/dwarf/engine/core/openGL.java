@@ -30,7 +30,14 @@ import static org.lwjgl.opengl.GL11.glTexEnvf;
 import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
 
 /**
- * Open Graphics Library
+ * <a href='http://www.opengl.org/'>OpenGL</a> (Open Graphics Library)[2] is a
+ * cross-language, multi-platform application programming interface (API) for
+ * rendering 2D and 3D vector graphics. The API is typically used to interact
+ * with a graphics processing unit (GPU), to achieve hardware-accelerated
+ * rendering.
+ *
+ * @see <a href='http://en.wikipedia.org/wiki/OpenGL'>wikipedia</a>
+ * @see <a href='http://www.opengl.org/'>opengl.org</a>
  *
  * @author sid_th3_sl0th
  */

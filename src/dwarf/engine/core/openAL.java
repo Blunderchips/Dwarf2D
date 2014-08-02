@@ -14,7 +14,15 @@ import org.lwjgl.openal.ALCcontext;
 import org.lwjgl.openal.ALCdevice;
 
 /**
- * Open Audio Library
+ * <a href='http://www.openal.org/'>OpenAL</a> (Open Audio Library) is a
+ * cross-platform audio application programming interface (API). It is designed
+ * for efficient rendering of multichannel three-dimensional positional audio.
+ * Its API style and conventions deliberately resemble those of <a
+ * href='http://www.opengl.org/'>OpenGL</a>. Early versions of the framework
+ * were open source software, but the later revisions are proprietary.
+ *
+ * @see <a href='http://en.wikipedia.org/wiki/OpenAL'>wikipedia</a>
+ * @see <a href='http://www.openal.org/'>openal.org</a>
  *
  * @author sid_th3_sl0th
  */
@@ -27,7 +35,7 @@ public final class openAL {
     }
 
     /**
-     * initializes openGL
+     * initializes <a href='http://www.openal.org/'>OpenAL</a>
      */
     protected static void init() {
         try {
@@ -49,20 +57,24 @@ public final class openAL {
     /**
      * The version of OpenAL is returned. This usually has the format And can
      * then possibly still contain vendor-specific information.
+     *
+     * @return returns the version on <a
+     * href='http://www.openal.org/'>OpenAL</a> is use
      */
     public static String getVersion() {
         return alGetString(AL_VERSION);
     }
 
     /**
-     * The manufacturer of the OpenAL implementation name is returned.
+     * @return The manufacturer of the <a
+     * href='http://www.openal.org/'>OpenAL</a> implementation name is returned.
      */
     public static String getVender() {
         return alGetString(AL_VENDOR);
     }
 
     /**
-     * Returns the name of the renderer.
+     * @return the name of the renderer.
      */
     public static String getRenderer() {
         return alGetString(AL_RENDERER);
@@ -72,6 +84,8 @@ public final class openAL {
      * A list of available extensions is returned, the individual extensions are
      * separated by spaces. To test in a simple manner whether a certain
      * extension is present, one can use the function alIsExtensionPresent.
+     *
+     * @return A list of available extensions
      */
     public static String getExtensions() {
         return alGetString(AL_EXTENSIONS);

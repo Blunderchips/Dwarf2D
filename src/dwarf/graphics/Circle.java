@@ -24,7 +24,7 @@ public class Circle extends Shape {
     public Circle(double radius, Vector2 location, String mode, Colour colour) {
         super(60, ((TWO_PI * radius) / 60), location, mode, colour);
     }
-    
+
     public Circle(Circle circle) {
         super(60, circle.getRadius(), circle.getPosition(), circle.getMode(), circle.getColour());
     }
@@ -78,7 +78,8 @@ public class Circle extends Shape {
      * is in degrees, then length = theta x (PI/180) x r if the angle theta is
      * in radians, then length = r x theta
      *
-     * @see http://www.math.com/tables/geometry/circles.htm
+     * @see <a
+     * href='http://www.math.com/tables/geometry/circles.htm'>www.math.com</a>
      *
      * @param theta (degrees)
      * @return theta * (PI / 180) * radius
@@ -92,7 +93,8 @@ public class Circle extends Shape {
      * in degrees, then area = (theta/360)x PI r2 if the angle theta is in
      * radians, then area = ((theta/(2PI))x PI r2
      *
-     * @see http://www.math.com/tables/geometry/circles.htm
+     * @see <a
+     * href='http://www.math.com/tables/geometry/circles.htm'>www.math.com</a>
      *
      * @param theta (degrees)
      * @return (theta / 360) * this.getArea()

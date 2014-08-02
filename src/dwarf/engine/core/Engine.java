@@ -4,7 +4,7 @@ import dwarf.Input;
 import dwarf.time;
 
 /**
- * the main engine file for the <a href='http:/95.85.60.226/'>Dwarf2D Engine</a>
+ * the main engine file for the <a href='http://95.85.60.226/'>Dwarf2D</a> Engine
  *
  * @author sid_th3_sl0th
  *
@@ -34,7 +34,7 @@ public abstract class Engine extends java.lang.Object {
     }
 
     /**
-     * Main loop of application.
+     * Main loop of the application.
      */
     private void run() {
         while (true) {

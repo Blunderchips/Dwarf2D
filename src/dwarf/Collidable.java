@@ -12,13 +12,12 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * a wrapper around the values needed for a malleable 2D polygon collision <br/>
- * class.
+ * A wrapper around the values needed for a malleable 2D polygon collision
+ * class. <br/>
  * <p>
- * will automatically detect - but not resolve - collisions. It uses an
- * efficient data search structure to quickly find intersecting
- * <code>Collidable</code> as well as offering general utilities to the
- * <code>Collidable</code>.
+ * will detect - but not resolve - collisions. It uses an efficient data search
+ * structure to quickly find intersecting <code>Collidable</code> as well as
+ * offering general utilities to the <code>Collidable</code>.
  * </p>
  *
  * @author sid_th3_sl0th
@@ -42,19 +41,21 @@ public class Collidable extends java.lang.Object {
 
     /**
      * creates a new <code>Collidable</code>.
+     *
      * @param Collidable
      */
     public Collidable(Collidable Collidable) {
         super();
         this.init(Collidable.getPosition());
     }
-    
+
     /**
      * initialises the <code>Collidable</code>.
      *
      * @param position the location of the <code>Collidable</code> of the game
      * window
      */
+    @SuppressWarnings("Convert2Diamond")
     private void init(Vector2 position) {
         this.setPosition(position);
         this.vertices = new ArrayList<Vector2>();
@@ -92,7 +93,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new polygon with the Vector2 arrays given
+     * creates a new <code>Collidable</code> with the Vector2 arrays given
      *
      * @param points an array of the Vector2d coordinates of * the
      * <code>Collidable</code>
@@ -243,8 +244,8 @@ public class Collidable extends java.lang.Object {
      * <code>deltaX</code> along the x axis and by <code>deltaY</code> along the
      * y axis.
      *
-     * @param deltaX the amount to translate along the X axis
-     * @param deltaY the amount to translate along the Y axis
+     * @param deltaX the amount to translate along the X axis (float)
+     * @param deltaY the amount to translate along the Y axis (float)
      */
     public void translate(float deltaX, float deltaY) {
         this.getPosition().change(new Vector2(deltaX, deltaY));
@@ -253,6 +254,12 @@ public class Collidable extends java.lang.Object {
         }
     }
 
+    /**
+     * Translates the vertices of the <code>Collidable</code> by the inputed
+     * Vector2 (<code>delta</code>)
+     *
+     * @param delta the amount to translate along the axis
+     */
     public void translate(Vector2 delta) {
         this.getPosition().change(new Vector2(delta.getX(), delta.getY()));
         for (Vector2 point : getPoints()) {
@@ -260,6 +267,12 @@ public class Collidable extends java.lang.Object {
         }
     }
 
+    /**
+     * Translates the vertices of the <code>Collidable</code> by
+     * <code>deltaX</code> along the x axis.
+     *
+     * @param deltaX the amount to translate along the X axis (float)
+     */
     public void translateX(float deltaX) {
         this.getPosition().changeX(deltaX);
         for (Vector2 point : getPoints()) {
@@ -267,6 +280,12 @@ public class Collidable extends java.lang.Object {
         }
     }
 
+    /**
+     * Translates the vertices of the <code>Collidable</code> by
+     * <code>deltaX</code> along the y axis.
+     *
+     * @param deltaY the amount to translate along the Y axis (float)
+     */
     public void translateY(float deltaY) {
         this.getPosition().changeY(deltaY);
         for (Vector2 point : getPoints()) {
@@ -276,18 +295,24 @@ public class Collidable extends java.lang.Object {
 
     /**
      * Resets this <code>Collidable</code> object to an empty
-     * <code>Collidable</code> by setting the vertices ArrayList equal to null .
-     * The coordinate arrays and the data in them are left untouched but the
-     * number of points is reset to zero to mark the old vertex data as invalid
-     * and to start accumulating new vertex data at the beginning. All
-     * internally-cached data relating to the old vertices are discarded. Note
-     * that since the coordinate arrays from before the reset are reused,
-     * creating a new empty
+     * <code>Collidable</code> by setting the vertices ArrayList equal to a new
+     * ArrayList of Vector2s.
+     *
+     * @see java.awt.Polygon#reset()
      */
+    @SuppressWarnings("Convert2Diamond")
     public void reset() {
         this.vertices = new ArrayList<Vector2>();
     }
 
+    /**
+     * The <code>Polygon</code> class encapsulates a description of a closed,
+     * two-dimensional region within a coordinate space.
+     *
+     * @see java.awt.Polygon
+     * @return a new Java AWT Polygon created by the points in the vertices
+     * ArrayList
+     */
     public java.awt.Polygon toPolygon() {
         int[] x = new int[getNumPoints()];
         int[] y = new int[getNumPoints()];
@@ -412,7 +437,8 @@ public class Collidable extends java.lang.Object {
         return new Vector2(
                 this.getCenterX().getX(),
                 this.getCenterY().getY(),
-                this.getPosition().getRotation());
+                this.getPosition().getRotation()
+        );
     }
 
     /**
@@ -426,7 +452,8 @@ public class Collidable extends java.lang.Object {
         return new Vector2(
                 this.getPosition().getX() - this.getAverageWidth(),
                 this.getPosition().getY(),
-                this.getPosition().getRotation());
+                this.getPosition().getRotation()
+        );
     }
 
     /**
@@ -440,11 +467,12 @@ public class Collidable extends java.lang.Object {
         return new Vector2(
                 this.getPosition().getX(),
                 this.getPosition().getY() - this.getAverageWidth(),
-                this.getPosition().getRotation());
+                this.getPosition().getRotation()
+        );
     }
 
     /**
-     * returns true if the Collidable have intersected with this
+     * returns true if the <code>Collidable</code> have intersected with this
      * <code>Collidable</code>
      *
      * @param coll - the <code>Collidable</code> to be tested
@@ -496,7 +524,7 @@ public class Collidable extends java.lang.Object {
      * tests if the <code>Collidable</code> is clicked of by a mouse button
      *
      * @param button the that needs to be clicked
-     * @return true if the Collidable is clicked on
+     * @return true if the <code>Collidable</code> is clicked on
      */
     public boolean isClickedOn(int button) {
         if (Input.isMouseClicked(button)) {
@@ -510,7 +538,8 @@ public class Collidable extends java.lang.Object {
      * tests if the <code>Collidable</code> is clicked of by the left mouse
      * button
      *
-     * @return true is the Collidable is clicked on by the left mouse button
+     * @return true is the <code>Collidable</code> is clicked on by the left
+     * mouse button
      */
     public boolean isClickedOn() {
         return isClickedOn(MOUSE_LEFT);
@@ -525,14 +554,16 @@ public class Collidable extends java.lang.Object {
     public boolean atEdge() {
         if (this.getPosition().getX() > (Window.getWidth() + camera.getPosition().getX())) {
             return true;
-        } else if (this.getPosition().getX() < (0 + camera.getPosition().getX())) {
-            return true;
-        } else if (this.getPosition().getY() > (Window.getHeight() + camera.getPosition().getY())) {
-            return true;
-        } else if (this.getPosition().getY() < (0 + camera.getPosition().getY())) {
-            return true;
-        } else {
-            return false;
         }
+        if (this.getPosition().getX() < (0 + camera.getPosition().getX())) {
+            return true;
+        }
+        if (this.getPosition().getY() > (Window.getHeight() + camera.getPosition().getY())) {
+            return true;
+        }
+        if (this.getPosition().getY() < (0 + camera.getPosition().getY())) {
+            return true;
+        }
+        return false;
     }
 }

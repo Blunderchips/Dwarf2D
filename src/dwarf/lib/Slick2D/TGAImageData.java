@@ -58,41 +58,26 @@ public class TGAImageData implements LoadableImageData {
         return (short) (input << 8 | (input & 0xFF00) >>> 8);
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getDepth()
-     */
     @Override
     public int getDepth() {
         return pixelDepth;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getWidth()
-     */
     @Override
     public int getWidth() {
         return width;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getHeight()
-     */
     @Override
     public int getHeight() {
         return height;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getTexWidth()
-     */
     @Override
     public int getTexWidth() {
         return texWidth;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getTexHeight()
-     */
     @Override
     public int getTexHeight() {
         return texHeight;
@@ -100,16 +85,10 @@ public class TGAImageData implements LoadableImageData {
 
     /**
      * @throws java.io.IOException
-     * @see
-     * org.newdawn.slick.opengl.LoadableImageData#loadImage(java.io.InputStream)
-     */
-    @Override
-    public ByteBuffer loadImage(InputStream fis) throws IOException {
-        return loadImage(fis, true, null);
-    }
-
-    /**
-     * @throws java.io.IOException
+     * @Override public ByteBuffer loadImage(InputStream fis) throws IOException
+     * { return loadImage(fis, true, null); }
+     *
+     * /
      * @see
      * org.newdawn.slick.opengl.LoadableImageData#loadImage(java.io.InputStream,
      * boolean, int[])
@@ -231,9 +210,9 @@ public class TGAImageData implements LoadableImageData {
                         rawData[ofs + 3] = alpha;
 
                         if (alpha == 0) {
-                            rawData[ofs + 2] = (byte) 0;
-                            rawData[ofs + 1] = (byte) 0;
-                            rawData[ofs] = (byte) 0;
+                            rawData[ofs + 2] = 0;
+                            rawData[ofs + 1] = 0;
+                            rawData[ofs] = 0;
                         }
                     }
                 }
@@ -343,5 +322,10 @@ public class TGAImageData implements LoadableImageData {
      */
     @Override
     public void configureEdging(boolean edging) {
+    }
+
+    @Override
+    public ByteBuffer loadImage(InputStream fis) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

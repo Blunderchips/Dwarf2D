@@ -2,15 +2,14 @@ package dwarf.engine.core;
 
 import dwarf.Game;
 import dwarf.graphics.draw;
-import static dwarf.graphics.util.getBackgroundColour;
 import dwarf.util.Vector2;
-import java.awt.Canvas;
 import java.nio.ByteBuffer;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import static dwarf.graphics.util.getBackgroundColour;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
@@ -36,7 +35,7 @@ public final class Window {
     private static boolean resizable = false;
     private static boolean fullscreen = false;
 
-    private static Canvas parent = null;
+    private static java.awt.Canvas parent = null;
 
     protected static void update() {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -81,16 +80,25 @@ public final class Window {
         }
     }
 
+    /**
+     * destroys the window.
+     */
     protected static void dispose() {
         Display.destroy();
     }
 
+    /**
+     * clears the window.
+     */
     protected static void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glTranslated(camera.getPosition().getX(), camera.getPosition().getY(), 0);
         draw.fillRect(getWidth(), getHeight(), camera.getPosition(), getBackgroundColour());
     }
 
+    /**
+     * updates the window.
+     */
     protected static void render() {
         Display.update();
         Display.sync(64);
@@ -104,7 +112,7 @@ public final class Window {
     }
 
     /**
-     * Gets the width of the window.
+     * Gets the width of the window as a int.
      *
      * @return The width of the window.
      */
@@ -113,7 +121,7 @@ public final class Window {
     }
 
     /**
-     * Gets the height of the window.
+     * Gets the height of the window as a int.
      *
      * @return The height of the window.
      */
@@ -130,16 +138,10 @@ public final class Window {
         return Display.getTitle();
     }
 
-    /**
-     * @return Display.getHeight()
-     */
     public static boolean isFullscreen() {
         return Window.fullscreen;
     }
 
-    /**
-     * @return Display.getHeight()
-     */
     public static boolean isVSync() {
         return Window.vSync;
     }
@@ -149,6 +151,8 @@ public final class Window {
     }
 
     /**
+     * Checks if the window is dirty.
+     *
      * @return Display.isDirty()
      */
     public static boolean isDirty() {
@@ -160,6 +164,8 @@ public final class Window {
     }
 
     /**
+     * Checks if the window is current.
+     *
      * @return Display.isCurrent()
      */
     public static boolean isCurrent() {
@@ -176,6 +182,8 @@ public final class Window {
     }
 
     /**
+     * Checks if the window is active.
+     *
      * @return Display.isActive()
      */
     public static boolean isActive() {
@@ -230,7 +238,7 @@ public final class Window {
         Display.setIcon(icons);
     }
 
-    public static Canvas getParent() {
+    public static java.awt.Canvas getParent() {
         return Window.parent;
     }
 
@@ -257,7 +265,7 @@ public final class Window {
     /**
      * Gets the width and height of the window.
      *
-     * @return The width and height of the window
+     * @return The width and height of the window as new <code>Vectro2</code>
      */
     public static Vector2 getDimensions() {
         return new Vector2(Display.getWidth(), Display.getHeight());
