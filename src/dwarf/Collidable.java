@@ -2,14 +2,14 @@ package dwarf;
 
 import dwarf.engine.core.Window;
 import dwarf.engine.core.camera;
-import static dwarf.Input.MOUSE_LEFT;
-import static dwarf.Input.getMousePosition;
 import dwarf.graphics.Circle;
 import dwarf.graphics.Colour;
 import dwarf.util.Vector2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import static dwarf.Input.MOUSE_LEFT;
+import static dwarf.Input.getMousePosition;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
@@ -40,7 +40,8 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new <code>Collidable</code> from a inputed <code>Collidable</code>.
+     * creates a new <code>Collidable</code> from a inputed
+     * <code>Collidable</code>.
      *
      * @param Collidable the inputed <code>Collidable</code>.
      */
@@ -95,19 +96,19 @@ public class Collidable extends java.lang.Object {
     /**
      * creates a new <code>Collidable</code> with the Vector2 arrays given
      *
-     * @param points an array of the Vector2d coordinates of * the
+     * @param points an array of the Vector2 coordinates of * the
      * <code>Collidable</code>
      */
     public void setPoints(Vector2[] points) {
-        double[] x = new double[points.length];
-        double[] y = new double[points.length];
+        double[] xPoints = new double[points.length];
+        double[] yPoints = new double[points.length];
 
         for (int i = 0; i < points.length; i++) {
-            x[i] = points[i].getX();
-            y[i] = points[i].getY();
+            xPoints[i] = points[i].getX();
+            yPoints[i] = points[i].getY();
         }
 
-        this.setPoints(x, y);
+        this.setPoints(xPoints, yPoints);
     }
 
     /**
@@ -116,7 +117,7 @@ public class Collidable extends java.lang.Object {
      * might be less than the number of elements in {@link #vertices} or
      * {@link #vertices}. This value can be NULL.
      *
-     * @return this.getPoints().size()
+     * @return the total number of points in the vertices ArrayList
      */
     public int getNumPoints() {
         return this.vertices.size();
@@ -176,7 +177,7 @@ public class Collidable extends java.lang.Object {
      * @param xPos the specified X coordinate to be tested
      * @param yPos the specified Y coordinate to be tested
      * @return {@code true} if this <code>Collidable</code> contains the
-     * specified coordinates {@code (x,y)};
+     * specified coordinates {@code (xPos, yPos)};
      *         {@code false} otherwise.
      */
     public boolean contains(double xPos, double yPos) {
@@ -188,8 +189,8 @@ public class Collidable extends java.lang.Object {
         double curPosX, curPosY;
 
         for (int i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {
-            curPosX = getPoints()[i].getX() + getCenter().getX() + 1;
-            curPosY = getPoints()[i].getY() + getCenter().getY() + 1;
+            curPosX = getPoints()[i].getX() + getPosition().getX() + 1;
+            curPosY = getPoints()[i].getY() + getPosition().getY() + 1;
 
             if (curPosY == lastPosY) {
                 continue;
@@ -481,11 +482,11 @@ public class Collidable extends java.lang.Object {
      */
     public boolean intersects(Collidable coll) {
         for (int i = 0; i < coll.getNumPoints();) {
-            if (this.contains(coll.getPoints()[i].add(coll.getCenter()))) {
+            if (this.contains(coll.getPoints()[i].add(coll.getPosition()))) {
                 return true;
             }
 
-            if (coll.getNumPoints() > 3) {
+            if (coll instanceof Circle) {
                 i += (35 * coll.getNumPoints()) / 100;
             } else {
                 i++;
@@ -493,11 +494,11 @@ public class Collidable extends java.lang.Object {
         }
 
         for (int i = 0; i < this.getNumPoints();) {
-            if (coll.contains(this.getPoints()[i].add(this.getCenter()))) {
+            if (coll.contains(this.getPoints()[i].add(this.getPosition()))) {
                 return true;
             }
 
-            if (this.getNumPoints() > 3) {
+            if (this instanceof Circle) {
                 i += (35 * this.getNumPoints()) / 100;
             } else {
                 i++;
@@ -543,6 +544,20 @@ public class Collidable extends java.lang.Object {
      */
     public boolean isClickedOn() {
         return isClickedOn(MOUSE_LEFT);
+    }
+
+    /**
+     * tests if the <code>Collidable</code> is clicked of by a mouse button
+     *
+     * @param button the that needs to be clicked
+     * @return true if the <code>Collidable</code> is clicked on
+     */
+    public boolean isClickedOn(String button) {
+        if (Input.isMouseClicked(button)) {
+            return isMouseHover();
+        } else {
+            return false;
+        }
     }
 
     /**

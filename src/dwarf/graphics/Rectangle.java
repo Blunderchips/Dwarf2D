@@ -1,22 +1,38 @@
 package dwarf.graphics;
 
 import dwarf.Collidable;
+import dwarf.Game;
 import dwarf.util.Vector2;
 
 /**
  * @author sid_th3_sl0th
- * 
+ *
  * @see <a href='http://en.wikipedia.org/wiki/Rectangle'>wikipedia</a>
  * @see dwarf.graphics.Quadrilateral
  * @see dwarf.graphics.Polygon
  */
 public class Rectangle extends Quadrilateral {
 
+    /**
+     * the top of the <code>Rectangle</code>.
+     */
     public static final byte NORTH_FACE = 0x0;
+    /**
+     * the right hand side of the <code>Rectangle</code>.
+     */
     public static final byte EAST_FACE = 0x1;
+    /**
+     * the bottom of the <code>Rectangle</code>.
+     */
     public static final byte SOUTH_FACE = 0x2;
+    /**
+     * the left hand side of the <code>Rectangle</code>.
+     */
     public static final byte WEST_FACE = 0x3;
 
+    /**
+     * the size of the <code>Rectangle</code>.
+     */
     private Vector2 size;
 
     public Rectangle(float width, float height, Vector2 position, String mode, Colour colour) {
@@ -60,7 +76,7 @@ public class Rectangle extends Quadrilateral {
     }
 
     public float getArea() {
-        return (float) (this.size.getX() * this.size.getY());
+        return (float) (this.getSize().getX() * this.getSize().getY());
     }
 
     public Vector2 getSize() {
@@ -76,60 +92,60 @@ public class Rectangle extends Quadrilateral {
     }
 
     public boolean intersects(int face, Collidable coll) {
-        Collidable collFace = new Collidable(getPosition());
 
         switch (face) {
             case NORTH_FACE:
 
-                Vector2[] salami = {
-                    new Vector2(0, this.getSize().getY()),
-                    new Vector2(0, this.getSize().getY() - (10 * this.getSize().getY() / 100)),
-                    new Vector2(this.getSize().getX(), this.getSize().getY() - (10 * this.getSize().getY() / 100)),
-                    new Vector2(this.getSize().getX(), this.getSize().getY())
-                };
+                Rectangle ham = new Rectangle(
+                        this.getSize().getX(),
+                        10 * this.getSize().getY() / 100,
+                        this.getPosition(),
+                        "stroke", Colour.lime
+                );
 
-                collFace.setPoints(salami);
+                ham.setPosition(
+                        this.getPosition().getX(),
+                        this.getPosition().getY() + this.getSize().getY() - ham.getSize().getY()
+                );
 
-                return collFace.intersects(coll);
+                return ham.intersects(coll);
 
             case EAST_FACE:
 
-                Vector2[] tuna = {
-                    new Vector2(this.getSize().getX(), 0),
-                    new Vector2(this.getSize().getX() - (10 * this.getSize().getX() / 100), 0),
-                    new Vector2(this.getSize().getX() - (10 * this.getSize().getX() / 100), this.getSize().getY()),
-                    new Vector2(this.getSize().getX(), this.getSize().getY())
-                };
+                Rectangle eggs = new Rectangle(
+                        10 * this.getSize().getX() / 100,
+                        this.getSize().getY(),
+                        this.getPosition(),
+                        "stroke", Colour.lime
+                );
 
-                collFace.setPoints(tuna);
+                eggs.setPosition(
+                        this.getPosition().getX() + this.getSize().getX() - eggs.getSize().getX(),
+                        this.getPosition().getY()
+                );
 
-                return collFace.intersects(coll);
-
+                return eggs.intersects(coll);
             case SOUTH_FACE:
 
-                Vector2[] bacon = {
-                    new Vector2(0, 0),
-                    new Vector2(0, (10 * this.getSize().getY() / 100)),
-                    new Vector2(this.getSize().getX(), (10 * this.getSize().getY() / 100)),
-                    new Vector2(this.getSize().getX(), 0)
-                };
+                Rectangle tuna = new Rectangle(
+                        this.getSize().getX(),
+                        10 * this.getSize().getY() / 100,
+                        this.getPosition(),
+                        "stroke", Colour.lime
+                );
 
-                collFace.setPoints(bacon);
-
-                return collFace.intersects(coll);
+                return tuna.intersects(coll);
 
             case WEST_FACE:
 
-                Vector2[] ham = {
-                    new Vector2(0, 0),
-                    new Vector2((10 * this.getSize().getX() / 100), 0),
-                    new Vector2((10 * this.getSize().getX() / 100), this.getSize().getY()),
-                    new Vector2(0, this.getSize().getY())
-                };
+                Rectangle salami = new Rectangle(
+                        10 * this.getSize().getX() / 100,
+                        this.getSize().getY(),
+                        this.getPosition(),
+                        "stroke", Colour.lime
+                );
 
-                collFace.setPoints(ham);
-
-                return collFace.intersects(coll);
+                return salami.intersects(coll);
 
             default:
                 System.err.println("the face '" + face + "' is not reconized");

@@ -24,7 +24,7 @@ public abstract class GameObject extends Collidable {
         super(obj.getPosition());
         
         // --
-        this.setChildren(obj.getChildren());
+        this.children = obj.getChildren();
         this.setPoints(obj.getPoints());
         this.setPosition(obj.getPosition());
         // --
@@ -43,28 +43,26 @@ public abstract class GameObject extends Collidable {
     public abstract void update();
 
     /**
-     * Callback function used to draw on the screen every frame.
+     * Callback function used to render on the screen every frame.
      */
-    public abstract void draw();
+    public abstract void render();
 
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
     public ArrayList<GameObject> getChildren() {
         return this.children;
     }
 
+    @SuppressWarnings({"unchecked", "AssignmentToCollectionOrArrayFieldFromParameter"})
     public void setChildren(ArrayList children) {
         this.children = children;
     }
 
     public void updateChildren() {
-        for (GameObject child : getChildren()) {
-            child.update();
-        }
+        getChildren().stream().forEach(GameObject::update);
     }
 
     public void renderChildren() {
-        for (GameObject child : getChildren()) {
-            child.draw();
-        }
+        getChildren().stream().forEach(GameObject::render);
     }
 
     /**

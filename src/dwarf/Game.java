@@ -14,6 +14,7 @@ import java.util.Objects;
  * a buffer between the user and the main <code>Engine</code> file.
  *
  * @author sid_th3_sl0th
+ *
  * @see dwarf.engine.core.Engine
  * @see dwarf.engine.core.Window
  */
@@ -108,13 +109,14 @@ public abstract class Game extends Engine {
      *
      * @param position the location of the game of the game window
      */
+    @SuppressWarnings("Convert2Diamond")
     private void init(int width, int hieght, String title) {
         if (width == 0 || hieght == 0) {
             throw new IllegalArgumentException(
                     "the width nor the hieght can be equal to zero.");
         }
 
-        gameObjects = new ArrayList<GameObject>();
+        Game.gameObjects = new ArrayList<GameObject>();
 
         //starts the main game loop.
         this.start(abs(width), abs(hieght), title);
@@ -145,8 +147,9 @@ public abstract class Game extends Engine {
      *
      * @return <code>ArrayList</code> of all added <code>GameObject</code>
      */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
     public ArrayList<GameObject> getGameObjects() {
-        return gameObjects;
+        return Game.gameObjects;
     }
 
     /**
@@ -156,9 +159,10 @@ public abstract class Game extends Engine {
      * @param gameObjects the inputed ArrayList of GameObjects
      * @return true if successful and false if it fails
      */
+    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
     public boolean setGameObjects(ArrayList<GameObject> gameObjects) {
         try {
-            gameObjects = gameObjects;
+            Game.gameObjects = gameObjects;
             return true;
         } catch (Exception ex) {
             System.err.println(ex);
@@ -221,6 +225,7 @@ public abstract class Game extends Engine {
      * @param input the <code>GameObject</code> to be removed
      * @return true if successful and false if it fails
      */
+    @SuppressWarnings("element-type-mismatch")
     public boolean removeGameObject(Object input) {
         try {
             return this.getGameObjects().remove(input);
@@ -288,6 +293,7 @@ public abstract class Game extends Engine {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
+    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -311,7 +317,7 @@ public abstract class Game extends Engine {
                 + "propertyChangeSupport: " + propertyChangeSupport + ", "
                 + "vetoableChangeSupport: " + vetoableChangeSupport + ", "
                 + "super: " + super.toString()
-                + '}';
+                + "}";
     }
 
     /**
@@ -332,10 +338,12 @@ public abstract class Game extends Engine {
      * <code>ArrayList</code>.
      */
     public void renderAllGameObjects() {
-        for (GameObject obj : getGameObjects()) {
-            obj.draw();
-            obj.renderChildren();
-        }
+        getGameObjects().stream().map((child) -> {
+            child.render();
+            return child;
+        }).forEach((child) -> {
+            child.renderChildren();
+        });
     }
 
     /**
@@ -343,16 +351,19 @@ public abstract class Game extends Engine {
      * <code>ArrayList</code>.
      */
     public void updateAllGameObjects() {
-        for (GameObject obj : getGameObjects()) {
-            obj.update();
-            obj.updateChildren();
-        }
+        getGameObjects().stream().map((child) -> {
+            child.update();
+            return child;
+        }).forEach((child) -> {
+            child.updateChildren();
+        });
     }
 
     /**
      * all <code>GameObject</code> in the main <code>GameObject</code>
      * <code>ArrayList</code>
      */
+    @SuppressWarnings({"Convert2Diamond", "static-access"})
     public void clearGameObjects() {
         this.gameObjects = new ArrayList<GameObject>();
     }

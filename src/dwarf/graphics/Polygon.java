@@ -60,10 +60,10 @@ public class Polygon extends GameObject {
     }
 
     /**
-     * Callback function used to draw on the screen every frame.
+     * Callback function used to render on the screen every frame.
      */
     @Override
-    public void draw() {
+    public void render() {
         if (isFill()) {
             draw.fillPolygon(getPoints(), getPosition(), getColour());
         } else {
@@ -76,7 +76,7 @@ public class Polygon extends GameObject {
      * return false
      */
     public boolean isFill() {
-        return this.mode.equals("fill");
+        return this.getMode().equals("fill");
     }
 
     /**

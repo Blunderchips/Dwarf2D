@@ -59,7 +59,7 @@ public class Image extends GameObject {
      * Callback function used to render on the screen every frame.
      */
     @Override
-    public void draw() {
+    public void render() {
         draw.texture(getPosition(), getTexture());
     }
 

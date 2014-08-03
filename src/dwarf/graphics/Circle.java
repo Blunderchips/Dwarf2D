@@ -1,5 +1,6 @@
 package dwarf.graphics;
 
+import dwarf.Collidable;
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
 import dwarf.util.Vector2;
@@ -8,7 +9,7 @@ import java.util.Objects;
 
 /**
  * @author sid_th3_sl0th
- * 
+ *
  * @see <a href='http://en.wikipedia.org/wiki/Circle'>wikipedia</a>
  * @see dwarf.graphics.Shape
  * @see dwarf.graphics.Polygon
