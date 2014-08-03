@@ -220,9 +220,6 @@ public class ImageIOImageData implements LoadableImageData {
         return imageBuffer;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getImageBufferData()
-     */
     @Override
     public ByteBuffer getImageBufferData() {
         throw new RuntimeException("ImageIOImageData doesn't store it's image.");

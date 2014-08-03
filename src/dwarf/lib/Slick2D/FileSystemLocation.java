@@ -28,9 +28,6 @@ public class FileSystemLocation implements ResourceLocation {
         this.root = root;
     }
 
-    /**
-     * @see ResourceLocation#getResource(String)
-     */
     @Override
     public URL getResource(String ref) {
         try {
@@ -48,9 +45,6 @@ public class FileSystemLocation implements ResourceLocation {
         }
     }
 
-    /**
-     * @see ResourceLocation#getResourceAsStream(String)
-     */
     @Override
     public InputStream getResourceAsStream(String ref) {
         try {

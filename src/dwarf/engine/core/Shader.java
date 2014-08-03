@@ -22,7 +22,7 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glValidateProgram;
 
 /**
- * handles all shader files and shader operation.
+ * handles all shader files and shader operation. (still being tested)
  *
  * @author sid_th3_sl0th
  *

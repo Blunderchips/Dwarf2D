@@ -131,7 +131,6 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
      * @param theta - the number of degrees to turn; positive values turn
      * clockwise
      * @return returns the resultant Vector2
-     * @see #setRotation(double)
      */
     public Vector3 rotate(Vector3 axis, double theta) {
         double sinAngle = Math.sin(-theta);
@@ -362,8 +361,8 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
      *
      * @return a clone of this instance.
      * @exception OutOfMemoryError if there is not enough memory.
-     * @throws java.lang.CloneNotSupportedException
-     * @see java.lang.Cloneable
+     * @throws java.lang.CloneNotSupportedException if clone is not supported
+     * thought this should not happen.
      */
     @Override
     public Vector3 clone() throws CloneNotSupportedException {

@@ -386,7 +386,7 @@ public final class Input {
     /**
      * checks if a key is pressed
      *
-     * @param keyCode
+     * @param keyCode the key code of the key to be tested
      * @return Keyboard.isKeyPressed(keyCode)
      */
     public static boolean isKeyDown(int keyCode) {
@@ -396,7 +396,7 @@ public final class Input {
     /**
      * checks if a key is pressed
      *
-     * @param keyName
+     * @param keyName the name of the key to be tested
      * @return Keyboard.isKeyPressed(keyCode)
      */
     public static boolean isKeyDown(String keyName) {
@@ -406,7 +406,7 @@ public final class Input {
     /**
      * checks if a key is down for a single frame
      *
-     * @param keyCode
+     * @param keyCode the key code of the key to be tested
      * @return if a key is pressed down for that frame (bool)
      */
     public static boolean isKeyPressed(int keyCode) {
@@ -416,7 +416,7 @@ public final class Input {
     /**
      * checks if a key is down for a single frame
      *
-     * @param keyName
+     * @param keyName the name of the key to be tested
      * @return if a key is pressed down for that frame (bool)
      */
     public static boolean isKeyPressed(String keyName) {
@@ -426,7 +426,7 @@ public final class Input {
     /**
      * checks if a key is released
      *
-     * @param keyCode
+     * @param keyCode the key code of the key to be tested
      * @return if a key is released up for that frame (bool)
      */
     public static boolean isKeyReleased(int keyCode) {
@@ -436,7 +436,7 @@ public final class Input {
     /**
      * checks if a key is released
      *
-     * @param keyName
+     * @param keyName the name of the key to be tested
      * @return if a key is released up for that frame (bool)
      */
     public static boolean isKeyReleased(String keyName) {
@@ -450,7 +450,7 @@ public final class Input {
     /**
      * checks if a mouse key is down
      *
-     * @param mouseButton
+     * @param mouseButton the key code of the button to be tested
      * @return Mouse.isButtonDown(mouseButton)
      */
     public static boolean isMouseDown(int mouseButton) {
@@ -460,7 +460,7 @@ public final class Input {
     /**
      * checks if a mouse key is down
      *
-     * @param buttonName
+     * @param buttonName the name of the button to be tested
      * @return Mouse.isButtonDown(mouseButton)
      */
     public static boolean isMouseDown(String buttonName) {
@@ -470,7 +470,7 @@ public final class Input {
     /**
      * checks if a mouse key is clicked
      *
-     * @param mouseButton
+     * @param mouseButton the key code of the button to be tested
      * @return return upMouse.contains(upKeys)
      */
     public static boolean isMouseClicked(int mouseButton) {
@@ -480,7 +480,7 @@ public final class Input {
     /**
      * checks if a mouse key is clicked
      *
-     * @param buttonName
+     * @param buttonName the name of the button to be tested
      * @return return upMouse.contains(upKeys)
      */
     public static boolean isMouseClicked(String buttonName) {
@@ -499,7 +499,7 @@ public final class Input {
     /**
      * checks if a mouse key is released
      *
-     * @param mouseButton
+     * @param mouseButton the key code of the button to be tested
      * @return return upMouse.contains(upKeys)
      */
     public static boolean isMouseRealesed(int mouseButton) {
@@ -509,7 +509,7 @@ public final class Input {
     /**
      * checks if a mouse key is released
      *
-     * @param buttonName
+     * @param buttonName the name of the button to be tested
      * @return return upMouse.contains(upKeys)
      */
     public static boolean isMouseRealesed(String buttonName) {

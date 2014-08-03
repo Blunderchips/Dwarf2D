@@ -360,6 +360,8 @@ public final class math {
      * Takes an value and expresses it in terms of min to max.
      *
      * @param val - the angle to normalize (in radians)
+     * @param min the minimum value
+     * @param max the maximum value
      * @return the normalized angle (also in radians)
      */
     public static float normalize(float val, float min, float max) {
@@ -394,9 +396,9 @@ public final class math {
     /**
      * Take a float input and clamp it between min and max.
      *
-     * @param input
-     * @param min
-     * @param max
+     * @param input the value to be inputed
+     * @param min the minimum value
+     * @param max the maximum value
      * @return clamped input
      */
     public static float clamp(float input, float min, float max) {
@@ -406,7 +408,7 @@ public final class math {
     /**
      * Clamps the given float to be between 0 and 1.
      *
-     * @param input
+     * @param input the value to be inputed
      * @return input clamped between 0 and 1.
      */
     public static float saturate(float input) {
@@ -543,40 +545,6 @@ public final class math {
         z = interpolateBezier(u, p0.getZ(), p1.getZ(), p2.getZ(), p3.getZ());
 
         return new Vector3(x, y, z);
-    }
-
-    /**
-     * Returns the arc tangent of an angle given in radians.<br>
-     *
-     * @param fValue The angle, in radians.
-     * @return fValue's atan
-     * @see java.lang.Math#atan(double)
-     */
-    public static float atan(float fValue) {
-        return (float) Math.atan(fValue);
-    }
-
-    /**
-     * A direct call to Math.atan2.
-     *
-     * @param fY
-     * @param fX
-     * @return Math.atan2(fY,fX)
-     * @see java.lang.Math#atan2(double, double)
-     */
-    public static float atan2(float fY, float fX) {
-        return (float) Math.atan2(fY, fX);
-    }
-
-    /**
-     * Rounds a fValue up. A call to Math.ceil
-     *
-     * @param fValue The value.
-     * @return The fValue rounded up
-     * @see java.lang.Math#ceil(double)
-     */
-    public static float ceil(float fValue) {
-        return (float) Math.ceil(fValue);
     }
 
     /**

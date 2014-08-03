@@ -26,7 +26,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     private double alpha = 0x1;
 
     /**
-     * @param colour
+     * @param colour the colour to be inputed
      */
     public static void setColour(Colour colour) {
         glColor4d(colour.getX(), colour.getY(), colour.getZ(), colour.alpha);
@@ -40,19 +40,19 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     }
 
     /**
-     * @param red
-     * @param green
-     * @param blue
+     * @param red the red component of the colour
+     * @param green the green component of the colour
+     * @param blue the blue component of the colour
      */
     public static void setColour(byte red, byte green, byte blue) {
         setColour(new Colour(red, green, blue, 1));
     }
 
     /**
-     * @param red
-     * @param green
-     * @param blue
-     * @param alpha
+     * @param red the red component of the colour
+     * @param green the green component of the colour
+     * @param blue the blue component of the colour
+     * @param alpha the alpha component of the colour
      */
     public static void setColour(byte red, byte green, byte blue, byte alpha) {
         setColour(red, green, blue, alpha);
@@ -144,6 +144,8 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
 
     /**
      * Make a brighter instance of this colour
+     *
+     * @return returns a brighter colour
      */
     public Colour brighter() {
         return brighter(0.2f);
@@ -167,6 +169,9 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
 
     /**
      * Make a brighter instance of this colour
+     *
+     * @param scale what the colour is to be scaled by
+     * @return a scales up colour
      */
     public Colour brighter(float scale) {
         scale += 1;

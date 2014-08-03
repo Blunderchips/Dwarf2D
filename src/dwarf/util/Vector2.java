@@ -6,7 +6,6 @@ import static java.lang.Math.pow;
 /**
  * A 2-dimensional, single-precision, double-point vector.
  *
- * @title Vector2
  * @author sid_th3_sl0th
  */
 public class Vector2 extends java.lang.Object implements Serializable, Cloneable {

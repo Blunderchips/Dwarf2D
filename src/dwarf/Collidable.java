@@ -40,9 +40,9 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new <code>Collidable</code>.
+     * creates a new <code>Collidable</code> from a inputed <code>Collidable</code>.
      *
-     * @param Collidable
+     * @param Collidable the inputed <code>Collidable</code>.
      */
     public Collidable(Collidable Collidable) {
         super();

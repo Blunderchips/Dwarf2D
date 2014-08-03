@@ -153,8 +153,7 @@ public abstract class Game extends Engine {
      * tries to set the main <code>GameObject</code> list to a inputed
      * <code>ArrayList</code> of <code>GameObject</code>
      *
-     * @param gameObjects
-     * @gameObjects an <code>ArrayList</code> of <code>GameObject</code>
+     * @param gameObjects the inputed ArrayList of GameObjects
      * @return true if successful and false if it fails
      */
     public boolean setGameObjects(ArrayList<GameObject> gameObjects) {

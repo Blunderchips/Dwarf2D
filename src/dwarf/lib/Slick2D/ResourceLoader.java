@@ -12,6 +12,7 @@ import java.util.ArrayList;
  *
  * @author Kevin Glass
  */
+@SuppressWarnings("unchecked")
 public class ResourceLoader {
 
     /**
@@ -29,6 +30,7 @@ public class ResourceLoader {
      *
      * @param location The location that will be searched for resoruces
      */
+    @SuppressWarnings("unchecked")
     public static void addResourceLocation(ResourceLocation location) {
         ResourceLoader.locations.add(location);
     }

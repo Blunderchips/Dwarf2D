@@ -477,6 +477,7 @@ public class PNGDecoder {
         }
     }
 
+    @SuppressWarnings("fallthrough")
     private void expand1(byte[] src, byte[] dst) {
         for (int i = 1, n = dst.length; i < n; i += 8) {
             int val = src[1 + (i >> 3)] & 255;

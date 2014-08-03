@@ -70,7 +70,7 @@ public final class time {
     /**
      * time.dt = (time.getNano() - (double)lastTime) / time.SECOND
      *
-     * @param lastTime
+     * @param lastTime the last frame time
      */
     public static void setDelta(long lastTime) {
         time.dt = (time.getNano() - (double) lastTime) / time.SECOND;

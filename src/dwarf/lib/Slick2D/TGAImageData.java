@@ -16,6 +16,8 @@ import org.lwjgl.BufferUtils;
  * as part of the Java Monkey Engine (JME). Why not check out what they're doing
  * over at http://www.jmonkeyengine.com. kudos to Mark Powell.
  *
+ * @see <a href='http://www.jmonkeyengine.com'>jmonkeyengine.com</a>
+ *
  * @author Kevin Glass
  */
 public class TGAImageData implements LoadableImageData {
@@ -85,24 +87,6 @@ public class TGAImageData implements LoadableImageData {
 
     /**
      * @throws java.io.IOException
-     * @Override public ByteBuffer loadImage(InputStream fis) throws IOException
-     * { return loadImage(fis, true, null); }
-     *
-     * /
-     * @see
-     * org.newdawn.slick.opengl.LoadableImageData#loadImage(java.io.InputStream,
-     * boolean, int[])
-     */
-    @Override
-    public ByteBuffer loadImage(InputStream fis, boolean flipped, int[] transparent) throws IOException {
-        return loadImage(fis, flipped, false, transparent);
-    }
-
-    /**
-     * @throws java.io.IOException
-     * @see
-     * org.newdawn.slick.opengl.LoadableImageData#loadImage(java.io.InputStream,
-     * boolean, boolean, int[])
      */
     @Override
     public ByteBuffer loadImage(InputStream fis, boolean flipped, boolean forceAlpha, int[] transparent) throws IOException {
@@ -309,23 +293,22 @@ public class TGAImageData implements LoadableImageData {
         return ret;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.ImageData#getImageBufferData()
-     */
     @Override
     public ByteBuffer getImageBufferData() {
         throw new RuntimeException("TGAImageData doesn't store it's image.");
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.LoadableImageData#configureEdging(boolean)
-     */
     @Override
     public void configureEdging(boolean edging) {
     }
 
     @Override
     public ByteBuffer loadImage(InputStream fis) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ByteBuffer loadImage(InputStream fis, boolean flipped, int[] transparent) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

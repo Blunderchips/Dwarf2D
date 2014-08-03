@@ -3,7 +3,7 @@ package dwarf.lib.Slick2D;
 import java.util.ArrayList;
 
 /**
- * A central list where all deferred loading resoures end up when deferred
+ * A central list where all deferred loading resources end up when deferred
  * loading is in use. Each texture and sound loaded will be put in this list and
  * can be loaded in one by one
  *
@@ -109,7 +109,7 @@ public class LoadingList {
      * @return The next resource to load or null if there are no more remaining
      */
     public DeferredResource getNext() {
-        if (deferred.size() == 0) {
+        if (deferred.isEmpty()) {
             return null;
         }
 

@@ -165,9 +165,6 @@ public class TextureImpl implements Texture {
         lastBind = null;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#bind()
-     */
     @Override
     public void bind() {
         if (lastBind != this) {
@@ -197,49 +194,31 @@ public class TextureImpl implements Texture {
         setWidth();
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getImageHeight()
-     */
     @Override
     public int getImageHeight() {
         return height;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getImageWidth()
-     */
     @Override
     public int getImageWidth() {
         return width;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getHeight()
-     */
     @Override
     public float getHeight() {
         return heightRatio;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getWidth()
-     */
     @Override
     public float getWidth() {
         return widthRatio;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getTextureHeight()
-     */
     @Override
     public int getTextureHeight() {
         return texHeight;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getTextureWidth()
-     */
     @Override
     public int getTextureWidth() {
         return texWidth;
@@ -283,9 +262,6 @@ public class TextureImpl implements Texture {
         }
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#release()
-     */
     @Override
     public void release() {
         IntBuffer texBuf = createIntBuffer(1);
@@ -305,9 +281,6 @@ public class TextureImpl implements Texture {
         }
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getTextureID()
-     */
     @Override
     public int getTextureID() {
         return textureID;
@@ -334,11 +307,9 @@ public class TextureImpl implements Texture {
         temp.order(ByteOrder.nativeOrder());
 
         return temp.asIntBuffer();
+
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getTextureData()
-     */
     @Override
     public byte[] getTextureData() {
         ByteBuffer buffer = BufferUtils.createByteBuffer((hasAlpha() ? 4 : 3) * texWidth * texHeight);
@@ -352,9 +323,6 @@ public class TextureImpl implements Texture {
         return data;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#setTextureFilter(int)
-     */
     @Override
     public void setTextureFilter(int textureFilter) {
         bind();
