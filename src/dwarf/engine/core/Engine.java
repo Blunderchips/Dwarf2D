@@ -4,18 +4,13 @@ import dwarf.Input;
 import dwarf.time;
 
 /**
- * the main engine file for the <a href='http://95.85.60.226/'>Dwarf2D</a> Engine
+ * the main engine file for the <a href='http://95.85.60.226/'>Dwarf2D</a>
+ * Engine
  *
  * @author sid_th3_sl0th
  *
+ * @see <a href='http://95.85.60.226/'>Dwarf2D</a>
  * @see java.lang.Object
- * @see dwarf.Input#init()
- * @see dwarf.Input#dispose()
- * @see dwarf.engine.core.Window#create(int, int, java.lang.String)
- * @see dwarf.engine.core.openAL#init()
- * @see dwarf.engine.core.openGL#init()
- * @see dwarf.engine.core.openAL#dispose()
- * @see dwarf.engine.core.Window#dispose()
  */
 public abstract class Engine extends java.lang.Object {
 
@@ -45,7 +40,7 @@ public abstract class Engine extends java.lang.Object {
                 Window.update();
 
                 Window.clear();
-                this.draw();
+                this.render();
                 Window.render();
 
                 Input.update();
@@ -70,9 +65,9 @@ public abstract class Engine extends java.lang.Object {
     public abstract void update();
 
     /**
-     * Callback function used to draw on the screen every frame.
+     * Callback function used to render on the screen every frame.
      */
-    public abstract void draw();
+    public abstract void render();
 
     public static void dispose() {
         Input.dispose();

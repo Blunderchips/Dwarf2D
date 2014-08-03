@@ -8,6 +8,11 @@ import static org.lwjgl.opengl.GL11.glColor4f;
 
 /**
  * A simple wrapper round the values required for a mutable colour class
+ *
+ * @author sid_th3_sl0th
+ *
+ * @see java.lang.Object
+ * @see dwarf.util.Vector3
  */
 @SuppressWarnings("serial")
 public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneable {
@@ -29,7 +34,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      * @param colour the colour to be inputed
      */
     public static void setColour(Colour colour) {
-        glColor4d(colour.getX(), colour.getY(), colour.getZ(), colour.alpha);
+        glColor4d(colour.getX(), colour.getY(), colour.getZ(), colour.getAlpha());
     }
 
     /**
@@ -64,7 +69,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
 
     public Colour(Colour colour) {
         super(colour.getX(), colour.getY(), colour.getZ());
-        this.alpha = colour.alpha;
+        this.alpha = colour.getAlpha();
     }
 
     public Colour(Vector3 input) {
@@ -134,7 +139,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      * Bind this colour to the GL context
      */
     public void bind() {
-        glColor4d(this.getX(), this.getY(), this.getZ(), this.alpha);
+        glColor4d(this.getX(), this.getY(), this.getZ(), this.getAlpha());
     }
 
     @Override
@@ -175,7 +180,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      */
     public Colour brighter(float scale) {
         scale += 1;
-        Colour temp = new Colour((byte) this.getX() * scale, (byte) this.getY() * scale, (byte) this.getZ() * scale, this.alpha);
+        Colour temp = new Colour((float) this.getX() * scale, (float) this.getY() * scale, (float) this.getZ() * scale, this.getAlpha());
 
         return temp;
     }
@@ -199,11 +204,11 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      * @return The copy which has had the color added to it
      */
     public Colour addToCopy(Colour c) {
-        Colour copy = new Colour(this.getX(), this.getY(), this.getZ(), this.alpha);
+        Colour copy = new Colour(this.getX(), this.getY(), this.getZ(), this.getAlpha());
         copy.changeX(c.getX());
         copy.changeY(c.getY());
         copy.changeZ(c.getZ());
-        copy.alpha += c.alpha;
+        copy.alpha += c.getAlpha();
 
         return copy;
     }
@@ -217,7 +222,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     }
 
     public void setBlue(float b) {
-        this.setBlue(b);
+        this.setZ(b);
     }
 
     public void setAlpha(float a) {
@@ -255,7 +260,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Float.floatToIntBits((float) this.alpha);
+        hash = 97 * hash + Float.floatToIntBits((float) this.getAlpha());
         return hash;
     }
 
@@ -445,6 +450,8 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     /**
      * HSB to RGB conversion, pinched from java.awt.Color.
      *
+     * @see java.awt.Color
+     * 
      * @param hue (0..1.0f)
      * @param saturation (0..1.0f)
      * @param brightness (0..1.0f)
@@ -497,5 +504,10 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
                     break;
             }
         }
+    }
+
+    @Override
+    public Vector3 clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -7,6 +7,10 @@ import static java.lang.Math.pow;
  * A 3-dimensional, single-precision, double-point vector.
  *
  * @author sid_th3_sl0th
+ *
+ * @see java.lang.Object
+ * @see java.io.Serializable
+ * @see java.lang.Cloneable
  */
 public class Vector3 extends java.lang.Object implements Serializable, Cloneable {
 
@@ -17,15 +21,28 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     public final static Vector3 UNIT_Y = new Vector3(0, 1, 0);
     public final static Vector3 UNIT_Z = new Vector3(0, 0, 1);
     public final static Vector3 UNIT_XYZ = new Vector3(1, 1, 1);
+
+    /**
+     * A constant holding a Not-a-Number (NaN) value of type
+     * <code>Vector3</code>.
+     */
     public final static Vector3 NaN = new Vector3(Double.NaN, Double.NaN, Double.NaN);
+    /**
+     * A constant holding the positive infinity of type <code>Vector3</code>.
+     */
     public final static Vector3 POSITIVE_INFINITY = new Vector3(
             Double.POSITIVE_INFINITY,
             Double.POSITIVE_INFINITY,
-            Double.POSITIVE_INFINITY);
+            Double.POSITIVE_INFINITY
+    );
+    /**
+     * A constant holding the negative infinity of type <code>Vector3</code>.
+     */
     public final static Vector3 NEGATIVE_INFINITY = new Vector3(
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY,
-            Double.NEGATIVE_INFINITY);
+            Double.NEGATIVE_INFINITY
+    );
 
     /**
      * the x-component of this Vector3

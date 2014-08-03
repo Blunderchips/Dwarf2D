@@ -115,8 +115,7 @@ public class WaveData extends java.lang.Object {
             // due to an issue with AudioSystem.getAudioInputStream
             // and mixing unsigned and signed code
             // we will use the reader directly
-            WaveFileReader wfr = new WaveFileReader();
-            return create(wfr.getAudioInputStream(new BufferedInputStream(path.openStream())));
+            return create(new WaveFileReader().getAudioInputStream(new BufferedInputStream(path.openStream())));
         } catch (IOException | UnsupportedAudioFileException ex) {
             System.err.println(ex);
             org.lwjgl.LWJGLUtil.log("Unable to create from: " + path + ", " + ex.getMessage());
@@ -302,12 +301,13 @@ public class WaveData extends java.lang.Object {
     }
 
     /**
-     * Returns true if the arguments are equal to each other and false
-     * otherwise. Consequently, if both arguments are null, true is returned and
-     * if exactly one argument is null, false is returned. Otherwise, equality
-     * is determined by using the equals method of the first argument.
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
      *
-     * @return true if the arguments are equal to each other and false otherwise
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -326,9 +326,8 @@ public class WaveData extends java.lang.Object {
             return false;
         } else if (this.getSamplerate() != other.getSamplerate()) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     public ByteBuffer getData() {
@@ -345,7 +344,12 @@ public class WaveData extends java.lang.Object {
 
     @Override
     public String toString() {
-        return "WaveData{" + "data=" + getData() + ", format=" + getFormat() + ", samplerate=" + getSamplerate() + '}' + " " + super.toString();
+        return "WaveData = {"
+                + "data: " + getData() + ", "
+                + "format: " + getFormat() + ", "
+                + "samplerate: " + getSamplerate() + ", "
+                + "super: " + super.toString()
+                + "}";
     }
 
 }

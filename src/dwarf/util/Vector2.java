@@ -7,6 +7,10 @@ import static java.lang.Math.pow;
  * A 2-dimensional, single-precision, double-point vector.
  *
  * @author sid_th3_sl0th
+ * 
+ * @see java.lang.Object
+ * @see java.io.Serializable
+ * @see java.lang.Cloneable
  */
 public class Vector2 extends java.lang.Object implements Serializable, Cloneable {
 
@@ -16,13 +20,26 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     public static final Vector2 UNIT_X = new Vector2(1, 0);
     public static final Vector2 UNIT_Y = new Vector2(0, 1);
     public static final Vector2 UNIT_XY = new Vector2(1, 1);
+
+    /**
+     * A constant holding a Not-a-Number (NaN) value of type
+     * <code>Vector2</code>.
+     */
     public final static Vector2 NaN = new Vector2(Double.NaN, Double.NaN);
+    /**
+     * A constant holding the positive infinity of type <code>Vector2</code>.
+     */
     public static final Vector2 POSITIVE_INFINITY = new Vector2(
             Double.POSITIVE_INFINITY,
-            Double.POSITIVE_INFINITY);
+            Double.POSITIVE_INFINITY
+    );
+    /**
+     * A constant holding the negative infinity of type <code>Vector2</code>.
+     */
     public static final Vector2 NEGATIVE_INFINITY = new Vector2(
             Double.NEGATIVE_INFINITY,
-            Double.NEGATIVE_INFINITY);
+            Double.NEGATIVE_INFINITY
+    );
 
     /**
      * Rotation in degrees (0-359)

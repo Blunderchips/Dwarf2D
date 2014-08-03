@@ -56,7 +56,7 @@ public class Image extends GameObject {
     }
 
     /**
-     * Callback function used to draw on the screen every frame.
+     * Callback function used to render on the screen every frame.
      */
     @Override
     public void draw() {

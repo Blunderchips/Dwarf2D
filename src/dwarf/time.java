@@ -21,7 +21,7 @@ public final class time {
     }
 
     /**
-     * Amount of millisecond is a second.
+     * Amount of Nanosecond is a second.
      */
     public static final long SECOND = 0x5f5e100L;
 

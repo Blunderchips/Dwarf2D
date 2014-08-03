@@ -97,8 +97,8 @@ public abstract class Game extends Engine {
             }
 
             @Override
-            public void draw() {
-                //Callback function used to draw on the screen every frame.
+            public void render() {
+                //Callback function used to render on the screen every frame.
             }
         };
     }
@@ -133,10 +133,10 @@ public abstract class Game extends Engine {
     public abstract void update();
 
     /**
-     * Callback function used to draw on the screen every frame.
+     * Callback function used to render on the screen every frame.
      */
     @Override
-    public abstract void draw();
+    public abstract void render();
 
     /**
      * returns all <code>GameObject</code> added to the main

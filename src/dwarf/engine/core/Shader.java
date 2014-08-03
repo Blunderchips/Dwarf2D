@@ -31,8 +31,8 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
  */
 public class Shader extends java.lang.Object {
 
-    public final static int VERTEX_SHADER = 0x8b31;
     public final static int FRAGMENT_SHADER = 0x8b30;
+    public final static int VERTEX_SHADER = 0x8b31;
     public final static int SHADER_PROGRAM = glCreateProgram();
 
     public static void deleteShaderProgram() {
@@ -46,18 +46,25 @@ public class Shader extends java.lang.Object {
         super();
     }
 
+    public Shader(int program, StringBuilder source) {
+        super();
+
+        this.program = program;
+        this.source = source;
+    }
+
     public Shader(Shader shader) {
         super();
 
-        this.setProgram(shader.getProgram());
-        this.setSource(shader.getSource());
+        this.program = shader.getProgram();
+        this.source = shader.getSource();
     }
 
     public Shader(int type, String key) {
         super();
 
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
-            this.setProgram(glCreateShader(type));
+            this.program = glCreateShader(type);
         } else {
             throw new IllegalArgumentException("the shader type '" + type + "' is unrecognised.");
         }
@@ -82,17 +89,17 @@ public class Shader extends java.lang.Object {
                 } catch (IOException ex) {
                     System.err.println(ex);
                     JOptionPane.showMessageDialog(
-                            Window.getParent(), "The display wasn't initialized correctly :(", Window.getTitle() + " - ERROR", ERROR_MESSAGE
+                            Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
                     );
                     Game.close(ex);
                 }
             }
         }
 
-        glShaderSource(getProgram(), getSource());
-        glCompileShader(getProgram());
+        glShaderSource(program, source);
+        glCompileShader(program);
 
-        if (glGetShaderi(getProgram(), GL_COMPILE_STATUS) == GL_FALSE) {
+        if (glGetShaderi(program, GL_COMPILE_STATUS) == GL_FALSE) {
             System.err.println("Vertex shader wasn't able to be compiled correctly. :(");
             JOptionPane.showMessageDialog(
                     Window.getParent(), "Vertex shader wasn't able to be compiled correctly. :(", Window.getTitle() + " - ERROR", ERROR_MESSAGE
@@ -100,7 +107,7 @@ public class Shader extends java.lang.Object {
             Game.close(42);
         }
 
-        glAttachShader(SHADER_PROGRAM, getProgram());
+        glAttachShader(SHADER_PROGRAM, program);
         glLinkProgram(SHADER_PROGRAM);
         glValidateProgram(SHADER_PROGRAM);
     }
@@ -166,10 +173,10 @@ public class Shader extends java.lang.Object {
         } else if (getClass() != obj.getClass()) {
             return false;
         }
-        final Shader other = (Shader) obj;
-        if (this.getProgram() != other.getProgram()) {
+        final Shader shader = (Shader) obj;
+        if (this.getProgram() != shader.getProgram()) {
             return false;
-        } else if (!Objects.equals(this.getSource(), other.getSource())) {
+        } else if (!Objects.equals(this.getSource(), shader.getSource())) {
             return false;
         }
         return true;
@@ -178,8 +185,10 @@ public class Shader extends java.lang.Object {
     @Override
     public String toString() {
         return "Shader = {"
-                + "program:" + getProgram() + ", "
-                + "source: " + getSource()
+                + "program: " + getProgram() + ", "
+                + "source: " + getSource() + ", "
+                + "super: " + super.toString()
                 + "}";
     }
+
 }

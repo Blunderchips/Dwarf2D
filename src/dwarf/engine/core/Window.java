@@ -19,7 +19,7 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glTranslated;
 
 /**
- * absolutely everything Window
+ * absolutely everything Window.
  *
  * @author sid_th3_sl0th
  */
@@ -246,6 +246,14 @@ public final class Window {
         Display.setTitle(title);
     }
 
+    /**
+     * Set the display configuration to the specified gamma, brightness and
+     * contrast.
+     *
+     * @param gamma The gamma value
+     * @param brightness The brightness value between -1.0 and 1.0, inclusive
+     * @param contrast The contrast, larger than 0.0.
+     */
     public static void setDisplayConfiguration(float gamma, float brightness, float contrast) {
         try {
             Display.setDisplayConfiguration(gamma, brightness, contrast);

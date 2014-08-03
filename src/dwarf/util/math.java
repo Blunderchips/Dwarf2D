@@ -641,6 +641,9 @@ public final class math {
     /**
      * Returns the next power of two. Returns the specified value if the value
      * is already a power of two.
+     *
+     * @param value the number to tested
+     * @return the next power of two of the entered value
      */
     public static int nextPowerOfTwo(int value) {
         if (value == 0) {

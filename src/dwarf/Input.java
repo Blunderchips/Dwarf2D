@@ -10,7 +10,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 /**
- * Handle mouse and keyboard input.
+ * Handle mouse and keyboard input from the user.
  *
  * @author sid_th3_sl0th
  */
@@ -152,31 +152,31 @@ public final class Input {
      */
     public static final int KEY_DECIMAL = 0x53;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_F13 = 0x64;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_F14 = 0x65;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_F15 = 0x66;
     /**
-     * (Japanese keyboard)
+     * Japanese keyboard
      */
     public static final int KEY_KANA = 0x70;
     /**
-     * (Japanese keyboard)
+     * Japanese keyboard
      */
     public static final int KEY_CONVERT = 0x79;
     /**
-     * (Japanese keyboard)
+     * Japanese keyboard
      */
     public static final int KEY_NOCONVERT = 0x7B;
     /**
-     * (Japanese keyboard)
+     * Japanese keyboard
      */
     public static final int KEY_YEN = 0x7D;
     /**
@@ -184,35 +184,35 @@ public final class Input {
      */
     public static final int KEY_NUMPADEQUALS = 0x8D;
     /**
-     * (Japanese keyboard)
+     * Japanese keyboard
      */
     public static final int KEY_CIRCUMFLEX = 0x90;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_AT = 0x91;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_COLON = 0x92;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_UNDERLINE = 0x93;
     /**
-     * (Japanese keyboard)
+     * Japanese keyboard
      */
     public static final int KEY_KANJI = 0x94;
     /**
-     * (NEC PC98)
+     * NEC PC98
      */
     public static final int KEY_STOP = 0x95;
     /**
-     * (Japan AX)
+     * Japan AX
      */
     public static final int KEY_AX = 0x96;
     /**
-     * (J3100)
+     * J3100
      */
     public static final int KEY_UNLABELED = 0x97;
     /**
