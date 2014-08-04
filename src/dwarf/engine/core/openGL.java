@@ -53,7 +53,7 @@ public final class openGL {
      * initializes openGL
      */
     protected static void init() {
-        //util.debug("INFO", "openGL version: " + openGL.getVersion());
+        // util.debug("INFO", "openGL version: " + openGL.getVersion());
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
