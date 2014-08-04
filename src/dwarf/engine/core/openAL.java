@@ -40,7 +40,7 @@ public final class openAL {
     protected static void init() {
         try {
             AL.create();
-            //util.debug("INFO", "openAL version: " + openAL.getVersion());
+            // util.debug("INFO", "openAL version: " + openAL.getVersion());
         } catch (LWJGLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(
