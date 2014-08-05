@@ -45,15 +45,15 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     );
 
     /**
-     * the x-component of this Vector3
+     * the x-component of this <code>Vector3</code>
      */
     private double x;
     /**
-     * the y-component of this Vector3
+     * the y-component of this <code>Vector3</code>
      */
     private double y;
     /**
-     * the z-component of this Vector3
+     * the z-component of this <code>Vector3</code>
      */
     private double z;
 
@@ -110,9 +110,9 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     private void init(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.setX(x);
+        this.setY(y);
+        this.setZ(z);
     }
 
     public double length() {
@@ -236,9 +236,9 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public Vector3 set(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.setX(x);
+        this.setY(y);
+        this.setZ(z);
 
         return this;
     }
@@ -320,9 +320,9 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public void change(Vector3 delta) {
-        this.x = delta.getX();
-        this.y = delta.getY();
-        this.z = delta.getZ();
+        this.x += delta.getX();
+        this.y += delta.getY();
+        this.z += delta.getZ();
     }
 
     public void change(double delta) {

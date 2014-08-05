@@ -12,7 +12,7 @@ import static java.lang.Math.tan;
  */
 public class Shape extends Polygon {
 
-    private int numSides;
+    private byte numSides;
     private double lineLength;
 
     public Shape(int numSides, double lineLength, Vector2 position, String mode, Colour colour) {
@@ -38,23 +38,23 @@ public class Shape extends Polygon {
     }
 
     private void init(int numSides, double lineLength) {
-        this.numSides = numSides;
+        this.numSides = (byte) numSides;
         this.lineLength = lineLength;
 
         Vector2[] point = new Vector2[numSides];
 
-        Vector2 bacon = new Vector2();
+        Vector2 temp = new Vector2();
 
         int angle = 360 / numSides;
 
         for (int i = 0; i < numSides; i++) {
-            bacon.move(getLineLength());
-            bacon.rotate(angle);
+            temp.move(getLineLength());
+            temp.rotate(angle);
 
-            point[i] = new Vector2(bacon.getX(), (bacon.getY()));
+            point[i] = new Vector2(temp.getX(), (temp.getY()));
         }
 
-        this.setPoints(point);
+        super.setPoints(point);
     }
 
     public int getNumSides() {
@@ -62,7 +62,7 @@ public class Shape extends Polygon {
     }
 
     public void setNumSides(int numSides) {
-        this.numSides = numSides;
+        this.numSides = (byte) numSides;
     }
 
     public double getLineLength() {
@@ -149,7 +149,7 @@ public class Shape extends Polygon {
      * @author Isa Cattanach
      * @author Matthew Van der Bijl
      *
-     * @return returns the area of the Shape
+     * @return returns the area of the Shape (double)
      */
     public double getArea() {
         return (Math.round((math.sqr(getLineLength() / 2) * Math.tan(Math.toRadians(180 - (360 / getNumSides())) / 2)) * getNumSides()) * 1000) / 1000;

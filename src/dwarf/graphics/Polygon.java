@@ -4,7 +4,11 @@ import dwarf.GameObject;
 import dwarf.util.Vector2;
 import java.util.Objects;
 
+import static dwarf.graphics.draw.*;
+
 /**
+ * A basic shape with more than 3 sides.
+ * 
  * @author sid_th3_sl0th
  *
  * @see <a href='http://en.wikipedia.org/wiki/Polygon'>wikipedia</a>
@@ -60,7 +64,12 @@ public class Polygon extends GameObject {
     }
 
     /**
-     * Callback function used to render on the screen every frame.
+     * Callback function used to render the <code>Polygon</code> to the screen.
+     *
+     * @see dwarf.graphics.draw#fillPolygon(dwarf.util.Vector2[],
+     * dwarf.util.Vector2, dwarf.graphics.Colour)
+     * @see dwarf.graphics.draw#strokePolygon(dwarf.util.Vector2[],
+     * dwarf.util.Vector2, dwarf.graphics.Colour)
      */
     @Override
     public void render() {
@@ -152,5 +161,67 @@ public class Polygon extends GameObject {
 
     public String getMode() {
         return this.mode;
+    }
+
+    /**
+     * @return what type of shape <code>this</code> is.
+     */
+    public String getType() {
+        switch (getNumPoints()) {
+            case SHAPE_TRIANGLE:
+                return "triangle";
+            case SHAPE_SQUARE:
+                return "quadrilateral";
+            case SHAPE_PENTAGON:
+                return "pentagon";
+            case SHAPE_HEXAGON:
+                return "hexagon";
+            case SHAPE_HEPTAGON:
+                return "heptagon";
+            case SHAPE_OCTAGON:
+                return "octagon";
+            case SHAPE_NONAGON:
+                return "nonagon";
+            case SHAPE_DECAGON:
+                return "decagon";
+            case SHAPE_HENDECAGON:
+                return "hendecagon";
+            case SHAPE_DODECAGON:
+                return "dodecagon";
+            case SHAPE_TRISKAIDECAGON:
+                return "tridecagon";
+            case SHAPE_TETRAKAIDECAGON:
+                return "tetradecagon";
+            case SHAPE_PENTAKAIDECAGON:
+                return "pentadecagon";
+            case SHAPE_HEXAKAIDECAGON:
+                return "hexadecagon";
+            case SHAPE_HEPTAKAIDECAGON:
+                return "heptakaidecagon";
+            case SHAPE_OCTAKAIDECAGON:
+                return "octadecagon";
+            case SHAPE_ENNEAKAIDECAGON:
+                return "enneadecagon";
+            case SHAPE_ICOSAGON:
+                return "icosagon";
+            case SHAPE_ICOSIKAIHEXAGON:
+                return "icosikaihexagon";
+            case SHAPE_ICOSIKAITRIGON:
+                return "icosikaitetragon";
+            case SHAPE_ICOSIKAITETRAGON:
+                return "icosikaitetragon";
+            case SHAPE_CIRCLE:
+                return "circle";
+            default:
+                return "polygon";
+        }
+    }
+    
+    public boolean isRightAngledTriangle() {
+        if (this.getType().equals("triangle")) {
+            //TODO
+        }
+        
+        return false;
     }
 }

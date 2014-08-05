@@ -24,7 +24,7 @@ public class CompositeImageData implements LoadableImageData {
     private LoadableImageData picked;
 
     /**
-     * Add a potentional source of image data
+     * Add a potential source of image data
      *
      * @param data The data source to try
      */
@@ -33,9 +33,6 @@ public class CompositeImageData implements LoadableImageData {
         sources.add(data);
     }
 
-    /**
-     * @throws java.io.IOException
-     */
     @Override
     public ByteBuffer loadImage(InputStream fis) throws IOException {
         return loadImage(fis, false, null);

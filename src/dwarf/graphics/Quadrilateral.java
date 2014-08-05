@@ -3,8 +3,10 @@ package dwarf.graphics;
 import dwarf.util.Vector2;
 
 /**
+ * A basic 4 sided shape.
+ *
  * @author sid_th3_sl0th
- * 
+ *
  * @see <a href='http://en.wikipedia.org/wiki/Quadrilateral'>wikipedia</a>
  * @see dwarf.graphics.Polygon
  */
@@ -31,7 +33,7 @@ public class Quadrilateral extends Polygon {
 
         super.setPoints(points);
     }
-    
+
     public Quadrilateral(Quadrilateral quadrilateral) {
         super(quadrilateral.getPosition(), quadrilateral.getMode(), quadrilateral.getColour());
         super.setPoints(quadrilateral.getPoints());

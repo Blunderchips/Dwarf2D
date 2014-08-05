@@ -1,10 +1,11 @@
 package dwarf.graphics;
 
 import dwarf.Collidable;
-import dwarf.Game;
 import dwarf.util.Vector2;
 
 /**
+ * A 4 sided shape where opposite sides are equal.
+ * 
  * @author sid_th3_sl0th
  *
  * @see <a href='http://en.wikipedia.org/wiki/Rectangle'>wikipedia</a>

@@ -4,9 +4,9 @@ import dwarf.engine.core.Engine;
 import dwarf.util.Vector2;
 import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeSupport;
-import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.Objects;
+import static java.lang.Math.abs;
 
 /**
  * the main <code>Game</code> file and is the entry point to the
@@ -172,10 +172,10 @@ public abstract class Game extends Engine {
 
     /**
      * tries to add a <code>GameObject</code> to the main
-     * <code>GameObject</code> <code>ArrayList</code>
+     * <code>GameObject</code> <code>ArrayList</code>.
      *
-     * @param input the <code>GameObject</code> to be added
-     * @return true if successful and false if it fails
+     * @param input the <code>GameObject</code> to be added.
+     * @return true if successful and false if it fails.
      */
     public boolean addGameObject(GameObject input) {
         try {
@@ -188,10 +188,10 @@ public abstract class Game extends Engine {
 
     /**
      * tries to add a <code>GameObject</code> to the main
-     * <code>GameObject</code> <code>ArrayList</code>
+     * <code>GameObject</code> <code>ArrayList</code>.
      *
-     * @param input the <code>GameObject</code> to be added
-     * @return true if successful and false if it fails
+     * @param input the <code>GameObject</code> to be added.
+     * @return true if successful and false if it fails.
      */
     public boolean addGameObject(Object input) {
         try {
@@ -204,10 +204,10 @@ public abstract class Game extends Engine {
 
     /**
      * tries to remove a <code>GameObject</code> to the main
-     * <code>GameObject</code> <code>ArrayList</code>
+     * <code>GameObject</code> <code>ArrayList</code>.
      *
-     * @param input the <code>GameObject</code> to be removed
-     * @return true if successful and false if it fails
+     * @param input the <code>GameObject</code> to be removed.
+     * @return true if successful and false if it fails.
      */
     public boolean removeGameObject(GameObject input) {
         try {
@@ -220,10 +220,10 @@ public abstract class Game extends Engine {
 
     /**
      * tries to remove a <code>GameObject</code> to the main
-     * <code>GameObject</code> <code>ArrayList</code>
+     * <code>GameObject</code> <code>ArrayList</code>.
      *
-     * @param input the <code>GameObject</code> to be removed
-     * @return true if successful and false if it fails
+     * @param input the <code>GameObject</code> to be removed.
+     * @return true if successful and false if it fails.
      */
     @SuppressWarnings("element-type-mismatch")
     public boolean removeGameObject(Object input) {
@@ -237,10 +237,10 @@ public abstract class Game extends Engine {
 
     /**
      * tries to remove a <code>GameObject</code> to the main
-     * <code>GameObject</code> <code>ArrayList</code>
+     * <code>GameObject</code> <code>ArrayList</code>.
      *
-     * @param index of the <code>GameObject</code> to be removed
-     * @return true if successful and false if it fails
+     * @param index of the <code>GameObject</code> to be removed.
+     * @return true if successful and false if it fails.
      */
     public boolean removeGameObject(int index) {
         try {
@@ -338,12 +338,9 @@ public abstract class Game extends Engine {
      * <code>ArrayList</code>.
      */
     public void renderAllGameObjects() {
-        getGameObjects().stream().map((child) -> {
-            child.render();
-            return child;
-        }).forEach((child) -> {
-            child.renderChildren();
-        });
+        for (GameObject obj : getGameObjects()) {
+            obj.render();
+        }
     }
 
     /**
@@ -351,12 +348,9 @@ public abstract class Game extends Engine {
      * <code>ArrayList</code>.
      */
     public void updateAllGameObjects() {
-        getGameObjects().stream().map((child) -> {
-            child.update();
-            return child;
-        }).forEach((child) -> {
-            child.updateChildren();
-        });
+        for (GameObject obj : getGameObjects()) {
+            obj.update();
+        }
     }
 
     /**

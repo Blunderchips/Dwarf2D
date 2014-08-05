@@ -8,6 +8,7 @@ import java.util.Objects;
  * basic game object
  *
  * @author sid_th3_sl0th
+ * 
  * @see java.lang.Object
  * @see dwarf.Collidable
  */
@@ -58,11 +59,15 @@ public abstract class GameObject extends Collidable {
     }
 
     public void updateChildren() {
-        getChildren().stream().forEach(GameObject::update);
+        for (GameObject child : getChildren()) {
+            child.update();
+        }
     }
 
     public void renderChildren() {
-        getChildren().stream().forEach(GameObject::render);
+        for (GameObject child : getChildren()) {
+            child.render();
+        }
     }
 
     /**

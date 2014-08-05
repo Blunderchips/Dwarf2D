@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.glColor4d;
 import static org.lwjgl.opengl.GL11.glColor4f;
 
 /**
- * A simple wrapper round the values required for a mutable colour class
+ * A simple wrapper round the values required for a mutable colour class.
  *
  * @author sid_th3_sl0th
  *

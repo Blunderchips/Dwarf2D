@@ -46,11 +46,11 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      */
     private double rotation = 0;
     /**
-     * the x-component of this Vector2
+     * the x-component of this <code>Vector2</code>
      */
     private double x;
     /**
-     * the y-component of this Vector2
+     * the y-component of this <code>Vector2</code>
      */
     private double y;
 
@@ -122,8 +122,8 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     }
 
     private void init(double x, double y, double rotation) {
-        this.x = x;
-        this.y = y;
+        this.setX(x);
+        this.setY(y);
         this.setRotation(rotation);
     }
 
@@ -376,7 +376,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
         try {
             m = (Vector2) super.clone();
         } catch (CloneNotSupportedException ex) {
-            // this shouldn't happen, since we are Cloneable
+            // this shouldn't happen, since we are Cloneable.
             throw new InternalError();
         }
 
@@ -396,7 +396,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     /**
      * Shear (a, b): (x, y) → (x+ay, y+bx)
      *
-     * @param input
+     * @param input the <code>Vector2</code> to be sheered.
      * @return Vector2d(x + input.y, y + input.x)
      */
     public Vector2 sheer(Vector2 input) {
@@ -406,8 +406,8 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     /**
      * Shear (a, b): (x, y) → (x+ay, y+bx)
      *
-     * @param a
-     * @param b
+     * @param a the X component of the <code>Vector2</code>.
+     * @param b the Y component of the <code>Vector2</code>.
      * @return Vector2d(x + a, y + b)
      */
     public Vector2 sheer(double a, double b) {
@@ -434,8 +434,9 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      *
      * @param rotation The rotation in degrees.
      */
+    @SuppressWarnings({"AssignmentToMethodParameter", "AssignmentReplaceableWithOperatorAssignment"})
     public void setRotation(double rotation) {
-        // First normalize
+        // First normalize.
         if (rotation >= 360) {
             // Optimize the usual case: rotation has adjusted to a value greater than
             // 360, but is still within the 360 - 720 bound.

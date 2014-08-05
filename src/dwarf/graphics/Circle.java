@@ -1,13 +1,15 @@
 package dwarf.graphics;
 
-import dwarf.Collidable;
+import dwarf.util.Vector2;
+import java.util.Objects;
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
-import dwarf.util.Vector2;
 import static java.lang.Math.PI;
-import java.util.Objects;
+import static dwarf.graphics.draw.SHAPE_CIRCLE;
 
 /**
+ * A 60 sided shape with all methods overridden to return values for a circle.
+ * 
  * @author sid_th3_sl0th
  *
  * @see <a href='http://en.wikipedia.org/wiki/Circle'>wikipedia</a>
@@ -19,11 +21,11 @@ public class Circle extends Shape {
     private double radius;
 
     public Circle(double radius, Vector2 location, String mode, Colour colour) {
-        super(60, ((TWO_PI * radius) / 60), location, mode, colour);
+        super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
     }
 
     public Circle(Circle circle) {
-        super(60, circle.getRadius(), circle.getPosition(), circle.getMode(), circle.getColour());
+        super(SHAPE_CIRCLE, circle.getRadius(), circle.getPosition(), circle.getMode(), circle.getColour());
     }
 
     /**

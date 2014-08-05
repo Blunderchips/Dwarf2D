@@ -17,7 +17,8 @@ import static dwarf.Input.getMousePosition;
  * <p>
  * will detect - but not resolve - collisions. It uses an efficient data search
  * structure to quickly find intersecting <code>Collidable</code> as well as
- * offering general utilities to the <code>Collidable</code>.
+ * offering general utilities to the <code>Collidable</code>. Cant not have more
+ * than 32767 vertices.
  * </p>
  *
  * @author sid_th3_sl0th
@@ -32,7 +33,7 @@ public class Collidable extends java.lang.Object {
      * creates a new <code>Collidable</code>.
      *
      * @param position the location of the <code>Collidable</code> of the game
-     * window (Vector2)
+     * window (<code>Vector2</code>)
      */
     public Collidable(Vector2 position) {
         super();
@@ -68,7 +69,7 @@ public class Collidable extends java.lang.Object {
     public Vector2[] getPoints() {
         Vector2[] points = new Vector2[vertices.size()];
 
-        for (int i = 0; i < vertices.size(); i++) {
+        for (short i = 0; i < vertices.size(); i++) {
             points[i] = new Vector2(vertices.get(i));
         }
 
@@ -94,7 +95,7 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * creates a new <code>Collidable</code> with the Vector2 arrays given
+     * creates a new <code>Collidable</code> with the Vector2 arrays given.
      *
      * @param points an array of the Vector2 coordinates of * the
      * <code>Collidable</code>
@@ -103,7 +104,7 @@ public class Collidable extends java.lang.Object {
         double[] xPoints = new double[points.length];
         double[] yPoints = new double[points.length];
 
-        for (int i = 0; i < points.length; i++) {
+        for (short i = 0; i < points.length; i++) {
             xPoints[i] = points[i].getX();
             yPoints[i] = points[i].getY();
         }
@@ -117,17 +118,17 @@ public class Collidable extends java.lang.Object {
      * might be less than the number of elements in {@link #vertices} or
      * {@link #vertices}. This value can be NULL.
      *
-     * @return the total number of points in the vertices ArrayList
+     * @return the total number of points in the vertices ArrayList.
      */
     public int getNumPoints() {
         return this.vertices.size();
     }
 
     /**
-     * creates a new <code>Collidable</code> with the arrays given
+     * creates a new <code>Collidable</code> with the arrays given.
      *
-     * @param xPoints an array of the x coordinates of the polygon
-     * @param yPoints an array of the y coordinates of the polygon
+     * @param xPoints an array of the x coordinates of the polygon.
+     * @param yPoints an array of the y coordinates of the polygon.
      */
     public void setPoints(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
@@ -174,21 +175,21 @@ public class Collidable extends java.lang.Object {
      * <code>Collidable</code>.
      * <p>
      *
-     * @param xPos the specified X coordinate to be tested
-     * @param yPos the specified Y coordinate to be tested
+     * @param xPos the specified X coordinate to be tested.
+     * @param yPos the specified Y coordinate to be tested.
      * @return {@code true} if this <code>Collidable</code> contains the
      * specified coordinates {@code (xPos, yPos)};
      *         {@code false} otherwise.
      */
     public boolean contains(double xPos, double yPos) {
 
-        int hits = 0;
+        short hits = 0;
 
         double lastPosX = getPoints()[getNumPoints() - 1].getX() + getPosition().getX() + 1;
         double lastPosY = getPoints()[getNumPoints() - 1].getY() + getPosition().getY() + 1;
         double curPosX, curPosY;
 
-        for (int i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {
+        for (short i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {
             curPosX = getPoints()[i].getX() + getPosition().getX() + 1;
             curPosY = getPoints()[i].getY() + getPosition().getY() + 1;
 
@@ -242,13 +243,13 @@ public class Collidable extends java.lang.Object {
 
     /**
      * Translates the vertices of the <code>Collidable</code> by
-     * <code>deltaX</code> along the x axis and by <code>deltaY</code> along the
-     * y axis.
+     * <code>deltaX</code> along the X axis and by <code>deltaY</code> along the
+     * Y axis.
      *
-     * @param deltaX the amount to translate along the X axis (float)
-     * @param deltaY the amount to translate along the Y axis (float)
+     * @param deltaX the amount to translate along the X axis. (double)
+     * @param deltaY the amount to translate along the Y axis. (double)
      */
-    public void translate(float deltaX, float deltaY) {
+    public void translate(double deltaX, double deltaY) {
         this.getPosition().change(new Vector2(deltaX, deltaY));
         for (Vector2 point : getPoints()) {
             point.change(new Vector2(deltaX, deltaY));
@@ -257,9 +258,9 @@ public class Collidable extends java.lang.Object {
 
     /**
      * Translates the vertices of the <code>Collidable</code> by the inputed
-     * Vector2 (<code>delta</code>)
+     * Vector2 (<code>delta</code>).
      *
-     * @param delta the amount to translate along the axis
+     * @param delta the amount to translate along the axis.
      */
     public void translate(Vector2 delta) {
         this.getPosition().change(new Vector2(delta.getX(), delta.getY()));
@@ -270,11 +271,11 @@ public class Collidable extends java.lang.Object {
 
     /**
      * Translates the vertices of the <code>Collidable</code> by
-     * <code>deltaX</code> along the x axis.
+     * <code>deltaX</code> along the X axis.
      *
-     * @param deltaX the amount to translate along the X axis (float)
+     * @param deltaX the amount to translate along the X axis. (double)
      */
-    public void translateX(float deltaX) {
+    public void translateX(double deltaX) {
         this.getPosition().changeX(deltaX);
         for (Vector2 point : getPoints()) {
             point.changeX(deltaX);
@@ -283,11 +284,11 @@ public class Collidable extends java.lang.Object {
 
     /**
      * Translates the vertices of the <code>Collidable</code> by
-     * <code>deltaX</code> along the y axis.
+     * <code>deltaX</code> along the Y axis.
      *
-     * @param deltaY the amount to translate along the Y axis (float)
+     * @param deltaY the amount to translate along the Y axis. (double)
      */
-    public void translateY(float deltaY) {
+    public void translateY(double deltaY) {
         this.getPosition().changeY(deltaY);
         for (Vector2 point : getPoints()) {
             point.changeY(deltaY);
@@ -318,7 +319,7 @@ public class Collidable extends java.lang.Object {
         int[] x = new int[getNumPoints()];
         int[] y = new int[getNumPoints()];
 
-        for (int i = 0; i < getNumPoints(); i++) {
+        for (short i = 0; i < getNumPoints(); i++) {
             x[i] = (int) this.getPoints()[i].getX();
             y[i] = (int) this.getPoints()[i].getY();
         }
@@ -340,7 +341,7 @@ public class Collidable extends java.lang.Object {
     /**
      * Returns Average of the height of the <code>Collidable</code>, in pixels.
      *
-     * @return Average of the height, in pixels
+     * @return Average of the height, in pixels.
      */
     public float getAverageHeight() {
         float result = 0;
@@ -357,7 +358,7 @@ public class Collidable extends java.lang.Object {
     /**
      * Returns average of the width of the <code>Collidable</code>, in pixels.
      *
-     * @return average of the width, in pixels
+     * @return average of the width, in pixels.
      */
     public float getAverageWidth() {
         float result = 0;
@@ -400,7 +401,7 @@ public class Collidable extends java.lang.Object {
      * method of the first argument.
      *
      * @return true if the argument is equal to <code>this</code> other and
-     * false otherwise
+     * false otherwise.
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -432,7 +433,7 @@ public class Collidable extends java.lang.Object {
     /**
      * Returns the position of the center of the <code>Collidable</code>.
      *
-     * @return the position of the center of the <code>Collidable</code>
+     * @return the position of the center of the <code>Collidable</code>.
      */
     public Vector2 getCenter() {
         return new Vector2(
@@ -481,7 +482,7 @@ public class Collidable extends java.lang.Object {
      * this
      */
     public boolean intersects(Collidable coll) {
-        for (int i = 0; i < coll.getNumPoints();) {
+        for (short i = 0; i < coll.getNumPoints();) {
             if (this.contains(coll.getPoints()[i].add(coll.getPosition()))) {
                 return true;
             }
@@ -493,7 +494,7 @@ public class Collidable extends java.lang.Object {
             }
         }
 
-        for (int i = 0; i < this.getNumPoints();) {
+        for (short i = 0; i < this.getNumPoints();) {
             if (coll.contains(this.getPoints()[i].add(this.getPosition()))) {
                 return true;
             }
@@ -512,20 +513,20 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the mouse is hovering over the <code>Collidable</code>
+     * tests if the mouse is hovering over the <code>Collidable</code>.
      *
      * @return true if the mouse is hovering over the <code>Collidable</code>
-     * otherwise false
+     * otherwise false.
      */
     public boolean isMouseHover() {
         return intersects(new Circle(1, getMousePosition(), "stroke", Colour.white));
     }
 
     /**
-     * tests if the <code>Collidable</code> is clicked of by a mouse button
+     * tests if the <code>Collidable</code> is clicked of by a mouse button.
      *
-     * @param button the that needs to be clicked
-     * @return true if the <code>Collidable</code> is clicked on
+     * @param button the that needs to be clicked.
+     * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(int button) {
         if (Input.isMouseClicked(button)) {
@@ -537,20 +538,20 @@ public class Collidable extends java.lang.Object {
 
     /**
      * tests if the <code>Collidable</code> is clicked of by the left mouse
-     * button
+     * button.
      *
      * @return true is the <code>Collidable</code> is clicked on by the left
-     * mouse button
+     * mouse button.
      */
     public boolean isClickedOn() {
         return isClickedOn(MOUSE_LEFT);
     }
 
     /**
-     * tests if the <code>Collidable</code> is clicked of by a mouse button
+     * tests if the <code>Collidable</code> is clicked of by a mouse button.
      *
-     * @param button the that needs to be clicked
-     * @return true if the <code>Collidable</code> is clicked on
+     * @param button the that needs to be clicked.
+     * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(String button) {
         if (Input.isMouseClicked(button)) {
@@ -561,10 +562,10 @@ public class Collidable extends java.lang.Object {
     }
 
     /**
-     * tests if the <code>Collidable</code> in the current view screen
+     * tests if the <code>Collidable</code> in the current view screen.
      *
      * @return true if the <code>Collidable</code> position bigger than or equal
-     * to the camera's position at all four sides
+     * to the camera's position at all four sides.
      */
     public boolean atEdge() {
         if (this.getPosition().getX() > (Window.getWidth() + camera.getPosition().getX())) {

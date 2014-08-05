@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.GL_COLOR_MATERIAL;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_EXTENSIONS;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
-import static org.lwjgl.opengl.GL11.GL_MODULATE;
+import static org.lwjgl.opengl.GL11.GL_MODULATE; 
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_PROJECTION;
 import static org.lwjgl.opengl.GL11.GL_RENDERER;
@@ -30,7 +30,7 @@ import static org.lwjgl.opengl.GL11.glTexEnvf;
 import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
 
 /**
- * <a href='http://www.opengl.org/'>OpenGL</a> (Open Graphics Library)[2] is a
+ * <a href='http://www.opengl.org/'>OpenGL</a> (Open Graphics Library) is a
  * cross-language, multi-platform application programming interface (API) for
  * rendering 2D and 3D vector graphics. The API is typically used to interact
  * with a graphics processing unit (GPU), to achieve hardware-accelerated
@@ -70,6 +70,7 @@ public final class openGL {
         glDisable(GL_DEPTH_TEST);
         glEnable(GL_COLOR_MATERIAL);
         glEnable(GL_ALPHA_TEST);
+        glEnable(GL_BLEND);
         glShadeModel(GL_SMOOTH);
     }
 

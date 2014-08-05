@@ -68,9 +68,9 @@ public final class system {
     }
 
     /**
-     * @return Sequence used by operating system to separate lines in text files
+     * @return Sequence used by operating system to separate lines in text files.
      */
-    public static String getLileSeparator() {
+    public static String getLineSeparator() {
         return System.getProperty("line.separator");
     }
 
@@ -82,7 +82,7 @@ public final class system {
     }
 
     /**
-     * @return Installation directory for Java Runtime Environment (JRE)
+     * @return Installation directory for Java Runtime Environment (JRE).
      */
     public static String getJavaHome() {
         return System.getProperty("java.home");
@@ -106,7 +106,7 @@ public final class system {
     }
 
     /**
-     * Total number of processors or cores available to the JVM
+     * Total number of processors or cores available to the JVM.
      *
      * @return Available processors (cores)
      */
@@ -115,7 +115,7 @@ public final class system {
     }
 
     /**
-     * Total amount of free memory available to the JVM
+     * Total amount of free memory available to the JVM.
      *
      * @return Free memory (bytes)
      */
@@ -124,7 +124,7 @@ public final class system {
     }
 
     /**
-     * Total memory currently available to the JVM
+     * Total memory currently available to the JVM.
      *
      * @return Total memory available to JVM (bytes)
      */
@@ -133,7 +133,7 @@ public final class system {
     }
 
     /**
-     * @return The Name of JIT
+     * @return The Name of JIT.
      */
     public static String getJavaCompiler() {
         return System.getProperty("java.compiler");
