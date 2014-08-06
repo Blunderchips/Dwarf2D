@@ -241,7 +241,7 @@ public final class draw {
                         for (byte i = 0; i < 8; i++) {
                             glVertex2f(xPos + 1, yPos + i);
                         }
-                        for (int i = 1; i <= 6; i++) {
+                        for (byte i = 1; i <= 6; i++) {
                             glVertex2d(xPos + i, yPos);
                             glVertex2d(xPos + i, yPos + 4);
                             glVertex2d(xPos + i, yPos + 8);
@@ -258,7 +258,7 @@ public final class draw {
                         for (byte i = 1; i <= 7; i++) {
                             glVertex2d(xPos + 1, yPos + i);
                         }
-                        for (int i = 2; i <= 5; i++) {
+                        for (byte i = 2; i <= 5; i++) {
                             glVertex2d(xPos + i, yPos);
                             glVertex2d(xPos + i, yPos + 8);
                         }
@@ -270,7 +270,7 @@ public final class draw {
 
                         xPos += 8;
                     } else if (letter == 'd') {
-                        for (int i = 0; i <= 8; i++) {
+                        for (byte i = 0; i <= 8; i++) {
                             glVertex2d(xPos + 1, yPos + i);
                         }
                         for (byte i = 2; i <= 5; i++) {
@@ -294,7 +294,7 @@ public final class draw {
                             glVertex2d(xPos + i, yPos + 0);
                             glVertex2d(xPos + i, yPos + 8);
                         }
-                        for (int i = 2; i <= 5; i++) {
+                        for (byte i = 2; i <= 5; i++) {
                             glVertex2d(xPos + i, yPos + 4);
                         }
                         xPos += 8;
@@ -302,10 +302,10 @@ public final class draw {
                         for (byte i = 0; i <= 8; i++) {
                             glVertex2d(xPos + 1, yPos + i);
                         }
-                        for (int i = 1; i <= 6; i++) {
+                        for (byte i = 1; i <= 6; i++) {
                             glVertex2d(xPos + i, yPos + 8);
                         }
-                        for (int i = 2; i <= 5; i++) {
+                        for (byte i = 2; i <= 5; i++) {
                             glVertex2d(xPos + i, yPos + 4);
                         }
                         xPos += 8;
@@ -332,7 +332,7 @@ public final class draw {
                             glVertex2d(xPos + 1, yPos + i);
                             glVertex2d(xPos + 7, yPos + i);
                         }
-                        for (int i = 2; i <= 6; i++) {
+                        for (byte i = 2; i <= 6; i++) {
                             glVertex2d(xPos + i, yPos + 4);
                         }
                         xPos += 8;
