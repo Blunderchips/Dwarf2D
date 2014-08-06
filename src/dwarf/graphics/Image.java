@@ -72,7 +72,7 @@ public class Image extends GameObject {
         };
 
         this.tex = texture;
-        this.setPoints(points);
+        this.setVertices(points);
     }
 
     public Texture getTexture() {
@@ -167,4 +167,8 @@ public class Image extends GameObject {
         );
     }
 
+    @Override
+    public Image get() {
+        return this;
+    }
 }

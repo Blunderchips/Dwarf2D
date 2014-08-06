@@ -8,6 +8,7 @@ import static java.lang.Math.tan;
 
 /**
  * @author sid_th3_sl0th
+ *
  * @see dwarf.graphics.Polygon
  */
 public class Shape extends Polygon {
@@ -54,7 +55,7 @@ public class Shape extends Polygon {
             point[i] = new Vector2(temp.getX(), (temp.getY()));
         }
 
-        super.setPoints(point);
+        super.setVertices(point);
     }
 
     public int getNumSides() {
@@ -74,7 +75,7 @@ public class Shape extends Polygon {
     }
 
     public float getPerimeter() {
-        return (float) (numSides * lineLength);
+        return (float) (getNumSides() * getLineLength());
     }
 
     public void changeNumSides(int input) {
@@ -90,11 +91,11 @@ public class Shape extends Polygon {
      * @return 5 / (2 * tan(180 / numSides))
      */
     public double getApothem() {
-        return 5 / (2 * tan(180 / numSides));
+        return 5 / (2 * tan(180 / getNumSides()));
     }
 
     public double getRadius() {
-        return 5 / (2 * (sin(180 / numSides)));
+        return 5 / (2 * (sin(180 / getNumSides())));
     }
 
     /**
@@ -108,8 +109,8 @@ public class Shape extends Polygon {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 13 * hash + numSides;
-        hash = 13 * hash + (int) (Double.doubleToLongBits(lineLength) ^ (Double.doubleToLongBits(lineLength) >>> 32));
+        hash = 13 * hash + getNumSides();
+        hash = 13 * hash + (int) (Double.doubleToLongBits(getLineLength()) ^ (Double.doubleToLongBits(getLineLength()) >>> 32));
         return hash;
     }
 
@@ -153,5 +154,10 @@ public class Shape extends Polygon {
      */
     public double getArea() {
         return (Math.round((math.sqr(getLineLength() / 2) * Math.tan(Math.toRadians(180 - (360 / getNumSides())) / 2)) * getNumSides()) * 1000) / 1000;
+    }
+    
+    @Override
+    public Shape get () {
+        return this;
     }
 }

@@ -175,19 +175,19 @@ public class ImageIOImageData implements LoadableImageData {
 
         if (flipped) {
             g.scale(1, -1);
-            g.drawImage(image, 0, -height, null);
+            g.drawImage(image, 0, -getHeight(), null);
         } else {
             g.drawImage(image, 0, 0, null);
         }
 
         if (edging) {
-            if (height < texHeight - 1) {
-                copyArea(texImage, 0, 0, width, 1, 0, texHeight - 1);
-                copyArea(texImage, 0, height - 1, width, 1, 0, 1);
+            if (getHeight() < texHeight - 1) {
+                copyArea(texImage, 0, 0, getWidth(), 1, 0, texHeight - 1);
+                copyArea(texImage, 0, getHeight() - 1, getWidth(), 1, 0, 1);
             }
             if (width < texWidth - 1) {
-                copyArea(texImage, 0, 0, 1, height, texWidth - 1, 0);
-                copyArea(texImage, width - 1, 0, 1, height, 1, 0);
+                copyArea(texImage, 0, 0, 1, getHeight(), texWidth - 1, 0);
+                copyArea(texImage, getWidth() - 1, 0, 1, getHeight(), 1, 0);
             }
         }
 

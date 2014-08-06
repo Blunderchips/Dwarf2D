@@ -8,14 +8,14 @@ import java.util.Objects;
  * basic game object
  *
  * @author sid_th3_sl0th
- * 
+ *
  * @see java.lang.Object
  * @see dwarf.Collidable
  */
 public abstract class GameObject extends Collidable {
 
     private ArrayList<GameObject> children;
-    
+
     public GameObject(Vector2 position) {
         super(position);
         this.init();
@@ -23,14 +23,11 @@ public abstract class GameObject extends Collidable {
 
     public GameObject(GameObject obj) {
         super(obj.getPosition());
-        
+
         // --
         this.children = obj.getChildren();
-        this.setPoints(obj.getPoints());
-        this.setPosition(obj.getPosition());
+        super.setVertices(obj.getVertices());
         // --
-        
-        this.init();
     }
 
     @SuppressWarnings("Convert2Diamond")
@@ -54,7 +51,7 @@ public abstract class GameObject extends Collidable {
     }
 
     @SuppressWarnings({"unchecked", "AssignmentToCollectionOrArrayFieldFromParameter"})
-    public void setChildren(ArrayList children) {
+    public void setChildren(ArrayList<GameObject> children) {
         this.children = children;
     }
 
@@ -116,6 +113,24 @@ public abstract class GameObject extends Collidable {
                 + "children: " + getChildren() + ", "
                 + "super:" + super.toString()
                 + "}";
+    }
+
+    @Override
+    public GameObject get() {
+        return this;
+    }
+
+    public void set(GameObject obj) {
+        this.setChildren(obj.getChildren());
+        super.setVertices(obj.getVertices());
+        super.setPosition(obj.getPosition());
+        // --
+    }
+
+    public void set(ArrayList<GameObject> children, Vector2[] vertices, Vector2 position) {
+        this.setChildren(children);
+        super.setVertices(vertices);
+        super.setPosition(position);
     }
 //    @Override
 //    public boolean intersects(Collidable coll) {

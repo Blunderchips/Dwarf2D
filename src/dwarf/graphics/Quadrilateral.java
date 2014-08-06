@@ -19,7 +19,7 @@ public class Quadrilateral extends Polygon {
             if (points.length != 4) {
                 throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 points.");
             } else {
-                super.setPoints(points);
+                super.setVertices(points);
             }
         }
     }
@@ -31,16 +31,21 @@ public class Quadrilateral extends Polygon {
             pointA, pointB, pointC, pointD
         };
 
-        super.setPoints(points);
+        super.setVertices(points);
     }
 
     public Quadrilateral(Quadrilateral quadrilateral) {
         super(quadrilateral.getPosition(), quadrilateral.getMode(), quadrilateral.getColour());
-        super.setPoints(quadrilateral.getPoints());
+        super.setVertices(quadrilateral.getVertices());
     }
 
     @Override
     public void addPoint(Vector2 point) {
         System.err.println("This method is unsuported with the Quadrilateral class.");
+    }
+
+    @Override
+    public Quadrilateral get() {
+        return this;
     }
 }

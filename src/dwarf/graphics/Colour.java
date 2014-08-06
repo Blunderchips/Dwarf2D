@@ -147,6 +147,10 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
         return "Color [" + getRed() + ", " + getGreen() + ", " + getBlue() + ", " + getAlpha() + "]";
     }
 
+    public Colour get() {
+        return this;
+    }
+    
     /**
      * Make a brighter instance of this colour
      *

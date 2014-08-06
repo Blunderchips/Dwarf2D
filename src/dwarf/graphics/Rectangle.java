@@ -4,8 +4,9 @@ import dwarf.Collidable;
 import dwarf.util.Vector2;
 
 /**
- * A 4 sided shape where opposite sides are equal.
- * 
+ * A 4 sided shape where opposite sides are equal. (a parallelogram with a right
+ * angle)
+ *
  * @author sid_th3_sl0th
  *
  * @see <a href='http://en.wikipedia.org/wiki/Rectangle'>wikipedia</a>
@@ -73,9 +74,14 @@ public class Rectangle extends Quadrilateral {
         };
         // --
 
-        super.setPoints(vertices);
+        super.setVertices(vertices);
     }
 
+    /**
+     * returns the area of the <code>Rectangle</code>. (length * breadth)
+     *
+     * @return he area of the <code>Rectangle</code>
+     */
     public float getArea() {
         return (float) (this.getSize().getX() * this.getSize().getY());
     }
@@ -100,13 +106,13 @@ public class Rectangle extends Quadrilateral {
                 Rectangle ham = new Rectangle(
                         this.getSize().getX(),
                         10 * this.getSize().getY() / 100,
-                        this.getPosition(),
-                        "stroke", Colour.lime
+                        super.getPosition(),
+                        "stroke", Colour.white
                 );
 
                 ham.setPosition(
-                        this.getPosition().getX(),
-                        this.getPosition().getY() + this.getSize().getY() - ham.getSize().getY()
+                        super.getPosition().getX(),
+                        super.getPosition().getY() + this.getSize().getY() - ham.getSize().getY()
                 );
 
                 return ham.intersects(coll);
@@ -116,13 +122,13 @@ public class Rectangle extends Quadrilateral {
                 Rectangle eggs = new Rectangle(
                         10 * this.getSize().getX() / 100,
                         this.getSize().getY(),
-                        this.getPosition(),
-                        "stroke", Colour.lime
+                        super.getPosition(),
+                        "stroke", Colour.white
                 );
 
                 eggs.setPosition(
-                        this.getPosition().getX() + this.getSize().getX() - eggs.getSize().getX(),
-                        this.getPosition().getY()
+                        super.getPosition().getX() + this.getSize().getX() - eggs.getSize().getX(),
+                        super.getPosition().getY()
                 );
 
                 return eggs.intersects(coll);
@@ -131,8 +137,8 @@ public class Rectangle extends Quadrilateral {
                 Rectangle tuna = new Rectangle(
                         this.getSize().getX(),
                         10 * this.getSize().getY() / 100,
-                        this.getPosition(),
-                        "stroke", Colour.lime
+                        super.getPosition(),
+                        "stroke", Colour.white
                 );
 
                 return tuna.intersects(coll);
@@ -142,17 +148,24 @@ public class Rectangle extends Quadrilateral {
                 Rectangle salami = new Rectangle(
                         10 * this.getSize().getX() / 100,
                         this.getSize().getY(),
-                        this.getPosition(),
-                        "stroke", Colour.lime
+                        super.getPosition(),
+                        "stroke", Colour.white
                 );
 
                 return salami.intersects(coll);
 
             default:
                 System.err.println("the face '" + face + "' is not reconized");
-                break;
+                return false;
         }
+    }
 
-        return false;
+    public boolean isSquare() {
+        return this.getSize().getX() == this.getSize().getY();
+    }
+    
+    @Override
+    public Rectangle get() {
+        return this;
     }
 }

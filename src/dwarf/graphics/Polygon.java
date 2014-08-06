@@ -8,12 +8,13 @@ import static dwarf.graphics.draw.*;
 
 /**
  * A basic shape with more than 3 sides.
- * 
+ *
  * @author sid_th3_sl0th
  *
  * @see <a href='http://en.wikipedia.org/wiki/Polygon'>wikipedia</a>
  * @see dwarf.GameObject
  * @see dwarf.Collidable
+ * @see dwarf.graphics.draw
  */
 public class Polygon extends GameObject {
 
@@ -53,7 +54,7 @@ public class Polygon extends GameObject {
     private void init(Vector2[] vertices, String mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
-        this.setPoints(vertices);
+        super.setVertices(vertices);
     }
 
     /**
@@ -74,9 +75,9 @@ public class Polygon extends GameObject {
     @Override
     public void render() {
         if (isFill()) {
-            draw.fillPolygon(getPoints(), getPosition(), getColour());
+            draw.fillPolygon(super.getVertices(), super.getPosition(), this.getColour());
         } else {
-            draw.strokePolygon(getPoints(), getPosition(), getColour());
+            draw.strokePolygon(super.getVertices(), super.getPosition(), this.getColour());
         }
     }
 
@@ -167,7 +168,7 @@ public class Polygon extends GameObject {
      * @return what type of shape <code>this</code> is.
      */
     public String getType() {
-        switch (getNumPoints()) {
+        switch (super.getNumPoints()) {
             case SHAPE_TRIANGLE:
                 return "triangle";
             case SHAPE_SQUARE:
@@ -216,12 +217,30 @@ public class Polygon extends GameObject {
                 return "polygon";
         }
     }
-    
+
     public boolean isRightAngledTriangle() {
         if (this.getType().equals("triangle")) {
-            //TODO
+
+            double a = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[1]);
+            double b = Vector2.distanceSq(super.getVertices()[1], super.getVertices()[2]);
+            double c = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[2]);
+
+            if (a == b + c) {
+                return true;
+            }
+            if (c == a + b) {
+                return true;
+            }
+            if (a == b + c) {
+                return true;
+            }
         }
-        
+
         return false;
+    }
+
+    @Override
+    public Polygon get() {
+        return this;
     }
 }

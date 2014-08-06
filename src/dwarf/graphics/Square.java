@@ -3,8 +3,9 @@ package dwarf.graphics;
 import dwarf.util.Vector2;
 
 /**
- * A 4 sided shape where all 4 sides are equal.
- * 
+ * A 4 sided shape where all 4 sides are equal and both diagonals bisect each
+ * other. (a rhombus with a right angle)
+ *
  * @author sid_th3_sl0th
  *
  * @see <a href='http://en.wikipedia.org/wiki/Square'>wikipedia</a>
@@ -30,4 +31,8 @@ public class Square extends Rectangle {
         return (float) super.getSize().getX();
     }
 
+    @Override
+    public Square get() {
+        return this;
+    }
 }

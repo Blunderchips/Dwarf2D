@@ -7,7 +7,7 @@ import static dwarf.graphics.draw.SHAPE_TRIANGLE;
 
 /**
  * A 3 sided shape where are 3 sides are equal.
- * 
+ *
  * @author sid_th3_sl0th
  *
  * @see <a
@@ -33,5 +33,10 @@ public class EquilateralTriangle extends Shape {
     @Override
     public void addPoint(Vector2 point) {
         System.err.println("This method is unsuported with the EquilateralTriangle class.");
+    }
+
+    @Override
+    public EquilateralTriangle get() {
+        return this;
     }
 }

@@ -13,6 +13,9 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  * Handle mouse and keyboard input from the user.
  *
  * @author sid_th3_sl0th
+ * 
+ * @see org.lwjgl.input.Keyboard
+ * @see org.lwjgl.input.Mouse
  */
 public final class Input {
 
@@ -94,62 +97,62 @@ public final class Input {
     public static final byte KEY_NUMPAD0 = 0x52;
     public static final byte KEY_F11 = 0x57;
     public static final byte KEY_F12 = 0x58;
-    
+
     public static final short KEY_RCONTROL = 0x9d;
     public static final short KEY_SYSRQ = 0xB7;
     public static final short KEY_POWER = 0xDE;
     public static final short KEY_SLEEP = 0xDF;
 
     /**
-     * backspace
+     * backspace.
      */
     public static final byte KEY_BACK = 0x0E;
     /**
-     * - on main keyboard
+     * - on main keyboard.
      */
     public static final byte KEY_MINUS = 0x0C;
     /**
-     * Enter on main keyboard
+     * Enter on main keyboard.
      */
     public static final byte KEY_RETURN = 0x1C;
     /**
-     * Enter on main keyboard
+     * Enter on main keyboard.
      */
     public static final byte KEY_ENTER = 0x1C;
     /**
-     * accent grave
+     * accent grave.
      */
     public static final byte KEY_GRAVE = 0x29;
     /**
-     * . on main keyboard
+     * . on main keyboard.
      */
     public static final byte KEY_PERIOD = 0x34;
     /**
-     * Scroll Lock
+     * Scroll Lock.
      */
     public static final byte KEY_SCROLL = 0x46;
     /**
-     * / on main keyboard
+     * / on main keyboard.
      */
     public static final byte KEY_SLASH = 0x35;
     /**
-     * - on numeric keypad
+     * - on numeric keypad.
      */
     public static final byte KEY_SUBTRACT = 0x4A;
     /**
-     * * on numeric keypad
+     * * on numeric keypad.
      */
     public static final byte KEY_MULTIPLY = 0x37;
     /**
-     * left Alt
+     * left Alt.
      */
     public static final byte KEY_LMENU = 0x38;
     /**
-     * + on numeric keypad
+     * + on numeric keypad.
      */
     public static final byte KEY_ADD = 0x4E;
     /**
-     * . on numeric keypad
+     * . on numeric keypad.
      */
     public static final byte KEY_DECIMAL = 0x53;
     /**
@@ -165,27 +168,27 @@ public final class Input {
      */
     public static final byte KEY_F15 = 0x66;
     /**
-     * Japanese keyboard
+     * Japanese keyboard.
      */
     public static final byte KEY_KANA = 0x70;
     /**
-     * Japanese keyboard
+     * Japanese keyboard.
      */
     public static final byte KEY_CONVERT = 0x79;
     /**
-     * Japanese keyboard
+     * Japanese keyboard.
      */
     public static final byte KEY_NOCONVERT = 0x7B;
     /**
-     * Japanese keyboard
+     * Japanese keyboard.
      */
     public static final byte KEY_YEN = 0x7D;
     /**
-     * = on numeric keypad (NEC PC98)
+     * = on numeric keypad. (NEC PC98)
      */
     public static final short KEY_NUMPADEQUALS = 0x8D;
     /**
-     * Japanese keyboard
+     * Japanese keyboard.
      */
     public static final short KEY_CIRCUMFLEX = 0x90;
     /**
@@ -201,7 +204,7 @@ public final class Input {
      */
     public static final short KEY_UNDERLINE = 0x93;
     /**
-     * Japanese keyboard
+     * Japanese keyboard.
      */
     public static final short KEY_KANJI = 0x94;
     /**
@@ -217,75 +220,75 @@ public final class Input {
      */
     public static final short KEY_UNLABELED = 0x97;
     /**
-     * Enter on numeric keypad
+     * Enter on numeric keypad.
      */
     public static final short KEY_NUMPADENTER = 0x9C;
     /**
-     * , on numeric keypad (NEC PC98)
+     * , on numeric keypad. (NEC PC98)
      */
     public static final short KEY_NUMPADCOMMA = 0xB3;
     /**
-     * / on numeric keypad
+     * / on numeric keypad.
      */
     public static final short KEY_DIVIDE = 0xB5;
     /**
-     * right Alt
+     * right Alt.
      */
     public static final short KEY_RMENU = 0xB8;
     /**
-     * Pause
+     * Pause.
      */
     public static final short KEY_PAUSE = 0xC5;
     /**
-     * Home on arrow keypad
+     * Home on arrow keypad.
      */
     public static final short KEY_HOME = 0xC7;
     /**
-     * UpArrow on arrow keypad
+     * UpArrow on arrow keypad.
      */
     public static final short KEY_UP = 0xC8;
     /**
-     * PgUp on arrow keypad
+     * PgUp on arrow keypad.
      */
     public static final short KEY_PRIOR = 0xC9;
     /**
-     * LeftArrow on arrow keypad
+     * LeftArrow on arrow keypad.
      */
     public static final short KEY_LEFT = 0xCB;
     /**
-     * RightArrow on arrow keypad
+     * RightArrow on arrow keypad.
      */
     public static final short KEY_RIGHT = 0xCD;
     /**
-     * End on arrow keypad
+     * End on arrow keypad.
      */
     public static final short KEY_END = 0xCF;
     /**
-     * DownArrow on arrow keypad
+     * DownArrow on arrow keypad.
      */
     public static final short KEY_DOWN = 0xD0;
     /**
-     * PgDn on arrow keypad
+     * PgDn on arrow keypad.
      */
     public static final short KEY_NEXT = 0xD1;
     /**
-     * Insert on arrow keypad
+     * Insert on arrow keypad.
      */
     public static final short KEY_INSERT = 0xD2;
     /**
-     * Delete on arrow keypad
+     * Delete on arrow keypad.
      */
     public static final short KEY_DELETE = 0xD3;
     /**
-     * Left Windows key
+     * Left Windows key.
      */
     public static final short KEY_LWIN = 0xDB;
     /**
-     * Right Windows key
+     * Right Windows key.
      */
     public static final short KEY_RWIN = 0xDC;
     /**
-     * AppMenu key
+     * AppMenu key.
      */
     public static final short KEY_APPS = 0xDD;
 

@@ -66,7 +66,7 @@ public class Collidable extends java.lang.Object {
     /**
      * @return all vertices as a Vector2 array of the <code>Collidable</code>.
      */
-    public Vector2[] getPoints() {
+    public Vector2[] getVertices() {
         Vector2[] points = new Vector2[vertices.size()];
 
         for (short i = 0; i < vertices.size(); i++) {
@@ -93,30 +93,36 @@ public class Collidable extends java.lang.Object {
     public Collidable get() {
         return this;
     }
+    
+    public void set(Collidable coll) {
+        this.setVertices(coll.getVertices());
+        this.setPosition(coll.getPosition());
+    }
 
     /**
      * creates a new <code>Collidable</code> with the Vector2 arrays given.
      *
-     * @param points an array of the Vector2 coordinates of * the
+     * @param vertices an array of the Vector2 coordinates of * the
      * <code>Collidable</code>
      */
-    public void setPoints(Vector2[] points) {
-        double[] xPoints = new double[points.length];
-        double[] yPoints = new double[points.length];
+    public void setVertices(Vector2[] vertices) {
+        double[] xPoints = new double[vertices.length];
+        double[] yPoints = new double[vertices.length];
 
-        for (short i = 0; i < points.length; i++) {
-            xPoints[i] = points[i].getX();
-            yPoints[i] = points[i].getY();
+        for (short i = 0; i < vertices.length; i++) {
+            xPoints[i] = vertices[i].getX();
+            yPoints[i] = vertices[i].getY();
         }
 
-        this.setPoints(xPoints, yPoints);
+        this.setVertices(xPoints, yPoints);
     }
 
     /**
-     * The total number of points. The value of <code>getPoints().size()</code>
-     * represents the number of valid points in this <code>Collidable</code> and
-     * might be less than the number of elements in {@link #vertices} or
-     * {@link #vertices}. This value can be NULL.
+     * The total number of points. The value of
+     * <code>getVertices().size()</code> represents the number of valid points
+     * in this <code>Collidable</code> and might be less than the number of
+     * elements in {@link #vertices} or {@link #vertices}. This value can be
+     * NULL.
      *
      * @return the total number of points in the vertices ArrayList.
      */
@@ -130,7 +136,7 @@ public class Collidable extends java.lang.Object {
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public void setPoints(double[] xPoints, double[] yPoints) {
+    public void setVertices(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");
@@ -185,13 +191,13 @@ public class Collidable extends java.lang.Object {
 
         short hits = 0;
 
-        double lastPosX = getPoints()[getNumPoints() - 1].getX() + getPosition().getX() + 1;
-        double lastPosY = getPoints()[getNumPoints() - 1].getY() + getPosition().getY() + 1;
+        double lastPosX = getVertices()[getNumPoints() - 1].getX() + getPosition().getX() + 1;
+        double lastPosY = getVertices()[getNumPoints() - 1].getY() + getPosition().getY() + 1;
         double curPosX, curPosY;
 
         for (short i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {
-            curPosX = getPoints()[i].getX() + getPosition().getX() + 1;
-            curPosY = getPoints()[i].getY() + getPosition().getY() + 1;
+            curPosX = getVertices()[i].getX() + getPosition().getX() + 1;
+            curPosY = getVertices()[i].getY() + getPosition().getY() + 1;
 
             if (curPosY == lastPosY) {
                 continue;
@@ -251,7 +257,7 @@ public class Collidable extends java.lang.Object {
      */
     public void translate(double deltaX, double deltaY) {
         this.getPosition().change(new Vector2(deltaX, deltaY));
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             point.change(new Vector2(deltaX, deltaY));
         }
     }
@@ -264,7 +270,7 @@ public class Collidable extends java.lang.Object {
      */
     public void translate(Vector2 delta) {
         this.getPosition().change(new Vector2(delta.getX(), delta.getY()));
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             point.change(new Vector2(delta.getX(), delta.getY()));
         }
     }
@@ -277,7 +283,7 @@ public class Collidable extends java.lang.Object {
      */
     public void translateX(double deltaX) {
         this.getPosition().changeX(deltaX);
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             point.changeX(deltaX);
         }
     }
@@ -290,7 +296,7 @@ public class Collidable extends java.lang.Object {
      */
     public void translateY(double deltaY) {
         this.getPosition().changeY(deltaY);
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             point.changeY(deltaY);
         }
     }
@@ -320,8 +326,8 @@ public class Collidable extends java.lang.Object {
         int[] y = new int[getNumPoints()];
 
         for (short i = 0; i < getNumPoints(); i++) {
-            x[i] = (int) this.getPoints()[i].getX();
-            y[i] = (int) this.getPoints()[i].getY();
+            x[i] = (int) this.getVertices()[i].getX();
+            y[i] = (int) this.getVertices()[i].getY();
         }
 
         return new java.awt.Polygon(x, y, getNumPoints());
@@ -329,7 +335,7 @@ public class Collidable extends java.lang.Object {
 
     public void turnTowards(float xPos, float yPos) {
         this.getPosition().turnTowards(xPos, yPos);
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             point.turnTowards(xPos, yPos);
         }
     }
@@ -346,7 +352,7 @@ public class Collidable extends java.lang.Object {
     public float getAverageHeight() {
         float result = 0;
 
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             result += point.getX();
         }
 
@@ -363,7 +369,7 @@ public class Collidable extends java.lang.Object {
     public float getAverageWidth() {
         float result = 0;
 
-        for (Vector2 point : getPoints()) {
+        for (Vector2 point : getVertices()) {
             result += point.getX();
         }
 
@@ -389,7 +395,7 @@ public class Collidable extends java.lang.Object {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(getPoints());
+        hash = 79 * hash + Objects.hashCode(getVertices());
         hash = 79 * hash + Objects.hashCode(getPosition());
         return hash;
     }
@@ -414,7 +420,7 @@ public class Collidable extends java.lang.Object {
             return false;
         }
         final Collidable coll = (Collidable) obj;
-        if (!Objects.equals(this.getPoints(), coll.getPoints())) {
+        if (!Objects.equals(this.getVertices(), coll.getVertices())) {
             return false;
         } else {
             return Objects.equals(this.getPosition(), coll.getPosition());
@@ -424,7 +430,7 @@ public class Collidable extends java.lang.Object {
     @Override
     public String toString() {
         return "Collidable = {"
-                + "points: " + Arrays.toString(getPoints()) + ", "
+                + "points: " + Arrays.toString(getVertices()) + ", "
                 + "position: " + getPosition() + ", "
                 + "super: " + super.toString()
                 + "}";
@@ -483,7 +489,7 @@ public class Collidable extends java.lang.Object {
      */
     public boolean intersects(Collidable coll) {
         for (short i = 0; i < coll.getNumPoints();) {
-            if (this.contains(coll.getPoints()[i].add(coll.getPosition()))) {
+            if (this.contains(coll.getVertices()[i].add(coll.getPosition()))) {
                 return true;
             }
 
@@ -495,7 +501,7 @@ public class Collidable extends java.lang.Object {
         }
 
         for (short i = 0; i < this.getNumPoints();) {
-            if (coll.contains(this.getPoints()[i].add(this.getPosition()))) {
+            if (coll.contains(this.getVertices()[i].add(this.getPosition()))) {
                 return true;
             }
 
@@ -582,4 +588,5 @@ public class Collidable extends java.lang.Object {
         }
         return false;
     }
+
 }
