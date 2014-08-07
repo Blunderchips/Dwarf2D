@@ -168,6 +168,7 @@ public class Rectangle extends Quadrilateral {
     public Rectangle get() {
         return this;
     }
+<<<<<<< HEAD
 
     public void scale(float delta) {
         this.setSize(
@@ -178,6 +179,54 @@ public class Rectangle extends Quadrilateral {
     public void scale(Vector2 delta) {
         this.setSize(
                 this.getSize().mul(delta)
+=======
+    
+    /**
+     * The
+     * <code>Rectangle</code> class encapsulates a description of a closed,
+     * two-dimensional region within a coordinate space.
+     *
+     * @see java.awt.Rectangle
+     * @return a new Java AWT Rectangle created by the points in the size and
+     * the position of this
+     */
+    public java.awt.Rectangle toRectangle() {
+        return new java.awt.Rectangle(
+                (int) getPosition().getX(), (int) getPosition().getY(),
+                (int) getSize().getX(), (int) getSize().getY()
+        );
+    }
+    
+    public double getHalfX() {
+        return this.getSize().getX() / 2;
+    }
+    
+    public double getHalfY() {
+        return this.getSize().getY() / 2;
+    }
+    
+    @Override
+    public Vector2 getCenterX() {
+        return new Vector2(
+            this.getPosition().getX() + this.getHalfX(),
+            this.getPosition().getY()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenterY() {
+        return new Vector2(
+            this.getPosition().getX(),
+            this.getPosition().getY() + this.getHalfY()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenter() {
+        return new Vector2(
+            this.getCenterX().getX(),
+            this.getCenterY().getY()
+>>>>>>> 9e070ba273a6bab6076013bdc0b6cf53914a8369
         );
     }
 }

@@ -128,7 +128,31 @@ public class Circle extends Shape {
     }
     
     @Override
+<<<<<<< HEAD
     public void scale(double delta) {
         this.setRadius(getRadius() * delta);
+=======
+    public Vector2 getCenterX() {
+        return new Vector2(
+            this.getPosition().getX() + this.getRadius(), 
+            this.getPosition().getY()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenterY() {
+        return new Vector2(
+            this.getPosition().getX(), 
+            this.getPosition().getY() + this.getRadius()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenter() {
+        return new Vector2(
+            this.getCenterX().getX(),
+            this.getCenterY().getY()
+        );
+>>>>>>> 9e070ba273a6bab6076013bdc0b6cf53914a8369
     }
 }

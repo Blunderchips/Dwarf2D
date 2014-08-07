@@ -22,6 +22,7 @@ import static dwarf.Input.getMousePosition;
  * </p>
  *
  * @author sid_th3_sl0th
+ * 
  * @see java.lang.Object
  */
 public class Collidable extends java.lang.Object {
