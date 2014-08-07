@@ -52,7 +52,7 @@ public class Circle extends Shape {
 
         final Circle other = (Circle) obj;
 
-        if (Double.doubleToLongBits(radius) != Double.doubleToLongBits(other.radius)) {
+        if (Double.doubleToLongBits(this.getRadius()) != Double.doubleToLongBits(other.getRadius())) {
             return false;
         } else if (!Objects.equals(getColour(), other.getColour())) {
             return false;
@@ -71,7 +71,7 @@ public class Circle extends Shape {
     }
 
     public double getDiameter() {
-        return radius * 2;
+        return 2 * radius;
     }
 
     /**

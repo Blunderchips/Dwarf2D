@@ -33,37 +33,41 @@ public class Rectangle extends Quadrilateral {
     public static final byte WEST_FACE = 0x3;
 
     /**
-     * the size of the <code>Rectangle</code>.
+     * the dimensions of the <code>Rectangle</code>.
      */
-    private Vector2 size;
+    private Vector2 dimensions;
 
     public Rectangle(float width, float height, Vector2 position, String mode, Colour colour) {
         super(null, position, mode, colour);
-        this.setPoints(width, height);
+        this.setVertices(width, height);
     }
 
     public Rectangle(double width, double height, Vector2 position, String mode, Colour colour) {
         super(null, position, mode, colour);
-        this.setPoints(width, height);
+        this.setVertices(width, height);
     }
 
-    public Rectangle(Vector2 size, Vector2 position, String mode, Colour colour) {
+    public Rectangle(Vector2 dimensions, Vector2 position, String mode, Colour colour) {
         super(null, position, mode, colour);
-        this.setPoints(size.getX(), size.getY());
+        this.setVertices(dimensions.getX(), dimensions.getY());
     }
 
     public Rectangle(Rectangle rectangle) {
         super(null, rectangle.getPosition(), rectangle.getMode(), rectangle.getColour());
-        this.setPoints(rectangle.getSize().getX(), rectangle.getSize().getY());
+        this.setVertices(rectangle.getDimensions().getX(), rectangle.getDimensions().getY());
     }
 
-    private void setPoints(double width, double height) {
+    /**
+     * @param width the width of the <code>Rectangle</code>.
+     * @param height the height of the <code>Rectangle</code>
+     */
+    protected final void setVertices(double width, double height) {
 //        this.addPoint(new Vector2(0, 0));
 //        this.addPoint(new Vector2(0, height));
 //        this.addPoint(new Vector2(width, height));
 //        this.addPoint(new Vector2(width, 0));
 
-        this.size = new Vector2(width, height);
+        this.dimensions = new Vector2(width, height);
 
         // --
         Vector2[] vertices = {
@@ -83,19 +87,19 @@ public class Rectangle extends Quadrilateral {
      * @return he area of the <code>Rectangle</code>
      */
     public float getArea() {
-        return (float) (this.getSize().getX() * this.getSize().getY());
+        return (float) (this.getDimensions().getX() * this.getDimensions().getY());
     }
 
-    public Vector2 getSize() {
-        return this.size;
+    public Vector2 getDimensions() {
+        return this.dimensions;
     }
 
-    public void setSize(Vector2 size) {
-        this.setPoints(size.getX(), size.getY());
+    public void setDimensions(Vector2 dimensions) {
+        this.setVertices(dimensions.getX(), dimensions.getY());
     }
 
-    public void setSize(float width, float height) {
-        this.setPoints(width, height);
+    public void setSize(double width, double height) {
+        this.setVertices(width, height);
     }
 
     public boolean intersects(int face, Collidable coll) {
@@ -104,15 +108,15 @@ public class Rectangle extends Quadrilateral {
             case NORTH_FACE:
 
                 Rectangle ham = new Rectangle(
-                        this.getSize().getX(),
-                        10 * this.getSize().getY() / 100,
+                        this.getDimensions().getX(),
+                        10 * this.getDimensions().getY() / 100,
                         super.getPosition(),
                         "stroke", Colour.white
                 );
 
                 ham.setPosition(
                         super.getPosition().getX(),
-                        super.getPosition().getY() + this.getSize().getY() - ham.getSize().getY()
+                        super.getPosition().getY() + this.getDimensions().getY() - ham.getDimensions().getY()
                 );
 
                 return ham.intersects(coll);
@@ -120,23 +124,24 @@ public class Rectangle extends Quadrilateral {
             case EAST_FACE:
 
                 Rectangle eggs = new Rectangle(
-                        10 * this.getSize().getX() / 100,
-                        this.getSize().getY(),
+                        10 * this.getDimensions().getX() / 100,
+                        this.getDimensions().getY(),
                         super.getPosition(),
                         "stroke", Colour.white
                 );
 
                 eggs.setPosition(
-                        super.getPosition().getX() + this.getSize().getX() - eggs.getSize().getX(),
+                        super.getPosition().getX() + this.getDimensions().getX() - eggs.getDimensions().getX(),
                         super.getPosition().getY()
                 );
 
                 return eggs.intersects(coll);
+
             case SOUTH_FACE:
 
                 Rectangle tuna = new Rectangle(
-                        this.getSize().getX(),
-                        10 * this.getSize().getY() / 100,
+                        this.getDimensions().getX(),
+                        10 * this.getDimensions().getY() / 100,
                         super.getPosition(),
                         "stroke", Colour.white
                 );
@@ -146,8 +151,8 @@ public class Rectangle extends Quadrilateral {
             case WEST_FACE:
 
                 Rectangle salami = new Rectangle(
-                        10 * this.getSize().getX() / 100,
-                        this.getSize().getY(),
+                        10 * this.getDimensions().getX() / 100,
+                        this.getDimensions().getY(),
                         super.getPosition(),
                         "stroke", Colour.white
                 );
@@ -161,7 +166,7 @@ public class Rectangle extends Quadrilateral {
     }
 
     public boolean isSquare() {
-        return this.getSize().getX() == this.getSize().getY();
+        return this.getDimensions().getX() == this.getDimensions().getY();
     }
 
     @Override
@@ -170,44 +175,39 @@ public class Rectangle extends Quadrilateral {
     }
 
     public void scale(float delta) {
-        this.setSize(
-                this.getSize().mul(delta)
+        this.setDimensions(
+                this.getDimensions().mul(delta)
         );
     }
 
     public void scale(Vector2 delta) {
-        this.setSize(
-                this.getSize().mul(delta)
+        this.setDimensions(
+                this.getDimensions().mul(delta)
         );
     }
-    /* The < code > Rectangle <  / code > class encapsulates 
 
-     a description
-     * of a closed, two-dimensional region within a coordinate
-     * space.
+    /**
+     * The <code>Rectangle</code> class encapsulates a description of a closed,
+     * two-dimensional region within a coordinate space.
      *
-     * @see
-     java.awt.Rectangle
-     * @
-     return a new Java AWT Rectangle created by the points in the
-     * size and the position of 
-
-     this
+     * @see java.awt.Rectangle
+     *
+     * @return a new Java AWT Rectangle created by the points in the dimensions
+     * and the position of this
      */
-
     public java.awt.Rectangle toRectangle() {
         return new java.awt.Rectangle(
                 (int) getPosition().getX(), (int) getPosition().getY(),
-                (int) getSize().getX(), (int) getSize().getY()
+                (int) getDimensions().getX(), (int) getDimensions().getY()
         );
     }
 
     public double getHalfX() {
-        return this.getSize().getX() / 2;
+        return this.getDimensions().getX() / 2;
     }
 
     public double getHalfY() {
-        return this.getSize().getY() / 2;
+        return this.getDimensions().getY() / 2;
     }
 
     @Override
@@ -233,4 +233,66 @@ public class Rectangle extends Quadrilateral {
                 this.getCenterY().getY()
         );
     }
+
+    public void set(float width, float height, Vector2 position, String mode, Colour colour) {
+        this.setVertices(width, height);
+        super.setPosition(position);
+        super.setMode(mode);
+        super.setColour(colour);
+    }
+
+    public void set(double width, double height, Vector2 position, String mode, Colour colour) {
+        this.setVertices(width, height);
+        super.setPosition(position);
+        super.setMode(mode);
+        super.setColour(colour);
+    }
+
+    public void set(Vector2 dimensions, Vector2 position, String mode, Colour colour) {
+        this.setVertices(dimensions.getX(), dimensions.getY());
+        super.setPosition(position);
+        super.setMode(mode);
+        super.setColour(colour);
+    }
+
+    public void set(Rectangle rectangle) {
+        this.setVertices(
+                rectangle.getDimensions().getX(),
+                rectangle.getDimensions().getY()
+        );
+
+        // --
+        super.setPosition(rectangle.getPosition());
+        super.setMode(rectangle.getMode());
+        super.setColour(rectangle.getColour());
+    }
+
+    @Override
+    public void setVertices(double[] xPoints, double[] yPoints) {
+        if (xPoints.length == 4 && yPoints.length == 4) {
+            super.setVertices(xPoints, yPoints);
+        } else {
+            throw new IllegalArgumentException("lol you stupid idiot, a Rectangle has 4 vertices.");
+        }
+    }
+
+    @Override
+    public void setVertices(Vector2[] vertices) {
+        if (vertices.length == 4) {
+            super.setVertices(vertices);
+        } else {
+            throw new IllegalArgumentException("lol you stupid idiot, a Rectangle has 4 vertices.");
+        }
+    }
+
+    @Override
+    public float getAverageWidth() {
+        return (float) this.getHalfX();
+    }
+
+    @Override
+    public float getAverageHeight() {
+        return (float) this.getHalfY();
+    }
+
 }

@@ -6,6 +6,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
 import org.lwjgl.openal.ALCcontext;
 import org.lwjgl.openal.ALCdevice;
+
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static org.lwjgl.openal.AL10.AL_EXTENSIONS;
 import static org.lwjgl.openal.AL10.AL_RENDERER;

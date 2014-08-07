@@ -37,6 +37,25 @@ public class Polygon extends GameObject {
     /**
      * Constructs a new <code>Polygon</code> with no vertices.
      *
+     * @param vertices the vertices of the <code>Polygon</code> to be created
+     * @param position the position of the <code>Polygon</code> on the screen
+     * @param mode the mode of the <code>Polygon</code> to be created
+     * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
+     * created
+     */
+    public Polygon(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
+        super(position);
+        this.init(vertices, mode, colour);
+    }
+
+    public Polygon(Polygon polygon) {
+        super(polygon.getPosition());
+        this.init(polygon.getVertices(), polygon.getMode(), polygon.getColour());
+    }
+
+    /**
+     * Constructs a new <code>Polygon</code> with no vertices.
+     *
      * @param position the position of the <code>Polygon</code> on the screen
      * @param mode the mode of the <code>Polygon</code> to be created
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
@@ -242,5 +261,20 @@ public class Polygon extends GameObject {
     @Override
     public Polygon get() {
         return this;
+    }
+
+    public void set(Vector2 position, String mode, Colour colour) {
+        this.init(mode, colour);
+        super.setPosition(position);
+    }
+
+    public void set(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
+        this.init(vertices, mode, colour);
+        super.setPosition(position);
+    }
+    
+    public void set(Polygon polygon) {
+        this.init(polygon.getVertices(), polygon.getMode(), polygon.getColour());
+        super.setPosition(polygon.getPosition());
     }
 }

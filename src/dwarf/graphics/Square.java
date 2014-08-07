@@ -28,11 +28,42 @@ public class Square extends Rectangle {
     }
 
     public float getLineLength() {
-        return (float) super.getSize().getX();
+        return (float) super.getDimensions().getX();
     }
 
     @Override
     public Square get() {
         return this;
     }
+
+    public void setLineLength(double sideLength) {
+        super.setSize(sideLength, sideLength);
+    }
+
+    @Override
+    public void scale(Vector2 delta) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void set(float sideLength, Vector2 position, String mode, Colour colour) {
+        this.setLineLength(sideLength);
+        super.setPosition(position);
+        super.setMode(mode);
+        super.setColour(colour);
+    }
+
+    public void set(double sideLength, Vector2 position, String mode, Colour colour) {
+        this.setLineLength(sideLength);
+        super.setPosition(position);
+        super.setMode(mode);
+        super.setColour(colour);
+    }
+
+    public void set(Square square) {
+        this.setLineLength(square.getLineLength());
+        super.setPosition(square.getPosition());
+        super.setMode(square.getMode());
+        super.setColour(square.getColour());
+    }
+
 }

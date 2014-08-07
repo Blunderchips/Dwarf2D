@@ -1,10 +1,11 @@
 package dwarf;
 
+import java.util.Objects;
+import java.io.FileInputStream;
 import dwarf.lib.LWJGL.WaveData;
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Objects;
+
 import static org.lwjgl.openal.AL10.AL_BUFFER;
 import static org.lwjgl.openal.AL10.alBufferData;
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
@@ -21,7 +22,7 @@ import static org.lwjgl.openal.AL10.alSourcei;
  * Library)
  *
  * @author sid_th3_sl0th
- * 
+ *
  * @see java.lang.Object
  * @see dwarf.engine.core.openAL
  * @see <a href='http://www.openal.org/'>openal.org</a>
@@ -69,7 +70,7 @@ public class Sfx extends java.lang.Object {
      * plays the sound.
      */
     public void play() {
-        if (!isMute()) {   
+        if (!isMute()) {
             alSourcePlay(getSource());
         }
     }
