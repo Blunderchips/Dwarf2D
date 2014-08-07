@@ -184,4 +184,36 @@ public class Rectangle extends Quadrilateral {
                 (int) getSize().getX(), (int) getSize().getY()
         );
     }
+    
+    public double getHalfX() {
+        return this.getSize().getX() / 2;
+    }
+    
+    public double getHalfY() {
+        return this.getSize().getY() / 2;
+    }
+    
+    @Override
+    public Vector2 getCenterX() {
+        return new Vector2(
+            this.getPosition().getX() + this.getHalfX(),
+            this.getPosition().getY()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenterY() {
+        return new Vector2(
+            this.getPosition().getX(),
+            this.getPosition().getY() + this.getHalfY()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenter() {
+        return new Vector2(
+            this.getCenterX().getX(),
+            this.getCenterY().getY()
+        );
+    }
 }
