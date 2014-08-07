@@ -25,6 +25,16 @@ import static org.lwjgl.openal.AL10.alSourcei;
  */
 public class Sfx extends java.lang.Object {
 
+    public static boolean isMute = false;
+
+    public static boolean isMute() {
+        return Sfx.isMute;
+    }
+
+    public static void setMute(boolean isMute) {
+        Sfx.isMute = isMute;
+    }
+
     private String key;
     private int source;
     private int buffer;
@@ -56,7 +66,9 @@ public class Sfx extends java.lang.Object {
      * plays the sound
      */
     public void play() {
-        alSourcePlay(getSource());
+        if (!isMute()) {   
+            alSourcePlay(getSource());
+        }
     }
 
     /**
