@@ -28,7 +28,7 @@ import static org.lwjgl.openal.AL10.alSourcei;
  */
 public class Sfx extends java.lang.Object {
 
-    public static boolean isMute = false;
+    private static boolean isMute = false;
 
     public static boolean isMute() {
         return Sfx.isMute;
