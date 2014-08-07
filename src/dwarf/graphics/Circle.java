@@ -123,4 +123,28 @@ public class Circle extends Shape {
     public Circle get() {
         return this;
     }
+    
+    @Override
+    public Vector2 getCenterX() {
+        return new Vector2(
+            this.getPosition().getX() + this.getRadius(), 
+            this.getPosition().getY()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenterY() {
+        return new Vector2(
+            this.getPosition().getX(), 
+            this.getPosition().getY() + this.getRadius()
+        );
+    }
+    
+    @Override
+    public Vector2 getCenter() {
+        return new Vector2(
+            this.getCenterX().getX(),
+            this.getCenterY().getY()
+        );
+    }
 }
