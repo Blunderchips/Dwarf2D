@@ -93,7 +93,7 @@ public class Collidable extends java.lang.Object {
     public Collidable get() {
         return this;
     }
-    
+
     public void set(Collidable coll) {
         this.setVertices(coll.getVertices());
         this.setPosition(coll.getPosition());
@@ -126,7 +126,7 @@ public class Collidable extends java.lang.Object {
      *
      * @return the total number of points in the vertices ArrayList.
      */
-    public int getNumPoints() {
+    public int getNumVertices() {
         return this.vertices.size();
     }
 
@@ -191,11 +191,11 @@ public class Collidable extends java.lang.Object {
 
         short hits = 0;
 
-        double lastPosX = getVertices()[getNumPoints() - 1].getX() + getPosition().getX() + 1;
-        double lastPosY = getVertices()[getNumPoints() - 1].getY() + getPosition().getY() + 1;
+        double lastPosX = getVertices()[getNumVertices() - 1].getX() + getPosition().getX() + 1;
+        double lastPosY = getVertices()[getNumVertices() - 1].getY() + getPosition().getY() + 1;
         double curPosX, curPosY;
 
-        for (short i = 0; i < getNumPoints(); lastPosX = curPosX, lastPosY = curPosY, i++) {
+        for (short i = 0; i < getNumVertices(); lastPosX = curPosX, lastPosY = curPosY, i++) {
             curPosX = getVertices()[i].getX() + getPosition().getX() + 1;
             curPosY = getVertices()[i].getY() + getPosition().getY() + 1;
 
@@ -322,15 +322,15 @@ public class Collidable extends java.lang.Object {
      * ArrayList
      */
     public java.awt.Polygon toPolygon() {
-        int[] x = new int[getNumPoints()];
-        int[] y = new int[getNumPoints()];
+        int[] x = new int[getNumVertices()];
+        int[] y = new int[getNumVertices()];
 
-        for (short i = 0; i < getNumPoints(); i++) {
+        for (short i = 0; i < getNumVertices(); i++) {
             x[i] = (int) this.getVertices()[i].getX();
             y[i] = (int) this.getVertices()[i].getY();
         }
 
-        return new java.awt.Polygon(x, y, getNumPoints());
+        return new java.awt.Polygon(x, y, getNumVertices());
     }
 
     public void turnTowards(float xPos, float yPos) {
@@ -356,7 +356,7 @@ public class Collidable extends java.lang.Object {
             result += point.getX();
         }
 
-        result /= getNumPoints();
+        result /= getNumVertices();
 
         return result;
     }
@@ -373,7 +373,7 @@ public class Collidable extends java.lang.Object {
             result += point.getX();
         }
 
-        return result / getNumPoints();
+        return result / getNumVertices();
     }
 
     public Vector2 getPosition() {
@@ -488,25 +488,25 @@ public class Collidable extends java.lang.Object {
      * this
      */
     public boolean intersects(Collidable coll) {
-        for (short i = 0; i < coll.getNumPoints();) {
+        for (short i = 0; i < coll.getNumVertices();) {
             if (this.contains(coll.getVertices()[i].add(coll.getPosition()))) {
                 return true;
             }
 
             if (coll instanceof Circle) {
-                i += (35 * coll.getNumPoints()) / 100;
+                i += (35 * coll.getNumVertices()) / 100;
             } else {
                 i++;
             }
         }
 
-        for (short i = 0; i < this.getNumPoints();) {
+        for (short i = 0; i < this.getNumVertices();) {
             if (coll.contains(this.getVertices()[i].add(this.getPosition()))) {
                 return true;
             }
 
             if (this instanceof Circle) {
-                i += (35 * this.getNumPoints()) / 100;
+                i += (35 * this.getNumVertices()) / 100;
             } else {
                 i++;
             }

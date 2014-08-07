@@ -17,15 +17,17 @@ import static dwarf.graphics.draw.SHAPE_CIRCLE;
  * @see dwarf.graphics.Polygon
  */
 public class Circle extends Shape {
-
+    
     private double radius;
-
+    
     public Circle(double radius, Vector2 location, String mode, Colour colour) {
         super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
+        this.radius = radius;
     }
-
+    
     public Circle(Circle circle) {
         super(SHAPE_CIRCLE, circle.getRadius(), circle.getPosition(), circle.getMode(), circle.getColour());
+        this.radius = circle.getRadius();
     }
 
     /**
@@ -47,9 +49,9 @@ public class Circle extends Shape {
         } else if (!super.equals(obj)) {
             return false;
         }
-
+        
         final Circle other = (Circle) obj;
-
+        
         if (Double.doubleToLongBits(radius) != Double.doubleToLongBits(other.radius)) {
             return false;
         } else if (!Objects.equals(getColour(), other.getColour())) {
@@ -58,16 +60,16 @@ public class Circle extends Shape {
             return Objects.equals(getColour(), other.getColour());
         }
     }
-
+    
     public double getCircumference() {
         return TWO_PI * radius;
     }
-
+    
     @Override
     public double getArea() {
         return PI * sqr(radius);
     }
-
+    
     public double getDiameter() {
         return radius * 2;
     }
@@ -101,26 +103,32 @@ public class Circle extends Shape {
     public double getCircleSector(double theta) {
         return (theta / 360) * this.getArea();
     }
-
+    
     @Override
     public double getRadius() {
         return this.radius;
     }
-
+    
     public void setRadius(double radius) {
         this.radius = radius;
+        super.init(SHAPE_CIRCLE, radius);
     }
-
+    
     public float getHalfWidth() {
         return (float) radius;
     }
-
+    
     public float getHalfHeight() {
         return (float) radius;
     }
-
+    
     @Override
     public Circle get() {
         return this;
+    }
+    
+    @Override
+    public void scale(double delta) {
+        this.setRadius(getRadius() * delta);
     }
 }

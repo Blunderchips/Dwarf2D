@@ -55,8 +55,9 @@ public final class openAL {
     }
 
     /**
-     * The version of OpenAL is returned. This usually has the format And can
-     * then possibly still contain vendor-specific information.
+     * The version of <a href='http://www.openal.org/'>OpenAL</a> is returned.
+     * This usually has the format And can then possibly still contain
+     * vendor-specific information.
      *
      * @return returns the version on <a
      * href='http://www.openal.org/'>OpenAL</a> is use

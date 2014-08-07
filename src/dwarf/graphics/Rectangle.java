@@ -163,9 +163,21 @@ public class Rectangle extends Quadrilateral {
     public boolean isSquare() {
         return this.getSize().getX() == this.getSize().getY();
     }
-    
+
     @Override
     public Rectangle get() {
         return this;
+    }
+
+    public void scale(float delta) {
+        this.setSize(
+                this.getSize().mul(delta)
+        );
+    }
+
+    public void scale(Vector2 delta) {
+        this.setSize(
+                this.getSize().mul(delta)
+        );
     }
 }

@@ -38,7 +38,7 @@ public class Shape extends Polygon {
         this.init(shape.getNumSides(), shape.getLineLength());
     }
 
-    private void init(int numSides, double lineLength) {
+    protected void init(int numSides, double lineLength) {
         this.numSides = (byte) numSides;
         this.lineLength = lineLength;
 
@@ -155,9 +155,13 @@ public class Shape extends Polygon {
     public double getArea() {
         return (Math.round((math.sqr(getLineLength() / 2) * Math.tan(Math.toRadians(180 - (360 / getNumSides())) / 2)) * getNumSides()) * 1000) / 1000;
     }
-    
+
     @Override
-    public Shape get () {
+    public Shape get() {
         return this;
+    }
+
+    public void scale(double delta) {
+        this.setLineLength(getLineLength() * delta);
     }
 }

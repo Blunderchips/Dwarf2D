@@ -1,5 +1,12 @@
 package dwarf.util;
 
+/**
+ * handles all random numbers and events.
+ *
+ * @author sid_th3_sl0th
+ *
+ * @see java.lang.Math#random()
+ */
 public final class rand {
 
     public rand() {
@@ -12,6 +19,11 @@ public final class rand {
         return Math.abs((int) (Math.random() * 100) - 100);
     }
 
+    /**
+     * @param minimum Minimum value. Must be smaller than maximum.
+     * @param maximum Maximum value. Must be greater than minimum.
+     * @return Integer between min and max.
+     */
     public static int interger(int maximum, int minimum) {
         return minimum + (int) (Math.random() * maximum);
     }
@@ -20,6 +32,9 @@ public final class rand {
         return (int) (Math.random() * maximum);
     }
 
+    /**
+     * @return returns a random boolean.
+     */
     public static boolean bool() {
         return (rand.interger() % 2) == 0;
     }

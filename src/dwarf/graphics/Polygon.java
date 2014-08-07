@@ -168,7 +168,7 @@ public class Polygon extends GameObject {
      * @return what type of shape <code>this</code> is.
      */
     public String getType() {
-        switch (super.getNumPoints()) {
+        switch (super.getNumVertices()) {
             case SHAPE_TRIANGLE:
                 return "triangle";
             case SHAPE_SQUARE:

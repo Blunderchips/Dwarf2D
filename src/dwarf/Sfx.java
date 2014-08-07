@@ -21,7 +21,10 @@ import static org.lwjgl.openal.AL10.alSourcei;
  * Library)
  *
  * @author sid_th3_sl0th
+ * 
  * @see java.lang.Object
+ * @see dwarf.engine.core.openAL
+ * @see <a href='http://www.openal.org/'>openal.org</a>
  */
 public class Sfx extends java.lang.Object {
 
@@ -53,35 +56,35 @@ public class Sfx extends java.lang.Object {
     }
 
     /**
-     * plays the sound
+     * plays the sound.
      */
     public void play() {
         alSourcePlay(getSource());
     }
 
     /**
-     * pauses the sound
+     * pauses the sound.
      */
     public void pause() {
         alSourcePause(getSource());
     }
 
     /**
-     * stops the sound
+     * stops the sound.
      */
     public void stop() {
         alSourceStop(getSource());
     }
 
     /**
-     * rewinds the sound
+     * rewinds the sound.
      */
     public void rewind() {
         alSourceRewind(getSource());
     }
 
     /**
-     * dispose if the sound
+     * dispose if the sound.
      */
     public void destroy() {
         alDeleteBuffers(getBuffer());
