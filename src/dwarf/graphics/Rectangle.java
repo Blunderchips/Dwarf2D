@@ -168,4 +168,20 @@ public class Rectangle extends Quadrilateral {
     public Rectangle get() {
         return this;
     }
+    
+    /**
+     * The
+     * <code>Rectangle</code> class encapsulates a description of a closed,
+     * two-dimensional region within a coordinate space.
+     *
+     * @see java.awt.Rectangle
+     * @return a new Java AWT Rectangle created by the points in the size and
+     * the position of this
+     */
+    public java.awt.Rectangle toRectangle() {
+        return new java.awt.Rectangle(
+                (int) getPosition().getX(), (int) getPosition().getY(),
+                (int) getSize().getX(), (int) getSize().getY()
+        );
+    }
 }
