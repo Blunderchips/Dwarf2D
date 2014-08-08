@@ -63,7 +63,7 @@ public final class time {
      *
      * @return Returns the time between the last two frames.
      */
-    public static double getDelta() {
+    public static double getDeltaTime() {
         return time.dt;
     }
 
