@@ -56,12 +56,11 @@ public class Polygon extends GameObject {
     /**
      * Constructs a new <code>Polygon</code> with no vertices.
      *
-     * @param position the position of the <code>Polygon</code> on the screen
      * @param mode the mode of the <code>Polygon</code> to be created
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    private void init(String mode, Colour colour) {
+    protected final void init(String mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
     }
@@ -70,7 +69,7 @@ public class Polygon extends GameObject {
      * Constructs a new <code>Polygon</code> from a <code>Vector2</code> array
      * of parts of vertex points.
      */
-    private void init(Vector2[] vertices, String mode, Colour colour) {
+    protected final void init(Vector2[] vertices, String mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
         super.setVertices(vertices);
@@ -127,10 +126,9 @@ public class Polygon extends GameObject {
     public void setMode(String mode) {
         if (mode.equals("fill") || mode.equals("stroke")) {
             this.mode = mode;
-        }//else if (mode == null) {
-        //  throw new NullPointerException("the mode can not be null. (stroke/fill only)");
-        //} 
-        else {
+        } else if (mode == null) {
+            throw new NullPointerException("the mode can not be null. (stroke/fill only)");
+        } else {
             throw new IllegalArgumentException("the state '" + mode + "' is unrecognised. (stroke/fill only)");
         }
     }
@@ -272,7 +270,7 @@ public class Polygon extends GameObject {
         this.init(vertices, mode, colour);
         super.setPosition(position);
     }
-    
+
     public void set(Polygon polygon) {
         this.init(polygon.getVertices(), polygon.getMode(), polygon.getColour());
         super.setPosition(polygon.getPosition());

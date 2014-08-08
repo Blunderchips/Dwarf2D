@@ -38,7 +38,7 @@ public class Shape extends Polygon {
         this.init(shape.getNumSides(), shape.getLineLength());
     }
 
-    protected void init(int numSides, double lineLength) {
+    protected final void init(int numSides, double lineLength) {
         this.numSides = (byte) numSides;
         this.lineLength = lineLength;
 

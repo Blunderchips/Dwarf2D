@@ -50,7 +50,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      * @param blue the blue component of the colour
      */
     public static void setColour(byte red, byte green, byte blue) {
-        setColour(new Colour(red, green, blue, 1));
+        setColour(red, green, blue, 1);
     }
 
     /**
@@ -59,8 +59,8 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      * @param blue the blue component of the colour
      * @param alpha the alpha component of the colour
      */
-    public static void setColour(byte red, byte green, byte blue, byte alpha) {
-        setColour(red, green, blue, alpha);
+    public static void setColour(byte red, byte green, byte blue, double alpha) {
+        glColor4d(red, green, blue, alpha);
     }
 
     public Colour() {
@@ -150,7 +150,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     public Colour get() {
         return this;
     }
-    
+
     /**
      * Make a brighter instance of this colour
      *
@@ -455,7 +455,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      * HSB to RGB conversion, pinched from java.awt.Color.
      *
      * @see java.awt.Color
-     * 
+     *
      * @param hue (0..1.0f)
      * @param saturation (0..1.0f)
      * @param brightness (0..1.0f)

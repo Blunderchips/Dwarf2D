@@ -17,18 +17,26 @@ public class Rectangle extends Quadrilateral {
 
     /**
      * the top of the <code>Rectangle</code>.
+     *
+     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte NORTH_FACE = 0x0;
     /**
      * the right hand side of the <code>Rectangle</code>.
+     *
+     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte EAST_FACE = 0x1;
     /**
      * the bottom of the <code>Rectangle</code>.
+     *
+     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte SOUTH_FACE = 0x2;
     /**
      * the left hand side of the <code>Rectangle</code>.
+     *
+     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte WEST_FACE = 0x3;
 
@@ -102,62 +110,35 @@ public class Rectangle extends Quadrilateral {
         this.setVertices(width, height);
     }
 
+    /**
+     * returns true if the <code>Rectanlge</code> face have intersected with the
+     * inputed <code>Collidable</code>.
+     *
+     * @see dwarf.Collidable#intersects(dwarf.Collidable)
+     *
+     * @param face the face of the <code>Rectanlge</code> to be tested
+     * @param coll - the <code>Collidable</code> to be tested
+     * @return true if the <code>Collidable</code> has intersected/collided with
+     * the inputed face of this.
+     */
     public boolean intersects(int face, Collidable coll) {
 
         switch (face) {
             case NORTH_FACE:
 
-                Rectangle ham = new Rectangle(
-                        this.getDimensions().getX(),
-                        10 * this.getDimensions().getY() / 100,
-                        super.getPosition(),
-                        "stroke", Colour.white
-                );
-
-                ham.setPosition(
-                        super.getPosition().getX(),
-                        super.getPosition().getY() + this.getDimensions().getY() - ham.getDimensions().getY()
-                );
-
-                return ham.intersects(coll);
+                return coll.intersects(getNorthFace());
 
             case EAST_FACE:
 
-                Rectangle eggs = new Rectangle(
-                        10 * this.getDimensions().getX() / 100,
-                        this.getDimensions().getY(),
-                        super.getPosition(),
-                        "stroke", Colour.white
-                );
-
-                eggs.setPosition(
-                        super.getPosition().getX() + this.getDimensions().getX() - eggs.getDimensions().getX(),
-                        super.getPosition().getY()
-                );
-
-                return eggs.intersects(coll);
+                return coll.intersects(getEastFace());
 
             case SOUTH_FACE:
 
-                Rectangle tuna = new Rectangle(
-                        this.getDimensions().getX(),
-                        10 * this.getDimensions().getY() / 100,
-                        super.getPosition(),
-                        "stroke", Colour.white
-                );
-
-                return tuna.intersects(coll);
+                return coll.intersects(getSouthFace());
 
             case WEST_FACE:
 
-                Rectangle salami = new Rectangle(
-                        10 * this.getDimensions().getX() / 100,
-                        this.getDimensions().getY(),
-                        super.getPosition(),
-                        "stroke", Colour.white
-                );
-
-                return salami.intersects(coll);
+                return coll.intersects(getWestFace());
 
             default:
                 System.err.println("the face '" + face + "' is not reconized");
@@ -174,7 +155,7 @@ public class Rectangle extends Quadrilateral {
         return this;
     }
 
-    public void scale(float delta) {
+    public void scale(double delta) {
         this.setDimensions(
                 this.getDimensions().mul(delta)
         );
@@ -295,4 +276,74 @@ public class Rectangle extends Quadrilateral {
         return (float) this.getHalfY();
     }
 
+    /**
+     * if this is a square this will return a Square or it will throw a error.
+     *
+     * @see dwarf.graphics.Square
+     *
+     * @throws Error throws a error if this is not a square
+     * @return this as a new Square if possible otherwise will throw a error
+     */
+    public Square toSquare() {
+        if (isSquare()) {
+            return new Square(
+                    this.getDimensions().getX(),
+                    super.getPosition(),
+                    super.getMode(),
+                    super.getColour()
+            );
+        } else {
+            throw new Error("this is not a square. (length != breadth)");
+        }
+    }
+
+    public Collidable getNorthFace() {
+        Rectangle rect = new Rectangle(
+                this.getDimensions().getX(),
+                10 * this.getDimensions().getY() / 100,
+                super.getPosition(),
+                "stroke", null
+        );
+
+        rect.setPosition(
+                super.getPosition().getX(),
+                super.getPosition().getY() + this.getDimensions().getY() - rect.getDimensions().getY()
+        );
+
+        return rect.getCollidable();
+    }
+
+    public Collidable getEastFace() {
+        Rectangle rect = new Rectangle(
+                10 * this.getDimensions().getX() / 100,
+                this.getDimensions().getY(),
+                super.getPosition(),
+                "stroke", null
+        );
+
+        rect.setPosition(
+                super.getPosition().getX() + this.getDimensions().getX() - rect.getDimensions().getX(),
+                super.getPosition().getY()
+        );
+
+        return rect.getCollidable();
+    }
+
+    public Collidable getSouthFace() {
+        return new Rectangle(
+                this.getDimensions().getX(),
+                10 * this.getDimensions().getY() / 100,
+                super.getPosition(),
+                "stroke", null
+        ).getCollidable();
+    }
+
+    public Collidable getWestFace() {
+        return new Rectangle(
+                10 * this.getDimensions().getX() / 100,
+                this.getDimensions().getY(),
+                super.getPosition(),
+                "stroke", null
+        ).getCollidable();
+    }
 }

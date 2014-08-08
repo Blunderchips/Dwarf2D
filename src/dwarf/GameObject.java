@@ -132,6 +132,18 @@ public abstract class GameObject extends Collidable {
         super.setVertices(vertices);
         super.setPosition(position);
     }
+
+    /**
+     * returns the <code>Collidable</code> on this <code>GameObject</code>.
+     * 
+     * @return a new <code>Collidable</code> constructed from this
+     */
+    public Collidable getCollidable() {
+        Collidable coll = new Collidable(super.getPosition());
+        coll.setVertices(super.getVertices());
+
+        return coll;
+    }
 //    @Override
 //    public boolean intersects(Collidable coll) {
 //        if (super.intersects(this)) {

@@ -49,6 +49,7 @@ public class Quadrilateral extends Polygon {
         return this;
     }
 
+    @Override
     public void set(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
         super.setVertices(vertices);
         super.setPosition(position);

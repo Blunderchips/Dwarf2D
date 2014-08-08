@@ -63,7 +63,7 @@ public final class time {
      *
      * @return Returns the time between the last two frames.
      */
-    public static double getDeltaTime() {
+    public static final double getDeltaTime() {
         return time.dt;
     }
 
@@ -72,7 +72,7 @@ public final class time {
      *
      * @param lastTime the last frame time
      */
-    public static void setDelta(long lastTime) {
+    public static final void setDelta(long lastTime) {
         time.dt = (time.getNano() - (double) lastTime) / time.SECOND;
     }
 

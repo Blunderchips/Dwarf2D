@@ -63,7 +63,7 @@ public class Image extends GameObject {
         draw.texture(getPosition(), getTexture());
     }
 
-    private void init(Texture texture) {
+    protected final void init(Texture texture) {
         Vector2[] points = {
             new Vector2(0, 0),
             new Vector2(texture.getTextureWidth(), 0),

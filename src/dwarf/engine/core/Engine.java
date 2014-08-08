@@ -19,7 +19,7 @@ public abstract class Engine extends java.lang.Object {
         openAL.init();
     }
 
-    public void start(int width, int hieght, String title) {
+    public final void start(int width, int hieght, String title) {
         Window.create(width, hieght, title);
         openGL.init();
         Input.init();
@@ -69,7 +69,7 @@ public abstract class Engine extends java.lang.Object {
      */
     public abstract void render();
 
-    public static void dispose() {
+    public final static void dispose() {
         Input.dispose();
         Window.dispose();
         openAL.dispose();

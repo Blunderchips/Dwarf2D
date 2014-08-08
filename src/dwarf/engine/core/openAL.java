@@ -38,7 +38,7 @@ public final class openAL {
     /**
      * initializes <a href='http://www.openal.org/'>OpenAL</a>
      */
-    protected static void init() {
+    protected static final void init() {
         try {
             AL.create();
             // util.debug("INFO", "openAL version: " + openAL.getVersion());

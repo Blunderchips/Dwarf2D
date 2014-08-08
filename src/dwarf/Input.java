@@ -307,7 +307,7 @@ public final class Input {
     private static ArrayList<Byte> downMouse;
     private static ArrayList<Byte> upMouse;
 
-    public static void init() {
+    public static final void init() {
         try {
             Keyboard.create();
             Mouse.create();
