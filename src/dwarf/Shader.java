@@ -1,12 +1,10 @@
-package dwarf.engine.core;
+package dwarf;
 
-import dwarf.Game;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
+
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.GL_COMPILE_STATUS;
 import static org.lwjgl.opengl.GL20.glAttachShader;
@@ -22,7 +20,7 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glValidateProgram;
 
 /**
- * handles all shader files and shader operation. (still being tested)
+ * handles all shader files and shader operation.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -31,12 +29,20 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
  */
 public class Shader extends java.lang.Object {
 
-    public final static int FRAGMENT_SHADER = 0x8b30;
     public final static int VERTEX_SHADER = 0x8b31;
+    public final static int FRAGMENT_SHADER = 0x8b30;
     public final static int SHADER_PROGRAM = glCreateProgram();
 
     public static void deleteShaderProgram() {
         glDeleteProgram(SHADER_PROGRAM);
+    }
+
+    public static void use() {
+        glUseProgram(SHADER_PROGRAM);
+    }
+
+    public static void stop() {
+        glUseProgram(0);
     }
 
     private int program;
@@ -46,25 +52,21 @@ public class Shader extends java.lang.Object {
         super();
     }
 
-    public Shader(int program, StringBuilder source) {
-        super();
-
-        this.program = program;
-        this.source = source;
-    }
-
     public Shader(Shader shader) {
         super();
 
-        this.program = shader.getProgram();
-        this.source = shader.getSource();
+        this.setProgram(shader.getProgram());
+        this.setSource(shader.getSource());
     }
 
     public Shader(int type, String key) {
         super();
 
+        this.source = new StringBuilder();
+
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
-            this.program = glCreateShader(type);
+            this.setProgram(glCreateShader(type));
+            System.out.println(getProgram());
         } else {
             throw new IllegalArgumentException("the shader type '" + type + "' is unrecognised.");
         }
@@ -78,49 +80,33 @@ public class Shader extends java.lang.Object {
             }
         } catch (IOException ex) {
             System.err.println("Shader was not loaded properly. :( \n" + ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException ex) {
                     System.err.println(ex);
-                    JOptionPane.showMessageDialog(
-                            Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-                    );
-                    Game.close(ex);
                 }
             }
         }
 
-        glShaderSource(program, source);
-        glCompileShader(program);
+        glShaderSource(getProgram(), getSource());
+        glCompileShader(getProgram());
 
-        if (glGetShaderi(program, GL_COMPILE_STATUS) == GL_FALSE) {
+        if (glGetShaderi(getProgram(), GL_COMPILE_STATUS) == GL_FALSE) {
             System.err.println("Vertex shader wasn't able to be compiled correctly. :(");
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), "Vertex shader wasn't able to be compiled correctly. :(", Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(42);
         }
 
-        glAttachShader(SHADER_PROGRAM, program);
+        glAttachShader(SHADER_PROGRAM, getProgram());
         glLinkProgram(SHADER_PROGRAM);
         glValidateProgram(SHADER_PROGRAM);
-    }
-
-    public void use() {
-        glUseProgram(getProgram());
     }
 
     public int getProgram() {
         return this.program;
     }
 
-    public void setProgram(int program) {
+    public final void setProgram(int program) {
         this.program = program;
     }
 
@@ -132,7 +118,7 @@ public class Shader extends java.lang.Object {
         return this.source;
     }
 
-    public void setSource(StringBuilder source) {
+    public final void setSource(StringBuilder source) {
         this.source = source;
     }
 
@@ -173,10 +159,10 @@ public class Shader extends java.lang.Object {
         } else if (getClass() != obj.getClass()) {
             return false;
         }
-        final Shader shader = (Shader) obj;
-        if (this.getProgram() != shader.getProgram()) {
+        final Shader other = (Shader) obj;
+        if (this.getProgram() != other.getProgram()) {
             return false;
-        } else if (!Objects.equals(this.getSource(), shader.getSource())) {
+        } else if (!Objects.equals(this.getSource(), other.getSource())) {
             return false;
         }
         return true;
@@ -185,10 +171,8 @@ public class Shader extends java.lang.Object {
     @Override
     public String toString() {
         return "Shader = {"
-                + "program: " + getProgram() + ", "
-                + "source: " + getSource() + ", "
-                + "super: " + super.toString()
+                + "program:" + getProgram() + ", "
+                + "source: " + getSource()
                 + "}";
     }
-
 }

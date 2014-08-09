@@ -1,7 +1,6 @@
 package dwarf;
 
 import dwarf.engine.core.Window;
-import dwarf.engine.core.Camera;
 import dwarf.graphics.Circle;
 import dwarf.graphics.Colour;
 import dwarf.util.Vector2;
@@ -334,17 +333,6 @@ public class Collidable extends java.lang.Object {
         return new java.awt.Polygon(x, y, getNumVertices());
     }
 
-    public void turnTowards(float xPos, float yPos) {
-        this.getPosition().turnTowards(xPos, yPos);
-        for (Vector2 point : getVertices()) {
-            point.turnTowards(xPos, yPos);
-        }
-    }
-
-    public void turnTowards(Vector2 point) {
-        this.turnTowards((float) point.getX(), (float) point.getY());
-    }
-
     /**
      * Returns Average of the height of the <code>Collidable</code>, in pixels.
      *
@@ -609,11 +597,11 @@ public class Collidable extends java.lang.Object {
         this.gotoPos(destination, 1);
     }
 
-    public void gotoPos(float xPos, float yPos) {
+    public void gotoPos(double xPos, double yPos) {
         this.gotoPos(new Vector2(xPos, yPos), 1);
     }
 
-    public void gotoPos(float xPos, float yPos, float speed) {
+    public void gotoPos(double xPos, double yPos, float speed) {
         this.gotoPos(new Vector2(xPos, yPos), speed);
     }
 }

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+
 import static dwarf.graphics.util.getBackgroundColour;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
@@ -37,7 +38,7 @@ public final class Window {
 
     private static java.awt.Canvas parent = null;
 
-    private static Camera activCamera = Camera.mainCamera;
+    private static Camera activeCamera = Camera.mainCamera;
 
     protected static void update() {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -72,6 +73,7 @@ public final class Window {
             Display.setResizable(resizable);
             Display.setFullscreen(fullscreen);
             Display.setParent(parent);
+            Display.setInitialBackground(0x0, 0x0, 0x0);
             Display.create();
         } catch (LWJGLException ex) {
             System.err.println(ex);
@@ -264,7 +266,7 @@ public final class Window {
             JOptionPane.showMessageDialog(
                     getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
             );
-            Game.close(1);
+            Game.close(ex);
         }
     }
 
@@ -282,10 +284,10 @@ public final class Window {
     }
 
     public static Camera getActiveCamera() {
-        return Window.activCamera;
+        return Window.activeCamera;
     }
 
     public static void setActiveCamera(Camera activeCamera) {
-        Window.activCamera = activeCamera;
+        Window.activeCamera = activeCamera;
     }
 }
