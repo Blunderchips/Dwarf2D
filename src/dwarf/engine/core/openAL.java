@@ -29,6 +29,9 @@ import static org.lwjgl.openal.AL10.alGetString;
  */
 public final class openAL {
 
+    /**
+     * you can not instantiate this class.
+     */
     public openAL() {
         // Prevents instantiation of this class.
         throw new Error(

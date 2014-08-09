@@ -43,6 +43,9 @@ import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
  */
 public final class openGL {
 
+    /**
+     * you can not instantiate this class.
+     */
     public openGL() {
         // Prevents instantiation of this class.
         throw new Error(

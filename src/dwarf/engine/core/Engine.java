@@ -19,8 +19,8 @@ public abstract class Engine extends java.lang.Object {
         openAL.init();
     }
 
-    public final void start(int width, int hieght, String title) {
-        Window.create(width, hieght, title);
+    public final void start(int width, int height, String title) {
+        Window.create(width, height, title);
         openGL.init();
         Input.init();
 

@@ -477,29 +477,34 @@ public class Collidable extends java.lang.Object {
      * this
      */
     public boolean intersects(Collidable coll) {
-        for (short i = 0; i < coll.getNumVertices();) {
-            if (this.contains(coll.getVertices()[i].add(coll.getPosition()))) {
-                return true;
-            }
+        if (coll.getNumVertices() != 0) {
+            for (short i = 0; i < coll.getNumVertices();) {
+                if (this.contains(coll.getVertices()[i].add(coll.getPosition()))) {
+                    return true;
+                }
 
-            if (coll instanceof Circle) {
-                i += (35 * coll.getNumVertices()) / 100;
-            } else {
-                i++;
+                if (coll instanceof Circle) {
+                    i += (35 * coll.getNumVertices()) / 100;
+                } else {
+                    i++;
+                }
             }
         }
 
-        for (short i = 0; i < this.getNumVertices();) {
-            if (coll.contains(this.getVertices()[i].add(this.getPosition()))) {
-                return true;
-            }
+        if (this.getNumVertices() != 0) {
+            for (short i = 0; i < this.getNumVertices();) {
+                if (coll.contains(this.getVertices()[i].add(this.getPosition()))) {
+                    return true;
+                }
 
-            if (this instanceof Circle) {
-                i += (35 * this.getNumVertices()) / 100;
-            } else {
-                i++;
+                if (this instanceof Circle) {
+                    i += (35 * this.getNumVertices()) / 100;
+                } else {
+                    i++;
+                }
             }
         }
+
         return false;
     }
 

@@ -16,6 +16,9 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  */
 public final class fileSystem {
 
+    /**
+     * you can not instantiate this class.
+     */
     public fileSystem() {
         // Prevents instantiation of this class.
         throw new Error(

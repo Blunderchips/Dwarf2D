@@ -9,6 +9,9 @@ package dwarf.util;
  */
 public final class rand {
 
+    /**
+     * you can not instantiate this class.
+     */
     public rand() {
         // Prevents instantiation of this class.
         throw new Error(

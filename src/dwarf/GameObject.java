@@ -149,4 +149,63 @@ public abstract class GameObject extends Collidable {
     public void gotoPos(GameObject obj, float speed) {
         super.gotoPos(obj.getPosition(), speed);
     }
+
+    public boolean addChild(GameObject child) {
+        try {
+            this.getChildren().add(child);
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+
+    public boolean addChild(Object child) {
+        try {
+            this.getChildren().add((GameObject) child);
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+
+    public boolean removeChild(GameObject input) {
+        try {
+            return this.getChildren().remove(input);
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+
+    @SuppressWarnings("element-type-mismatch")
+    public boolean removeChild(Object input) {
+        try {
+            return this.getChildren().remove(input);
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean intersects(Collidable coll) {
+        if (super.getNumVertices() != 0) {
+            if (super.intersects(coll)) {
+                return true;
+            }
+        }
+
+        for (GameObject child : getChildren()) {
+            if (child.getNumVertices() != 0) {
+                if (child.intersects(coll)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

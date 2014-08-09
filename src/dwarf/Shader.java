@@ -20,7 +20,9 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glValidateProgram;
 
 /**
- * handles all shader files and shader operation.
+ * handles all shader files and shader operation. A Shader is a program designed
+ * to run on some stage of a graphics processor. Its purpose is to execute one
+ * of the programmable stages of the rendering pipeline.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -29,7 +31,16 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
  */
 public class Shader extends java.lang.Object {
 
+    /**
+     * The Vertex Shader is the programmable Shader stage in the rendering
+     * pipeline that handles the processing of individual vertices.
+     */
     public final static int VERTEX_SHADER = 0x8b31;
+    /**
+     * A Fragment Shader is a user-supplied program that, when executed, will
+     * process a Fragment from the rasterization process into a set of colours
+     * and a single depth value.
+     */
     public final static int FRAGMENT_SHADER = 0x8b30;
     public final static int SHADER_PROGRAM = glCreateProgram();
 
@@ -42,7 +53,7 @@ public class Shader extends java.lang.Object {
     }
 
     public static void stop() {
-        glUseProgram(0);
+        glUseProgram(0x0);
     }
 
     private int program;
@@ -66,24 +77,23 @@ public class Shader extends java.lang.Object {
 
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
             this.setProgram(glCreateShader(type));
-            System.out.println(getProgram());
         } else {
             throw new IllegalArgumentException("the shader type '" + type + "' is unrecognised.");
         }
 
-        BufferedReader reader = null;
+        BufferedReader scanner = null;
         try {
-            reader = new BufferedReader(new FileReader(key));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                source.append(line).append('\n');
+            scanner = new BufferedReader(new FileReader(key));
+            String ln;
+            while ((ln = scanner.readLine()) != null) {
+                source.append(ln).append('\n');
             }
         } catch (IOException ex) {
-            System.err.println("Shader was not loaded properly. :( \n" + ex);
+            System.err.println("Shader was not loaded properly. \n" + ex);
         } finally {
-            if (reader != null) {
+            if (scanner != null) {
                 try {
-                    reader.close();
+                    scanner.close();
                 } catch (IOException ex) {
                     System.err.println(ex);
                 }
@@ -94,7 +104,7 @@ public class Shader extends java.lang.Object {
         glCompileShader(getProgram());
 
         if (glGetShaderi(getProgram(), GL_COMPILE_STATUS) == GL_FALSE) {
-            System.err.println("Vertex shader wasn't able to be compiled correctly. :(");
+            System.err.println("Shader wan not able to be compiled correctly.");
         }
 
         glAttachShader(SHADER_PROGRAM, getProgram());
@@ -102,7 +112,45 @@ public class Shader extends java.lang.Object {
         glValidateProgram(SHADER_PROGRAM);
     }
 
-    public int getProgram() {
+    /**
+     * The Vertex Shader is the programmable Shader stage in the rendering
+     * pipeline that handles the processing of individual vertices.
+     *
+     * @see dwarf.Shader#VERTEX_SHADER
+     *
+     * @return Shader.VERTEX_SHADER (35633)
+     */
+    public int getVertexShader() {
+        return Shader.VERTEX_SHADER;
+    }
+
+    /**
+     * A Fragment Shader is a user-supplied program that, when executed, will
+     * process a Fragment from the rasterization process into a set of colours
+     * and a single depth value.
+     *
+     * @see dwarf.Shader#FRAGMENT_SHADER
+     *
+     * @return Shader.FRAGMENT_SHADER (35632)
+     */
+    public int getFragmentShader() {
+        return Shader.FRAGMENT_SHADER;
+    }
+
+    /**
+     * A Fragment Shader is a user-supplied program that, when executed, will
+     * process a Fragment from the rasterization process into a set of colours
+     * and a single depth value.
+     *
+     * @see dwarf.Shader#SHADER_PROGRAM
+     *
+     * @return Shader.SHADER_PROGRAM
+     */
+    public int getShaderProgram() {
+        return Shader.SHADER_PROGRAM;
+    }
+
+    public final int getProgram() {
         return this.program;
     }
 
@@ -110,11 +158,7 @@ public class Shader extends java.lang.Object {
         this.program = program;
     }
 
-    public int getShaderProgram() {
-        return Shader.SHADER_PROGRAM;
-    }
-
-    public StringBuilder getSource() {
+    public final StringBuilder getSource() {
         return this.source;
     }
 
@@ -172,7 +216,57 @@ public class Shader extends java.lang.Object {
     public String toString() {
         return "Shader = {"
                 + "program:" + getProgram() + ", "
-                + "source: " + getSource()
+                + "source: " + getSource() + ", "
+                + "super: " + super.toString()
                 + "}";
+    }
+
+    public Shader get() {
+        return this;
+    }
+
+    public void set(int type, String key) {
+        this.source = new StringBuilder();
+
+        if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
+            this.setProgram(glCreateShader(type));
+        } else {
+            throw new IllegalArgumentException("the shader type '" + type + "' is unrecognised.");
+        }
+
+        BufferedReader scanner = null;
+        try {
+            scanner = new BufferedReader(new FileReader(key));
+            String ln;
+            while ((ln = scanner.readLine()) != null) {
+                source.append(ln).append('\n');
+            }
+        } catch (IOException ex) {
+            System.err.println("Shader was not loaded properly. \n" + ex);
+        } finally {
+            if (scanner != null) {
+                try {
+                    scanner.close();
+                } catch (IOException ex) {
+                    System.err.println(ex);
+                }
+            }
+        }
+
+        glShaderSource(getProgram(), getSource());
+        glCompileShader(getProgram());
+
+        if (glGetShaderi(getProgram(), GL_COMPILE_STATUS) == GL_FALSE) {
+            System.err.println("Shader wan not able to be compiled correctly.");
+        }
+
+        glAttachShader(SHADER_PROGRAM, getProgram());
+        glLinkProgram(SHADER_PROGRAM);
+        glValidateProgram(SHADER_PROGRAM);
+    }
+
+    public void set(Shader shader) {
+        this.setProgram(shader.getProgram());
+        this.setSource(shader.getSource());
     }
 }

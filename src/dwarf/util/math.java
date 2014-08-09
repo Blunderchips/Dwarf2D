@@ -4,11 +4,14 @@ package dwarf.util;
  * Utility and fast math functions.
  *
  * @author Matthew 'siD' Van der Bijl
- * 
+ *
  * @see java.lang.Math
  */
 public final class math {
 
+    /**
+     * you can not instantiate this class.
+     */
     public math() {
         // Prevents instantiation of this class.
         throw new Error(

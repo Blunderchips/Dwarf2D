@@ -5,6 +5,9 @@ package dwarf.engine.core;
  */
 public final class physics {
 
+    /**
+     * you can not instantiate this class.
+     */
     public physics() {
         // Prevents instantiation of this class.
         throw new Error(

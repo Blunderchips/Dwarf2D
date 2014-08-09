@@ -11,14 +11,17 @@ import java.util.Date;
  */
 public final class time {
 
-    private static long sleepPrecision;
-    private static long worstYieldTime;
-
+    /**
+     * you can not instantiate this class.
+     */
     public time() {
         // Prevents instantiation of this class.
         throw new Error(
                 "you can not instantiate this class.");
     }
+
+    private static long sleepPrecision;
+    private static long worstYieldTime;
 
     /**
      * Amount of Nanosecond is a second.

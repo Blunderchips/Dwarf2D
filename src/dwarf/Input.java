@@ -13,12 +13,15 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  * Handle mouse and keyboard input from the user.
  *
  * @author Matthew 'siD' Van der Bijl
- * 
+ *
  * @see org.lwjgl.input.Keyboard
  * @see org.lwjgl.input.Mouse
  */
 public final class Input {
 
+    /**
+     * you can not instantiate this class.
+     */
     public Input() {
         // Prevents instantiation of this class.
         throw new Error(
@@ -386,7 +389,6 @@ public final class Input {
     //========================================================================
     // Keyboard events
     //========================================================================
-    
     /**
      * checks if a key is pressed
      *
@@ -450,7 +452,6 @@ public final class Input {
     //========================================================================
     // Mouse events
     //========================================================================
-    
     /**
      * checks if a mouse key is down
      *

@@ -1,7 +1,7 @@
 package dwarf.util;
 
 /**
- * general utilities
+ * general utilities.
  *
  * @author Matthew 'siD' Van der Bijl
  */
@@ -13,6 +13,9 @@ import java.util.List;
 
 public final class util {
 
+    /**
+     * you can not instantiate this class.
+     */
     public util() {
         // Prevents instantiation of this class.
         throw new Error(
@@ -75,7 +78,7 @@ public final class util {
      * @param imgPixels the pixels contained within the image
      * @param imgw the width of the image
      * @param imgh the hieght of the image
-     * 
+     *
      * @return int[] the pixel array fliped
      */
     public static int[] flipPixels(int[] imgPixels, int imgw, int imgh) {

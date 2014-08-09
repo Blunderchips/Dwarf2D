@@ -12,6 +12,9 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  */
 public final class system {
 
+    /**
+     * you can not instantiate this class.
+     */
     public system() {
         // Prevents instantiation of this class.
         throw new Error(
@@ -68,7 +71,8 @@ public final class system {
     }
 
     /**
-     * @return Sequence used by operating system to separate lines in text files.
+     * @return Sequence used by operating system to separate lines in text
+     * files.
      */
     public static String getLineSeparator() {
         return System.getProperty("line.separator");

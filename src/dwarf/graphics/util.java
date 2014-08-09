@@ -9,6 +9,9 @@ public final class util {
 
     private static Colour backgroundColour = new Colour();
 
+    /**
+     * you can not instantiate this class.
+     */
     public util() {
         // Prevents instantiation of this class.
         throw new Error(

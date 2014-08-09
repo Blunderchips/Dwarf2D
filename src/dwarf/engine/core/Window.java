@@ -26,6 +26,9 @@ import static org.lwjgl.opengl.GL11.glTranslated;
  */
 public final class Window {
 
+    /**
+     * you can not instantiate this class.
+     */
     public Window() {
         // Prevents instantiation of this class.
         throw new Error(
@@ -116,7 +119,7 @@ public final class Window {
     }
 
     /**
-     * Gets the width of the window as a int.
+     * Gets the width of the window as a integer (int).
      *
      * @return The width of the window.
      */
@@ -125,7 +128,7 @@ public final class Window {
     }
 
     /**
-     * Gets the height of the window as a int.
+     * Gets the height of the window as a integer (int).
      *
      * @return The height of the window.
      */

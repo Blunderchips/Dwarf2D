@@ -6,6 +6,7 @@ import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeSupport;
 import java.util.ArrayList;
 import java.util.Objects;
+
 import static java.lang.Math.abs;
 
 /**
@@ -36,13 +37,13 @@ public abstract class Game extends Engine {
         this.init(800, 600, null);
     }
 
-    public Game(int width, int hieght, String title) {
+    public Game(int width, int height, String title) {
         super();
 
         this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
         this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
 
-        this.init(width, hieght, title);
+        this.init(width, height, title);
     }
 
     public Game(String title) {
@@ -54,13 +55,13 @@ public abstract class Game extends Engine {
         this.init(800, 600, title);
     }
 
-    public Game(int width, int hieght) {
+    public Game(int width, int height) {
         super();
 
         this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
         this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
 
-        this.init(width, hieght, null);
+        this.init(width, height, null);
     }
 
     public Game(Vector2 dimensions) {
@@ -107,11 +108,13 @@ public abstract class Game extends Engine {
     /**
      * initialises the <code>Game</code>.
      *
-     * @param position the location of the game of the game window
+     * @param width the width of the window
+     * @param height the height of the window
+     * @param title the title of the window
      */
     @SuppressWarnings("Convert2Diamond")
-    private void init(int width, int hieght, String title) {
-        if (width == 0 || hieght == 0) {
+    private void init(int width, int height, String title) {
+        if (width == 0x0 || height == 0x0) {
             throw new IllegalArgumentException(
                     "the width nor the hieght can be equal to zero.");
         }
@@ -119,7 +122,7 @@ public abstract class Game extends Engine {
         Game.gameObjects = new ArrayList<GameObject>();
 
         //starts the main game loop.
-        this.start(abs(width), abs(hieght), title);
+        this.start(abs(width), abs(height), title);
     }
 
     /**

@@ -31,6 +31,9 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
  */
 public final class draw {
 
+    /**
+     * you can not instantiate this class.
+     */
     public draw() {
         // Prevents instantiation of this class.
         throw new Error(
