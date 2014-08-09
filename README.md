@@ -7,7 +7,7 @@
 
 
 ###Welcome to Dwarf2D!
-Dwarf2D is a easy to use set of utilites wraped around LWJGL design to make Java 2D game development easier.
+Dwarf2D is a easy to use set of utilites wraped around LWJGL design to make Java 2D game development easier. Visit our ![website](http://95.85.60.226/ ".:Dwarf2D:.")!
 
 Dwarf2D is currently being used in game development it is still considered an experimental framework based on an experimental concept. Use in your projects at your own risk.
 
@@ -17,6 +17,6 @@ You can download the source righ toff ![GitHub](https://github.com/Blunderchips/
 ###Documentation
 The [Wiki](https://github.com/Blunderchips/Dwarf2D/wiki) contains all the information you'll need to write a 
 Dwarf2D game. You can contribute to the Wiki directly here on GitHub!
-We also provide [Javadocs](http://95.85.60.226/javadoc/) online. 
+We also provide [Javadocs](http://95.85.60.226/javadoc/) online (may be your best bet).
 
 ***
