@@ -1,4 +1,4 @@
-Dwarf2D Readme
+#Dwarf2D Readme
 =======
 
 <a href='http://95.85.60.226'>
@@ -6,8 +6,17 @@ Dwarf2D Readme
 </a>
 
 
-Getting started:
+###Welcome to Dwarf2D!
+Dwarf2D is a easy to use set of utilites wraped around LWJGL design to make Java 2D game development easier.
 
-1. Download and Install the latest version of NetBeans: https://netbeans.org/downloads/
-2. Make absolutely sure that you have the latest version of LWJGL; OpenGL; and OpenAL
-3. Unzip the Dwarf2D folder to your desktop using 7zip (http://www.7-zip.org/download.html) or WinRAR (http://www.rarlab.com/download.htm)
+Dwarf2D is currently being used in game development it is still considered an experimental framework based on an experimental concept. Use in your projects at your own risk.
+
+###Downloads
+You can download the source righ toff ![GitHub](https://github.com/Blunderchips/Dwarf2D/archive/master.zip "Download!") or if you prefer off our ![website](http://95.85.60.226/downloads.php/ "Download!").
+
+###Documentation
+The [Wiki](https://github.com/Blunderchips/Dwarf2D/wiki) contains all the information you'll need to write a 
+Dwarf2D game. You can contribute to the Wiki directly here on GitHub!
+We also provide [Javadocs](http://95.85.60.226/javadoc/) online. 
+
+***
