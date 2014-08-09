@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.util.Vector2;
 
@@ -9,9 +9,9 @@ import dwarf.util.Vector2;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Square'>wikipedia</a>
- * @see dwarf.graphics.Rectangle
- * @see dwarf.graphics.Quadrilateral
- * @see dwarf.graphics.Polygon
+ * @see dwarf.gfx.Rectangle
+ * @see dwarf.gfx.Quadrilateral
+ * @see dwarf.gfx.Polygon
  */
 public class Square extends Rectangle {
 

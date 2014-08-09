@@ -357,11 +357,19 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * all <code>GameObject</code> in the main <code>GameObject</code>
-     * <code>ArrayList</code>
+     * clears all <code>GameObject</code> in the main <code>GameObject</code>
+     * <code>ArrayList</code>.
+     *
+     * @return will return false if it fails and true if it does not
      */
     @SuppressWarnings({"Convert2Diamond", "static-access"})
-    public void clearGameObjects() {
-        this.gameObjects = new ArrayList<GameObject>();
+    public boolean clearGameObjects() {
+        try {
+            this.gameObjects = new ArrayList<GameObject>();
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import static dwarf.util.math.sin;
 import dwarf.util.Vector2;
@@ -9,7 +9,7 @@ import static java.lang.Math.tan;
 /**
  * @author Matthew 'siD' Van der Bijl
  *
- * @see dwarf.graphics.Polygon
+ * @see dwarf.gfx.Polygon
  */
 public class Shape extends Polygon {
 

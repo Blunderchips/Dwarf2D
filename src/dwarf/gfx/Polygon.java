@@ -1,10 +1,10 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.GameObject;
 import dwarf.util.Vector2;
 import java.util.Objects;
 
-import static dwarf.graphics.draw.*;
+import static dwarf.gfx.draw.*;
 
 /**
  * A basic shape with more than 3 sides.
@@ -14,7 +14,7 @@ import static dwarf.graphics.draw.*;
  * @see <a href='http://en.wikipedia.org/wiki/Polygon'>wikipedia</a>
  * @see dwarf.GameObject
  * @see dwarf.Collidable
- * @see dwarf.graphics.draw
+ * @see dwarf.gfx.draw
  */
 public class Polygon extends GameObject {
 
@@ -68,6 +68,7 @@ public class Polygon extends GameObject {
     /**
      * Constructs a new <code>Polygon</code> from a <code>Vector2</code> array
      * of parts of vertex points.
+     *
      * @param vertices the vertices of the <code>Polygon</code> to be created.
      * @param mode the mode of the
      * @param colour the colour of the <code>Polygon</code> to be created.
@@ -88,10 +89,10 @@ public class Polygon extends GameObject {
     /**
      * Callback function used to render the <code>Polygon</code> to the screen.
      *
-     * @see dwarf.graphics.draw#fillPolygon(dwarf.util.Vector2[],
-     * dwarf.util.Vector2, dwarf.graphics.Colour)
-     * @see dwarf.graphics.draw#strokePolygon(dwarf.util.Vector2[],
-     * dwarf.util.Vector2, dwarf.graphics.Colour)
+     * @see dwarf.gfx.draw#fillPolygon(dwarf.util.Vector2[], dwarf.util.Vector2,
+     * dwarf.gfx.Colour)
+     * @see dwarf.gfx.draw#strokePolygon(dwarf.util.Vector2[],
+     * dwarf.util.Vector2, dwarf.gfx.Colour)
      */
     @Override
     public void render() {

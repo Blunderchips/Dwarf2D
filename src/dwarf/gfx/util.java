@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 /**
  * utilities class for all util

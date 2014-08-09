@@ -1,11 +1,11 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.util.Vector2;
 import java.util.Objects;
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
 import static java.lang.Math.PI;
-import static dwarf.graphics.draw.SHAPE_CIRCLE;
+import static dwarf.gfx.draw.SHAPE_CIRCLE;
 
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.
@@ -13,8 +13,8 @@ import static dwarf.graphics.draw.SHAPE_CIRCLE;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Circle'>wikipedia</a>
- * @see dwarf.graphics.Shape
- * @see dwarf.graphics.Polygon
+ * @see dwarf.gfx.Shape
+ * @see dwarf.gfx.Polygon
  */
 public class Circle extends Shape {
 

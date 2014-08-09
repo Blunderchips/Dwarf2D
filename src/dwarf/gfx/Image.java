@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.Game;
 import dwarf.GameObject;

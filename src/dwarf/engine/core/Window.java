@@ -1,7 +1,7 @@
 package dwarf.engine.core;
 
 import dwarf.Game;
-import dwarf.graphics.draw;
+import dwarf.gfx.draw;
 import dwarf.util.Vector2;
 import java.nio.ByteBuffer;
 import javax.swing.JOptionPane;
@@ -9,7 +9,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import static dwarf.graphics.util.getBackgroundColour;
+import static dwarf.gfx.util.getBackgroundColour;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;

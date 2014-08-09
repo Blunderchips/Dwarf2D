@@ -1,9 +1,9 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.util.Vector2;
 import dwarf.util.math;
 import static dwarf.util.math.sqr;
-import static dwarf.graphics.draw.SHAPE_TRIANGLE;
+import static dwarf.gfx.draw.SHAPE_TRIANGLE;
 
 /**
  * A 3 sided shape where are 3 sides are equal.
@@ -12,8 +12,8 @@ import static dwarf.graphics.draw.SHAPE_TRIANGLE;
  *
  * @see <a
  * href='http://en.wikipedia.org/wiki/Equilateral_triangle'>wikipedia</a>
- * @see dwarf.graphics.Shape
- * @see dwarf.graphics.Polygon
+ * @see dwarf.gfx.Shape
+ * @see dwarf.gfx.Polygon
  */
 public class EquilateralTriangle extends Shape {
 

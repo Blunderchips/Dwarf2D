@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
+ * Provides an interface to your system and other system base utilities.
+ * 
  * @author Matthew 'siD' Van der Bijl
  */
 public final class system {
@@ -71,8 +73,7 @@ public final class system {
     }
 
     /**
-     * @return Sequence used by operating system to separate lines in text
-     * files.
+     * @return Sequence used by operating system to separate lines in text files.
      */
     public static String getLineSeparator() {
         return System.getProperty("line.separator");

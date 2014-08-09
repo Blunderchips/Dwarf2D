@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.util.Vector3;
 import java.io.Serializable;

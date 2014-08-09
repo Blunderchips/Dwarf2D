@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.lib.Slick2D.Texture;
 import dwarf.util.Vector2;

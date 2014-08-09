@@ -150,6 +150,12 @@ public abstract class GameObject extends Collidable {
         super.gotoPos(obj.getPosition(), speed);
     }
 
+    /**
+     * tries to add a <code>GameObject</code> the children ArrayList.
+     *
+     * @param child the <code>GameObject</code> to be added
+     * @return will return false if it fails and true if it does not
+     */
     public boolean addChild(GameObject child) {
         try {
             this.getChildren().add(child);
@@ -160,6 +166,12 @@ public abstract class GameObject extends Collidable {
         }
     }
 
+    /**
+     * tries to add a <code>GameObject</code> the children ArrayList.
+     *
+     * @param child the <code>GameObject</code> to be added
+     * @return will return false if it fails and true if it does not
+     */
     public boolean addChild(Object child) {
         try {
             this.getChildren().add((GameObject) child);
@@ -170,25 +182,45 @@ public abstract class GameObject extends Collidable {
         }
     }
 
-    public boolean removeChild(GameObject input) {
+    /**
+     * tries to remove a <code>GameObject</code> the children ArrayList.
+     *
+     * @param child the <code>GameObject</code> to be removed
+     * @return will return false if it fails and true if it does not
+     */
+    public boolean removeChild(GameObject child) {
         try {
-            return this.getChildren().remove(input);
+            return this.getChildren().remove(child);
         } catch (Exception ex) {
             System.err.println(ex);
             return false;
         }
     }
 
+    /**
+     * tries to remove a <code>GameObject</code> the children ArrayList.
+     *
+     * @param child the <code>GameObject</code> to be removed
+     * @return will return false if it fails and true if it does not
+     */
     @SuppressWarnings("element-type-mismatch")
-    public boolean removeChild(Object input) {
+    public boolean removeChild(Object child) {
         try {
-            return this.getChildren().remove(input);
+            return this.getChildren().remove(child);
         } catch (Exception ex) {
             System.err.println(ex);
             return false;
         }
     }
 
+    /**
+     * returns true if the <code>Collidable</code> have intersected with this
+     * <code>Collidable</code>.
+     *
+     * @param coll - the <code>Collidable</code> to be tested
+     * @return true if the <code>Collidable</code> has intersected/collided with
+     * this
+     */
     @Override
     public boolean intersects(Collidable coll) {
         if (super.getNumVertices() != 0) {
@@ -206,6 +238,22 @@ public abstract class GameObject extends Collidable {
         }
 
         return false;
+    }
+
+    /**
+     * reinitializes the children ArrayList.
+     *
+     * @return will return false if it fails and true if it does not
+     */
+    @SuppressWarnings("Convert2Diamond")
+    public boolean clearChildren() {
+        try {
+            this.children = new ArrayList<GameObject>();
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package dwarf.graphics;
+package dwarf.gfx;
 
 import dwarf.Collidable;
 import dwarf.util.Vector2;
@@ -10,37 +10,37 @@ import dwarf.util.Vector2;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Rectangle'>wikipedia</a>
- * @see dwarf.graphics.Quadrilateral
- * @see dwarf.graphics.Polygon
+ * @see dwarf.gfx.Quadrilateral
+ * @see dwarf.gfx.Polygon
  */
 public class Rectangle extends Quadrilateral {
 
     /**
      * the top of the <code>Rectangle</code>.
      *
-     * @see dwarf.graphics.Rectangle#getNorthFace()
-     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
+     * @see dwarf.gfx.Rectangle#getNorthFace()
+     * @see dwarf.gfx.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte NORTH_FACE = 0x0;
     /**
      * the right hand side of the <code>Rectangle</code>.
      *
-     * @see dwarf.graphics.Rectangle#getEastFace()
-     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
+     * @see dwarf.gfx.Rectangle#getEastFace()
+     * @see dwarf.gfx.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte EAST_FACE = 0x1;
     /**
      * the bottom of the <code>Rectangle</code>.
      *
-     * @see dwarf.graphics.Rectangle#getSouthFace()
-     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
+     * @see dwarf.gfx.Rectangle#getSouthFace()
+     * @see dwarf.gfx.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte SOUTH_FACE = 0x2;
     /**
      * the left hand side of the <code>Rectangle</code>.
      *
-     * @see dwarf.graphics.Rectangle#getWestFace()
-     * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
+     * @see dwarf.gfx.Rectangle#getWestFace()
+     * @see dwarf.gfx.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte WEST_FACE = 0x3;
 
@@ -283,7 +283,7 @@ public class Rectangle extends Quadrilateral {
     /**
      * if this is a square this will return a Square or it will throw a error.
      *
-     * @see dwarf.graphics.Square
+     * @see dwarf.gfx.Square
      * @see java.lang.Exception
      *
      * @throws java.lang.Exception throws a error if this is not a square
@@ -302,6 +302,14 @@ public class Rectangle extends Quadrilateral {
         }
     }
 
+    /**
+     * returns a the <code>Collidable</code> top/north face of this.
+     *
+     * @see dwarf.gfx.Rectangle#NORTH_FACE
+     *
+     * @return the <code>Collidable</code> on the top/north face of the
+     * <code>Rectangle</code>
+     */
     public Collidable getNorthFace() {
         Rectangle rect = new Rectangle(
                 this.getDimensions().getX(),
@@ -318,6 +326,14 @@ public class Rectangle extends Quadrilateral {
         return rect.getCollidable();
     }
 
+    /**
+     * returns a the <code>Collidable</code> right/east face of this.
+     *
+     * @see dwarf.gfx.Rectangle#EAST_FACE
+     *
+     * @return the <code>Collidable</code> on the right/east face of the
+     * <code>Rectangle</code>
+     */
     public Collidable getEastFace() {
         Rectangle rect = new Rectangle(
                 10 * this.getDimensions().getX() / 100,
@@ -334,6 +350,14 @@ public class Rectangle extends Quadrilateral {
         return rect.getCollidable();
     }
 
+    /**
+     * returns a the <code>Collidable</code> bottom/south face of this.
+     *
+     * @see dwarf.gfx.Rectangle#SOUTH_FACE
+     *
+     * @return the <code>Collidable</code> on the top/north face of the
+     * <code>Rectangle</code>
+     */
     public Collidable getSouthFace() {
         return new Rectangle(
                 this.getDimensions().getX(),
@@ -343,6 +367,14 @@ public class Rectangle extends Quadrilateral {
         ).getCollidable();
     }
 
+    /**
+     * returns a the <code>Collidable</code> left/west face of this.
+     *
+     * @see dwarf.gfx.Rectangle#WEST_FACE
+     *
+     * @return the <code>Collidable</code> on the left/west face of the
+     * <code>Rectangle</code>
+     */
     public Collidable getWestFace() {
         return new Rectangle(
                 10 * this.getDimensions().getX() / 100,

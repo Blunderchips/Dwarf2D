@@ -1,8 +1,8 @@
 package dwarf;
 
 import dwarf.engine.core.Window;
-import dwarf.graphics.Circle;
-import dwarf.graphics.Colour;
+import dwarf.gfx.Circle;
+import dwarf.gfx.Colour;
 import dwarf.util.Vector2;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -470,7 +470,7 @@ public class Collidable extends java.lang.Object {
 
     /**
      * returns true if the <code>Collidable</code> have intersected with this
-     * <code>Collidable</code>
+     * <code>Collidable</code>.
      *
      * @param coll - the <code>Collidable</code> to be tested
      * @return true if the <code>Collidable</code> has intersected/collided with
