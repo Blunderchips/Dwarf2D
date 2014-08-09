@@ -4,13 +4,6 @@
 <a href='http://95.85.60.226'>
   ![pixelDwarf](http://95.85.60.226/images/pixelDwarf.jpeg ".:Dwarf2D:.")
 </a>
- <!--
-  http://piq.codeus.net/picture/121729/honeydew_the_dwarf
-                
-  f the creator of this image has a problem with me using 
-  it please notify me and it will be removes as soon as posible
-  -siD-
--->
 
 
 ###Welcome to Dwarf2D!
