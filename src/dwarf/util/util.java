@@ -3,7 +3,7 @@ package dwarf.util;
 /**
  * general utilities
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 import dwarf.Game;
 import java.util.ArrayList;
@@ -72,10 +72,11 @@ public final class util {
     /**
      * Flip an array of pixels vertically
      *
-     * @param imgPixels
-     * @param imgw
-     * @param imgh
-     * @return int[]
+     * @param imgPixels the pixels contained within the image
+     * @param imgw the width of the image
+     * @param imgh the hieght of the image
+     * 
+     * @return int[] the pixel array fliped
      */
     public static int[] flipPixels(int[] imgPixels, int imgw, int imgh) {
         int[] flippedPixels = null;

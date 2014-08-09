@@ -8,7 +8,7 @@ import static dwarf.graphics.draw.SHAPE_TRIANGLE;
 /**
  * A 3 sided shape where are 3 sides are equal.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a
  * href='http://en.wikipedia.org/wiki/Equilateral_triangle'>wikipedia</a>

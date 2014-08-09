@@ -9,7 +9,7 @@ import static org.lwjgl.opengl.GL11.glColor4f;
 /**
  * A simple wrapper round the values required for a mutable colour class.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
  * @see dwarf.util.Vector3

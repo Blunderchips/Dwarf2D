@@ -10,7 +10,7 @@ import static dwarf.graphics.draw.SHAPE_CIRCLE;
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Circle'>wikipedia</a>
  * @see dwarf.graphics.Shape

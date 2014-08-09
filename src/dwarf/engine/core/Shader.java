@@ -24,7 +24,7 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
 /**
  * handles all shader files and shader operation. (still being tested)
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Shader'>wikipedia</a>
  * @see java.lang.Object

@@ -16,7 +16,8 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  * A set of functions and variables required to create a malleable class for
  * drawing pictures to the game window.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
+ * 
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  * @see java.lang.Object

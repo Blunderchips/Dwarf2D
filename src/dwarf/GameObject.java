@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * basic game object
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
  * @see dwarf.Collidable
@@ -135,54 +135,18 @@ public abstract class GameObject extends Collidable {
 
     /**
      * returns the <code>Collidable</code> on this <code>GameObject</code>.
-     * 
+     *
      * @return a new <code>Collidable</code> constructed from this
      */
     public Collidable getCollidable() {
-        Collidable coll = new Collidable(super.getPosition());
-        coll.setVertices(super.getVertices());
-
-        return coll;
+        return super.get();
     }
-//    @Override
-//    public boolean intersects(Collidable coll) {
-//        if (super.intersects(this)) {
-//            return true;
-//        } else {
-//            for (GameObject child : children) {
-//                if (child.intersects(coll)) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isClickedOn(int button) {
-//        if (super.isClickedOn(button)) {
-//            return true;
-//        } else {
-//            for (GameObject child : children) {
-//                if (child.isClickedOn(button)) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-//    
-//    @Override
-//    public boolean isClickedOn() {
-//        if (super.isClickedOn()) {
-//            return true;
-//        } else {
-//            for (GameObject child : children) {
-//                if (child.isClickedOn()) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
+
+    public void gotoPos(GameObject obj) {
+        super.gotoPos(obj.getPosition(), 1);
+    }
+
+    public void gotoPos(GameObject obj, float speed) {
+        super.gotoPos(obj.getPosition(), speed);
+    }
 }

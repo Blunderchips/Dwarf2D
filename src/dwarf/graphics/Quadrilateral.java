@@ -5,7 +5,7 @@ import dwarf.util.Vector2;
 /**
  * A basic 4 sided shape.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Quadrilateral'>wikipedia</a>
  * @see dwarf.graphics.Polygon

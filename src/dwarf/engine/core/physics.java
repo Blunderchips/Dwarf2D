@@ -1,7 +1,7 @@
 package dwarf.engine.core;
 
 /**
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class physics {
 

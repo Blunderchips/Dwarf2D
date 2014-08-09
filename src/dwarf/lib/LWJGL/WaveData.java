@@ -91,6 +91,13 @@ public class WaveData extends java.lang.Object {
         this.init(data, format, samplerate);
     }
 
+    public WaveData(WaveData waveData) {
+        super();
+        this.init(
+                waveData.getData(), waveData.getFormat(), waveData.getSamplerate()
+        );
+    }
+
     private void init(ByteBuffer data, int format, int samplerate) {
         this.data = data;
         this.format = format;
@@ -352,4 +359,13 @@ public class WaveData extends java.lang.Object {
                 + "}";
     }
 
+    public void set(ByteBuffer data, int format, int samplerate) {
+        this.init(data, format, samplerate);
+    }
+
+    public void set(WaveData waveData) {
+        this.init(
+                waveData.getData(), waveData.getFormat(), waveData.getSamplerate()
+        );
+    }
 }

@@ -7,7 +7,7 @@ import dwarf.util.Vector2;
  * A 4 sided shape where opposite sides are equal. (a parallelogram with a right
  * angle)
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Rectangle'>wikipedia</a>
  * @see dwarf.graphics.Quadrilateral
@@ -18,24 +18,28 @@ public class Rectangle extends Quadrilateral {
     /**
      * the top of the <code>Rectangle</code>.
      *
+     * @see dwarf.graphics.Rectangle#getNorthFace()
      * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte NORTH_FACE = 0x0;
     /**
      * the right hand side of the <code>Rectangle</code>.
      *
+     * @see dwarf.graphics.Rectangle#getEastFace()
      * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte EAST_FACE = 0x1;
     /**
      * the bottom of the <code>Rectangle</code>.
      *
+     * @see dwarf.graphics.Rectangle#getSouthFace()
      * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte SOUTH_FACE = 0x2;
     /**
      * the left hand side of the <code>Rectangle</code>.
      *
+     * @see dwarf.graphics.Rectangle#getWestFace()
      * @see dwarf.graphics.Rectangle#intersects(int, dwarf.Collidable)
      */
     public static final byte WEST_FACE = 0x3;
@@ -280,11 +284,12 @@ public class Rectangle extends Quadrilateral {
      * if this is a square this will return a Square or it will throw a error.
      *
      * @see dwarf.graphics.Square
+     * @see java.lang.Exception
      *
-     * @throws Error throws a error if this is not a square
+     * @throws java.lang.Exception throws a error if this is not a square
      * @return this as a new Square if possible otherwise will throw a error
      */
-    public Square toSquare() {
+    public Square toSquare() throws Exception {
         if (isSquare()) {
             return new Square(
                     this.getDimensions().getX(),
@@ -293,7 +298,7 @@ public class Rectangle extends Quadrilateral {
                     super.getColour()
             );
         } else {
-            throw new Error("this is not a square. (length != breadth)");
+            throw new Exception("this is not a square. (length != breadth)");
         }
     }
 

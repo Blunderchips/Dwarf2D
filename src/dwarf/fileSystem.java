@@ -12,7 +12,7 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 /**
  * Provides an interface to the user's file system.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class fileSystem {
 

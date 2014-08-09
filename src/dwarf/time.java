@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Provides an interface to your system's clock and other time base utilities.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class time {
 

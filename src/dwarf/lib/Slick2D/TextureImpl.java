@@ -124,17 +124,11 @@ public class TextureImpl implements Texture {
         this.cacheName = cacheName;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#hasAlpha()
-     */
     @Override
     public boolean hasAlpha() {
         return alpha;
     }
 
-    /**
-     * @see org.newdawn.slick.opengl.Texture#getTextureRef()
-     */
     @Override
     public String getTextureRef() {
         return ref;

@@ -3,7 +3,8 @@ package dwarf.util;
 /**
  * Utility and fast math functions.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
+ * 
  * @see java.lang.Math
  */
 public final class math {

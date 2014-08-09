@@ -85,9 +85,6 @@ public class TGAImageData implements LoadableImageData {
         return texHeight;
     }
 
-    /**
-     * @throws java.io.IOException
-     */
     @Override
     public ByteBuffer loadImage(InputStream fis, boolean flipped, boolean forceAlpha, int[] transparent) throws IOException {
         if (transparent != null) {

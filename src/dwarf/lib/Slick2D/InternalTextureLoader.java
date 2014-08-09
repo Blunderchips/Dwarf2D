@@ -397,6 +397,7 @@ public class InternalTextureLoader {
      *
      * @param width The width of the new texture
      * @param height The height of the new texture
+     * @param filter the filter (final)
      * @return The created empty texture
      * @throws IOException Indicates a failure to create the texture on the
      * graphics hardware

@@ -21,7 +21,7 @@ import static org.lwjgl.opengl.GL11.glTranslated;
 /**
  * absolutely everything Window.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class Window {
 
@@ -37,6 +37,8 @@ public final class Window {
 
     private static java.awt.Canvas parent = null;
 
+    private static Camera activCamera = Camera.mainCamera;
+
     protected static void update() {
         glClear(GL_COLOR_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
@@ -44,7 +46,7 @@ public final class Window {
     }
 
     /**
-     * Initialise the GL display
+     * Initialise the GL display.
      *
      * @param width The width of the display
      * @param height The height of the display
@@ -92,8 +94,8 @@ public final class Window {
      */
     protected static void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glTranslated(camera.getPosition().getX(), camera.getPosition().getY(), 0);
-        draw.fillRect(getWidth(), getHeight(), camera.getPosition(), getBackgroundColour());
+        glTranslated(Window.getActiveCamera().getPosition().getX(), Window.getActiveCamera().getPosition().getY(), 0);
+        draw.fillRect(getWidth(), getHeight(), Window.getActiveCamera().getPosition(), getBackgroundColour());
     }
 
     /**
@@ -279,4 +281,11 @@ public final class Window {
         return new Vector2(Display.getWidth(), Display.getHeight());
     }
 
+    public static Camera getActiveCamera() {
+        return Window.activCamera;
+    }
+
+    public static void setActiveCamera(Camera activeCamera) {
+        Window.activCamera = activeCamera;
+    }
 }

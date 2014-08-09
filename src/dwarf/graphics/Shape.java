@@ -7,7 +7,7 @@ import static java.lang.Math.abs;
 import static java.lang.Math.tan;
 
 /**
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see dwarf.graphics.Polygon
  */

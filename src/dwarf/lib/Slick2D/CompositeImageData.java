@@ -38,17 +38,14 @@ public class CompositeImageData implements LoadableImageData {
         return loadImage(fis, false, null);
     }
 
-    /**
-     * @throws java.io.IOException
-     */
     @Override
     public ByteBuffer loadImage(InputStream fis, boolean flipped, int[] transparent) throws IOException {
         return loadImage(fis, flipped, false, transparent);
     }
 
     /**
-     * @param is
-     * @throws java.io.IOException
+     * @param is the inputStream to be inputed
+     * @throws java.io.IOException throws if a IOException is caught
      */
     @Override
     public ByteBuffer loadImage(InputStream is, boolean flipped, boolean forceAlpha, int[] transparent) throws IOException {

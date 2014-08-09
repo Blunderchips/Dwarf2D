@@ -3,7 +3,7 @@ package dwarf.graphics;
 /**
  * utilities class for all util
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class util {
 

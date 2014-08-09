@@ -6,7 +6,7 @@ import dwarf.util.Vector2;
  * A 4 sided shape where all 4 sides are equal and both diagonals bisect each
  * other. (a rhombus with a right angle)
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Square'>wikipedia</a>
  * @see dwarf.graphics.Rectangle

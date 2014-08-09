@@ -12,7 +12,7 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 /**
  * Handle mouse and keyboard input from the user.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  * 
  * @see org.lwjgl.input.Keyboard
  * @see org.lwjgl.input.Mouse

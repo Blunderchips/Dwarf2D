@@ -3,7 +3,7 @@ package dwarf.util;
 /**
  * handles all random numbers and events.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Math#random()
  */

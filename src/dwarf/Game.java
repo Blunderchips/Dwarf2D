@@ -13,7 +13,7 @@ import static java.lang.Math.abs;
  * <code>Dwarf2D Engine</code>. Create and runs the main game window and acts as
  * a buffer between the user and the main <code>Engine</code> file.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see dwarf.engine.core.Engine
  * @see dwarf.engine.core.Window

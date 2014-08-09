@@ -9,7 +9,7 @@ import static dwarf.graphics.draw.*;
 /**
  * A basic shape with more than 3 sides.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Polygon'>wikipedia</a>
  * @see dwarf.GameObject
@@ -68,6 +68,9 @@ public class Polygon extends GameObject {
     /**
      * Constructs a new <code>Polygon</code> from a <code>Vector2</code> array
      * of parts of vertex points.
+     * @param vertices the vertices of the <code>Polygon</code> to be created.
+     * @param mode the mode of the
+     * @param colour the colour of the <code>Polygon</code> to be created.
      */
     protected final void init(Vector2[] vertices, String mode, Colour colour) {
         this.setColour(colour);

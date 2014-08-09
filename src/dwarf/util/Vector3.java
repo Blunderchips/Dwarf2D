@@ -6,7 +6,7 @@ import static java.lang.Math.pow;
 /**
  * A 3-dimensional, single-precision, double-point vector.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
  * @see java.io.Serializable

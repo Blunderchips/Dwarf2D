@@ -56,7 +56,7 @@ public class DeferredTexture extends TextureImpl {
     }
 
     /**
-     * @throws java.io.IOException
+     * @throws java.io.IOException throws an IOException if failed
      */
     public void load() throws IOException {
         boolean before = InternalTextureLoader.get().isDeferredLoading();
@@ -194,7 +194,7 @@ public class DeferredTexture extends TextureImpl {
     }
 
     /**
-     * @param textureFilter
+     * @param textureFilter the texture filter to be inputed
      */
     @Override
     public void setTextureFilter(int textureFilter) {

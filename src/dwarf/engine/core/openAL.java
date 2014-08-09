@@ -25,7 +25,7 @@ import static org.lwjgl.openal.AL10.alGetString;
  * @see <a href='http://en.wikipedia.org/wiki/OpenAL'>wikipedia</a>
  * @see <a href='http://www.openal.org/'>openal.org</a>
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class openAL {
 

@@ -99,25 +99,16 @@ public class ImageIOImageData implements LoadableImageData {
         return width;
     }
 
-    /**
-     * @throws java.io.IOException
-     */
     @Override
     public ByteBuffer loadImage(InputStream fis) throws IOException {
         return loadImage(fis, true, null);
     }
 
-    /**
-     * @throws java.io.IOException
-     */
     @Override
     public ByteBuffer loadImage(InputStream fis, boolean flipped, int[] transparent) throws IOException {
         return loadImage(fis, flipped, false, transparent);
     }
 
-    /**
-     * @throws java.io.IOException
-     */
     @Override
     public ByteBuffer loadImage(InputStream fis, boolean flipped, boolean forceAlpha, int[] transparent) throws IOException {
         if (transparent != null) {

@@ -6,8 +6,8 @@ import static java.lang.Math.pow;
 /**
  * A 2-dimensional, single-precision, double-point vector.
  *
- * @author sid_th3_sl0th
- * 
+ * @author Matthew 'siD' Van der Bijl
+ *
  * @see java.lang.Object
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -366,7 +366,8 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      *
      * @return a clone of this instance.
      * @exception OutOfMemoryError if there is not enough memory.
-     * @throws java.lang.CloneNotSupportedException
+     * @throws java.lang.CloneNotSupportedException thrown if the Vector2 can
+     * not be cloned
      * @see java.lang.Cloneable
      */
     @Override
@@ -496,7 +497,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * facing.
      *
      * <p>
-     * The direction can be set using the {@link #setRotation(int)} method.
+     * The direction can be set using the {@link #setRotation(double)} method.
      *
      * @param distance The distance to move (in pixels); a negative value will
      * move backwards

@@ -21,7 +21,7 @@ import static org.lwjgl.openal.AL10.alSourcei;
  * play sounds using <a href='http://www.openal.org/'>OpenAL</a> (Open Audio
  * Library)
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
  * @see dwarf.engine.core.openAL

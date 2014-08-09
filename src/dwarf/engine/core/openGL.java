@@ -39,7 +39,7 @@ import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
  * @see <a href='http://en.wikipedia.org/wiki/OpenGL'>wikipedia</a>
  * @see <a href='http://www.opengl.org/'>opengl.org</a>
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  */
 public final class openGL {
 

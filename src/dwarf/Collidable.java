@@ -1,7 +1,7 @@
 package dwarf;
 
 import dwarf.engine.core.Window;
-import dwarf.engine.core.camera;
+import dwarf.engine.core.Camera;
 import dwarf.graphics.Circle;
 import dwarf.graphics.Colour;
 import dwarf.util.Vector2;
@@ -21,8 +21,8 @@ import static dwarf.Input.getMousePosition;
  * than 32767 vertices.
  * </p>
  *
- * @author sid_th3_sl0th
- * 
+ * @author Matthew 'siD' Van der Bijl
+ *
  * @see java.lang.Object
  */
 public class Collidable extends java.lang.Object {
@@ -572,22 +572,48 @@ public class Collidable extends java.lang.Object {
      * tests if the <code>Collidable</code> in the current view screen.
      *
      * @return true if the <code>Collidable</code> position bigger than or equal
-     * to the camera's position at all four sides.
+     * to the Camera's position at all four sides.
      */
     public boolean atEdge() {
-        if (this.getPosition().getX() > (Window.getWidth() + camera.getPosition().getX())) {
+        if (this.getPosition().getX() > (Window.getWidth() + Window.getActiveCamera().getPosition().getX())) {
             return true;
         }
-        if (this.getPosition().getX() < (0 + camera.getPosition().getX())) {
+        if (this.getPosition().getX() < (0 + Window.getActiveCamera().getPosition().getX())) {
             return true;
         }
-        if (this.getPosition().getY() > (Window.getHeight() + camera.getPosition().getY())) {
+        if (this.getPosition().getY() > (Window.getHeight() + Window.getActiveCamera().getPosition().getY())) {
             return true;
         }
-        if (this.getPosition().getY() < (0 + camera.getPosition().getY())) {
+        if (this.getPosition().getY() < (0 + Window.getActiveCamera().getPosition().getY())) {
             return true;
         }
         return false;
     }
 
+    public void gotoPos(Vector2 destination, float speed) {
+        if (this.getPosition().getX() > destination.getX()) {
+            this.getPosition().changeX(-speed);
+        }
+        if (this.getPosition().getX() < destination.getX()) {
+            this.getPosition().changeX(speed);
+        }
+        if (this.getPosition().getY() < destination.getY()) {
+            this.getPosition().changeY(speed);
+        }
+        if (this.getPosition().getY() > destination.getY()) {
+            this.getPosition().changeY(-speed);
+        }
+    }
+
+    public void gotoPos(Vector2 destination) {
+        this.gotoPos(destination, 1);
+    }
+
+    public void gotoPos(float xPos, float yPos) {
+        this.gotoPos(new Vector2(xPos, yPos), 1);
+    }
+
+    public void gotoPos(float xPos, float yPos, float speed) {
+        this.gotoPos(new Vector2(xPos, yPos), speed);
+    }
 }

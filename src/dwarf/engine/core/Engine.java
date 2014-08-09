@@ -7,7 +7,7 @@ import dwarf.time;
  * the main engine file for the <a href='http://95.85.60.226/'>Dwarf2D</a>
  * Engine
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://95.85.60.226/'>Dwarf2D</a>
  * @see java.lang.Object
