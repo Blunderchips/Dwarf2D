@@ -16,9 +16,9 @@ public final class util {
     /**
      * you can not instantiate this class.
      */
-    public util() {
+    public util() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
-        throw new Error(
+        throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
 

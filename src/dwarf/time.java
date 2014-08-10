@@ -14,9 +14,9 @@ public final class time {
     /**
      * you can not instantiate this class.
      */
-    public time() {
+    public time() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
-        throw new Error(
+        throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
 

@@ -16,6 +16,11 @@ public abstract class GameObject extends Collidable {
 
     private ArrayList<GameObject> children;
 
+    public GameObject() {
+        super();
+        this.init();
+    }
+
     public GameObject(Vector2 position) {
         super(position);
         this.init();

@@ -34,9 +34,9 @@ public final class draw {
     /**
      * you can not instantiate this class.
      */
-    public draw() {
+    public draw() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
-        throw new Error(
+        throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
 

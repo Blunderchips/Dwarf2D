@@ -19,9 +19,9 @@ public final class fileSystem {
     /**
      * you can not instantiate this class.
      */
-    public fileSystem() {
+    public fileSystem() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
-        throw new Error(
+        throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
 

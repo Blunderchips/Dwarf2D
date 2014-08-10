@@ -46,9 +46,9 @@ public final class openGL {
     /**
      * you can not instantiate this class.
      */
-    public openGL() {
+    public openGL() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
-        throw new Error(
+        throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
 

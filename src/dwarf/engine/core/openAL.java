@@ -32,7 +32,7 @@ public final class openAL {
     /**
      * you can not instantiate this class.
      */
-    public openAL() {
+    public openAL() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
         throw new Error(
                 "you can not instantiate this class.");

@@ -8,9 +8,9 @@ public final class physics {
     /**
      * you can not instantiate this class.
      */
-    public physics() {
+    public physics() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
-        throw new Error(
+        throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
 
