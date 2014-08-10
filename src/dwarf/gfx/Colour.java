@@ -26,7 +26,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     public static final Colour grey = new Colour(0.5f, 0.5f, 0.5f, 0xff);
     public static final Colour aqua = new Colour(0x0, 0xff, 0xff, 0xff);
     public static final Colour darkGrey = new Colour(0.3f, 0.3f, 0.3f, 0xff);
-    public final static Colour magenta = new Colour(0xff, 0x0, 0xff, 0xff);
+    public static final Colour magenta = new Colour(0xff, 0x0, 0xff, 0xff);
 
     private double alpha = 0x1;
 

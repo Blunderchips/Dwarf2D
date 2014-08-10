@@ -19,29 +19,29 @@ public final class math {
     }
 
     /**
-     * The value PI as a float. (180 degrees)
+     * The value PI as a double. (180 degrees)
      */
-    public static final float PI = (float) Math.PI;
+    public static final double PI = Math.PI;
     /**
-     * The value 2PI as a float. (360 degrees)
+     * The value 2PI as a double. (360 degrees)
      */
-    public static final float TWO_PI = 2.0f * PI;
+    public static final double TWO_PI = 2.0f * PI;
     /**
-     * The value PI/2 as a float. (90 degrees)
+     * The value PI/2 as a double. (90 degrees)
      */
-    public static final float HALF_PI = 0.5f * PI;
+    public static final double HALF_PI = 0.5f * PI;
     /**
-     * The value PI/4 as a float. (45 degrees)
+     * The value PI/4 as a double. (45 degrees)
      */
-    public static final float QUARTER_PI = 0.25f * PI;
+    public static final double QUARTER_PI = 0.25f * PI;
     /**
-     * The value 1/PI as a float.
+     * The value 1/PI as a double.
      */
-    public static final float INV_PI = 1.0f / PI;
+    public static final double INV_PI = 1.0f / PI;
     /**
-     * The value 1/(2PI) as a float.
+     * The value 1/(2PI) as a double.
      */
-    public static final float INV_TWO_PI = 1.0f / TWO_PI;
+    public static final double INV_TWO_PI = 1.0f / TWO_PI;
 
     public static int pow(int base, int power) {
         if (power < 0) {
@@ -561,7 +561,7 @@ public final class math {
      * @return The angle, in radians.
      * @see java.lang.Math#acos(double)
      */
-    public static float acos(float fValue) {
+    public static double acos(float fValue) {
         if (-1.0f < fValue) {
             if (fValue < 1.0f) {
                 return (float) Math.acos(fValue);
@@ -583,7 +583,7 @@ public final class math {
      * @return the angle in radians.
      * @see java.lang.Math#asin(double)
      */
-    public static float asin(float fValue) {
+    public static double asin(float fValue) {
         if (-1.0f < fValue) {
             if (fValue < 1.0f) {
                 return (float) Math.asin(fValue);

@@ -1,7 +1,7 @@
 package dwarf.gfx;
 
 /**
- * utilities class for all util
+ * utilities class for all graphical operations.
  *
  * @author Matthew 'siD' Van der Bijl
  */
