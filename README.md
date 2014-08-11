@@ -19,4 +19,9 @@ The [Wiki](https://github.com/Blunderchips/Dwarf2D/wiki) contains all the inform
 Dwarf2D game. You can contribute to the Wiki directly here on GitHub!
 We also provide [Javadocs](http://95.85.60.226/javadoc/) online (may be your best bet).
 
+###Dependencies
+* LWJGL 2.9.1 or newer - you can be downloaded from their <a href='http://lwjgl.org/download.php' title='lwjgl.org'>webiste</a>.
+* Java (the latest would be best) - can also be downloaded from their <a href='https://www.java.com/' title='java.com'>webiste</a>.
+
+
 ***
