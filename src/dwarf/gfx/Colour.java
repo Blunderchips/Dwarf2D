@@ -209,9 +209,9 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
      */
     public Colour addToCopy(Colour c) {
         Colour copy = new Colour(this.getX(), this.getY(), this.getZ(), this.getAlpha());
-        copy.changeX(c.getX());
-        copy.changeY(c.getY());
-        copy.changeZ(c.getZ());
+        copy.translateX(c.getX());
+        copy.trannslateY(c.getY());
+        copy.translateZ(c.getZ());
         copy.alpha += c.getAlpha();
 
         return copy;

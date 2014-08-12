@@ -55,15 +55,19 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     private double y;
 
     /**
+     * returns the gradient between two Vectors2.
+     *
      * @param vectorA - the first Vector2
      * @param vectorB - the second Vector2
-     * @return returns the gradient between two Vector2s
+     * @return returns the gradient between two Vectors
      */
     public static double gradient(Vector2 vectorA, Vector2 vectorB) {
         return (vectorA.getY() - vectorB.getY()) / (vectorA.getX() - vectorB.getX());
     }
 
     /**
+     * returns the distance between two Vectors2.
+     *
      * @param vectorA - the first Vector2
      * @param vectorB - the second Vector2
      * @return returns the distance between two Vectors
@@ -73,6 +77,8 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     }
 
     /**
+     * returns the square distance between two Vectors2.
+     *
      * @param vectorA - the first Vector
      * @param vectorB - the second Vector
      * @return returns the square distance between two Vectors
@@ -83,48 +89,62 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
 
     public Vector2() {
         super();
-        this.init(0, 0, 0);
+
+        this.x = 0;
+        this.y = 0;
+        setRotation(0);
     }
 
     public Vector2(double x, double y) {
         super();
-        this.init(x, y, 0);
+
+        this.x = x;
+        this.y = y;
+        setRotation(0);
     }
 
     public Vector2(float x, float y) {
         super();
-        this.init(x, y, 0);
+
+        this.x = x;
+        this.y = y;
+        setRotation(0);
     }
 
     public Vector2(double x, double y, double rotation) {
         super();
-        this.init(x, y, rotation);
+
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
     }
 
     public Vector2(float x, float y, double rotation) {
         super();
-        this.init(x, y, rotation);
+
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
     }
 
-    public Vector2(Vector2 vector) {
+    public Vector2(Vector2 v) {
         super();
-        this.init(vector.getX(), vector.getY(), vector.getRotation());
+
+        this.x = v.getX();
+        this.y = v.getY();
+        setRotation(v.getRotation());
     }
 
     public Vector2(double[] points) {
         super();
 
-        if (points.length != 2) {
-            throw new IllegalArgumentException("the double array inputed does not have 2 points");
+        if (points.length == 2) {
+            this.x = points[0];
+            this.y = points[1];
+            setRotation(0);
         } else {
-            this.init(points[0], points[1], 0);
+            throw new IllegalArgumentException("the double array inputed does not have 2 points");
         }
-    }
-
-    private void init(double x, double y, double rotation) {
-        this.setX(x);
-        this.setY(y);
-        this.setRotation(rotation);
     }
 
     public Vector2 midpoint(Vector2 vectorA, Vector2 vectorB) {
@@ -140,65 +160,79 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
     }
 
     public double dot(Vector2 input) {
-        return (this.getX() * input.getX()) + (this.getY() * input.getX());
+        return this.getX() * input.getX()
+                + this.getY() * input.getX();
     }
 
     public Vector2 normalized() {
-        double length = length();
-
-        return new Vector2(this.getX() / length, this.getY() / length);
+        return new Vector2(
+                this.getX() / length(),
+                this.getY() / length()
+        );
     }
 
     public double cross(Vector2 input) {
-        return (this.getX() * input.getX()) - (this.getY() * input.getY());
-    }
-
-    public Vector2 lerp(Vector2 dest, double lerpFactor) {
-        return dest.sub(this).mul(lerpFactor).add(this);
+        return this.getX() * input.getX()
+                - this.getY() * input.getY();
     }
 
     public Vector2 add(Vector2 input) {
-        return new Vector2(this.getX() + input.getX(), this.getY() + input.getY());
+        return new Vector2(
+                this.getX() + input.getX(),
+                this.getY() + input.getY()
+        );
     }
 
-    public Vector2 add(double input) {
-        return new Vector2(this.getX() + input, this.getY() + input);
+    public void add(double v) {
+        this.x += v;
+        this.y += v;
     }
 
-    public Vector2 sub(Vector2 input) {
-        return new Vector2(this.getX() - input.getX(), this.getY() - input.getY());
+    public void sub(Vector2 v) {
+        this.x -= v.getX();
+        this.y -= v.getY();
     }
 
-    public Vector2 sub(double input) {
-        return new Vector2(this.getX() - input, this.getY() - input);
+    public void sub(double v) {
+        this.x -= v;
+        this.y -= v;
     }
 
-    public Vector2 mul(Vector2 input) {
-        return new Vector2(this.getX() * input.getX(), getY() * input.getY());
+    public void mul(Vector2 v) {
+        this.x *= v.getX();
+        this.y *= v.getY();
     }
 
-    public Vector2 mul(double input) {
-        return new Vector2(this.getX() * input, this.getY() * input);
+    public void mul(double v) {
+        this.x *= v;
+        this.y *= v;
     }
 
-    public Vector2 div(Vector2 input) {
-        return new Vector2(this.getX() / input.getX(), this.getY() / input.getY());
+    public void div(Vector2 v) {
+        this.x += v.getX();
+        this.y += v.getY();
     }
 
-    public Vector2 div(double input) {
-        return new Vector2(this.getX() / input, this.getY() / input);
+    public void div(double v) {
+        this.x /= v;
+        this.y /= v;
     }
 
-    public Vector2 mod(Vector2 input) {
-        return new Vector2(this.getX() % input.getX(), this.getY() % input.getY());
+    public void mod(Vector2 v) {
+        this.x %= v.getX();
+        this.y %= v.getY();
     }
 
-    public Vector2 mod(double input) {
-        return new Vector2(this.getX() % input, this.getY() % input);
+    public void mod(double v) {
+        this.x %= v;
+        this.y %= v;
     }
 
     public Vector2 abs() {
-        return new Vector2(Math.abs(this.getX()), Math.abs(this.getY()));
+        return new Vector2(
+                Math.abs(this.getX()),
+                Math.abs(this.getY())
+        );
     }
 
     public double absX() {
@@ -211,19 +245,35 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
 
     @Override
     public String toString() {
-        return "Vector2d[" + this.getX() + ", " + this.getY() + ", " + this.getRotation() + "]";
+        return "Vector2d[" + getX() + ", " + getY() + "]";
     }
 
     public void set(double x, double y, double rotation) {
-        this.init(x, y, rotation);
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
     }
 
     public void set(float x, float y, double rotation) {
-        this.init(x, y, rotation);
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
     }
 
-    public void set(Vector2 input) {
-        this.init(input.getX(), input.getY(), input.getRotation());
+    public void set(Vector2 v) {
+        this.x = v.getX();
+        this.y = v.getY();
+        setRotation(v.getRotation());
+    }
+
+    public void set(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void set(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
     public Vector2 get() {
@@ -246,22 +296,22 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
         this.y = y;
     }
 
-    public void change(Vector2 input) {
-        this.x += input.getX();
-        this.y += input.getY();
+    public void translate(Vector2 delta) {
+        this.x += delta.getX();
+        this.y += delta.getY();
     }
 
-    public void change(double input) {
-        this.x += input;
-        this.y += input;
+    public void change(double delta) {
+        this.x += delta;
+        this.y += delta;
     }
 
-    public void changeX(double input) {
-        this.x += input;
+    public void translateX(double deltaX) {
+        this.x += deltaX;
     }
 
-    public void changeY(double input) {
-        this.y += input;
+    public void translateY(double deltaY) {
+        this.y += deltaY;
     }
 
     /**
@@ -436,7 +486,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * @param rotation The rotation in degrees.
      */
     @SuppressWarnings({"AssignmentToMethodParameter", "AssignmentReplaceableWithOperatorAssignment"})
-    public void setRotation(double rotation) {
+    public final void setRotation(double rotation) {
         // First normalize.
         if (rotation >= 360) {
             // Optimize the usual case: rotation has adjusted to a value greater than
@@ -467,7 +517,7 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * @param xPos The x-coordinate of the cell to turn towards
      * @param yPos The y-coordinate of the cell to turn towards
      */
-    public void turnTowards(float xPos, float yPos) {
+    public void turnTowards(double xPos, double yPos) {
         double a = Math.atan2(yPos - this.getY(), xPos - this.getX());
         setRotation(Math.toDegrees(a));
     }
@@ -503,13 +553,13 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * move backwards
      */
     public void move(double distance) {
-        double radians = Math.toRadians(getRotation());
+        double deltaX = Math.round(Math.cos(Math.toRadians(getRotation())) * distance);
+        double deltaY = Math.round(Math.sin(Math.toRadians(getRotation())) * distance);
 
-        // We round to the nearest integer, to allow moving one unit at an angle
-        // to actually move.
-        double deltaX = Math.round(Math.cos(radians) * distance);
-        double deltaY = Math.round(Math.sin(radians) * distance);
-        this.set(this.getX() + deltaX, this.getY() + deltaY, this.getRotation());
+        this.set(
+                this.getX() + deltaX,
+                this.getY() + deltaY
+        );
     }
 
     /**

@@ -9,6 +9,7 @@ import dwarf.util.Vector2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+
 import static dwarf.util.Vector2.ZERO;
 
 /**
@@ -25,7 +26,7 @@ import static dwarf.util.Vector2.ZERO;
  *
  * @see java.lang.Object
  */
-public class Collidable extends java.lang.Object {
+public abstract class Collidable extends java.lang.Object {
 
     private ArrayList<Vector2> vertices;
     private Vector2 position;
@@ -262,9 +263,9 @@ public class Collidable extends java.lang.Object {
      * @param deltaY the amount to translate along the Y axis. (double)
      */
     public void translate(double deltaX, double deltaY) {
-        this.getPosition().change(new Vector2(deltaX, deltaY));
+        this.getPosition().translate(new Vector2(deltaX, deltaY));
         for (Vector2 point : getVertices()) {
-            point.change(new Vector2(deltaX, deltaY));
+            point.translate(new Vector2(deltaX, deltaY));
         }
     }
 
@@ -275,9 +276,9 @@ public class Collidable extends java.lang.Object {
      * @param delta the amount to translate along the axis.
      */
     public void translate(Vector2 delta) {
-        this.getPosition().change(new Vector2(delta.getX(), delta.getY()));
+        this.getPosition().translate(new Vector2(delta.getX(), delta.getY()));
         for (Vector2 point : getVertices()) {
-            point.change(new Vector2(delta.getX(), delta.getY()));
+            point.translate(new Vector2(delta.getX(), delta.getY()));
         }
     }
 
@@ -288,9 +289,9 @@ public class Collidable extends java.lang.Object {
      * @param deltaX the amount to translate along the X axis. (double)
      */
     public void translateX(double deltaX) {
-        this.getPosition().changeX(deltaX);
+        this.getPosition().translateX(deltaX);
         for (Vector2 point : getVertices()) {
-            point.changeX(deltaX);
+            point.translateX(deltaX);
         }
     }
 
@@ -301,9 +302,9 @@ public class Collidable extends java.lang.Object {
      * @param deltaY the amount to translate along the Y axis. (double)
      */
     public void translateY(double deltaY) {
-        this.getPosition().changeY(deltaY);
+        this.getPosition().translateY(deltaY);
         for (Vector2 point : getVertices()) {
-            point.changeY(deltaY);
+            point.translateY(deltaY);
         }
     }
 
@@ -591,16 +592,16 @@ public class Collidable extends java.lang.Object {
 
     public void gotoPos(Vector2 destination, float speed) {
         if (this.getPosition().getX() > destination.getX()) {
-            this.getPosition().changeX(-speed);
+            this.getPosition().translateX(-speed);
         }
         if (this.getPosition().getX() < destination.getX()) {
-            this.getPosition().changeX(speed);
+            this.getPosition().translateX(speed);
         }
         if (this.getPosition().getY() < destination.getY()) {
-            this.getPosition().changeY(speed);
+            this.getPosition().translateY(speed);
         }
         if (this.getPosition().getY() > destination.getY()) {
-            this.getPosition().changeY(-speed);
+            this.getPosition().translateY(-speed);
         }
     }
 

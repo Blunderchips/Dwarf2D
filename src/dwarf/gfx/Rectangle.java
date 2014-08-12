@@ -160,15 +160,11 @@ public class Rectangle extends Quadrilateral {
     }
 
     public void scale(double delta) {
-        this.setDimensions(
-                this.getDimensions().mul(delta)
-        );
+        this.getDimensions().mul(delta);
     }
 
     public void scale(Vector2 delta) {
-        this.setDimensions(
-                this.getDimensions().mul(delta)
-        );
+        this.getDimensions().mul(delta);
     }
 
     /**

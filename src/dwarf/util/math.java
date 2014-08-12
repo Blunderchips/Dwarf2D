@@ -155,7 +155,7 @@ public final class math {
      * @return The log of {@code arg} in the specified {@code base}.
      */
     public static double log(double base, double arg) {
-        // Use natural logarithms and change the base.
+        // Use natural logarithms and translate the base.
         return Math.log(arg) / Math.log(base);
     }
 

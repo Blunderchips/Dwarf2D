@@ -49,16 +49,16 @@ public class Camera extends java.lang.Object {
     }
 
     public void translate(float deltaX, float deltaY) {
-        this.position.changeX(deltaX);
-        this.position.changeX(deltaY);
+        this.position.translateX(deltaX);
+        this.position.translateX(deltaY);
     }
 
     public void translateX(float deltaX) {
-        this.position.changeX(deltaX);
+        this.position.translateX(deltaX);
     }
 
     public void translateY(float deltaY) {
-        this.position.changeY(deltaY);
+        this.position.translateY(deltaY);
     }
 
     @Override
@@ -92,16 +92,16 @@ public class Camera extends java.lang.Object {
 
     public void gotoPos(Vector2 destination, float speed) {
         if (this.getPosition().getX() > destination.getX()) {
-            this.getPosition().changeX(-speed);
+            this.getPosition().translateX(-speed);
         }
         if (this.getPosition().getX() < destination.getX()) {
-            this.getPosition().changeX(speed);
+            this.getPosition().translateX(speed);
         }
         if (this.getPosition().getY() < destination.getY()) {
-            this.getPosition().changeY(speed);
+            this.getPosition().translateY(speed);
         }
         if (this.getPosition().getY() > destination.getY()) {
-            this.getPosition().changeY(-speed);
+            this.getPosition().translateY(-speed);
         }
     }
 

@@ -58,8 +58,10 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     private double z;
 
     /**
-     * @param vectorA - the first Vector3
-     * @param vectorB - the second Vector3
+     * returns the distance between two Vectors3.
+     *
+     * @param vectorA the first Vector3
+     * @param vectorB the second Vector3
      * @return returns the distance between two Vectors
      */
     public static double distance(Vector3 vectorA, Vector3 vectorB) {
@@ -67,8 +69,10 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     /**
-     * @param vectorA - the first Vector
-     * @param vectorB - the second Vector
+     * the square distance between two Vectors3.
+     *
+     * @param vectorA the first Vector
+     * @param vectorB the second Vector
      * @return returns the square distance between two Vectors
      */
     public static double distanceSq(Vector3 vectorA, Vector3 vectorB) {
@@ -76,8 +80,10 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     }
 
     /**
-     * @param vectorA - the first Vector
-     * @param vectorB - the second Vector
+     * returns the midpoint between two Vectors3.
+     *
+     * @param vectorA the first Vector
+     * @param vectorB the second Vector
      * @return returns the midpoint between two Vectors
      */
     public static Vector3 midpoint(Vector3 vectorA, Vector3 vectorB) {
@@ -86,45 +92,71 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
 
     public Vector3(double x, double y, double z) {
         super();
-        this.init(x, y, z);
+
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public Vector3(float x, float y, float z) {
+        super();
+
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public Vector3() {
         super();
-        this.init(0, 0, 0);
+
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
     }
 
     public Vector3(Vector3 input) {
         super();
-        this.init(input.getX(), input.getY(), input.getZ());
+
+        this.x = input.getX();
+        this.y = input.getY();
+        this.z = input.getZ();
     }
 
     public Vector3(double[] v) {
         super();
 
-        if (v.length != 3) {
-            throw new IllegalArgumentException("the double array inputed does not have 3 points");
+        if (v.length == 3) {
+            this.x = v[0];
+            this.y = v[1];
+            this.z = v[2];
         } else {
-            this.init(v[0], v[1], v[2]);
+            throw new IllegalArgumentException("the double array inputed does not have 3 points");
         }
     }
 
-    private void init(double x, double y, double z) {
-        this.setX(x);
-        this.setY(y);
-        this.setZ(z);
+    public Vector3(float[] v) {
+        super();
+
+        if (v.length == 3) {
+            this.x = v[0];
+            this.y = v[1];
+            this.z = v[2];
+        } else {
+            throw new IllegalArgumentException("the double array inputed does not have 3 points");
+        }
     }
 
     public double length() {
-        return Math.sqrt(this.getX() * this.getX() + this.getY() * this.getY() + this.getZ() * this.getZ());
-    }
-
-    public double max() {
-        return Math.max(this.getX(), Math.max(this.getY(), this.getZ()));
+        return Math.sqrt(
+                this.getX() * this.getX()
+                + this.getY() * this.getY()
+                + this.getZ() * this.getZ());
     }
 
     public double dot(Vector3 input) {
-        return (this.getX() * input.getX()) + (this.getY() * input.getY()) + (this.z * input.getZ());
+        return (this.getX() * input.getX())
+                + (this.getY() * input.getY())
+                + (this.getZ() * input.getZ());
     }
 
     public Vector3 cross(Vector3 input) {
@@ -138,114 +170,119 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     public Vector3 normalized() {
         double length = length();
 
-        return new Vector3(this.getX() / length, this.y / length, this.getZ() / length);
+        return new Vector3(
+                this.getX() / length,
+                this.getY() / length,
+                this.getZ() / length);
     }
 
-    /**
-     * Turn this vector by the specified amount (in degrees).
-     *
-     * @param axis the axis to be rotated about
-     * @param theta - the number of degrees to turn; positive values turn
-     * clockwise
-     * @return returns the resultant Vector2
-     */
-    public Vector3 rotate(Vector3 axis, double theta) {
-        double sinAngle = Math.sin(-theta);
-        double cosAngle = Math.cos(-theta);
-
-        return this.cross(axis.mul(sinAngle)).add(
-                (this.mul(cosAngle)).add(
-                        axis.mul(this.dot(axis.mul(1 - cosAngle)))));
+    public void add(Vector3 input) {
+        this.x += input.getX();
+        this.y += input.getY();
+        this.z += input.getZ();
     }
 
-    public Vector3 lerp(Vector3 dest, double lerpFactor) {
-        return dest.sub(this).mul(lerpFactor).add(this);
+    public void add(double input) {
+        this.x += input;
+        this.y += input;
+        this.z += input;
     }
 
-    public Vector3 add(Vector3 input) {
-        return new Vector3(this.getX() + input.getX(), this.getY() + input.getY(), this.getZ() + input.getZ());
+    public void sub(Vector3 input) {
+        this.x -= input.getX();
+        this.y -= input.getY();
+        this.z -= input.getZ();
     }
 
-    public Vector3 add(double input) {
-        return new Vector3(this.getX() + input, this.getY() + input, this.getZ() + input);
+    public void sub(double input) {
+        this.x -= input;
+        this.y -= input;
+        this.z -= input;
     }
 
-    public Vector3 sub(Vector3 input) {
-        return new Vector3(this.getX() - input.getX(), this.getY() - input.getY(), this.z - input.getZ());
+    public void mul(Vector3 input) {
+        this.x *= input.getX();
+        this.y *= input.getY();
+        this.z *= input.getZ();
     }
 
-    public Vector3 sub(double input) {
-        return new Vector3(this.getX() - input, this.getY() - input, this.getZ() - input);
+    public void mul(double input) {
+        this.x *= input;
+        this.y *= input;
+        this.z *= input;
     }
 
-    public Vector3 mul(Vector3 input) {
-        return new Vector3(this.getX() * input.getX(), this.getY() * input.getY(), this.getZ() * input.getZ());
+    public void div(Vector3 input) {
+        this.x /= input.getX();
+        this.y /= input.getY();
+        this.z /= input.getZ();
     }
 
-    public Vector3 mul(double input) {
-        return new Vector3(this.getX() * input, this.getY() * input, this.getZ() * input);
+    public void div(double input) {
+        this.x /= input;
+        this.y /= input;
+        this.z /= input;
     }
 
-    public Vector3 div(Vector3 input) {
-        return new Vector3(this.getX() / input.getX(), this.getY() / input.getY(), this.getZ() / input.getZ());
+    public void mod(Vector3 input) {
+        this.x %= input.getX();
+        this.y %= input.getY();
+        this.z %= input.getZ();
     }
 
-    public Vector3 div(double input) {
-        return new Vector3(this.getX() / input, this.getY() / input, this.getZ() / input);
-    }
-
-    public Vector3 mod(Vector3 input) {
-        return new Vector3(this.getX() % input.getX(), this.getY() % input.getY(), this.getZ() % input.getZ());
-    }
-
-    public Vector3 mod(double input) {
-        return new Vector3(this.getX() % input, this.getY() % input, this.getZ() % input);
+    public void mod(double input) {
+        this.x %= input;
+        this.y %= input;
+        this.z %= input;
     }
 
     public Vector3 abs() {
-        return new Vector3(Math.abs(this.getX()), Math.abs(this.getY()), Math.abs(this.getZ()));
+        return new Vector3(
+                Math.abs(getX()),
+                Math.abs(getY()),
+                Math.abs(getZ())
+        );
     }
 
     @Override
     public String toString() {
-        return "Vector3d[" + this.getX() + ", " + this.getY() + ", " + this.z + "]";
+        return "Vector3d[" + getX() + ", " + getY() + ", " + getZ() + "]";
     }
 
     public Vector2 getXY() {
-        return new Vector2(this.getX(), this.getY());
+        return new Vector2(getX(), getY());
     }
 
     public Vector2 getYZ() {
-        return new Vector2(this.getY(), this.getZ());
+        return new Vector2(getY(), getZ());
     }
 
     public Vector2 getZX() {
-        return new Vector2(this.getZ(), this.getX());
+        return new Vector2(getZ(), getX());
     }
 
     public Vector2 getYX() {
-        return new Vector2(this.getY(), this.getX());
+        return new Vector2(getY(), getX());
     }
 
     public Vector2 getZY() {
-        return new Vector2(this.getZ(), this.getY());
+        return new Vector2(getZ(), getY());
     }
 
     public Vector2 getXZ() {
-        return new Vector2(this.getX(), this.getZ());
+        return new Vector2(getX(), getZ());
     }
 
-    public Vector3 set(double x, double y, double z) {
-        this.setX(x);
-        this.setY(y);
-        this.setZ(z);
-
-        return this;
+    public void set(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    public Vector3 set(Vector3 input) {
-        set(input.getX(), input.getY(), input.getZ());
-        return this;
+    public void set(Vector3 v) {
+        this.x = v.getX();
+        this.y = v.getY();
+        this.z = v.getZ();
     }
 
     public double getX() {
@@ -308,38 +345,40 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
         } else if (!super.equals(obj)) {
             return false;
         }
-        final Vector3 other = (Vector3) obj;
-        if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(other.getX())) {
+
+        final Vector3 v = (Vector3) obj;
+
+        if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(v.getX())) {
             return false;
-        } else if (Double.doubleToLongBits(getY()) != Double.doubleToLongBits(other.getY())) {
+        } else if (Double.doubleToLongBits(getY()) != Double.doubleToLongBits(v.getY())) {
             return false;
-        } else if (Double.doubleToLongBits(getZ()) != Double.doubleToLongBits(other.getZ())) {
+        } else if (Double.doubleToLongBits(getZ()) != Double.doubleToLongBits(v.getZ())) {
             return false;
         }
         return true;
     }
 
-    public void change(Vector3 delta) {
+    public void translate(Vector3 delta) {
         this.x += delta.getX();
         this.y += delta.getY();
         this.z += delta.getZ();
     }
 
-    public void change(double delta) {
+    public void translate(double delta) {
         this.x += delta;
         this.y += delta;
         this.z += delta;
     }
 
-    public void changeX(double deltaX) {
+    public void translateX(double deltaX) {
         this.x += deltaX;
     }
 
-    public void changeY(double deltaY) {
+    public void trannslateY(double deltaY) {
         this.y += deltaY;
     }
 
-    public void changeZ(double deltaZ) {
+    public void translateZ(double deltaZ) {
         this.z += deltaZ;
     }
 
@@ -387,9 +426,9 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
 
         try {
             m = (Vector3) super.clone();
-        } catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException ex) {
             // this shouldn't happen, since we are Cloneable
-            throw new InternalError();
+            throw new InternalError(ex);
         }
 
         return m;
@@ -402,19 +441,49 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
     public double get(int index) {
         switch (index) {
             case 0:
-                return getX();
+                return x;
             case 1:
-                return getY();
+                return y;
             case 2:
-                return getZ();
+                return z;
         }
-        throw new IllegalArgumentException("index must be either 0, 1 or 2");
+        throw new IllegalArgumentException();
     }
 
     public double angleBetween(Vector3 otherVector) {
         double dotProduct = dot(otherVector);
         double angle = Math.acos(dotProduct);
+
         return angle;
     }
 
+    /**
+     * returns the distance between this and another Vector3.
+     *
+     * @param p the point to be tested
+     * @return returns the distance between this and another Vector3
+     */
+    public double distance(Vector3 p) {
+        return Vector3.distance(this, p);
+    }
+
+    /**
+     * returns the square distance between this and another Vector3.
+     *
+     * @param p the point to be tested
+     * @return returns the square distance between this and another Vector3
+     */
+    public double distanceSq(Vector3 p) {
+        return Vector3.distanceSq(this, p);
+    }
+
+    /**
+     * returns the midpoint between this and another Point.
+     *
+     * @param p the point to be tested
+     * @return returns the midpoint between this and another Vector3
+     */
+    public Vector3 midpoint(Vector3 p) {
+        return Vector3.midpoint(this, p);
+    }
 }
