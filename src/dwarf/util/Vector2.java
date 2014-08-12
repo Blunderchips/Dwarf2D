@@ -176,11 +176,9 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
                 - this.getY() * input.getY();
     }
 
-    public Vector2 add(Vector2 input) {
-        return new Vector2(
-                this.getX() + input.getX(),
-                this.getY() + input.getY()
-        );
+    public void add(Vector2 v) {
+        this.x += v.getX();
+        this.y += v.getY();
     }
 
     public void add(double v) {

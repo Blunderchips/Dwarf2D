@@ -486,7 +486,10 @@ public abstract class Collidable extends java.lang.Object {
     public boolean intersects(Collidable coll) {
         if (coll.getNumVertices() != 0) {
             for (short i = 0; i < coll.getNumVertices();) {
-                if (this.contains(coll.getVertices()[i].add(coll.getPosition()))) {
+                if (this.contains(
+                        coll.getVertices()[i].getX() + coll.getPosition().getX(),
+                        coll.getVertices()[i].getY() + coll.getPosition().getY()
+                )) {
                     return true;
                 }
 
@@ -500,7 +503,10 @@ public abstract class Collidable extends java.lang.Object {
 
         if (this.getNumVertices() != 0) {
             for (short i = 0; i < this.getNumVertices();) {
-                if (coll.contains(this.getVertices()[i].add(this.getPosition()))) {
+                if (coll.contains(
+                        this.getVertices()[i].getX() + this.getPosition().getX(),
+                        this.getVertices()[i].getY() + this.getPosition().getY()
+                )) {
                     return true;
                 }
 
