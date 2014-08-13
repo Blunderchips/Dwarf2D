@@ -89,16 +89,16 @@ public final class math {
     public static boolean isPrime(long num) {
         if (num != 2) {
             if (num % 2 == 0 || num == 1) {
-                return (false);
+                return false;
             } else {
                 for (long i = 3; i < Math.sqrt(num) + 1; i += 2) {
                     if (num % i == 0) {
-                        return (false);
+                        return false;
                     }
                 }
             }
         }
-        return (true);
+        return true;
     }
 
     public static long fact(long n) {

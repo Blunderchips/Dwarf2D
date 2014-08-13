@@ -1,8 +1,5 @@
 package dwarf.util;
 
-import java.io.Serializable;
-import static java.lang.Math.pow;
-
 /**
  * A 2-dimensional, single-precision, double-point vector.
  *
@@ -12,9 +9,9 @@ import static java.lang.Math.pow;
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
-public class Vector2 extends java.lang.Object implements Serializable, Cloneable {
+public class Vector2 extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
 
-    private static final long serialVersionUID = 1339934L;
+    private static final long serialVersionUID = 1L;
 
     public static final Vector2 ZERO = new Vector2(0, 0);
     public static final Vector2 UNIT_X = new Vector2(1, 0);
@@ -73,7 +70,10 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * @return returns the distance between two Vectors
      */
     public static double distance(Vector2 vectorA, Vector2 vectorB) {
-        return Math.sqrt(pow((vectorA.getX() - vectorB.getX()), 2) + pow((vectorA.getY() - vectorB.getY()), 2));
+        return Math.sqrt(
+                java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
+                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
+        );
     }
 
     /**
@@ -84,7 +84,8 @@ public class Vector2 extends java.lang.Object implements Serializable, Cloneable
      * @return returns the square distance between two Vectors
      */
     public static double distanceSq(Vector2 vectorA, Vector2 vectorB) {
-        return pow((vectorA.getX() - vectorB.getX()), 2) + pow((vectorA.getY() - vectorB.getY()), 2);
+        return java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
+                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2);
     }
 
     public Vector2() {

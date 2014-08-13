@@ -1,8 +1,5 @@
 package dwarf.util;
 
-import java.io.Serializable;
-import static java.lang.Math.pow;
-
 /**
  * A 3-dimensional, single-precision, double-point vector.
  *
@@ -12,9 +9,9 @@ import static java.lang.Math.pow;
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
-public class Vector3 extends java.lang.Object implements Serializable, Cloneable {
+public class Vector3 extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
 
-    private static final long serialVersionUID = 1339934L;
+    private static final long serialVersionUID = 1L;
 
     public final static Vector3 ZERO = new Vector3(0, 0, 0);
     public final static Vector3 UNIT_X = new Vector3(1, 0, 0);
@@ -65,7 +62,9 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
      * @return returns the distance between two Vectors
      */
     public static double distance(Vector3 vectorA, Vector3 vectorB) {
-        return Math.sqrt(pow((vectorA.getX() - vectorB.getX()), 2) + pow((vectorA.getY() - vectorB.getY()), 2) + pow((vectorA.getZ() - vectorB.getZ()), 2));
+        return Math.sqrt(java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
+                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
+                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2));
     }
 
     /**
@@ -76,7 +75,9 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
      * @return returns the square distance between two Vectors
      */
     public static double distanceSq(Vector3 vectorA, Vector3 vectorB) {
-        return pow((vectorA.getX() - vectorB.getX()), 2) + pow((vectorA.getY() - vectorB.getY()), 2) + pow((vectorA.getZ() - vectorB.getZ()), 2);
+        return java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
+                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
+                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2);
     }
 
     /**
@@ -87,7 +88,11 @@ public class Vector3 extends java.lang.Object implements Serializable, Cloneable
      * @return returns the midpoint between two Vectors
      */
     public static Vector3 midpoint(Vector3 vectorA, Vector3 vectorB) {
-        return new Vector3(((vectorA.getX() + vectorB.getX()) / 2), ((vectorA.getY() + vectorB.getY()) / 2), ((vectorA.getZ() + vectorB.getZ()) / 2));
+        return new Vector3(
+                (vectorA.getX() + vectorB.getX()) / 2,
+                (vectorA.getY() + vectorB.getY()) / 2,
+                (vectorA.getZ() + vectorB.getZ()) / 2
+        );
     }
 
     public Vector3(double x, double y, double z) {
