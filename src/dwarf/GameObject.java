@@ -18,12 +18,14 @@ public abstract class GameObject extends Collidable {
 
     public GameObject() {
         super();
-        this.init();
+
+        this.children = new ArrayList<GameObject>();
     }
 
     public GameObject(Vector2 position) {
         super(position);
-        this.init();
+
+        this.children = new ArrayList<GameObject>();
     }
 
     public GameObject(GameObject obj) {
@@ -33,11 +35,6 @@ public abstract class GameObject extends Collidable {
         this.children = obj.getChildren();
         super.setVertices(obj.getVertices());
         // --
-    }
-
-    @SuppressWarnings("Convert2Diamond")
-    private void init() {
-        this.children = new ArrayList<GameObject>();
     }
 
     /**
@@ -88,10 +85,11 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * Returns true if the <code>this</code> is equal to the argument and false
-     * otherwise. Consequently, if both argument are null, true is returned,
-     * false is returned. Otherwise, equality is determined by using the equals
-     * method of the first argument.
+     * Returns true if the
+     * <code>this</code> is equal to the argument and false otherwise.
+     * Consequently, if both argument are null, true is returned, false is
+     * returned. Otherwise, equality is determined by using the equals method of
+     * the first argument.
      *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
@@ -129,7 +127,6 @@ public abstract class GameObject extends Collidable {
         this.setChildren(obj.getChildren());
         super.setVertices(obj.getVertices());
         super.setPosition(obj.getPosition());
-        // --
     }
 
     public void set(ArrayList<GameObject> children, Vector2[] vertices, Vector2 position) {
@@ -139,7 +136,9 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * returns the <code>Collidable</code> on this <code>GameObject</code>.
+     * returns the
+     * <code>Collidable</code> on this
+     * <code>GameObject</code>.
      *
      * @return a new <code>Collidable</code> constructed from this
      */
@@ -156,7 +155,8 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * tries to add a <code>GameObject</code> the children ArrayList.
+     * tries to add a
+     * <code>GameObject</code> the children ArrayList.
      *
      * @param child the <code>GameObject</code> to be added
      * @return will return false if it fails and true if it does not
@@ -172,7 +172,8 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * tries to add a <code>GameObject</code> the children ArrayList.
+     * tries to add a
+     * <code>GameObject</code> the children ArrayList.
      *
      * @param child the <code>GameObject</code> to be added
      * @return will return false if it fails and true if it does not
@@ -188,7 +189,8 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * tries to remove a <code>GameObject</code> the children ArrayList.
+     * tries to remove a
+     * <code>GameObject</code> the children ArrayList.
      *
      * @param child the <code>GameObject</code> to be removed
      * @return will return false if it fails and true if it does not
@@ -203,7 +205,8 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * tries to remove a <code>GameObject</code> the children ArrayList.
+     * tries to remove a
+     * <code>GameObject</code> the children ArrayList.
      *
      * @param child the <code>GameObject</code> to be removed
      * @return will return false if it fails and true if it does not
@@ -219,7 +222,8 @@ public abstract class GameObject extends Collidable {
     }
 
     /**
-     * returns true if the <code>Collidable</code> have intersected with this
+     * returns true if the
+     * <code>Collidable</code> have intersected with this
      * <code>Collidable</code>.
      *
      * @param coll - the <code>Collidable</code> to be tested
@@ -260,5 +264,4 @@ public abstract class GameObject extends Collidable {
             return false;
         }
     }
-
 }
