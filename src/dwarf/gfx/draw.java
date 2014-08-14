@@ -6,6 +6,7 @@ import static dwarf.util.math.TWO_PI;
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 import java.util.Arrays;
+
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.GL_POINTS;
 import static org.lwjgl.opengl.GL11.GL_POLYGON;
@@ -175,12 +176,61 @@ public final class draw {
      */
     public final static byte SHAPE_ICOSIKAITETRAGON = 0x18;
     /**
+     * 30 sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Triacontagon'>wikipedia</a>
+     */
+    public static final byte SHAPE_TRIACONTAGON = 0x1e;
+    /**
+     * 50 sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Pentacontagon'>wikipedia</a>
+     */
+    public static final byte SHAPE_PENTACONTAGON = 0x32;
+    /**
      * 60 sided shape.
      *
      * @see <a href='http://en.wikipedia.org/wiki/Circle'>wikipedia</a>
      */
     public final static byte SHAPE_CIRCLE = 0x3c;
-
+    /**
+     * 100 sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Hectogon'>wikipedia</a>
+     */
+    public static final byte SHAPE_HECTOGON = 0x64;
+    /**
+     * 1000 sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Chiliagon'>wikipedia</a>
+     */
+    public static final short SHAPE_CHILIAGON = 0x3e8;
+    /**
+     * 10000 sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Myriagon'>wikipedia</a>
+     */
+    public static final short SHAPE_MYRIAGON = 0x2710;
+    /**
+     * 1000000 sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Megagon'>wikipedia</a>
+     */
+    public static final short SHAPE_MEGAGON = 0x4240;
+    /**
+     * infinite sided shape.
+     * 
+     * @see <a
+     * href='http://en.wikipedia.org/wiki/Apeirogon'>wikipedia</a>
+     */
+    public static final long SHAPE_APEIROGON = Long.MAX_VALUE;
+    
     public final static String STATE_FILL = "fill";
     public final static String STATE_STROKE = "stroke";
 
