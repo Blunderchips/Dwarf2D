@@ -9,23 +9,22 @@ package dwarf.util;
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
-public class Vector3 extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
+public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
 
     private static final long serialVersionUID = 1L;
-
     public final static Vector3 ZERO = new Vector3(0, 0, 0);
     public final static Vector3 UNIT_X = new Vector3(1, 0, 0);
     public final static Vector3 UNIT_Y = new Vector3(0, 1, 0);
     public final static Vector3 UNIT_Z = new Vector3(0, 0, 1);
     public final static Vector3 UNIT_XYZ = new Vector3(1, 1, 1);
-
     /**
      * A constant holding a Not-a-Number (NaN) value of type
      * <code>Vector3</code>.
      */
     public final static Vector3 NaN = new Vector3(Double.NaN, Double.NaN, Double.NaN);
     /**
-     * A constant holding the positive infinity of type <code>Vector3</code>.
+     * A constant holding the positive infinity of type
+     * <code>Vector3</code>.
      */
     public final static Vector3 POSITIVE_INFINITY = new Vector3(
             Double.POSITIVE_INFINITY,
@@ -33,14 +32,14 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable, ja
             Double.POSITIVE_INFINITY
     );
     /**
-     * A constant holding the negative infinity of type <code>Vector3</code>.
+     * A constant holding the negative infinity of type
+     * <code>Vector3</code>.
      */
     public final static Vector3 NEGATIVE_INFINITY = new Vector3(
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY
     );
-
     /**
      * the x-component of this <code>Vector3</code>
      */
@@ -91,8 +90,7 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable, ja
         return new Vector3(
                 (vectorA.getX() + vectorB.getX()) / 2,
                 (vectorA.getY() + vectorB.getY()) / 2,
-                (vectorA.getZ() + vectorB.getZ()) / 2
-        );
+                (vectorA.getZ() + vectorB.getZ()) / 2);
     }
 
     public Vector3(double x, double y, double z) {
@@ -119,33 +117,33 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable, ja
         this.z = 0;
     }
 
-    public Vector3(Vector3 input) {
+    public Vector3(Vector3 v) {
         super();
 
-        this.x = input.getX();
-        this.y = input.getY();
-        this.z = input.getZ();
+        this.x = v.getX();
+        this.y = v.getY();
+        this.z = v.getZ();
     }
 
-    public Vector3(double[] v) {
+    public Vector3(double[] ds) {
         super();
 
-        if (v.length == 3) {
-            this.x = v[0];
-            this.y = v[1];
-            this.z = v[2];
+        if (ds.length == 3) {
+            this.x = ds[0];
+            this.y = ds[1];
+            this.z = ds[2];
         } else {
             throw new IllegalArgumentException("the double array inputed does not have 3 points");
         }
     }
 
-    public Vector3(float[] v) {
+    public Vector3(float[] fs) {
         super();
 
-        if (v.length == 3) {
-            this.x = v[0];
-            this.y = v[1];
-            this.z = v[2];
+        if (fs.length == 3) {
+            this.x = fs[0];
+            this.y = fs[1];
+            this.z = fs[2];
         } else {
             throw new IllegalArgumentException("the double array inputed does not have 3 points");
         }
@@ -245,8 +243,7 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable, ja
         return new Vector3(
                 Math.abs(getX()),
                 Math.abs(getY()),
-                Math.abs(getZ())
-        );
+                Math.abs(getZ()));
     }
 
     @Override
@@ -332,10 +329,11 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable, ja
     }
 
     /**
-     * Returns true if the <code>this</code> is equal to the argument and false
-     * otherwise. Consequently, if both argument are null, true is returned,
-     * false is returned. Otherwise, equality is determined by using the equals
-     * method of the first argument.
+     * Returns true if the
+     * <code>this</code> is equal to the argument and false otherwise.
+     * Consequently, if both argument are null, true is returned, false is
+     * returned. Otherwise, equality is determined by using the equals method of
+     * the first argument.
      *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
@@ -420,23 +418,19 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable, ja
     /**
      * Creates a new object of the same class as this object.
      *
-     * @return a clone of this instance.
      * @exception OutOfMemoryError if there is not enough memory.
      * @throws java.lang.CloneNotSupportedException if clone is not supported
      * thought this should not happen.
+     *
+     * @return a clone of this instance.
      */
     @Override
     public Vector3 clone() throws CloneNotSupportedException {
-        Vector3 m = null;
-
         try {
-            m = (Vector3) super.clone();
-        } catch (CloneNotSupportedException ex) {
-            // this shouldn't happen, since we are Cloneable
-            throw new InternalError(ex);
+            return new Vector3(this);
+        } catch (Exception ex) {
+            throw ex;
         }
-
-        return m;
     }
 
     public double[] toArray() {
