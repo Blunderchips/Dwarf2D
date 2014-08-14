@@ -11,7 +11,6 @@ package dwarf.util;
  */
 public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
 
-    private static final long serialVersionUID = 1L;
     public static final Vector2 ZERO = new Vector2(0, 0);
     public static final Vector2 UNIT_X = new Vector2(1, 0);
     public static final Vector2 UNIT_Y = new Vector2(0, 1);
@@ -34,6 +33,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY
     );
+    
     /**
      * Rotation in degrees (0-359)
      */
