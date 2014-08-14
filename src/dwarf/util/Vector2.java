@@ -9,18 +9,15 @@ package dwarf.util;
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
-public class Vector2 extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
+public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
 
     private static final long serialVersionUID = 1L;
-
     public static final Vector2 ZERO = new Vector2(0, 0);
     public static final Vector2 UNIT_X = new Vector2(1, 0);
     public static final Vector2 UNIT_Y = new Vector2(0, 1);
     public static final Vector2 UNIT_XY = new Vector2(1, 1);
-
     /**
-     * A constant holding a Not-a-Number (NaN) value of type
-     * <code>Vector2</code>.
+     * A constant holding a Not-a-Number (NaN) value of type <code>Vector2</code>.
      */
     public final static Vector2 NaN = new Vector2(Double.NaN, Double.NaN);
     /**
@@ -37,7 +34,6 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY
     );
-
     /**
      * Rotation in degrees (0-359)
      */
@@ -54,8 +50,8 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     /**
      * returns the gradient between two Vectors2.
      *
-     * @param vectorA - the first Vector2
-     * @param vectorB - the second Vector2
+     * @param vectorA the first Vector2
+     * @param vectorB the second Vector2
      * @return returns the gradient between two Vectors
      */
     public static double gradient(Vector2 vectorA, Vector2 vectorB) {
@@ -65,22 +61,21 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     /**
      * returns the distance between two Vectors2.
      *
-     * @param vectorA - the first Vector2
-     * @param vectorB - the second Vector2
+     * @param vectorA the first Vector2
+     * @param vectorB the second Vector2
      * @return returns the distance between two Vectors
      */
     public static double distance(Vector2 vectorA, Vector2 vectorB) {
         return Math.sqrt(
                 java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
-                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-        );
+                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2));
     }
 
     /**
      * returns the square distance between two Vectors2.
      *
-     * @param vectorA - the first Vector
-     * @param vectorB - the second Vector
+     * @param vectorA the first Vector
+     * @param vectorB the second Vector
      * @return returns the square distance between two Vectors
      */
     public static double distanceSq(Vector2 vectorA, Vector2 vectorB) {
@@ -168,8 +163,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     public Vector2 normalized() {
         return new Vector2(
                 this.getX() / length(),
-                this.getY() / length()
-        );
+                this.getY() / length());
     }
 
     public double cross(Vector2 input) {
@@ -230,8 +224,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     public Vector2 abs() {
         return new Vector2(
                 Math.abs(this.getX()),
-                Math.abs(this.getY())
-        );
+                Math.abs(this.getY()));
     }
 
     public double absX() {
@@ -331,10 +324,11 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     }
 
     /**
-     * Returns true if the <code>this</code> is equal to the argument and false
-     * otherwise. Consequently, if both argument are null, true is returned,
-     * false is returned. Otherwise, equality is determined by using the equals
-     * method of the first argument.
+     * Returns true if the
+     * <code>this</code> is equal to the argument and false otherwise.
+     * Consequently, if both argument are null, true is returned, false is
+     * returned. Otherwise, equality is determined by using the equals method of
+     * the first argument.
      *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
@@ -374,10 +368,6 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
         this.y = -y;
     }
 
-    public Vector2 copy() {
-        return new Vector2(this);
-    }
-
     public double[] toArray() {
         return new double[]{
             this.getX(), this.getY()
@@ -410,29 +400,6 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
         return Math.atan2(this.getY(), this.getX());
     }
 
-    /**
-     * Creates a new object of the same class as this object.
-     *
-     * @return a clone of this instance.
-     * @exception OutOfMemoryError if there is not enough memory.
-     * @throws java.lang.CloneNotSupportedException thrown if the Vector2 can
-     * not be cloned
-     * @see java.lang.Cloneable
-     */
-    @Override
-    public Vector2 clone() throws CloneNotSupportedException {
-        Vector2 m = null;
-
-        try {
-            m = (Vector2) super.clone();
-        } catch (CloneNotSupportedException ex) {
-            // this shouldn't happen, since we are Cloneable.
-            throw new InternalError();
-        }
-
-        return m;
-    }
-
     public Vector2 limit(double max) {
         double m = length();
         if (m > max) {
@@ -444,7 +411,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     }
 
     /**
-     * Shear (a, b): (x, y) → (x+ay, y+bx)
+     * Shear (a, b): (x, y) â†’ (x+ay, y+bx)
      *
      * @param input the <code>Vector2</code> to be sheered.
      * @return Vector2d(x + input.y, y + input.x)
@@ -454,7 +421,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
     }
 
     /**
-     * Shear (a, b): (x, y) → (x+ay, y+bx)
+     * Shear (a, b): (x, y) â†’ (x+ay, y+bx)
      *
      * @param a the X component of the <code>Vector2</code>.
      * @param b the Y component of the <code>Vector2</code>.
@@ -557,8 +524,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
 
         this.set(
                 this.getX() + deltaX,
-                this.getY() + deltaY
-        );
+                this.getY() + deltaY);
     }
 
     /**
@@ -575,5 +541,24 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable, ja
 
     public void turnTowards(Vector2 input) {
         this.turnTowards((float) input.getX(), (float) input.getY());
+    }
+
+    /**
+     * Creates a new object of the same class as this object.
+     *
+     * @exception OutOfMemoryError if there is not enough memory.
+     * @throws java.lang.CloneNotSupportedException thrown if the Vector2 can
+     * not be cloned
+     * @see java.lang.Cloneable
+     *
+     * @return a clone of this instance.
+     */
+    @Override
+    public Vector2 clone() throws CloneNotSupportedException {
+        try {
+            return new Vector2(this);
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 }
