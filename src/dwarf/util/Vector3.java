@@ -39,6 +39,7 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY
     );
+    
     /**
      * the x-component of this <code>Vector3</code>
      */
@@ -75,7 +76,8 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
     public static double distanceSq(Vector3 vectorA, Vector3 vectorB) {
         return java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
                 + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2);
+                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2
+        );
     }
 
     /**
@@ -89,7 +91,8 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
         return new Vector3(
                 (vectorA.getX() + vectorB.getX()) / 2,
                 (vectorA.getY() + vectorB.getY()) / 2,
-                (vectorA.getZ() + vectorB.getZ()) / 2);
+                (vectorA.getZ() + vectorB.getZ()) / 2
+        );
     }
 
     public Vector3(double x, double y, double z) {
@@ -132,7 +135,7 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
             this.y = ds[1];
             this.z = ds[2];
         } else {
-            throw new IllegalArgumentException("the double array inputed does not have 3 points");
+            throw new IllegalArgumentException("the double array inputed does not have 3 elements.");
         }
     }
 
@@ -144,7 +147,7 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
             this.y = fs[1];
             this.z = fs[2];
         } else {
-            throw new IllegalArgumentException("the double array inputed does not have 3 points");
+            throw new IllegalArgumentException("the double array inputed does not have 3 elements.");
         }
     }
 
