@@ -1,11 +1,12 @@
 package dwarf.gfx;
 
-import dwarf.lib.Slick2D.Texture;
+import java.util.Arrays;
 import dwarf.util.Vector2;
-import static dwarf.util.math.TWO_PI;
+import dwarf.lib.Slick2D.Texture;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
-import java.util.Arrays;
+import static dwarf.util.math.TWO_PI;
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.GL_POINTS;
