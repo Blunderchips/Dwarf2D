@@ -11,7 +11,6 @@ package dwarf.util;
  */
 public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
 
-    private static final long serialVersionUID = 1L;
     public final static Vector3 ZERO = new Vector3(0, 0, 0);
     public final static Vector3 UNIT_X = new Vector3(1, 0, 0);
     public final static Vector3 UNIT_Y = new Vector3(0, 1, 0);
