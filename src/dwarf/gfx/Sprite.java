@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @see dwarf.Collidable
  * @see java.lang.Object
  */
-public class Sprite extends GameObject {
+public class Sprite extends dwarf.Collidable implements GameObject {
 
     private ArrayList<Image> textures;
     private Image activeTexture;
@@ -198,13 +198,13 @@ public class Sprite extends GameObject {
             }
         }
     }
-    
+
     /**
      * returns the index of a random <code>Image</code> in the texture
      * ArrayList.
      *
-     * @see dwarf.util.rand#interger(int) 
-     * 
+     * @see dwarf.util.rand#interger(int)
+     *
      * @return returns the index of a random texture.
      */
     public int randomTexture() {

@@ -1,7 +1,5 @@
 package dwarf;
 
-import static dwarf.Input.MOUSE_LEFT;
-import static dwarf.Input.getMousePosition;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
@@ -10,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static dwarf.Input.MOUSE_LEFT;
+import static dwarf.Input.getMousePosition;
 import static dwarf.util.Vector2.ZERO;
 
 /**
@@ -26,7 +26,7 @@ import static dwarf.util.Vector2.ZERO;
  *
  * @see java.lang.Object
  */
-public abstract class Collidable extends java.lang.Object {
+public abstract class Collidable extends java.lang.Object implements dwarf.GameObject {
 
     private ArrayList<Vector2> vertices;
     private Vector2 position;
@@ -621,5 +621,9 @@ public abstract class Collidable extends java.lang.Object {
 
     public void gotoPos(double xPos, double yPos, float speed) {
         this.gotoPos(new Vector2(xPos, yPos), speed);
+    }
+
+    public final Collidable getCollidable() {
+        return this;
     }
 }

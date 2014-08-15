@@ -17,12 +17,12 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  * drawing pictures to the game window.
  *
  * @author Matthew 'siD' Van der Bijl
- * 
+ *
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  * @see java.lang.Object
  */
-public class Image extends GameObject {
+public class Image extends dwarf.Collidable implements GameObject {
 
     private Texture tex;
 
