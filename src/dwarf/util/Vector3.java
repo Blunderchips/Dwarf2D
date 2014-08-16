@@ -63,7 +63,8 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
     public static double distance(Vector3 vectorA, Vector3 vectorB) {
         return Math.sqrt(java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
                 + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2));
+                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2)
+        );
     }
 
     /**
