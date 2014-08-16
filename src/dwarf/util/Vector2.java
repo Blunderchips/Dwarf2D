@@ -1,7 +1,7 @@
 package dwarf.util;
 
 /**
- * A 3-dimensional, single-precision, double-point vector.
+ * A 2-dimensional, single-precision, double-point vector.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -9,309 +9,302 @@ package dwarf.util;
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
-public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
+public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
 
-    public final static Vector3 ZERO = new Vector3(0, 0, 0);
-    public final static Vector3 UNIT_X = new Vector3(1, 0, 0);
-    public final static Vector3 UNIT_Y = new Vector3(0, 1, 0);
-    public final static Vector3 UNIT_Z = new Vector3(0, 0, 1);
-    public final static Vector3 UNIT_XYZ = new Vector3(1, 1, 1);
+    public static final Vector2 ZERO = new Vector2(0, 0);
+    public static final Vector2 UNIT_X = new Vector2(1, 0);
+    public static final Vector2 UNIT_Y = new Vector2(0, 1);
+    public static final Vector2 UNIT_XY = new Vector2(1, 1);
     /**
-     * A constant holding a Not-a-Number (NaN) value of type
-     * <code>Vector3</code>.
+     * A constant holding a Not-a-Number (NaN) value of type <code>Vector2</code>.
      */
-    public final static Vector3 NaN = new Vector3(Double.NaN, Double.NaN, Double.NaN);
+    public final static Vector2 NaN = new Vector2(Double.NaN, Double.NaN);
     /**
-     * A constant holding the positive infinity of type
-     * <code>Vector3</code>.
+     * A constant holding the positive infinity of type <code>Vector2</code>.
      */
-    public final static Vector3 POSITIVE_INFINITY = new Vector3(
-            Double.POSITIVE_INFINITY,
+    public static final Vector2 POSITIVE_INFINITY = new Vector2(
             Double.POSITIVE_INFINITY,
             Double.POSITIVE_INFINITY
     );
     /**
-     * A constant holding the negative infinity of type
-     * <code>Vector3</code>.
+     * A constant holding the negative infinity of type <code>Vector2</code>.
      */
-    public final static Vector3 NEGATIVE_INFINITY = new Vector3(
-            Double.NEGATIVE_INFINITY,
+    public static final Vector2 NEGATIVE_INFINITY = new Vector2(
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY
     );
     
     /**
-     * the x-component of this <code>Vector3</code>
+     * Rotation in degrees (0-359)
+     */
+    private double rotation = 0;
+    /**
+     * the x-component of this <code>Vector2</code>
      */
     private double x;
     /**
-     * the y-component of this <code>Vector3</code>
+     * the y-component of this <code>Vector2</code>
      */
     private double y;
-    /**
-     * the z-component of this <code>Vector3</code>
-     */
-    private double z;
 
     /**
-     * returns the distance between two Vectors3.
+     * returns the gradient between two Vectors2.
      *
-     * @param vectorA the first Vector3
-     * @param vectorB the second Vector3
+     * @param vectorA the first Vector2
+     * @param vectorB the second Vector2
+     * @return returns the gradient between two Vectors
+     */
+    public static double gradient(Vector2 vectorA, Vector2 vectorB) {
+        return (vectorA.getY() - vectorB.getY()) / (vectorA.getX() - vectorB.getX());
+    }
+
+    /**
+     * returns the distance between two Vectors2.
+     *
+     * @param vectorA the first Vector2
+     * @param vectorB the second Vector2
      * @return returns the distance between two Vectors
      */
-    public static double distance(Vector3 vectorA, Vector3 vectorB) {
-        return Math.sqrt(java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
+    public static double distance(Vector2 vectorA, Vector2 vectorB) {
+        return Math.sqrt(
+                java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
                 + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2)
         );
     }
 
     /**
-     * the square distance between two Vectors3.
+     * returns the square distance between two Vectors2.
      *
      * @param vectorA the first Vector
      * @param vectorB the second Vector
      * @return returns the square distance between two Vectors
      */
-    public static double distanceSq(Vector3 vectorA, Vector3 vectorB) {
+    public static double distanceSq(Vector2 vectorA, Vector2 vectorB) {
         return java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
-                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2
-        );
+                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2);
     }
 
-    /**
-     * returns the midpoint between two Vectors3.
-     *
-     * @param vectorA the first Vector
-     * @param vectorB the second Vector
-     * @return returns the midpoint between two Vectors
-     */
-    public static Vector3 midpoint(Vector3 vectorA, Vector3 vectorB) {
-        return new Vector3(
-                (vectorA.getX() + vectorB.getX()) / 2,
-                (vectorA.getY() + vectorB.getY()) / 2,
-                (vectorA.getZ() + vectorB.getZ()) / 2
-        );
-    }
-
-    public Vector3(double x, double y, double z) {
-        super();
-
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    public Vector3(float x, float y, float z) {
-        super();
-
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    public Vector3() {
+    public Vector2() {
         super();
 
         this.x = 0;
         this.y = 0;
-        this.z = 0;
+        setRotation(0);
     }
 
-    public Vector3(Vector3 v) {
+    public Vector2(double x, double y) {
+        super();
+
+        this.x = x;
+        this.y = y;
+        setRotation(0);
+    }
+
+    public Vector2(float x, float y) {
+        super();
+
+        this.x = x;
+        this.y = y;
+        setRotation(0);
+    }
+
+    public Vector2(double x, double y, double rotation) {
+        super();
+
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
+    }
+
+    public Vector2(float x, float y, double rotation) {
+        super();
+
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
+    }
+
+    public Vector2(Vector2 v) {
         super();
 
         this.x = v.getX();
         this.y = v.getY();
-        this.z = v.getZ();
+        setRotation(v.getRotation());
     }
 
-    public Vector3(double[] ds) {
+    public Vector2(double[] points) {
         super();
 
-        if (ds.length == 3) {
-            this.x = ds[0];
-            this.y = ds[1];
-            this.z = ds[2];
+        if (points.length == 2) {
+            this.x = points[0];
+            this.y = points[1];
+            setRotation(0);
         } else {
-            throw new IllegalArgumentException("the double array inputed does not have 3 elements.");
+            throw new IllegalArgumentException("the double array inputed does not have 2 points");
         }
     }
 
-    public Vector3(float[] fs) {
-        super();
-
-        if (fs.length == 3) {
-            this.x = fs[0];
-            this.y = fs[1];
-            this.z = fs[2];
-        } else {
-            throw new IllegalArgumentException("the double array inputed does not have 3 elements.");
-        }
+    public Vector2 midpoint(Vector2 vectorA, Vector2 vectorB) {
+        return new Vector2(((vectorA.getX() + vectorB.getX()) / 2), ((vectorA.getY() + vectorB.getY()) / 2));
     }
 
     public double length() {
-        return Math.sqrt(
-                this.getX() * this.getX()
-                + this.getY() * this.getY()
-                + this.getZ() * this.getZ());
+        return Math.sqrt(this.getX() * this.getX() + this.getY() * this.getY());
     }
 
-    public double dot(Vector3 input) {
-        return (this.getX() * input.getX())
-                + (this.getY() * input.getY())
-                + (this.getZ() * input.getZ());
+    public double max() {
+        return Math.max(this.getX(), this.getY());
     }
 
-    public Vector3 cross(Vector3 input) {
-        double deltaX = (this.getY() * input.getZ()) - (this.getZ() * input.getY());
-        double deltaY = (this.getZ() * input.getX()) - (this.getX() * input.getZ());
-        double deltaZ = (this.getX() * input.getY()) - (this.getY() * input.getX());
-
-        return new Vector3(deltaX, deltaY, deltaZ);
+    public double dot(Vector2 input) {
+        return this.getX() * input.getX()
+                + this.getY() * input.getX();
     }
 
-    public Vector3 normalized() {
-        double length = length();
-
-        return new Vector3(
-                this.getX() / length,
-                this.getY() / length,
-                this.getZ() / length);
+    public Vector2 normalized() {
+        return new Vector2(
+                this.getX() / length(),
+                this.getY() / length());
     }
 
-    public void add(Vector3 input) {
-        this.x += input.getX();
-        this.y += input.getY();
-        this.z += input.getZ();
+    public double cross(Vector2 input) {
+        return this.getX() * input.getX()
+                - this.getY() * input.getY();
     }
 
-    public void add(double input) {
-        this.x += input;
-        this.y += input;
-        this.z += input;
+    public void add(Vector2 v) {
+        this.x += v.getX();
+        this.y += v.getY();
     }
 
-    public void sub(Vector3 input) {
-        this.x -= input.getX();
-        this.y -= input.getY();
-        this.z -= input.getZ();
+    public void add(double v) {
+        this.x += v;
+        this.y += v;
     }
 
-    public void sub(double input) {
-        this.x -= input;
-        this.y -= input;
-        this.z -= input;
+    public void sub(Vector2 v) {
+        this.x -= v.getX();
+        this.y -= v.getY();
     }
 
-    public void mul(Vector3 input) {
-        this.x *= input.getX();
-        this.y *= input.getY();
-        this.z *= input.getZ();
+    public void sub(double v) {
+        this.x -= v;
+        this.y -= v;
     }
 
-    public void mul(double input) {
-        this.x *= input;
-        this.y *= input;
-        this.z *= input;
+    public void mul(Vector2 v) {
+        this.x *= v.getX();
+        this.y *= v.getY();
     }
 
-    public void div(Vector3 input) {
-        this.x /= input.getX();
-        this.y /= input.getY();
-        this.z /= input.getZ();
+    public void mul(double v) {
+        this.x *= v;
+        this.y *= v;
     }
 
-    public void div(double input) {
-        this.x /= input;
-        this.y /= input;
-        this.z /= input;
+    public void div(Vector2 v) {
+        this.x += v.getX();
+        this.y += v.getY();
     }
 
-    public void mod(Vector3 input) {
-        this.x %= input.getX();
-        this.y %= input.getY();
-        this.z %= input.getZ();
+    public void div(double v) {
+        this.x /= v;
+        this.y /= v;
     }
 
-    public void mod(double input) {
-        this.x %= input;
-        this.y %= input;
-        this.z %= input;
+    public void mod(Vector2 v) {
+        this.x %= v.getX();
+        this.y %= v.getY();
     }
 
-    public Vector3 abs() {
-        return new Vector3(
-                Math.abs(getX()),
-                Math.abs(getY()),
-                Math.abs(getZ()));
+    public void mod(double v) {
+        this.x %= v;
+        this.y %= v;
+    }
+
+    public Vector2 abs() {
+        return new Vector2(
+                Math.abs(this.getX()),
+                Math.abs(this.getY()));
+    }
+
+    public double absX() {
+        return Math.abs(this.getX());
+    }
+
+    public double absY() {
+        return Math.abs(this.getY());
     }
 
     @Override
     public String toString() {
-        return "Vector3d[" + getX() + ", " + getY() + ", " + getZ() + "]";
+        return "Vector2d[" + getX() + ", " + getY() + "]";
     }
 
-    public Vector2 getXY() {
-        return new Vector2(getX(), getY());
-    }
-
-    public Vector2 getYZ() {
-        return new Vector2(getY(), getZ());
-    }
-
-    public Vector2 getZX() {
-        return new Vector2(getZ(), getX());
-    }
-
-    public Vector2 getYX() {
-        return new Vector2(getY(), getX());
-    }
-
-    public Vector2 getZY() {
-        return new Vector2(getZ(), getY());
-    }
-
-    public Vector2 getXZ() {
-        return new Vector2(getX(), getZ());
-    }
-
-    public void set(double x, double y, double z) {
+    public void set(double x, double y, double rotation) {
         this.x = x;
         this.y = y;
-        this.z = z;
+        setRotation(rotation);
     }
 
-    public void set(Vector3 v) {
+    public void set(float x, float y, double rotation) {
+        this.x = x;
+        this.y = y;
+        setRotation(rotation);
+    }
+
+    public void set(Vector2 v) {
         this.x = v.getX();
         this.y = v.getY();
-        this.z = v.getZ();
+        setRotation(v.getRotation());
+    }
+
+    public void set(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void set(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Vector2 get() {
+        return this;
     }
 
     public double getX() {
         return this.x;
     }
 
-    public void setX(double xPos) {
-        this.x = xPos;
+    public void setX(double x) {
+        this.x = x;
     }
 
     public double getY() {
         return this.y;
     }
 
-    public void setY(double yPos) {
-        this.y = yPos;
+    public void setY(double y) {
+        this.y = y;
     }
 
-    public double getZ() {
-        return this.z;
+    public void translate(Vector2 delta) {
+        this.x += delta.getX();
+        this.y += delta.getY();
     }
 
-    public void setZ(double zPos) {
-        this.z = zPos;
+    public void change(double delta) {
+        this.x += delta;
+        this.y += delta;
+    }
+
+    public void translateX(double deltaX) {
+        this.x += deltaX;
+    }
+
+    public void translateY(double deltaY) {
+        this.y += deltaY;
     }
 
     /**
@@ -325,9 +318,9 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 43 * hash + (int) (Double.doubleToLongBits(getX()) ^ (Double.doubleToLongBits(getX()) >>> 32));
-        hash = 43 * hash + (int) (Double.doubleToLongBits(getY()) ^ (Double.doubleToLongBits(getY()) >>> 32));
-        hash = 43 * hash + (int) (Double.doubleToLongBits(getZ()) ^ (Double.doubleToLongBits(getZ()) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(getRotation()) ^ (Double.doubleToLongBits(getRotation()) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(getX()) ^ (Double.doubleToLongBits(getX()) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(getY()) ^ (Double.doubleToLongBits(getY()) >>> 32));
         return hash;
     }
 
@@ -352,40 +345,15 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
             return false;
         }
 
-        final Vector3 v = (Vector3) obj;
+        final Vector2 other = (Vector2) obj;
 
-        if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(v.getX())) {
+        if (Double.doubleToLongBits(getRotation()) != Double.doubleToLongBits(other.getRotation())) {
             return false;
-        } else if (Double.doubleToLongBits(getY()) != Double.doubleToLongBits(v.getY())) {
+        } else if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(other.getX())) {
             return false;
-        } else if (Double.doubleToLongBits(getZ()) != Double.doubleToLongBits(v.getZ())) {
-            return false;
+        } else {
+            return Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.getY());
         }
-        return true;
-    }
-
-    public void translate(Vector3 delta) {
-        this.x += delta.getX();
-        this.y += delta.getY();
-        this.z += delta.getZ();
-    }
-
-    public void translate(double delta) {
-        this.x += delta;
-        this.y += delta;
-        this.z += delta;
-    }
-
-    public void translateX(double deltaX) {
-        this.x += deltaX;
-    }
-
-    public void trannslateY(double deltaY) {
-        this.y += deltaY;
-    }
-
-    public void translateZ(double deltaZ) {
-        this.z += deltaZ;
     }
 
     public void flipX() {
@@ -396,96 +364,202 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
         this.y = -y;
     }
 
-    public void flipZ() {
-        this.z = -z;
-    }
-
     public void flip() {
         this.x = -x;
         this.y = -y;
-        this.z = -z;
     }
 
-    public double absX() {
-        return Math.abs(this.getX());
+    public double[] toArray() {
+        return new double[]{
+            this.getX(), this.getY()
+        };
     }
 
-    public double absY() {
-        return Math.abs(this.getY());
+    public double get(int index) {
+        switch (index) {
+            case 0:
+                return this.getX();
+            case 1:
+                return this.getY();
+        }
+        throw new IllegalArgumentException("index must be either 0, 1");
     }
 
-    public double absZ() {
-        return Math.abs(this.getZ());
+    public double smallestAngleBetween(Vector2 otherVector) {
+        double dotProduct = dot(otherVector);
+        double angle = Math.acos(dotProduct);
+        return angle;
+    }
+
+    public double angleBetween(Vector2 otherVector) {
+        double angle = Math.atan2(otherVector.getY(), otherVector.getX())
+                - Math.atan2(this.getY(), this.getX());
+        return angle;
+    }
+
+    public double getAngle() {
+        return Math.atan2(this.getY(), this.getX());
+    }
+
+    public Vector2 limit(double max) {
+        double m = length();
+        if (m > max) {
+            double div = m / max;
+            return new Vector2(this.getX() / div, this.getY() / div);
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Shear (a, b): (x, y) â†’ (x+ay, y+bx)
+     *
+     * @param input the <code>Vector2</code> to be sheered.
+     * @return Vector2d(x + input.y, y + input.x)
+     */
+    public Vector2 sheer(Vector2 input) {
+        return new Vector2(this.getX() + input.getY(), this.getY() + input.getX());
+    }
+
+    /**
+     * Shear (a, b): (x, y) â†’ (x+ay, y+bx)
+     *
+     * @param a the X component of the <code>Vector2</code>.
+     * @param b the Y component of the <code>Vector2</code>.
+     * @return Vector2d(x + a, y + b)
+     */
+    public Vector2 sheer(double a, double b) {
+        return this.sheer(new Vector2(a, b));
+    }
+
+    /**
+     * Return the current rotation of this vector. Rotation is expressed as a
+     * degree value, range (0..359). Zero degrees is towards the east
+     * (right-hand side of the world), and the angle increases clockwise.
+     *
+     * @see #setRotation(double)
+     *
+     * @return The rotation in degrees.
+     */
+    public double getRotation() {
+        return rotation;
+    }
+
+    /**
+     * Set the rotation of this vector. Rotation is expressed as a degree value,
+     * range (0..359). Zero degrees is to the east (right-hand side of the
+     * world), and the angle increases clockwise.
+     *
+     * @param rotation The rotation in degrees.
+     */
+    @SuppressWarnings({"AssignmentToMethodParameter", "AssignmentReplaceableWithOperatorAssignment"})
+    public final void setRotation(double rotation) {
+        // First normalize.
+        if (rotation >= 360) {
+            // Optimize the usual case: rotation has adjusted to a value greater than
+            // 360, but is still within the 360 - 720 bound.
+            if (rotation < 720) {
+                rotation -= 360;
+            } else {
+                rotation = rotation % 360;
+            }
+        } else if (rotation < 0) {
+            // Likwise, if less than 0, it's likely that the rotation was reduced by
+            // a small amount and so will be >= -360.
+            if (rotation >= -360) {
+                rotation += 360;
+            } else {
+                rotation = 360 + (rotation % 360);
+            }
+        }
+
+        if (this.rotation != rotation) {
+            this.rotation = rotation;
+        }
+    }
+
+    /**
+     * Turn this vector to face towards a certain location.
+     *
+     * @param xPos The x-coordinate of the cell to turn towards
+     * @param yPos The y-coordinate of the cell to turn towards
+     */
+    public void turnTowards(double xPos, double yPos) {
+        double a = Math.atan2(yPos - this.getY(), xPos - this.getX());
+        setRotation(Math.toDegrees(a));
+    }
+
+    /**
+     * Move this vector the specified distance in the direction it is currently
+     * facing.
+     *
+     * <p>
+     * The direction can be set using the {@link #setRotation(double)} method.
+     *
+     * @param distance The distance to move (in pixels); a negative value will
+     * move backwards
+     */
+    public void move(int distance) {
+        double radians = Math.toRadians(getRotation());
+
+        // We round to the nearest integer, to allow moving one unit at an angle
+        // to actually move.
+        int deltaX = (int) Math.round(Math.cos(radians) * distance);
+        int deltaY = (int) Math.round(Math.sin(radians) * distance);
+        this.set(this.getX() + deltaX, this.getY() + deltaY, this.getRotation());
+    }
+
+    /**
+     * Move this vector the specified distance in the direction it is currently
+     * facing.
+     *
+     * <p>
+     * The direction can be set using the {@link #setRotation(double)} method.
+     *
+     * @param distance The distance to move (in pixels); a negative value will
+     * move backwards
+     */
+    public void move(double distance) {
+        double deltaX = Math.round(Math.cos(Math.toRadians(getRotation())) * distance);
+        double deltaY = Math.round(Math.sin(Math.toRadians(getRotation())) * distance);
+
+        this.set(
+                this.getX() + deltaX,
+                this.getY() + deltaY);
+    }
+
+    /**
+     * Turn this vector by the specified amount (in degrees).
+     *
+     * @param amount the number of degrees to turn; positive values turn
+     * clockwise
+     *
+     * @see #setRotation(double)
+     */
+    public void rotate(double amount) {
+        setRotation((getRotation() + amount));
+    }
+
+    public void turnTowards(Vector2 input) {
+        this.turnTowards((float) input.getX(), (float) input.getY());
     }
 
     /**
      * Creates a new object of the same class as this object.
      *
      * @exception OutOfMemoryError if there is not enough memory.
-     * @throws java.lang.CloneNotSupportedException if clone is not supported
-     * thought this should not happen.
+     * @throws java.lang.CloneNotSupportedException thrown if the Vector2 can
+     * not be cloned
+     * @see java.lang.Cloneable
      *
      * @return a clone of this instance.
      */
     @Override
-    public Vector3 clone() throws CloneNotSupportedException {
+    public Vector2 clone() throws CloneNotSupportedException {
         try {
-            return new Vector3(this);
+            return new Vector2(this);
         } catch (Exception ex) {
             throw ex;
         }
-    }
-
-    public double[] toArray() {
-        return new double[]{x, y, z};
-    }
-
-    public double get(int index) {
-        switch (index) {
-            case 0:
-                return x;
-            case 1:
-                return y;
-            case 2:
-                return z;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public double angleBetween(Vector3 otherVector) {
-        double dotProduct = dot(otherVector);
-        double angle = Math.acos(dotProduct);
-
-        return angle;
-    }
-
-    /**
-     * returns the distance between this and another Vector3.
-     *
-     * @param p the point to be tested
-     * @return returns the distance between this and another Vector3
-     */
-    public double distance(Vector3 p) {
-        return Vector3.distance(this, p);
-    }
-
-    /**
-     * returns the square distance between this and another Vector3.
-     *
-     * @param p the point to be tested
-     * @return returns the square distance between this and another Vector3
-     */
-    public double distanceSq(Vector3 p) {
-        return Vector3.distanceSq(this, p);
-    }
-
-    /**
-     * returns the midpoint between this and another Point.
-     *
-     * @param p the point to be tested
-     * @return returns the midpoint between this and another Vector3
-     */
-    public Vector3 midpoint(Vector3 p) {
-        return Vector3.midpoint(this, p);
     }
 }
