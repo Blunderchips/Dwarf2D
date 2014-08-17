@@ -3,14 +3,12 @@ package dwarf;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
+import static dwarf.mouse.MOUSE_LEFT;
 import dwarf.util.Vector2;
+import static dwarf.util.Vector2.ZERO;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
-
-import static dwarf.Input.MOUSE_LEFT;
-import static dwarf.Input.getMousePosition;
-import static dwarf.util.Vector2.ZERO;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
@@ -532,7 +530,7 @@ public abstract class Collidable extends java.lang.Object implements dwarf.GameO
      * otherwise false.
      */
     public boolean isMouseHover() {
-        return intersects(new Circle(1, getMousePosition(), "stroke", Colour.white));
+        return intersects(new Circle(1, dwarf.mouse.getMousePosition(), "stroke", Colour.white));
     }
 
     /**
@@ -542,7 +540,7 @@ public abstract class Collidable extends java.lang.Object implements dwarf.GameO
      * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(int button) {
-        if (Input.isMouseClicked(button)) {
+        if (dwarf.mouse.isMouseClicked(button)) {
             return isMouseHover();
         } else {
             return false;
@@ -567,7 +565,7 @@ public abstract class Collidable extends java.lang.Object implements dwarf.GameO
      * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(String button) {
-        if (Input.isMouseClicked(button)) {
+        if (dwarf.mouse.isMouseClicked(button)) {
             return isMouseHover();
         } else {
             return false;

@@ -1,6 +1,5 @@
 package dwarf.engine.core;
 
-import dwarf.Input;
 import dwarf.time;
 
 /**

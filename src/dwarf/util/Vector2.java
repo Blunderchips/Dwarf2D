@@ -541,7 +541,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
     }
 
     public void turnTowards(Vector2 input) {
-        this.turnTowards((float) input.getX(), (float) input.getY());
+        this.turnTowards(input.getX(), input.getY());
     }
 
     /**
