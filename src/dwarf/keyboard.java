@@ -364,7 +364,7 @@ public final class keyboard {
     //========================================================================
     
     /**
-     * checks if a key is pressed.
+     * Checks whether a certain key is down.
      *
      * @param keyCode the key code of the key to be tested
      * @return Keyboard.isKeyPressed(keyCode)
@@ -374,7 +374,7 @@ public final class keyboard {
     }
 
     /**
-     * checks if a key is pressed.
+     * Checks whether a certain key is down.
      *
      * @param keyName the name of the key to be tested
      * @return Keyboard.isKeyPressed(keyCode)
@@ -384,9 +384,10 @@ public final class keyboard {
     }
 
     /**
-     * checks if a key is down for a single frame.
+     * checks if a key is down for a single frame, callback function triggered
+     * when a key is pressed.
      *
-     *     * @param keyCode the key code of the key to be tested
+     * @param keyCode the key code of the key to be tested
      * @return if a key is pressed down for that frame (bool)
      */
     public static boolean isKeyPressed(int keyCode) {
@@ -394,7 +395,8 @@ public final class keyboard {
     }
 
     /**
-     * checks if a key is down for a single frame.
+     * checks if a key is down for a single frame, callback function triggered
+     * when a key is pressed.
      *
      * @param keyName the name of the key to be tested
      * @return if a key is pressed down for that frame (bool)
@@ -404,7 +406,8 @@ public final class keyboard {
     }
 
     /**
-     * checks if a key is released.
+     * checks if a key is released, callback function triggered when a key is
+     * released.
      *
      * @param keyCode the key code of the key to be tested
      * @return if a key is released up for that frame (bool)
@@ -414,7 +417,8 @@ public final class keyboard {
     }
 
     /**
-     * checks if a key is released.
+     * checks if a key is released, callback function triggered when a key is
+     * released.
      *
      * @param keyName the name of the key to be tested
      * @return if a key is released up for that frame (bool)

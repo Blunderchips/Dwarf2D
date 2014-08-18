@@ -2,9 +2,9 @@ package dwarf;
 
 import java.util.Objects;
 import java.io.FileInputStream;
-import dwarf.lib.LWJGL.WaveData;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
+import dwarf.lib.LWJGL.WaveData;
 
 import static org.lwjgl.openal.AL10.AL_BUFFER;
 import static org.lwjgl.openal.AL10.alBufferData;
@@ -200,15 +200,15 @@ public class Sfx extends java.lang.Object {
     }
 
     public void set(Sfx sfx) {
-        this.setBuffer(sfx.getBuffer());
-        this.setData(sfx.getData());
-        this.setSource(sfx.getSource());
+        this.buffer = sfx.getBuffer();
+        this.data = sfx.getData();
+        this.source = sfx.getSource();
     }
 
     public void set(int buffer, WaveData waveData, int source) {
-        this.setBuffer(buffer);
-        this.setData(waveData);
-        this.setSource(source);
+        this.buffer = buffer;
+        this.data = waveData;
+        this.source = source;
     }
 
 }

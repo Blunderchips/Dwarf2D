@@ -11,7 +11,7 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 /**
  * Provides an interface to the user's mouse.
  *
- * @author sid_th3_sl0th
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see dwarf.engine.core.Input
  * @see org.lwjgl.input.Mouse
@@ -47,6 +47,7 @@ public final class mouse {
             );
             Game.close(ex);
         }
+        
         mouse.currentMouse = new ArrayList<>();
         mouse.downMouse = new ArrayList<>();
         mouse.upMouse = new ArrayList<>();
@@ -86,6 +87,11 @@ public final class mouse {
         return new Vector2(org.lwjgl.input.Mouse.getX(), org.lwjgl.input.Mouse.getY());
     }
 
+    /**
+     * Sets the current position of the mouse.
+     *
+     * @param pos The new position of the mouse
+     */
     public static void setMousePosition(Vector2 pos) {
         org.lwjgl.input.Mouse.setCursorPosition((int) pos.getX(), (int) pos.getY());
     }
@@ -117,7 +123,7 @@ public final class mouse {
     //========================================================================
     
     /**
-     * checks if a mouse key is down
+     * Checks whether a certain mouse button is down.
      *
      * @param mouseButton the key code of the button to be tested
      * @return Mouse.isButtonDown(mouseButton)
@@ -127,7 +133,7 @@ public final class mouse {
     }
 
     /**
-     * checks if a mouse key is down
+     * checks if a mouse key is downs.
      *
      * @param buttonName the name of the button to be tested
      * @return Mouse.isButtonDown(mouseButton)
@@ -137,7 +143,7 @@ public final class mouse {
     }
 
     /**
-     * checks if a mouse key is clicked
+     * checks if a mouse key is clicked.
      *
      * @param mouseButton the key code of the button to be tested
      * @return return upMouse.contains(upKeys)
@@ -147,7 +153,8 @@ public final class mouse {
     }
 
     /**
-     * checks if a mouse key is clicked
+     * checks if a mouse key is clicked, callback function triggered when a
+     * mouse button is pressed.
      *
      * @param buttonName the name of the button to be tested
      * @return return upMouse.contains(upKeys)
@@ -157,7 +164,8 @@ public final class mouse {
     }
 
     /**
-     * checks if the left button mouse key is clicked
+     * checks if the left button mouse key is clicked, callback function
+     * triggered when a mouse button is pressed.
      *
      * @return true is the left mouse button is clicked other wise false
      */
@@ -166,7 +174,8 @@ public final class mouse {
     }
 
     /**
-     * checks if a mouse key is released
+     * checks if a mouse key is released, callback function triggered when a
+     * mouse button is released.
      *
      * @param mouseButton the key code of the button to be tested
      * @return return upMouse.contains(upKeys)
@@ -176,7 +185,8 @@ public final class mouse {
     }
 
     /**
-     * checks if a mouse key is released
+     * checks if a mouse key is released, callback function triggered when a
+     * mouse button is released.
      *
      * @param buttonName the name of the button to be tested
      * @return return upMouse.contains(upKeys)

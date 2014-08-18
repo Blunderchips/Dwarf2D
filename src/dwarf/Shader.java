@@ -66,8 +66,8 @@ public class Shader extends java.lang.Object {
     public Shader(Shader shader) {
         super();
 
-        this.setProgram(shader.getProgram());
-        this.setSource(shader.getSource());
+        this.source = shader.getSource();
+        this.program = shader.getProgram();
     }
 
     public Shader(int type, String key) {
@@ -266,7 +266,7 @@ public class Shader extends java.lang.Object {
     }
 
     public void set(Shader shader) {
-        this.setProgram(shader.getProgram());
-        this.setSource(shader.getSource());
+        this.source = shader.getSource();
+        this.program = shader.getProgram();
     }
 }
