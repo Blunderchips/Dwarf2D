@@ -6,7 +6,6 @@ package dwarf.util;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
- * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
 public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
@@ -16,6 +15,7 @@ public class Vector3 extends java.lang.Object implements java.lang.Cloneable {
     public final static Vector3 UNIT_Y = new Vector3(0, 1, 0);
     public final static Vector3 UNIT_Z = new Vector3(0, 0, 1);
     public final static Vector3 UNIT_XYZ = new Vector3(1, 1, 1);
+    
     /**
      * A constant holding a Not-a-Number (NaN) value of type
      * <code>Vector3</code>.
