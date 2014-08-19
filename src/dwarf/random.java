@@ -1,4 +1,7 @@
-package dwarf.util;
+package dwarf;
+
+import dwarf.util.Vector2;
+import dwarf.util.Vector3;
 
 /**
  * handles all random numbers and events.
@@ -7,12 +10,12 @@ package dwarf.util;
  *
  * @see java.lang.Math#random()
  */
-public final class rand {
+public final class random {
 
     /**
      * you can not instantiate this class.
      */
-    public rand() throws UnsupportedOperationException {
+    public random() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
         throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
@@ -39,7 +42,7 @@ public final class rand {
      * @return returns a random boolean.
      */
     public static boolean bool() {
-        return (rand.interger() % 2) == 0;
+        return (random.interger() % 2) == 0;
     }
 
     public static boolean bool(int percent) {
@@ -48,7 +51,7 @@ public final class rand {
 
     public static boolean chance(int chance) {
         for (int i = 0; i < chance; i++) {
-            if (rand.bool() == false) {
+            if (random.bool() == false) {
                 return false;
             }
         }
@@ -57,46 +60,46 @@ public final class rand {
 
     public static Vector2 vec2() {
         return new Vector2(
-                rand.interger(),
-                rand.interger()
+                random.interger(),
+                random.interger()
         );
     }
 
     public static Vector2 vec2(int maximum) {
         return new Vector2(
-                rand.interger(maximum),
-                rand.interger(maximum)
+                random.interger(maximum),
+                random.interger(maximum)
         );
     }
 
     public static Vector2 vec2(int maximum, int minimum) {
         return new Vector2(
-                rand.interger(minimum, maximum),
-                rand.interger(minimum, maximum)
+                random.interger(minimum, maximum),
+                random.interger(minimum, maximum)
         );
     }
 
     public static Vector3 vec3() {
         return new Vector3(
-                rand.interger(),
-                rand.interger(),
-                rand.interger()
+                random.interger(),
+                random.interger(),
+                random.interger()
         );
     }
 
     public static Vector3 vec3(int maximum) {
         return new Vector3(
-                rand.interger(maximum),
-                rand.interger(maximum),
-                rand.interger(maximum)
+                random.interger(maximum),
+                random.interger(maximum),
+                random.interger(maximum)
         );
     }
 
     public static Vector3 vec3(int maximum, int minimum) {
         return new Vector3(
-                rand.interger(minimum, maximum),
-                rand.interger(minimum, maximum),
-                rand.interger(minimum, maximum)
+                random.interger(minimum, maximum),
+                random.interger(minimum, maximum),
+                random.interger(minimum, maximum)
         );
     }
 }

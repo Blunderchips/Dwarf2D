@@ -3,12 +3,13 @@ package dwarf;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
-import static dwarf.mouse.MOUSE_LEFT;
 import dwarf.util.Vector2;
-import static dwarf.util.Vector2.ZERO;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+
+import static dwarf.mouse.MOUSE_LEFT;
+import static dwarf.util.Vector2.ZERO;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision

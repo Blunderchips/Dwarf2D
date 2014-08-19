@@ -27,7 +27,7 @@ import static org.lwjgl.opengl.GL11.glVertex2d;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
 /**
- * draws shapes to the screen using openGL
+ * draws shapes to the screen using <a href='http://www.opengl.org/'>OpenGL</a>.
  *
  * @author Matthew 'siD' Van der Bijl
  */

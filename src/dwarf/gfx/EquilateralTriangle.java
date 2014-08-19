@@ -31,8 +31,9 @@ public class EquilateralTriangle extends Shape {
     }
 
     @Override
+    @Deprecated
     public void addPoint(Vector2 point) {
-        System.err.println("This method is unsuported with the EquilateralTriangle class.");
+        super.addPoint(point);
     }
 
     @Override

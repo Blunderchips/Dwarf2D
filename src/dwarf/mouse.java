@@ -143,8 +143,10 @@ public final class mouse {
     /**
      * Checks whether a certain mouse button is down.
      *
+     * @see org.lwjgl.input.Mouse#isButtonDown(int)
+     *
      * @param mouseButton the key code of the button to be tested
-     * @return Mouse.isButtonDown(mouseButton)
+     * @return true if the mouse button is down, otherwise it will return false.
      */
     public static boolean isMouseDown(int mouseButton) {
         return org.lwjgl.input.Mouse.isButtonDown((byte) mouseButton);
@@ -153,8 +155,11 @@ public final class mouse {
     /**
      * checks if a mouse key is downs.
      *
+     * @see dwarf.mouse#isMouseDown(int)
+     * @see org.lwjgl.input.Mouse#isButtonDown(int)
+     *
      * @param buttonName the name of the button to be tested
-     * @return Mouse.isButtonDown(mouseButton)
+     * @return true if the mouse button is down, otherwise it will return false.
      */
     public static boolean isMouseDown(String buttonName) {
         return isMouseDown(mouse.getKeyCode(buttonName));
@@ -174,8 +179,11 @@ public final class mouse {
      * checks if a mouse key is clicked, callback function triggered when a
      * mouse button is pressed.
      *
+     * @see dwarf.mouse#isMouseClicked(int)
+     *
      * @param buttonName the name of the button to be tested
-     * @return return upMouse.contains(upKeys)
+     * @return true if the mouse button is clicked, otherwise it will return
+     * false.
      */
     public static boolean isMouseClicked(String buttonName) {
         return downMouse.contains(mouse.getKeyCode(buttonName));
@@ -185,7 +193,9 @@ public final class mouse {
      * checks if the left button mouse key is clicked, callback function
      * triggered when a mouse button is pressed.
      *
-     * @return true is the left mouse button is clicked other wise false
+     * @see dwarf.mouse#isMouseClicked(int)
+     *
+     * @return true is the left mouse button is clicked otherwise false
      */
     public static boolean isMouseClicked() {
         return downMouse.contains(MOUSE_LEFT);
@@ -196,7 +206,8 @@ public final class mouse {
      * mouse button is released.
      *
      * @param mouseButton the key code of the button to be tested
-     * @return return upMouse.contains(upKeys)
+     * @return true if the mouse button is realesed, otherwise it will return
+     * false.
      */
     public static boolean isMouseRealesed(int mouseButton) {
         return upMouse.contains((byte) mouseButton);
@@ -206,14 +217,26 @@ public final class mouse {
      * checks if a mouse key is released, callback function triggered when a
      * mouse button is released.
      *
+     * @see dwarf.mouse#isMouseRealesed(int)
+     *
      * @param buttonName the name of the button to be tested
-     * @return return upMouse.contains(upKeys)
+     * @return true if the mouse button is realesed, otherwise it will return
+     * false.
      */
     public static boolean isMouseRealesed(String buttonName) {
         return upMouse.contains(mouse.getKeyCode(buttonName));
     }
 
-    private static byte getKeyCode(String code) {
+    /**
+     * Gets a button's name.
+     *
+     * @param code The button
+     * @throws IllegalArgumentException will throw if no suitable result is
+     * found
+     * @return a String with the button's human readable name in it or will
+     * throw a IllegalArgumentException if the button is unnamed
+     */
+    private static byte getKeyCode(String code) throws IllegalArgumentException {
         switch (code) {
             case "left":
                 return MOUSE_LEFT;
@@ -224,5 +247,19 @@ public final class mouse {
             default:
                 throw new IllegalArgumentException("keycode '" + code + "' is unknown");
         }
+    }
+
+    /**
+     * Retrieves whether or not the mouse cursor is within the bounds of the
+     * window. If the mouse cursor was moved outside the display during a drag,
+     * then the result of calling this method will be true until the button is
+     * released.
+     *
+     * @see org.lwjgl.input.Mouse#isInsideWindow()
+     *
+     * @return true if mouse is inside display, false otherwise.
+     */
+    public static boolean isInsideWindow() {
+        return org.lwjgl.input.Mouse.isInsideWindow();
     }
 }

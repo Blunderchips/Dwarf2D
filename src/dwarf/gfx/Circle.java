@@ -2,6 +2,7 @@ package dwarf.gfx;
 
 import dwarf.util.Vector2;
 import java.util.Objects;
+
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
 import static java.lang.Math.PI;
@@ -9,6 +10,20 @@ import static dwarf.gfx.draw.SHAPE_CIRCLE;
 
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.
+ *
+ * <p>
+ * A circle is a plane figure formed by a curved line called the circumference
+ * and is such that all right lines drawn from a certain point with in the
+ * figure to the circumference are equal to one another. This point is called
+ * the center. A radius of a circle is any right line drawn from the center to
+ * the circumference. A diameter of a circle is aright line drawn through the
+ * center and terminated both ways by the circumference. From the definition of
+ * a circle it follows at once that the path of a movable point in a plane which
+ * remains at a constant distance from a fixed point is a circle; also that any
+ * point Pin the plane is inside, outside, or on the circumference of a circle
+ * according as its distance from the center is less than greater than or equal
+ * to, the radius.
+ * </p>
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -154,5 +169,11 @@ public class Circle extends Shape {
                 this.getCenterX().getX(),
                 this.getCenterY().getY()
         );
+    }
+    
+    @Override
+    @Deprecated
+    public void addPoint(Vector2 point) {
+        super.addPoint(point);
     }
 }

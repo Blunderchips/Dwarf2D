@@ -3,7 +3,7 @@ package dwarf.gfx;
 import dwarf.util.Vector2;
 
 /**
- * A basic 4 sided shape.
+ * A basic 4 sided polygon.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -21,6 +21,8 @@ public class Quadrilateral extends Polygon {
             } else {
                 super.setVertices(vertices);
             }
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -40,8 +42,9 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
+    @Deprecated
     public void addPoint(Vector2 point) {
-        System.err.println("This method is unsuported with the Quadrilateral class.");
+        super.addPoint(point);
     }
 
     @Override
@@ -62,6 +65,8 @@ public class Quadrilateral extends Polygon {
             } else {
                 super.setVertices(vertices);
             }
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 

@@ -1,10 +1,11 @@
 package dwarf.gfx;
 
-import static dwarf.util.math.sin;
 import dwarf.util.Vector2;
 import dwarf.util.math;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.tan;
+import static dwarf.util.math.sin;
 
 /**
  * @author Matthew 'siD' Van der Bijl
@@ -163,5 +164,11 @@ public class Shape extends Polygon {
 
     public void scale(double delta) {
         this.setLineLength(getLineLength() * delta);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoint(Vector2 point) {
+        super.addPoint(point);
     }
 }

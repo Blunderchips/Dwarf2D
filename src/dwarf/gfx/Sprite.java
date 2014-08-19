@@ -2,11 +2,10 @@ package dwarf.gfx;
 
 import dwarf.GameObject;
 import dwarf.util.Vector2;
-import dwarf.util.rand;
+import dwarf.random;
 import java.util.ArrayList;
 
 /**
- *
  * @author Matthew 'siD' Van der Bijl
  *
  * @see dwarf.gfx.Image
@@ -21,19 +20,18 @@ public class Sprite extends dwarf.Collidable implements GameObject {
 
     public Sprite(Image image) {
         super();
-        this.init(image);
+
+        this.textures = new ArrayList<>();
+        this.textures.add(image);
+        this.activeTexture = textures.get(0);
     }
 
     public Sprite(Image image, Vector2 position) {
         super(position);
-        this.init(image);
-    }
 
-    @SuppressWarnings("Convert2Diamond")
-    private void init(Image image) {
-        this.textures = new ArrayList<Image>();
-        this.addTexture(image);
-        this.setActiveTexture(0);
+        this.textures = new ArrayList<>();
+        this.textures.add(image);
+        this.activeTexture = textures.get(0);
     }
 
     @Override
@@ -208,6 +206,6 @@ public class Sprite extends dwarf.Collidable implements GameObject {
      * @return returns the index of a random texture.
      */
     public int randomTexture() {
-        return rand.interger(getNumtextures());
+        return random.interger(getNumtextures());
     }
 }

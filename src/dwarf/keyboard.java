@@ -374,8 +374,10 @@ public final class keyboard {
     /**
      * Checks whether a certain key is down.
      *
+     * @see org.lwjgl.input.Keyboard#isKeyDown(int)
+     *
      * @param keyCode the key code of the key to be tested
-     * @return Keyboard.isKeyPressed(keyCode)
+     * @return true if the key is down, otherwise it will return false.
      */
     public static boolean isKeyDown(int keyCode) {
         return org.lwjgl.input.Keyboard.isKeyDown((short) keyCode);
@@ -384,8 +386,11 @@ public final class keyboard {
     /**
      * Checks whether a certain key is down.
      *
+     * @see dwarf.keyboard#isKeyDown(int)
+     * @see org.lwjgl.input.Keyboard#isKeyDown(int)
+     *
      * @param keyName the name of the key to be tested
-     * @return Keyboard.isKeyPressed(keyCode)
+     * @return true if the key is down, otherwise it will return false.
      */
     public static boolean isKeyDown(String keyName) {
         return isKeyDown(getKeyCode(keyName));
@@ -405,6 +410,8 @@ public final class keyboard {
     /**
      * checks if a key is down for a single frame, callback function triggered
      * when a key is pressed.
+     *
+     * @see dwarf.keyboard#isKeyPressed(int)
      *
      * @param keyName the name of the key to be tested
      * @return if a key is pressed down for that frame (bool)
@@ -428,6 +435,8 @@ public final class keyboard {
      * checks if a key is released, callback function triggered when a key is
      * released.
      *
+     * @see dwarf.keyboard#isKeyReleased(int)
+     *
      * @param keyName the name of the key to be tested
      * @return if a key is released up for that frame (bool)
      */
@@ -435,7 +444,16 @@ public final class keyboard {
         return upKeys.contains(getKeyCode(keyName));
     }
 
-    private static short getKeyCode(String code) {
+    /**
+     * Gets a key's name.
+     *
+     * @param code The key
+     * @throws IllegalArgumentException will throw if no suitable result is
+     * found
+     * @return a String with the key's human readable name in it or will throw a
+     * IllegalArgumentException if the key is unnamed
+     */
+    private static short getKeyCode(String code) throws IllegalArgumentException {
         switch (code) {
             case "1":
                 return KEY_1;

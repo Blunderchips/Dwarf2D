@@ -7,7 +7,9 @@ import java.util.Objects;
 import static dwarf.gfx.draw.*;
 
 /**
- * A basic shape with more than 3 sides.
+ * A basic shape with more than 3 sides.A rectilinear figure bounded by more
+ * than three right lines is usually called a polygon. A polygon is said to be
+ * convex when it has no re-entrant angle.
  *
  * @author Matthew 'siD' Van der Bijl
  *
