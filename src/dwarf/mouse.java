@@ -31,12 +31,17 @@ public final class mouse {
     public static final byte MOUSE_RIGHT = 0x1;
     public static final byte MOUSE_MIDDLE = 0x2;
 
-    public static final byte NUM_MOUSEBUTTONS = 0x5;
+    public static final byte NUM_MOUSEBUTTONS = (byte) org.lwjgl.input.Mouse.getButtonCount();
 
     private static ArrayList<Byte> currentMouse;
     private static ArrayList<Byte> downMouse;
     private static ArrayList<Byte> upMouse;
 
+    /**
+     * initialization the mouse. The display must first have been created.
+     * Initially, the mouse is not grabbed and the delta values are reported
+     * with respect to the center of the display.
+     */
     public static void init() {
         try {
             org.lwjgl.input.Mouse.create();
@@ -47,7 +52,7 @@ public final class mouse {
             );
             Game.close(ex);
         }
-        
+
         mouse.currentMouse = new ArrayList<>();
         mouse.downMouse = new ArrayList<>();
         mouse.upMouse = new ArrayList<>();
@@ -116,6 +121,19 @@ public final class mouse {
         mouse.currentMouse = new ArrayList<>();
         mouse.downMouse = new ArrayList<>();
         mouse.upMouse = new ArrayList<>();
+    }
+
+    public static void poll() {
+        org.lwjgl.input.Mouse.poll();
+    }
+
+    /**
+     * returns true if the mouse has a wheel if not it will return false.
+     *
+     * @return whether or not this mouse has wheel support
+     */
+    public static boolean hasWheel() {
+        return org.lwjgl.input.Mouse.hasWheel();
     }
 
     //========================================================================

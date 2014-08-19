@@ -293,12 +293,16 @@ public final class keyboard {
      */
     public static final short KEY_APPS = 0xDD;
 
-    public static final short NUM_KEYCODES = 0x100;
+    public static final short NUM_KEYCODES = (short) org.lwjgl.input.Keyboard.getKeyCount();
 
     private static ArrayList<Short> currentKeys;
     private static ArrayList<Short> downKeys;
     private static ArrayList<Short> upKeys;
 
+    /**
+     * initialization of the keyboard. The display must first have been created.
+     * The reason for this is so the keyboard has a window to "focus" in.
+     */
     public static void init() {
         try {
             org.lwjgl.input.Keyboard.create();
@@ -357,6 +361,10 @@ public final class keyboard {
         keyboard.currentKeys = new ArrayList<>();
         keyboard.downKeys = new ArrayList<>();
         keyboard.upKeys = new ArrayList<>();
+    }
+
+    public static void poll() {
+        org.lwjgl.input.Keyboard.poll();
     }
 
     //========================================================================
