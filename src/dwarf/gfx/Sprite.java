@@ -201,7 +201,7 @@ public class Sprite extends dwarf.Collidable implements GameObject {
      * returns the index of a random <code>Image</code> in the texture
      * ArrayList.
      *
-     * @see dwarf.util.rand#interger(int)
+     * @see dwarf.random#interger(int)
      *
      * @return returns the index of a random texture.
      */
