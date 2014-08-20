@@ -2,11 +2,12 @@ package dwarf.gfx;
 
 import dwarf.util.Vector2;
 import dwarf.util.math;
+
 import static dwarf.util.math.sqr;
 import static dwarf.gfx.draw.SHAPE_TRIANGLE;
 
 /**
- * A 3 sided shape where are 3 sides are equal.
+ * A 3 sided polygon where are 3 sides are equal.
  *
  * @author Matthew 'siD' Van der Bijl
  *

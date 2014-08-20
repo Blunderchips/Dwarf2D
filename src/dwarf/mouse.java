@@ -50,7 +50,7 @@ public final class mouse {
             JOptionPane.showMessageDialog(
                     Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
-            Game.close(ex);
+            Game.close(new dwarf.DwarfException(ex));
         }
 
         mouse.currentMouse = new ArrayList<>();

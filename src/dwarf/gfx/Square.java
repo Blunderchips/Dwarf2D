@@ -4,7 +4,7 @@ import dwarf.util.Vector2;
 
 /**
  * A 4 sided shape where all 4 sides are equal and both diagonals bisect each
- * other. (a rhombus with a right angle)
+ * other. (a lozenge/rhombus with right angles)
  *
  * @author Matthew 'siD' Van der Bijl
  *

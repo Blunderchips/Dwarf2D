@@ -7,9 +7,11 @@ import dwarf.lib.Slick2D.ResourceLoader;
 import dwarf.lib.Slick2D.Texture;
 import dwarf.lib.Slick2D.TextureLoader;
 import dwarf.util.Vector2;
+
 import java.io.IOException;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**

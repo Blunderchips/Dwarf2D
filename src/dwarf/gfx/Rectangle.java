@@ -127,7 +127,7 @@ public class Rectangle extends Quadrilateral {
      */
     public boolean intersects(int face, Collidable coll) {
 
-        switch (face) {
+        switch ((byte) face) {
             case NORTH_FACE:
 
                 return coll.intersects(getNorthFace());
@@ -151,7 +151,7 @@ public class Rectangle extends Quadrilateral {
     }
 
     public boolean isSquare() {
-        return this.getDimensions().getX() == this.getDimensions().getY();
+        return this instanceof Square || this.getDimensions().getX() == this.getDimensions().getY();
     }
 
     @Override

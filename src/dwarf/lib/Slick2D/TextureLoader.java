@@ -2,6 +2,7 @@ package dwarf.lib.Slick2D;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import static org.lwjgl.opengl.GL11.GL_LINEAR;
 
 /**

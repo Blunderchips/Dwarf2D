@@ -30,7 +30,7 @@ public class Shape extends Polygon {
 
             this.init(numSides, lineLength);
         } else {
-            throw new IllegalArgumentException("lol you stupid idiot, shapes require 3 or more sides.");
+            throw new dwarf.DwarfException("lol you stupid idiot, shapes require 3 or more sides.");
         }
     }
 

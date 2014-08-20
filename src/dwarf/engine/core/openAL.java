@@ -50,7 +50,7 @@ public final class openAL {
             JOptionPane.showMessageDialog(
                     Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
-            Game.close(ex);
+            Game.close(new dwarf.DwarfException(ex));
         }
     }
 
