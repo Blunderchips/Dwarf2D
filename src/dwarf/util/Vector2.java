@@ -1,5 +1,7 @@
 package dwarf.util;
 
+import dwarf.DwarfException;
+
 /**
  * A 2-dimensional, single-precision, double-point vector.
  *
@@ -14,9 +16,10 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
     public static final Vector2 UNIT_X = new Vector2(1, 0);
     public static final Vector2 UNIT_Y = new Vector2(0, 1);
     public static final Vector2 UNIT_XY = new Vector2(1, 1);
-    
+
     /**
-     * A constant holding a Not-a-Number (NaN) value of type <code>Vector2</code>.
+     * A constant holding a Not-a-Number (NaN) value of type
+     * <code>Vector2</code>.
      */
     public final static Vector2 NaN = new Vector2(Double.NaN, Double.NaN);
     /**
@@ -33,11 +36,12 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
             Double.NEGATIVE_INFINITY,
             Double.NEGATIVE_INFINITY
     );
-    
+
     /**
      * Rotation in degrees (0-359)
      */
     private double rotation = 0;
+
     /**
      * the x-component of this <code>Vector2</code>
      */
@@ -325,11 +329,10 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
     }
 
     /**
-     * Returns true if the
-     * <code>this</code> is equal to the argument and false otherwise.
-     * Consequently, if both argument are null, true is returned, false is
-     * returned. Otherwise, equality is determined by using the equals method of
-     * the first argument.
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
      *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
@@ -525,7 +528,8 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
 
         this.set(
                 this.getX() + deltaX,
-                this.getY() + deltaY);
+                this.getY() + deltaY
+        );
     }
 
     /**
@@ -559,7 +563,7 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
         try {
             return new Vector2(this);
         } catch (Exception ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 }

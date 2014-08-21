@@ -7,7 +7,6 @@
 
 - Docs
 - collider rotation
-- GLSL support (shaders)
 - FLV support
 - Need demos/samples
 - many more things
