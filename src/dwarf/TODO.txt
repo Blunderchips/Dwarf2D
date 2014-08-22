@@ -9,4 +9,5 @@
 - collider rotation
 - FLV support
 - Need demos/samples
-- many more things
+- Change log
+- Ray casting
