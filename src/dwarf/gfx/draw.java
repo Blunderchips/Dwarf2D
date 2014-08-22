@@ -178,16 +178,14 @@ public final class draw {
     public final static byte SHAPE_ICOSIKAITETRAGON = 0x18;
     /**
      * 30 sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Triacontagon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Triacontagon'>wikipedia</a>
      */
     public static final byte SHAPE_TRIACONTAGON = 0x1e;
     /**
      * 50 sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Pentacontagon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Pentacontagon'>wikipedia</a>
      */
     public static final byte SHAPE_PENTACONTAGON = 0x32;
     /**
@@ -198,40 +196,35 @@ public final class draw {
     public final static byte SHAPE_CIRCLE = 0x3c;
     /**
      * 100 sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Hectogon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Hectogon'>wikipedia</a>
      */
     public static final byte SHAPE_HECTOGON = 0x64;
     /**
      * 1000 sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Chiliagon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Chiliagon'>wikipedia</a>
      */
     public static final short SHAPE_CHILIAGON = 0x3e8;
     /**
      * 10000 sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Myriagon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Myriagon'>wikipedia</a>
      */
     public static final short SHAPE_MYRIAGON = 0x2710;
     /**
      * 1000000 sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Megagon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Megagon'>wikipedia</a>
      */
     public static final short SHAPE_MEGAGON = 0x4240;
     /**
      * infinite sided shape.
-     * 
-     * @see <a
-     * href='http://en.wikipedia.org/wiki/Apeirogon'>wikipedia</a>
+     *
+     * @see <a href='http://en.wikipedia.org/wiki/Apeirogon'>wikipedia</a>
      */
     public static final long SHAPE_APEIROGON = Long.MAX_VALUE;
-    
+
     public final static String STATE_FILL = "fill";
     public final static String STATE_STROKE = "stroke";
 
@@ -784,7 +777,7 @@ public final class draw {
         glPopMatrix();
     }
 
-    public static void fillShape(int numSides, double lineLength, Vector2 translation, Colour colour) {
+    public static void fillShape(int numSides, double lineLength, Vector2 translation, double rotation, Colour colour) {
 
         if (numSides >= 3) {
 
@@ -794,13 +787,13 @@ public final class draw {
                 numSides = 60;
             }
 
-            int angle = 360 / numSides;
+            int angle = 0;
             Vector2 temp = new Vector2();
 
             glPushMatrix();
             {
                 glTranslated(translation.getX(), translation.getY(), 0);
-                glRotated(translation.getRotation(), 0, 0, 1);
+                glRotated(rotation, 0, 0, 1);
 
                 colour.bind();
 
@@ -808,12 +801,20 @@ public final class draw {
                 {
                     for (byte i = 0; i < numSides; i++) {
 
-                        glVertex2d(temp.getX(), temp.getY());
+                        glPushMatrix();
+
+                        glRotated(angle, 0, 0, 1);
+                        glVertex2d(lineLength, 0);
 
                         temp.move(lineLength);
                         temp.rotate(angle);
+
+                        angle += 360 / numSides;
                     }
 
+                    for (byte i = 0; i < numSides; i++) {
+                        glPopMatrix();
+                    }
                 }
                 glEnd();
 
@@ -943,7 +944,7 @@ public final class draw {
     }
 
     public static void fillCircle(double radius, Vector2 position, Colour colour) {
-        draw.fillShape(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), position, colour);
+        draw.fillShape(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), position, 0, colour);
     }
 
     public static void strokeCircle(double radius, Vector2 position, Colour colour) {
