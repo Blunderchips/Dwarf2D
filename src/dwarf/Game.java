@@ -28,6 +28,9 @@ public abstract class Game extends Engine {
     private final transient PropertyChangeSupport propertyChangeSupport;
     private final transient VetoableChangeSupport vetoableChangeSupport;
 
+    /**
+     * default constructor.
+     */
     public Game() {
         super();
 
@@ -37,6 +40,11 @@ public abstract class Game extends Engine {
         this.init(800, 600, null);
     }
 
+    /**
+     * @param width the width of the window to be created.
+     * @param height the height of the window to be created.
+     * @param title the title of the window to be created.
+     */
     public Game(int width, int height, String title) {
         super();
 
@@ -46,6 +54,9 @@ public abstract class Game extends Engine {
         this.init(width, height, title);
     }
 
+    /**
+     * @param title the title of the window to be created.
+     */
     public Game(String title) {
         super();
 
@@ -55,6 +66,10 @@ public abstract class Game extends Engine {
         this.init(800, 600, title);
     }
 
+    /**
+     * @param width the width of the window to be created.
+     * @param height the height of the window to be created.
+     */
     public Game(int width, int height) {
         super();
 
@@ -64,6 +79,9 @@ public abstract class Game extends Engine {
         this.init(width, height, null);
     }
 
+    /**
+     * @param dimensions the dimensions of the window to be created.
+     */
     public Game(Vector2 dimensions) {
         super();
 
@@ -73,6 +91,10 @@ public abstract class Game extends Engine {
         this.init((int) dimensions.getX(), (int) dimensions.getY(), null);
     }
 
+    /**
+     * @param dimensions the dimensions of the window to be created.
+     * @param title the title of the window to be created.
+     */
     public Game(Vector2 dimensions, String title) {
         super();
 
@@ -86,8 +108,7 @@ public abstract class Game extends Engine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        Game defaultGame = new Game(".:Dwarf 2D:.") {
+        new Game(".:Dwarf 2D:.") {
             @Override
             public void load() {
                 //This function is called exactly once at the beginning of the game.
@@ -122,7 +143,7 @@ public abstract class Game extends Engine {
         Game.gameObjects = new ArrayList<GameObject>();
 
         //starts the main game loop.
-        this.start(abs(width), abs(height), title);
+        super.start(abs(width), abs(height), title);
     }
 
     /**
@@ -167,9 +188,8 @@ public abstract class Game extends Engine {
         try {
             Game.gameObjects = gameObjects;
             return true;
-        } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+        } catch (DwarfException ex) {
+            throw ex;
         }
     }
 
@@ -183,9 +203,8 @@ public abstract class Game extends Engine {
     public boolean addGameObject(GameObject input) {
         try {
             return this.getGameObjects().add(input);
-        } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+        } catch (DwarfException ex) {
+            throw ex;
         }
     }
 
@@ -199,9 +218,8 @@ public abstract class Game extends Engine {
     public boolean addGameObject(Object input) {
         try {
             return this.getGameObjects().add((GameObject) input);
-        } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+        } catch (DwarfException ex) {
+            throw ex;
         }
     }
 
@@ -216,8 +234,7 @@ public abstract class Game extends Engine {
         try {
             return this.getGameObjects().remove(input);
         } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+            throw ex;
         }
     }
 
@@ -232,9 +249,8 @@ public abstract class Game extends Engine {
     public boolean removeGameObject(Object input) {
         try {
             return this.getGameObjects().remove(input);
-        } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+        } catch (DwarfException ex) {
+            throw ex;
         }
     }
 
@@ -250,8 +266,7 @@ public abstract class Game extends Engine {
             this.getGameObjects().remove(index);
             return true;
         } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+            throw ex;
         }
     }
 
@@ -367,9 +382,8 @@ public abstract class Game extends Engine {
         try {
             this.gameObjects = new ArrayList<GameObject>();
             return true;
-        } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+        } catch (DwarfException ex) {
+            throw ex;
         }
     }
 }

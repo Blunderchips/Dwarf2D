@@ -63,6 +63,9 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
         glColor4d(red, green, blue, alpha);
     }
 
+    /**
+     * default constructor.
+     */
     public Colour() {
         super(0, 0, 0);
     }

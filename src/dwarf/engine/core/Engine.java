@@ -18,6 +18,11 @@ public abstract class Engine extends java.lang.Object {
         openAL.init();
     }
 
+    /**
+     * @param width the width of the window to be created.
+     * @param height the height of the window to be created.
+     * @param title the title of the window to be created.
+     */
     public final void start(int width, int height, String title) {
         Window.create(width, height, title);
         openGL.init();
@@ -68,6 +73,9 @@ public abstract class Engine extends java.lang.Object {
      */
     public abstract void render();
 
+    /**
+     * Disposes of the Engine.
+     */
     public final static void dispose() {
         Input.dispose();
         Window.dispose();
