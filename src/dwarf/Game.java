@@ -29,7 +29,7 @@ public abstract class Game extends Engine {
     private final transient VetoableChangeSupport vetoableChangeSupport;
 
     /**
-     * default constructor.
+     * Default constructor.
      */
     public Game() {
         super();

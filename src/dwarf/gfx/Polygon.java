@@ -18,7 +18,7 @@ import static dwarf.gfx.draw.*;
  * @see dwarf.Collidable
  * @see dwarf.gfx.draw
  */
-public class Polygon extends dwarf.Collidable implements GameObject {
+public class Polygon extends dwarf.Collidable implements GameObject, Cloneable {
 
     private Colour colour;
     private String mode;
@@ -280,5 +280,10 @@ public class Polygon extends dwarf.Collidable implements GameObject {
     public void set(Polygon polygon) {
         this.init(polygon.getVertices(), polygon.getMode(), polygon.getColour());
         super.setPosition(polygon.getPosition());
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Polygon(this);
     }
 }

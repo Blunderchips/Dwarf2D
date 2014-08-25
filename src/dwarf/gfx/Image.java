@@ -24,9 +24,14 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  * @see dwarf.Collidable
  * @see java.lang.Object
  */
-public class Image extends dwarf.Collidable implements GameObject {
+public class Image extends dwarf.Collidable implements GameObject, Cloneable {
 
     private Texture tex;
+
+    public Image(Image i) {
+        super(i.getPosition());
+        this.init(i.getTexture());
+    }
 
     public Image(Texture texture, Vector2 position) {
         super(position);
@@ -173,5 +178,10 @@ public class Image extends dwarf.Collidable implements GameObject {
     @Override
     public Image get() {
         return this;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Image(this);
     }
 }

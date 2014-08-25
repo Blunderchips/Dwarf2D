@@ -171,4 +171,9 @@ public class Shape extends Polygon {
     public void addPoint(Vector2 point) {
         super.addPoint(point);
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Shape(this);
+    }
 }

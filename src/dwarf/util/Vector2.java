@@ -10,7 +10,7 @@ import dwarf.DwarfException;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
+public class Vector2 extends java.lang.Object implements Cloneable {
 
     public static final Vector2 ZERO = new Vector2(0, 0);
     public static final Vector2 UNIT_X = new Vector2(1, 0);
@@ -88,6 +88,9 @@ public class Vector2 extends java.lang.Object implements java.lang.Cloneable {
                 + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2);
     }
 
+    /**
+     * Default constructor.
+     */
     public Vector2() {
         super();
 

@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import dwarf.lib.LWJGL.WaveData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.lwjgl.openal.AL10.AL_BUFFER;
 import static org.lwjgl.openal.AL10.alBufferData;
@@ -27,7 +29,7 @@ import static org.lwjgl.openal.AL10.alSourcei;
  * @see dwarf.engine.core.openAL
  * @see <a href='http://www.openal.org/'>openal.org</a>
  */
-public class Sfx extends java.lang.Object {
+public class Sfx extends java.lang.Object implements Cloneable {
 
     private static boolean isMute = false;
 
@@ -44,18 +46,29 @@ public class Sfx extends java.lang.Object {
     private int buffer;
     private WaveData data;
 
-    public Sfx(String key) throws FileNotFoundException {
+    /**
+     * Default constructor.
+     */
+    public Sfx() {
+        super();
+    }
+    
+    public Sfx(String key) throws DwarfException {
         super();
         this.init(key);
     }
 
-    public Sfx(Sfx audio) throws FileNotFoundException {
+    public Sfx(Sfx audio) throws DwarfException {
         super();
         this.init(audio.getKey());
     }
 
-    private void init(String key) throws FileNotFoundException {
-        this.setData(WaveData.create(new BufferedInputStream(new FileInputStream(key))));
+    private void init(String key) throws DwarfException {
+        try {
+            this.setData(WaveData.create(new BufferedInputStream(new FileInputStream(key))));
+        } catch (FileNotFoundException ex) {
+            throw new DwarfException(ex);
+        }
         this.setBuffer(alGenBuffers());
 
         alBufferData(getBuffer(), getData().getFormat(), getData().getData(), getData().getSamplerate());
@@ -211,4 +224,12 @@ public class Sfx extends java.lang.Object {
         this.source = source;
     }
 
+    @Override
+    public Sfx clone() throws CloneNotSupportedException {
+        try {
+            return new Sfx(this);
+        } catch (DwarfException ex) {
+            throw new DwarfException(ex); // should never happen.
+        }
+    }
 }

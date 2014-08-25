@@ -29,7 +29,7 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
  * @see <a href='http://en.wikipedia.org/wiki/Shader'>wikipedia</a>
  * @see java.lang.Object
  */
-public class Shader extends java.lang.Object {
+public class Shader extends java.lang.Object implements Cloneable {
 
     /**
      * The Vertex Shader is the programmable Shader stage in the rendering
@@ -53,12 +53,15 @@ public class Shader extends java.lang.Object {
     }
 
     public static void stop() {
-        glUseProgram(0x0);
+        glUseProgram(0);
     }
 
     private int program;
     private StringBuilder source;
 
+    /**
+     * Default constructor.
+     */
     public Shader() {
         super();
     }
@@ -268,5 +271,10 @@ public class Shader extends java.lang.Object {
     public void set(Shader shader) {
         this.source = shader.getSource();
         this.program = shader.getProgram();
+    }
+
+    @Override
+    public Shader clone() throws CloneNotSupportedException {
+        return new Shader(this);
     }
 }

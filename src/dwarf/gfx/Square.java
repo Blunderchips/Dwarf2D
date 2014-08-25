@@ -66,4 +66,9 @@ public class Square extends Rectangle {
         super.setColour(square.getColour());
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Square(this);
+    }
+
 }

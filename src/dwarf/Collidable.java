@@ -25,11 +25,14 @@ import static dwarf.util.Vector2.ZERO;
  *
  * @see java.lang.Object
  */
-public abstract class Collidable extends java.lang.Object implements dwarf.GameObject {
+public abstract class Collidable extends java.lang.Object {
 
     private ArrayList<Vector2> vertices;
     private Vector2 position;
 
+    /**
+     * Default constructor.
+     */
     public Collidable() {
         super();
         this.init(ZERO);

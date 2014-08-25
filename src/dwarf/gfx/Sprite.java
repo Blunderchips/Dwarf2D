@@ -13,11 +13,19 @@ import java.util.ArrayList;
  * @see dwarf.Collidable
  * @see java.lang.Object
  */
-public class Sprite extends dwarf.Collidable implements GameObject {
+public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
 
     private ArrayList<Image> textures;
     private Image activeTexture;
 
+    public Sprite(Sprite sprite) {
+        super();
+
+        this.textures = sprite.textures;
+        this.textures.add(sprite.getActiveTexture());
+        this.activeTexture = textures.get(0);
+    }
+    
     public Sprite(Image image) {
         super();
 
@@ -207,5 +215,10 @@ public class Sprite extends dwarf.Collidable implements GameObject {
      */
     public int randomTexture() {
         return random.interger(getNumtextures());
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Sprite(this);
     }
 }

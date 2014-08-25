@@ -22,8 +22,8 @@ public class EquilateralTriangle extends Shape {
         super(SHAPE_TRIANGLE, sideLength, position, mode, colour);
     }
 
-    public EquilateralTriangle(EquilateralTriangle equilateralTriangle) {
-        super(SHAPE_TRIANGLE, equilateralTriangle.getLineLength(), equilateralTriangle.getPosition(), equilateralTriangle.getMode(), equilateralTriangle.getColour());
+    public EquilateralTriangle(EquilateralTriangle et) {
+        super(SHAPE_TRIANGLE, et.getLineLength(), et.getPosition(), et.getMode(), et.getColour());
     }
 
     @Override
@@ -40,5 +40,10 @@ public class EquilateralTriangle extends Shape {
     @Override
     public EquilateralTriangle get() {
         return this;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new EquilateralTriangle(this);
     }
 }

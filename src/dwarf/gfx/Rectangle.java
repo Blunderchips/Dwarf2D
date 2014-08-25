@@ -379,4 +379,9 @@ public class Rectangle extends Quadrilateral {
                 "stroke", null
         ).getCollidable();
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Rectangle(this);
+    }
 }

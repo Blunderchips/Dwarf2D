@@ -89,4 +89,9 @@ public class Quadrilateral extends Polygon {
         super.setColour(quadrilateral.getColour());
         super.setVertices(quadrilateral.getVertices());
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Quadrilateral(this);
+    }
 }

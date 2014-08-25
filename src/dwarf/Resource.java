@@ -12,12 +12,12 @@ import java.util.Objects;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public class Resource extends java.lang.Object implements java.lang.Cloneable {
+public class Resource extends java.lang.Object implements Cloneable {
 
     private String path;
 
     /**
-     * default constructor.
+     * Default constructor.
      */
     public Resource() {
         super();
@@ -97,7 +97,18 @@ public class Resource extends java.lang.Object implements java.lang.Cloneable {
 
     @Override
     public String toString() {
-        return "Resource[" + "path: " + getPath() + "]";
+        return "Resource={" + "path: " + getPath() + "}";
     }
 
+    public Resource get() {
+        return this;
+    }
+
+    public void set(String path) {
+        this.path = path;
+    }
+
+    public void set(Resource r) {
+        this.path = r.getPath();
+    }
 }
