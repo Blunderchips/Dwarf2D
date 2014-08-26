@@ -19,6 +19,8 @@ public abstract class Engine extends java.lang.Object {
     }
 
     /**
+     * "Starts" the engine.
+     * 
      * @param width the width of the window to be created.
      * @param height the height of the window to be created.
      * @param title the title of the window to be created.

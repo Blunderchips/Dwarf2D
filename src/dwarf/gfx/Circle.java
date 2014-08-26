@@ -3,9 +3,9 @@ package dwarf.gfx;
 import dwarf.util.Vector2;
 import java.util.Objects;
 
+import static dwarf.util.math.PI;
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
-import static java.lang.Math.PI;
 import static dwarf.gfx.draw.SHAPE_CIRCLE;
 
 /**

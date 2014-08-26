@@ -1,12 +1,13 @@
 package dwarf;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+
 import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
 import dwarf.util.Vector2;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 
 import static dwarf.mouse.MOUSE_LEFT;
 import static dwarf.util.Vector2.ZERO;
@@ -14,6 +15,7 @@ import static dwarf.util.Vector2.ZERO;
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
  * class.
+ *
  * <p>
  * will detect - but not resolve - collisions. It uses an efficient data search
  * structure to quickly find intersecting <code>Collidable</code> as well as
@@ -24,8 +26,9 @@ import static dwarf.util.Vector2.ZERO;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
+ * @see java.lang.Cloneable
  */
-public abstract class Collidable extends java.lang.Object {
+public abstract class Collidable extends java.lang.Object implements Cloneable {
 
     private ArrayList<Vector2> vertices;
     private Vector2 position;
@@ -627,5 +630,10 @@ public abstract class Collidable extends java.lang.Object {
 
     public final Collidable getCollidable() {
         return this;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -8,6 +8,8 @@ import static java.lang.Math.tan;
 import static dwarf.util.math.sin;
 
 /**
+ * A figure that has sides, edges and angles that are congruent.
+ *
  * @author Matthew 'siD' Van der Bijl
  *
  * @see dwarf.gfx.Polygon
@@ -151,7 +153,7 @@ public class Shape extends Polygon {
      * @author Isa Cattanach
      * @author Matthew Van der Bijl
      *
-     * @return returns the area of the Shape (double)
+     * @return returns the area of the <code>Shape</code> (double)
      */
     public double getArea() {
         return (Math.round((math.sqr(getLineLength() / 2) * Math.tan(Math.toRadians(180 - (360 / getNumSides())) / 2)) * getNumSides()) * 1000) / 1000;

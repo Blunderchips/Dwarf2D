@@ -18,7 +18,7 @@ import static dwarf.gfx.draw.*;
  * @see dwarf.Collidable
  * @see dwarf.gfx.draw
  */
-public class Polygon extends dwarf.Collidable implements GameObject, Cloneable {
+public class Polygon extends dwarf.Collidable implements GameObject {
 
     private Colour colour;
     private String mode;
