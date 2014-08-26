@@ -1,27 +1,32 @@
 package dwarf.engine.core;
 
-import dwarf.util.Vector2;
 import java.util.Objects;
+
+import dwarf.GameObject;
+import dwarf.util.Vector2;
+
+import static dwarf.util.Vector2.ZERO;
 
 /**
  * @author Matthew 'siD' Van der Bijl
  *
+ * @see dwarf.GameObject
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public class Camera extends java.lang.Object implements Cloneable {
+public class Camera extends java.lang.Object implements Cloneable, GameObject {
 
     /**
      * the default view port.
      */
     public static Camera mainCamera = new Camera();
 
-    public static Camera getMainCamera() {
-        return Camera.mainCamera;
-    }
-
     public static void setMainCamera(Camera mainCamera) {
         Camera.mainCamera = mainCamera;
+    }
+
+    public static Camera getMainCamera() {
+        return Camera.mainCamera;
     }
 
     private Vector2 position;
@@ -31,14 +36,14 @@ public class Camera extends java.lang.Object implements Cloneable {
      */
     public Camera() {
         super();
-        this.position = new Vector2();
+        this.position = ZERO;
     }
 
     public Camera(Vector2 position) {
         super();
         this.position = position;
     }
-    
+
     public Camera(Camera camera) {
         super();
         this.position = camera.getPosition();
@@ -47,8 +52,15 @@ public class Camera extends java.lang.Object implements Cloneable {
     /**
      * Callback function used to update the state of the game every frame.
      */
+    @Override
     public void update() {
+    }
 
+    /**
+     * Callback function used to update the state of the game every frame.
+     */
+    @Override
+    public void render() {
     }
 
     public Vector2 getPosition() {
@@ -139,4 +151,5 @@ public class Camera extends java.lang.Object implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         return new Camera(this);
     }
+
 }

@@ -3,14 +3,18 @@ package dwarf.engine.core;
 import dwarf.Game;
 import dwarf.gfx.draw;
 import dwarf.util.Vector2;
+
 import java.nio.ByteBuffer;
 import javax.swing.JOptionPane;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import static dwarf.gfx.util.getBackgroundColour;
+
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
@@ -88,7 +92,7 @@ public final class Window {
     }
 
     /**
-     * destroys the window.
+     * "destroys" the window.
      */
     protected static void dispose() {
         Display.destroy();
@@ -245,6 +249,13 @@ public final class Window {
         Display.setIcon(icons);
     }
 
+    /**
+     * returns the parent to the Window.
+     * 
+     * @see java.awt.Canvas
+     * 
+     * @return the parent of the Window
+     */
     public static java.awt.Canvas getParent() {
         return Window.parent;
     }
