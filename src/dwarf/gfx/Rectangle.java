@@ -1,6 +1,7 @@
 package dwarf.gfx;
 
 import dwarf.Collidable;
+import dwarf.DwarfException;
 import dwarf.util.Vector2;
 
 /**
@@ -289,10 +290,10 @@ public class Rectangle extends Quadrilateral {
      * @see dwarf.gfx.Square
      * @see java.lang.Exception
      *
-     * @throws java.lang.Exception throws a error if this is not a square
+     * @throws dwarf.DwarfException throws a error if this is not a square
      * @return this as a new Square if possible otherwise will throw a error
      */
-    public Square toSquare() throws Exception {
+    public Square toSquare() throws DwarfException {
         if (isSquare()) {
             return new Square(
                     this.getDimensions().getX(),
@@ -301,7 +302,7 @@ public class Rectangle extends Quadrilateral {
                     super.getColour()
             );
         } else {
-            throw new Exception("this is not a square. (length != breadth)");
+            throw new DwarfException("this is not a square. (length != breadth)");
         }
     }
 
