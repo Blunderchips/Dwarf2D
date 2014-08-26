@@ -12,8 +12,8 @@ package dwarf;
 public class DwarfException extends java.lang.RuntimeException implements Cloneable {
 
     /**
-     * Creates a new instance of <code>DwarfException</code> without detail
-     * message.
+     * Default constructor. Creates a new instance of
+     * <code>DwarfException</code> without detail message.
      */
     public DwarfException() {
         super();

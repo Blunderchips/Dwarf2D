@@ -15,6 +15,13 @@ import dwarf.util.Vector2;
  */
 public class Square extends Rectangle {
 
+    /**
+     * Default constructor.
+     */
+    public Square() {
+        super();
+    }
+
     public Square(float sideLength, Vector2 position, String mode, Colour colour) {
         super(sideLength, sideLength, position, mode, colour);
     }

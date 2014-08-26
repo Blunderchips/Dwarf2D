@@ -28,6 +28,13 @@ public class Image extends dwarf.Collidable implements GameObject, Cloneable {
 
     private Texture tex;
 
+    /**
+     * Default constructor.
+     */
+    public Image() {
+        super();
+    }
+    
     public Image(Image i) {
         super(i.getPosition());
         this.init(i.getTexture());

@@ -1,8 +1,9 @@
 package dwarf.gfx;
 
+import java.util.Objects;
+
 import dwarf.GameObject;
 import dwarf.util.Vector2;
-import java.util.Objects;
 
 import static dwarf.gfx.draw.*;
 
@@ -23,6 +24,13 @@ public class Polygon extends dwarf.Collidable implements GameObject {
     private Colour colour;
     private String mode;
 
+    /**
+     * Default constructor.
+     */
+    public Polygon() {
+        super();
+    }
+    
     /**
      * Constructs a new <code>Polygon</code> with no vertices.
      *

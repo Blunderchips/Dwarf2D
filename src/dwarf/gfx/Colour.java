@@ -64,7 +64,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     }
 
     /**
-     * default constructor.
+     * Default constructor.
      */
     public Colour() {
         super(0, 0, 0);

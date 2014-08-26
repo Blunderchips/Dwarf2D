@@ -1,13 +1,13 @@
 package dwarf;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.ArrayList;
 
-import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
 import dwarf.util.Vector2;
+import dwarf.engine.core.Window;
 
 import static dwarf.mouse.MOUSE_LEFT;
 import static dwarf.util.Vector2.ZERO;
@@ -38,7 +38,9 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
      */
     public Collidable() {
         super();
-        this.init(ZERO);
+
+        this.position = ZERO;
+        this.vertices = new ArrayList<Vector2>();
     }
 
     /**
@@ -49,7 +51,9 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
      */
     public Collidable(Vector2 position) {
         super();
-        this.init(position);
+
+        this.position = position;
+        this.vertices = new ArrayList<Vector2>();
     }
 
     /**
@@ -60,19 +64,9 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
      */
     public Collidable(Collidable Collidable) {
         super();
-        this.init(Collidable.getPosition());
-    }
 
-    /**
-     * initialises the <code>Collidable</code>.
-     *
-     * @param position the location of the <code>Collidable</code> of the game
-     * window
-     */
-    @SuppressWarnings("Convert2Diamond")
-    private void init(Vector2 position) {
-        this.setPosition(position);
-        this.vertices = new ArrayList<Vector2>();
+        this.vertices = Collidable.vertices;
+        this.position = Collidable.getPosition();
     }
 
     /**

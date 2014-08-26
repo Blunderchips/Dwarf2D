@@ -18,6 +18,13 @@ import static dwarf.gfx.draw.SHAPE_TRIANGLE;
  */
 public class EquilateralTriangle extends Shape {
 
+    /**
+     * Default constructor.
+     */
+    public EquilateralTriangle() {
+        super();
+    }
+    
     public EquilateralTriangle(double sideLength, Vector2 position, String mode, Colour colour) {
         super(SHAPE_TRIANGLE, sideLength, position, mode, colour);
     }

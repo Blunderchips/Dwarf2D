@@ -12,6 +12,13 @@ import dwarf.util.Vector2;
  */
 public class Quadrilateral extends Polygon {
 
+    /**
+     * Default constructor.
+     */
+    public Quadrilateral() {
+        super();
+    }
+    
     public Quadrilateral(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
         super(position, mode, colour);
 

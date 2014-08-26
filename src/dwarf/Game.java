@@ -132,6 +132,8 @@ public abstract class Game extends Engine {
      * @param width the width of the window
      * @param height the height of the window
      * @param title the title of the window
+     *
+     * @see dwarf.engine.core.Engine#start(int, int, java.lang.String) 
      */
     @SuppressWarnings("Convert2Diamond")
     private void init(int width, int height, String title) {
@@ -311,7 +313,6 @@ public abstract class Game extends Engine {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
-    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -377,7 +378,6 @@ public abstract class Game extends Engine {
      *
      * @return will return false if it fails and true if it does not
      */
-    @SuppressWarnings({"Convert2Diamond", "static-access"})
     public boolean clearGameObjects() {
         try {
             this.gameObjects = new ArrayList<GameObject>();

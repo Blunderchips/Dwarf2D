@@ -15,6 +15,13 @@ import java.util.ArrayList;
  */
 public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
 
+    /**
+     * Default constructor.
+     */
+    public Sprite() {
+        super();
+    }
+    
     private ArrayList<Image> textures;
     private Image activeTexture;
 

@@ -564,7 +564,7 @@ public final class math {
     public static double acos(float fValue) {
         if (-1.0f < fValue) {
             if (fValue < 1.0f) {
-                return (float) Math.acos(fValue);
+                return Math.acos(fValue);
             } else {
                 return 0.0f;
             }
@@ -586,7 +586,7 @@ public final class math {
     public static double asin(float fValue) {
         if (-1.0f < fValue) {
             if (fValue < 1.0f) {
-                return (float) Math.asin(fValue);
+                return Math.asin(fValue);
             } else {
                 return HALF_PI;
             }
@@ -630,14 +630,12 @@ public final class math {
                 float tmp = r2;
                 r2 = r1;
                 r1 = tmp;
-            }
-
-            if (r1 > 0) {
+            } else if (r1 > 0) {
                 return r1;
-            }
-            if (r2 > 0) {
+            } else if (r2 > 0) {
                 return r2;
             }
+
             return Float.NaN;
         }
     }
@@ -662,4 +660,5 @@ public final class math {
             return value + 1;
         }
     }
+
 }

@@ -19,6 +19,13 @@ public class Shape extends Polygon {
     private byte numSides;
     private double lineLength;
 
+    /**
+     * Default constructor.
+     */
+    public Shape() {
+        super();
+    }
+
     public Shape(int numSides, double lineLength, Vector2 position, String mode, Colour colour) {
         super(position, mode, colour);
 

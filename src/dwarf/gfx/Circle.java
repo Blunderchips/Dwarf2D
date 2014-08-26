@@ -1,7 +1,8 @@
 package dwarf.gfx;
 
-import dwarf.util.Vector2;
 import java.util.Objects;
+
+import dwarf.util.Vector2;
 
 import static dwarf.util.math.PI;
 import static dwarf.util.math.TWO_PI;
@@ -35,6 +36,13 @@ public class Circle extends Shape {
 
     private double radius;
 
+    /**
+     * Default constructor.
+     */
+    public Circle() {
+        super();
+    }
+    
     public Circle(double radius, Vector2 location, String mode, Colour colour) {
         super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
         this.radius = radius;

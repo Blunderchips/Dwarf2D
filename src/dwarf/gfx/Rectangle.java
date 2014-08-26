@@ -49,6 +49,13 @@ public class Rectangle extends Quadrilateral {
      */
     private Vector2 dimensions;
 
+    /**
+     * Default constructor.
+     */
+    public Rectangle() {
+        super();
+    }
+    
     public Rectangle(float width, float height, Vector2 position, String mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
