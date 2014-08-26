@@ -7,7 +7,7 @@
 
 
 ###Welcome to Dwarf2D!
-Dwarf2D is an easy to use set of utilites wrapped around <a href='http://lwjgl.org/' title='lwjgl.org'>LWJGL</a>, <a href='http://www.opengl.org/' title='openGL.org'>OpenGL</a> and <a href='OpenAl' title='openAl.org'>OpenAl</a> design to make Java 2D game development easier and ultimately better for all.
+Dwarf2D is an easy to use set of utilites wrapped around <a href='http://lwjgl.org/' title='lwjgl.org'>LWJGL</a>, <a href='http://www.opengl.org/' title='openGL.org'>OpenGL</a> and <a href='http://OpenAl.org/' title='openAl.org'>OpenAl</a> design to make Java 2D game development easier and ultimately better for all.
 
 Dwarf2D is currently being used in game development, but it is still considered an experimental framework based on an experimental concept. Please use in your projects at your own risk.
 
