@@ -5,8 +5,11 @@ import java.util.Objects;
 
 /**
  * @author Matthew 'siD' Van der Bijl
+ *
+ * @see java.lang.Object
+ * @see java.lang.Cloneable
  */
-public class Camera extends java.lang.Object {
+public class Camera extends java.lang.Object implements Cloneable {
 
     /**
      * the default view port.
@@ -23,6 +26,9 @@ public class Camera extends java.lang.Object {
 
     private Vector2 position;
 
+    /**
+     * Default constructor.
+     */
     public Camera() {
         super();
         this.position = new Vector2();
@@ -31,6 +37,11 @@ public class Camera extends java.lang.Object {
     public Camera(Vector2 position) {
         super();
         this.position = position;
+    }
+    
+    public Camera(Camera camera) {
+        super();
+        this.position = camera.getPosition();
     }
 
     /**
@@ -50,7 +61,7 @@ public class Camera extends java.lang.Object {
 
     public void translate(float deltaX, float deltaY) {
         this.position.translateX(deltaX);
-        this.position.translateX(deltaY);
+        this.position.translateY(deltaY);
     }
 
     public void translateX(float deltaX) {
@@ -122,5 +133,10 @@ public class Camera extends java.lang.Object {
                 this.getPosition().getX() + Window.getWidth() / 2,
                 this.getPosition().getY() + Window.getHeight() / 2
         );
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Camera(this);
     }
 }
