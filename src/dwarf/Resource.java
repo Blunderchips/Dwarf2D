@@ -1,7 +1,7 @@
 package dwarf;
 
-import java.io.InputStream;
 import java.util.Objects;
+import java.io.InputStream;
 
 /**
  * Helper class which represents a resource (res) within the project folders or

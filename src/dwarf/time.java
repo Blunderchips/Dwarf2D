@@ -1,8 +1,8 @@
 package dwarf;
 
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Provides an interface to your system's clock and other time base utilities.

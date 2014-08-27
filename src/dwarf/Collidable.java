@@ -40,7 +40,7 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
         super();
 
         this.position = ZERO;
-        this.vertices = new ArrayList<Vector2>();
+        this.vertices = new ArrayList<>();
     }
 
     /**
@@ -53,7 +53,52 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
         super();
 
         this.position = position;
-        this.vertices = new ArrayList<Vector2>();
+        this.vertices = new ArrayList<>();
+    }
+
+    /**
+     * creates a with a give AWT (Abstract Windows Toolkit) polygon.
+     *
+     * @see java.awt.Polygon
+     *
+     * @param p the AWT polygon
+     */
+    public Collidable(java.awt.Polygon p) {
+        super();
+
+        double[] xpoints = new double[p.npoints];
+        double[] ypoints = new double[p.npoints];
+
+        for (int i = 0; i < p.npoints; i++) {
+            xpoints[i] = p.xpoints[i];
+            xpoints[i] = p.ypoints[i];
+        }
+
+        this.position = ZERO;
+        this.setVertices(xpoints, ypoints);
+    }
+
+    /**
+     * creates a with a give AWT (Abstract Windows Toolkit) polygon.
+     * 
+     * @see java.awt.Polygon
+     *
+     * @param position the position of the polygon
+     * @param p the AWT polygon
+     */
+    public Collidable(java.awt.Polygon p, Vector2 position) {
+        super();
+
+        double[] xpoints = new double[p.npoints];
+        double[] ypoints = new double[p.npoints];
+
+        for (int i = 0; i < p.npoints; i++) {
+            xpoints[i] = p.xpoints[i];
+            xpoints[i] = p.ypoints[i];
+        }
+
+        this.position = ZERO;
+        this.setVertices(xpoints, ypoints);
     }
 
     /**
@@ -142,7 +187,7 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public void setVertices(double[] xPoints, double[] yPoints) {
+    public final void setVertices(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");

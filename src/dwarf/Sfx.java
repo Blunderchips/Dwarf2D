@@ -4,9 +4,8 @@ import java.util.Objects;
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
+
 import dwarf.lib.LWJGL.WaveData;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static org.lwjgl.openal.AL10.AL_BUFFER;
 import static org.lwjgl.openal.AL10.alBufferData;
