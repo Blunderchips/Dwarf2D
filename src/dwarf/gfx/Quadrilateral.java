@@ -28,9 +28,7 @@ public class Quadrilateral extends Polygon {
             } else {
                 super.setVertices(vertices);
             }
-        } else {
-            throw new IllegalArgumentException();
-        }
+        } 
     }
 
     public Quadrilateral(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, String mode, Colour colour) {

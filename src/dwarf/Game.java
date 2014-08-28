@@ -1,11 +1,12 @@
 package dwarf;
 
-import dwarf.engine.core.Engine;
-import dwarf.util.Vector2;
+import java.util.Objects;
+import java.util.ArrayList;
 import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeSupport;
-import java.util.ArrayList;
-import java.util.Objects;
+
+import dwarf.util.Vector2;
+import dwarf.engine.core.Engine;
 
 import static java.lang.Math.abs;
 
@@ -21,7 +22,7 @@ import static java.lang.Math.abs;
  */
 public abstract class Game extends Engine {
 
-    public static ArrayList<GameObject> gameObjects;
+    public ArrayList<GameObject> gameObjects;
     public static boolean debug = true;
     //NetBeans wanted these:
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
@@ -133,7 +134,7 @@ public abstract class Game extends Engine {
      * @param height the height of the window
      * @param title the title of the window
      *
-     * @see dwarf.engine.core.Engine#start(int, int, java.lang.String) 
+     * @see dwarf.engine.core.Engine#start(int, int, java.lang.String)
      */
     @SuppressWarnings("Convert2Diamond")
     private void init(int width, int height, String title) {
@@ -142,7 +143,7 @@ public abstract class Game extends Engine {
                     "the width nor the hieght can be equal to zero.");
         }
 
-        Game.gameObjects = new ArrayList<GameObject>();
+        this.gameObjects = new ArrayList<GameObject>();
 
         //starts the main game loop.
         super.start(abs(width), abs(height), title);
@@ -175,7 +176,7 @@ public abstract class Game extends Engine {
      */
     @SuppressWarnings("ReturnOfCollectionOrArrayField")
     public ArrayList<GameObject> getGameObjects() {
-        return Game.gameObjects;
+        return this.gameObjects;
     }
 
     /**
@@ -188,7 +189,7 @@ public abstract class Game extends Engine {
     @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
     public boolean setGameObjects(ArrayList<GameObject> gameObjects) {
         try {
-            Game.gameObjects = gameObjects;
+            this.gameObjects = gameObjects;
             return true;
         } catch (DwarfException ex) {
             throw ex;

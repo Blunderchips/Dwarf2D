@@ -28,7 +28,7 @@ import static dwarf.util.Vector2.ZERO;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public abstract class Collidable extends java.lang.Object implements Cloneable {
+public class Collidable extends java.lang.Object implements Cloneable {
 
     private ArrayList<Vector2> vertices;
     private Vector2 position;
@@ -54,51 +54,6 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
 
         this.position = position;
         this.vertices = new ArrayList<>();
-    }
-
-    /**
-     * creates a with a give AWT (Abstract Windows Toolkit) polygon.
-     *
-     * @see java.awt.Polygon
-     *
-     * @param p the AWT polygon
-     */
-    public Collidable(java.awt.Polygon p) {
-        super();
-
-        double[] xpoints = new double[p.npoints];
-        double[] ypoints = new double[p.npoints];
-
-        for (int i = 0; i < p.npoints; i++) {
-            xpoints[i] = p.xpoints[i];
-            xpoints[i] = p.ypoints[i];
-        }
-
-        this.position = ZERO;
-        this.setVertices(xpoints, ypoints);
-    }
-
-    /**
-     * creates a with a give AWT (Abstract Windows Toolkit) polygon.
-     * 
-     * @see java.awt.Polygon
-     *
-     * @param position the position of the polygon
-     * @param p the AWT polygon
-     */
-    public Collidable(java.awt.Polygon p, Vector2 position) {
-        super();
-
-        double[] xpoints = new double[p.npoints];
-        double[] ypoints = new double[p.npoints];
-
-        for (int i = 0; i < p.npoints; i++) {
-            xpoints[i] = p.xpoints[i];
-            xpoints[i] = p.ypoints[i];
-        }
-
-        this.position = ZERO;
-        this.setVertices(xpoints, ypoints);
     }
 
     /**
@@ -168,6 +123,18 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
         this.setVertices(xPoints, yPoints);
     }
 
+    public void setVertices(java.awt.Polygon p) {
+        double[] xpoints = new double[p.npoints];
+        double[] ypoints = new double[p.npoints];
+
+        for (int i = 0; i < p.npoints; i++) {
+            xpoints[i] = p.xpoints[i];
+            xpoints[i] = p.ypoints[i];
+        }
+
+        this.setVertices(xpoints, ypoints);
+    }
+
     /**
      * The total number of points. The value of
      * <code>getVertices().size()</code> represents the number of valid points
@@ -187,7 +154,7 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public final void setVertices(double[] xPoints, double[] yPoints) {
+    public void setVertices(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");
@@ -673,6 +640,6 @@ public abstract class Collidable extends java.lang.Object implements Cloneable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        return new Collidable(this);
     }
 }
