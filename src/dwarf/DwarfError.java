@@ -1,12 +1,10 @@
 package dwarf;
 
 /**
- * An
- * <code>DwarfError</code> is a subclass of
- * <code>DwarfException</code> that indicates serious problems that a reasonable
- * application should not try to catch. When a
- * <code>DwarfError</code> is created the
- * <code>Engine</code> is destroyed.
+ * An <code>DwarfError</code> is a subclass of <code>DwarfException</code> that
+ * indicates serious problems that a reasonable application should not try to
+ * catch. When a <code>DwarfError</code> is created the <code>Engine</code> is
+ * destroyed.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -18,9 +16,8 @@ package dwarf;
 public class DwarfError extends dwarf.DwarfException {
 
     /**
-     * Default constructor. Creates a new instance of
-     * <code>DwarfError</code> without detail message. Will "destroy" the
-     * <code>Engine</code>.
+     * Default constructor. Creates a new instance of <code>DwarfError</code>
+     * without detail message. Will "destroy" the <code>Engine</code>.
      *
      * @see dwarf.engine.core.Engine#dispose()
      */
@@ -30,10 +27,8 @@ public class DwarfError extends dwarf.DwarfException {
     }
 
     /**
-     * Constructs an instance of
-     * <code>DwarfError</code> with the specified detail message (msg). Will
-     * "destroy" the
-     * <code>Engine</code>.
+     * Constructs an instance of <code>DwarfError</code> with the specified
+     * detail message (msg). Will "destroy" the <code>Engine</code>.
      *
      * @see dwarf.engine.core.Engine#dispose()
      *
@@ -45,10 +40,8 @@ public class DwarfError extends dwarf.DwarfException {
     }
 
     /**
-     * Constructs an instance of
-     * <code>DwarfError</code> with the specified detail message (msg) and
-     * cause. Will "destroy" the
-     * <code>Engine</code>.
+     * Constructs an instance of <code>DwarfError</code> with the specified
+     * detail message (msg) and cause. Will "destroy" the <code>Engine</code>.
      *
      * @see dwarf.engine.core.Engine#dispose()
      *
@@ -61,9 +54,8 @@ public class DwarfError extends dwarf.DwarfException {
     }
 
     /**
-     * Constructs an instance of
-     * <code>DwarfError</code> with the specified cause. Will "destroy" the
-     * <code>Engine</code>.
+     * Constructs an instance of <code>DwarfError</code> with the specified
+     * cause. Will "destroy" the <code>Engine</code>.
      *
      * @see dwarf.engine.core.Engine#dispose()
      *
@@ -75,11 +67,9 @@ public class DwarfError extends dwarf.DwarfException {
     }
 
     /**
-     * Constructs a new
-     * <code>DwarfError</code> with the specified detail message (msg), cause,
-     * suppression enabled or disabled, and writable stack trace enabled or
-     * disabled. Will "destroy" the
-     * <code>Engine</code>.
+     * Constructs a new <code>DwarfError</code> with the specified detail
+     * message (msg), cause, suppression enabled or disabled, and writable stack
+     * trace enabled or disabled. Will "destroy" the <code>Engine</code>.
      *
      * @see dwarf.engine.core.Engine#dispose()
      *
@@ -97,10 +87,8 @@ public class DwarfError extends dwarf.DwarfException {
     }
 
     /**
-     * Constructs an instance of
-     * <code>DwarfException</code> with the specified exception. Will "destroy"
-     * the
-     * <code>Engine</code>.
+     * Constructs an instance of <code>DwarfException</code> with the specified
+     * exception. Will "destroy" the <code>Engine</code>.
      *
      * @see dwarf.engine.core.Engine#dispose()
      *
