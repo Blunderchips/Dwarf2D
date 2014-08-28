@@ -78,7 +78,7 @@ public abstract class Engine extends java.lang.Object {
     /**
      * Disposes of the Engine.
      */
-    public final static void dispose() {
+    public static void dispose() {
         Input.dispose();
         Window.dispose();
         openAL.dispose();
