@@ -2,7 +2,7 @@
 =======
 
 <a href='http://95.85.60.226'>
-  ![pixelDwarf](http://95.85.60.226/images/pixelDwarf.jpeg ".:Dwarf2D:.")
+  ![pixelDwarf](https://github.com/Blunderchips/Dwarf2D/blob/master/img/pixelDwarf.jpeg ".:Dwarf2D:.")
 </a>
 
 
@@ -10,6 +10,11 @@
 Dwarf2D is an easy to use set of utilites wrapped around <a href='http://lwjgl.org/' title='lwjgl.org'>LWJGL</a>, <a href='http://www.opengl.org/' title='openGL.org'>OpenGL</a> and <a href='http://OpenAl.org/' title='openAl.org'>OpenAl</a> design to make Java 2D game development easier and ultimately better for all.
 
 Dwarf2D is currently being used in game development, but it is still considered an experimental framework based on an experimental concept. Please use in your projects at your own risk.
+
+### Report Issues
+
+- **[Report New Issue](https://github.com/Blunderchips/Dwarf2D/issues/new )**
+- **[View Open Issues](https://github.com/Blunderchips/Dwarf2D/issues )**
 
 ###Downloads
 You can download the source code right off of <a href='https://github.com/Blunderchips/Dwarf2D/archive/master.zip' title='download'>GitHub</a>, or if you prefer, off of our <a href='http://95.85.60.226/downloads.php' title='Download!'>website</a>.

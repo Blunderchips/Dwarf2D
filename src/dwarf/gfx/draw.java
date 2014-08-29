@@ -52,7 +52,7 @@ public final class draw implements dwarf.gfx.shapeConstants {
 
             colour.bind();
 
-            glBegin(GL_POLYGON);
+            glBegin(GL_QUADS);
             {
                 glVertex2f(0, 0);
                 glVertex2f(0, hieght);
