@@ -56,7 +56,7 @@ public class Rectangle extends Quadrilateral {
     public Rectangle() {
         super();
     }
-    
+
     public Rectangle(float width, float height, Vector2 position, String mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
@@ -159,7 +159,11 @@ public class Rectangle extends Quadrilateral {
     }
 
     public boolean isSquare() {
-        return this instanceof Square || this.getDimensions().getX() == this.getDimensions().getY();
+        if (super.getType().equals("quadrilateral")) {
+            return this instanceof Square || this.getDimensions().getX() == this.getDimensions().getY();
+        } else {
+            return false;
+        }
     }
 
     @Override

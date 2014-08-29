@@ -11,6 +11,5 @@
 - Change log
 - Ray casting
 - package info
-- img + lib (add)
 - add more info/details to the readme
 - triangle class

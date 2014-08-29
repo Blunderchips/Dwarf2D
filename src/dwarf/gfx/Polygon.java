@@ -199,7 +199,11 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     }
 
     /**
-     * @return what type of shape <code>this</code> is.
+     * Returns what type of shape <code>this</code> is.
+     *
+     * @see dwarf.gfx.shapeConstants
+     * 
+     * @return what type of shape <code>this</code> is
      */
     public String getType() {
         switch (super.getNumVertices()) {
@@ -250,27 +254,6 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
             default:
                 return "polygon";
         }
-    }
-
-    public boolean isRightAngledTriangle() {
-        if (this.getType().equals("triangle")) {
-
-            double a = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[1]);
-            double b = Vector2.distanceSq(super.getVertices()[1], super.getVertices()[2]);
-            double c = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[2]);
-
-            if (a == b + c) {
-                return true;
-            }
-            if (c == a + b) {
-                return true;
-            }
-            if (a == b + c) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     @Override
