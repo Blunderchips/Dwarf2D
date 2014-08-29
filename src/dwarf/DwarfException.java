@@ -34,7 +34,7 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
      * detail message (msg) and cause.
      *
      * @param msg String identifier for exception
-     * @param cause the cause
+     * @param cause the cause of the error
      */
     public DwarfException(String msg, Throwable cause) {
         super(msg, cause);
@@ -44,7 +44,7 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
      * Constructs an instance of <code>DwarfException</code> with the specified
      * cause.
      *
-     * @param cause the cause
+     * @param cause the cause of the error
      */
     public DwarfException(Throwable cause) {
         super(cause);
@@ -84,5 +84,9 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
 
     public DwarfException get() {
         return this;
+    }
+    
+    public void print() {
+        System.err.println(this);
     }
 }

@@ -10,7 +10,6 @@
 - Need demos/samples
 - Change log
 - Ray casting
-- create shape constants (interface)
 - package info
 - img + lib (add)
 - add more info/details to the readme

@@ -46,7 +46,7 @@ public class DwarfError extends dwarf.DwarfException {
      * @see dwarf.engine.core.Engine#dispose()
      *
      * @param msg String identifier for exception
-     * @param cause the cause
+     * @param cause the cause of the error
      */
     public DwarfError(String msg, Throwable cause) {
         super(msg, cause);
@@ -59,7 +59,7 @@ public class DwarfError extends dwarf.DwarfException {
      *
      * @see dwarf.engine.core.Engine#dispose()
      *
-     * @param cause the cause
+     * @param cause the cause of the error
      */
     public DwarfError(Throwable cause) {
         super(cause);

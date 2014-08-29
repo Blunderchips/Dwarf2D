@@ -5,10 +5,11 @@ import dwarf.util.math;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.tan;
+
 import static dwarf.util.math.sin;
 
 /**
- * A figure that has sides, edges and angles that are congruent.
+ * A regular figure that has sides, edges and angles that are congruent.
  *
  * @author Matthew 'siD' Van der Bijl
  *

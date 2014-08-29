@@ -19,7 +19,10 @@ import static dwarf.gfx.draw.*;
  * @see dwarf.Collidable
  * @see dwarf.gfx.draw
  */
-public class Polygon extends dwarf.Collidable implements GameObject {
+public class Polygon extends dwarf.Collidable implements GameObject, shapeConstants {
+
+    public final static String FILL = "fill";
+    public final static String STROKE = "stroke";
 
     private Colour colour;
     private String mode;
@@ -30,7 +33,7 @@ public class Polygon extends dwarf.Collidable implements GameObject {
     public Polygon() {
         super();
     }
-    
+
     /**
      * Constructs a new <code>Polygon</code> with no vertices.
      *
