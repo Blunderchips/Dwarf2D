@@ -3,8 +3,11 @@ package dwarf.gfx;
 import dwarf.util.Vector2;
 
 /**
+ * @author Matthew 'siD' Van der Bijl
  *
- * @author sid_th3_sl0th
+ * @see <a href='http://en.wikipedia.org/wiki/Triangle'>wikipedia</a>
+ * @see dwarf.gfx.Polygon
+ * @see dwarf.gfx.shapeConstants#SHAPE_TRIANGLE
  */
 public class Triangle extends Polygon {
 
@@ -115,5 +118,10 @@ public class Triangle extends Polygon {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return new Triangle(this);
+    }
+
+    @Override
+    public Triangle get() {
+        return this;
     }
 }

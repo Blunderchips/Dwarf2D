@@ -1,11 +1,13 @@
 package dwarf.gfx;
 
 import java.util.Arrays;
+
 import dwarf.util.Vector2;
 import dwarf.lib.Slick2D.Texture;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
+
 import static dwarf.util.math.TWO_PI;
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
@@ -30,7 +32,7 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
  * draws shapes to the screen using <a href='http://www.opengl.org/'>OpenGL</a>.
  *
  * @author Matthew 'siD' Van der Bijl
- * 
+ *
  * @see dwarf.gfx.shapeConstants
  */
 public final class draw implements dwarf.gfx.shapeConstants {

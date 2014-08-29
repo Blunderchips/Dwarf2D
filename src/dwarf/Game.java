@@ -22,12 +22,16 @@ import static java.lang.Math.abs;
  */
 public abstract class Game extends Engine {
 
-    public ArrayList<GameObject> gameObjects;
     public static boolean debug = true;
     //NetBeans wanted these:
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
     private final transient PropertyChangeSupport propertyChangeSupport;
     private final transient VetoableChangeSupport vetoableChangeSupport;
+
+    /**
+     * the main <code>GameObject</code> <code>ArrayList</code>.
+     */
+    public ArrayList<GameObject> gameObjects;
 
     /**
      * Default constructor.
@@ -381,7 +385,7 @@ public abstract class Game extends Engine {
      */
     public boolean clearGameObjects() {
         try {
-            this.gameObjects = new ArrayList<GameObject>();
+            this.gameObjects = new ArrayList<>();
             return true;
         } catch (DwarfException ex) {
             throw ex;
