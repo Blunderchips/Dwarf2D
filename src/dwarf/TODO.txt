@@ -7,8 +7,6 @@
 
 - collider rotation
 - FLV support
-- Need demos/samples
 - Change log
 - Ray casting
-- package info
 - add more info/details to the readme
