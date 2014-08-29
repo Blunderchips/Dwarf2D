@@ -12,4 +12,3 @@
 - Ray casting
 - package info
 - add more info/details to the readme
-- triangle class
