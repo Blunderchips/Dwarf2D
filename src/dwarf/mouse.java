@@ -44,7 +44,7 @@ public final class mouse {
      * Initially, the mouse is not grabbed and the delta values are reported
      * with respect to the center of the display.
      */
-    public static void init() {
+    public static void init() throws DwarfError {
         try {
             org.lwjgl.input.Mouse.create();
         } catch (LWJGLException ex) {

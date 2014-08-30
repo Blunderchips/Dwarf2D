@@ -96,6 +96,18 @@ public class Triangle extends Polygon {
         super.addPoint(point);
     }
 
+    @Override
+    @Deprecated
+    public void addPoints(Vector2[] points) {
+        super.addPoints(points);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoint(double xPos, double yPos) {
+        super.addPoint(xPos, yPos);
+    }
+
     public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);

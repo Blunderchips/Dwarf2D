@@ -1,15 +1,16 @@
 package bounctBall;
 
 import dwarf.Game;
+import dwarf.time;
 import dwarf.gfx.Circle;
+import dwarf.gfx.Polygon;
+import dwarf.gfx.Rectangle;
+import dwarf.util.Vector2;
+
 import static dwarf.gfx.Colour.black;
 import static dwarf.gfx.Colour.blue;
 import static dwarf.gfx.Colour.white;
-import dwarf.gfx.Polygon;
 import static dwarf.gfx.Polygon.FILL;
-import dwarf.gfx.Rectangle;
-import dwarf.time;
-import dwarf.util.Vector2;
 
 public class bouncyBall {
 

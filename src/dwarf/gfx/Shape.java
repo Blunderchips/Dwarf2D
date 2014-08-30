@@ -85,8 +85,9 @@ public class Shape extends Polygon {
         this.lineLength = lineLength;
     }
 
-    public float getPerimeter() {
-        return (float) (getNumSides() * getLineLength());
+    @Override
+    public double getPerimeter() {
+        return (getNumSides() * getLineLength());
     }
 
     public void changeNumSides(int input) {
@@ -185,5 +186,17 @@ public class Shape extends Polygon {
     @Override
     public Shape clone() throws CloneNotSupportedException {
         return new Shape(this);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoints(Vector2[] points) {
+        super.addPoints(points);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoint(double xPos, double yPos) {
+        super.addPoint(xPos, yPos);
     }
 }

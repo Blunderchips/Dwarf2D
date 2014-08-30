@@ -278,4 +278,18 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     public Polygon clone() throws CloneNotSupportedException {
         return new Polygon(this);
     }
+
+    public double getPerimeter() {
+        double result = Vector2.gradient(getVertices()[0], getVertices()[getNumVertices() - 1]);
+
+        for (int i = 0; i < getNumVertices(); i++) {
+            try {
+                result += Vector2.gradient(getVertices()[i], getVertices()[i + 1]);
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                break;
+            }
+        }
+
+        return result;
+    }
 }

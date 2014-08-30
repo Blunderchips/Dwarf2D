@@ -42,7 +42,7 @@ public class Circle extends Shape {
     public Circle() {
         super();
     }
-    
+
     public Circle(double radius, Vector2 location, int mode, Colour colour) {
         super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
         this.radius = radius;
@@ -188,5 +188,17 @@ public class Circle extends Shape {
     @Override
     public Circle clone() throws CloneNotSupportedException {
         return new Circle(this);
+    }
+
+    @Override
+    @Deprecated
+    public double getPerimeter() {
+        return super.getPerimeter();
+    }
+
+    @Override
+    @Deprecated
+    public void changeNumSides(int input) {
+        super.changeNumSides(input);
     }
 }

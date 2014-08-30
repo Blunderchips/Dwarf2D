@@ -12,18 +12,14 @@ public class textureTest {
     public static void main(String[] args) {
         new Game("picture test - Dwarf 2D") {
 
-            Image tex;
-
             @Override
             public void load() {
                 dwarf.gfx.background.setColour(white);
                 try {
-                    this.tex = new Image("./textureTest/pixelDwarf.jpeg", new Vector2(280, 250));
+                    super.addGameObject(new Image("./textureTest/pixelDwarf.jpeg", new Vector2(280, 250)));
                 } catch (DwarfException ex) {
                     System.err.println(ex);
                 }
-
-                super.addGameObject(tex);
             }
 
             @Override

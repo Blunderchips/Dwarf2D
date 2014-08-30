@@ -286,9 +286,8 @@ public abstract class Game extends Engine {
         Game.close(0);
     }
 
-    public static void close(Throwable ex) {
-        Engine.dispose();
-        throw new RuntimeException(ex);
+    public static void close(Exception ex) {
+        throw new DwarfError(ex);
     }
 
     /**

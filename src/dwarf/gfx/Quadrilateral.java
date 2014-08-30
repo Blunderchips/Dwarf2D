@@ -18,7 +18,7 @@ public class Quadrilateral extends Polygon {
     public Quadrilateral() {
         super();
     }
-    
+
     public Quadrilateral(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
 
@@ -28,7 +28,7 @@ public class Quadrilateral extends Polygon {
             } else {
                 super.setVertices(vertices);
             }
-        } 
+        }
     }
 
     public Quadrilateral(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, int mode, Colour colour) {
@@ -96,5 +96,17 @@ public class Quadrilateral extends Polygon {
     @Override
     public Quadrilateral clone() throws CloneNotSupportedException {
         return new Quadrilateral(this);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoints(Vector2[] points) {
+        super.addPoints(points);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoint(double xPos, double yPos) {
+        super.addPoint(xPos, yPos);
     }
 }

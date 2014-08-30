@@ -1,7 +1,7 @@
 package dwarf.gfx;
 
-import dwarf.util.Vector2;
 import dwarf.util.math;
+import dwarf.util.Vector2;
 
 import static dwarf.util.math.sqr;
 import static dwarf.gfx.draw.SHAPE_TRIANGLE;
@@ -24,7 +24,7 @@ public class EquilateralTriangle extends Shape {
     public EquilateralTriangle() {
         super();
     }
-    
+
     public EquilateralTriangle(double sideLength, Vector2 position, int mode, Colour colour) {
         super(SHAPE_TRIANGLE, sideLength, position, mode, colour);
     }
@@ -53,4 +53,11 @@ public class EquilateralTriangle extends Shape {
     public EquilateralTriangle clone() throws CloneNotSupportedException {
         return new EquilateralTriangle(this);
     }
+
+    @Override
+    @Deprecated
+    public void changeNumSides(int input) {
+        super.changeNumSides(input);
+    }
+
 }
