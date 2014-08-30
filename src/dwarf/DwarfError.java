@@ -23,6 +23,7 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError() {
         super();
+        super.display();
         dwarf.engine.core.Engine.dispose();
     }
 
@@ -36,6 +37,7 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(String msg) {
         super(msg);
+        super.display();
         dwarf.engine.core.Engine.dispose();
     }
 
@@ -50,6 +52,7 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(String msg, Throwable cause) {
         super(msg, cause);
+        super.display();
         dwarf.engine.core.Engine.dispose();
     }
 
@@ -63,6 +66,7 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(Throwable cause) {
         super(cause);
+        super.display();
         dwarf.engine.core.Engine.dispose();
     }
 
@@ -83,6 +87,7 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(String msg, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(msg, cause, enableSuppression, writableStackTrace);
+        super.display();
         dwarf.engine.core.Engine.dispose();
     }
 
@@ -96,6 +101,7 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(Exception exception) {
         super(exception.getMessage(), exception.getCause());
+        super.display();
         dwarf.engine.core.Engine.dispose();
     }
 

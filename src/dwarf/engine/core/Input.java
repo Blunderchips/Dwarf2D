@@ -1,5 +1,6 @@
 package dwarf.engine.core;
 
+import dwarf.DwarfError;
 import dwarf.keyboard;
 import dwarf.mouse;
 
@@ -22,7 +23,7 @@ public final class Input {
                 "you can not instantiate this class.");
     }
 
-    public static final void init() {
+    public static final void init() throws DwarfError {
         keyboard.init();
         mouse.init();
     }

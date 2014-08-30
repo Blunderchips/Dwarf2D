@@ -169,4 +169,8 @@ public final class system {
 
         return output.toString();
     }
+
+    public static String getLWJGLVersion() {
+        return org.lwjgl.Sys.getVersion();
+    }
 }

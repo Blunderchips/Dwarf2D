@@ -44,14 +44,14 @@ public final class time {
         return System.nanoTime();
     }
 
-    public static String getDate() {
+    public static String getTime() {
         DateFormat df = new SimpleDateFormat("HH:mm:ss");
         Date dateobj = new Date();
 
         return df.format(dateobj);
     }
 
-    public static String getTime() {
+    public static String getDate() {
         DateFormat df = new SimpleDateFormat("dd/MM/yy ");
         Date dateobj = new Date();
 

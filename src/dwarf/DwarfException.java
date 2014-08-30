@@ -1,5 +1,11 @@
 package dwarf;
 
+import javax.swing.JOptionPane;
+
+import dwarf.engine.core.Window;
+
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+
 /**
  * This exception is supplied to make exception handling more generic for
  * Dwarf2D specific exceptions.
@@ -85,8 +91,12 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
     public DwarfException get() {
         return this;
     }
-    
+
     public void print() {
         System.err.println(this);
+    }
+
+    public void display() {
+        new dwarf.Crashform(this);
     }
 }
