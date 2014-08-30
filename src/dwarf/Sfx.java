@@ -67,7 +67,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
             this.setData(WaveData.create(new BufferedInputStream(new FileInputStream(key))));
         } catch (FileNotFoundException ex) {
             throw new DwarfException(ex);
-        }
+        }System.out.println("fg");
         this.setBuffer(alGenBuffers());
 
         alBufferData(getBuffer(), getData().getFormat(), getData().getData(), getData().getSamplerate());
