@@ -94,7 +94,7 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Quadrilateral clone() throws CloneNotSupportedException {
         return new Quadrilateral(this);
     }
 }

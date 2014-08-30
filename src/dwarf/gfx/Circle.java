@@ -186,7 +186,7 @@ public class Circle extends Shape {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Circle clone() throws CloneNotSupportedException {
         return new Circle(this);
     }
 }

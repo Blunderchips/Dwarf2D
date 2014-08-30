@@ -639,7 +639,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Collidable clone() throws CloneNotSupportedException {
         return new Collidable(this);
     }
 }

@@ -1,7 +1,7 @@
 package dwarf.gfx;
 
-import dwarf.util.Vector2;
 import dwarf.util.math;
+import dwarf.util.Vector2;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.tan;
@@ -183,7 +183,7 @@ public class Shape extends Polygon {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Shape clone() throws CloneNotSupportedException {
         return new Shape(this);
     }
 }

@@ -5,7 +5,6 @@ import java.nio.ByteBuffer;
 import dwarf.util.Vector3;
 
 import static org.lwjgl.opengl.GL11.glColor4d;
-import static org.lwjgl.opengl.GL11.glColor4f;
 
 /**
  * A simple wrapper round the values required for a mutable colour class.
@@ -243,7 +242,7 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
     }
 
     public void realse() {
-        glColor4f(0xff, 0xff, 0xff, 1);
+        glColor4d(0xff, 0xff, 0xff, 1);
     }
 
     /**
@@ -447,7 +446,7 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
     /**
      * HSB to RGB conversion, pinched from java.awt.Colour.
      *
-     * @see java.awt.Colour
+     * @see java.awt.Color
      *
      * @param hue (0..1.0f)
      * @param saturation (0..1.0f)

@@ -74,7 +74,7 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Square clone() throws CloneNotSupportedException {
         return new Square(this);
     }
 

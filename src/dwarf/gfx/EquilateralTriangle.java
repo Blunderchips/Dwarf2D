@@ -50,7 +50,7 @@ public class EquilateralTriangle extends Shape {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public EquilateralTriangle clone() throws CloneNotSupportedException {
         return new EquilateralTriangle(this);
     }
 }

@@ -393,7 +393,7 @@ public class Rectangle extends Quadrilateral {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Rectangle clone() throws CloneNotSupportedException {
         return new Rectangle(this);
     }
 }

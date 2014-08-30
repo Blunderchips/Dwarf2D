@@ -116,7 +116,7 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Triangle clone() throws CloneNotSupportedException {
         return new Triangle(this);
     }
 

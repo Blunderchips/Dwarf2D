@@ -275,7 +275,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Polygon clone() throws CloneNotSupportedException {
         return new Polygon(this);
     }
 }
