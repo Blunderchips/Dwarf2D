@@ -52,7 +52,7 @@ public final class mouse {
             JOptionPane.showMessageDialog(
                     Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
-            throw new DwarfError(ex);
+            new DwarfError(ex).display();
         }
 
         mouse.currentMouse = new ArrayList<>();
@@ -141,7 +141,6 @@ public final class mouse {
     //========================================================================
     // Mouse events
     //========================================================================
-    
     /**
      * Checks whether a certain mouse button is down.
      *

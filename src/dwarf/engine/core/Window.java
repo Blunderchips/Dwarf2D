@@ -83,11 +83,7 @@ public final class Window {
             Display.setInitialBackground(0x0, 0x0, 0x0);
             Display.create();
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), "The display wasn't initialized correctly :(", title + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
+            new dwarf.DwarfException(ex).display();
         }
     }
 
@@ -251,9 +247,9 @@ public final class Window {
 
     /**
      * returns the parent to the Window.
-     * 
+     *
      * @see java.awt.Canvas
-     * 
+     *
      * @return the parent of the Window
      */
     public static java.awt.Canvas getParent() {

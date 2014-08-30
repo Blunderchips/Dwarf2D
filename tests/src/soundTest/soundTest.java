@@ -23,7 +23,7 @@ public class soundTest {
                 try {
                     this.song = new Sfx("./src/soundTest/sound.wav");
                 } catch (DwarfException ex) {
-                    ex.print();
+                    ex.display();
                 }
             }
 

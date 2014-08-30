@@ -41,11 +41,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
         try {
             org.lwjgl.input.Keyboard.create();
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            throw new DwarfError(ex);
+            new dwarf.DwarfException(ex).display();
         }
 
         keyboard.currentKeys = new ArrayList<>();
@@ -104,7 +100,6 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
     //========================================================================
     // Keyboard events
     //========================================================================
-    
     /**
      * Checks whether a certain key is down.
      *

@@ -46,11 +46,7 @@ public final class openAL {
             AL.create();
             // util.debug("INFO", "openAL version: " + openAL.getVersion());
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(new dwarf.DwarfException(ex));
+            new dwarf.DwarfException(ex).display();
         }
     }
 
