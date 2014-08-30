@@ -11,6 +11,8 @@ Dwarf2D is an easy to use set of utilites wrapped around <a href='http://lwjgl.o
 
 Dwarf2D is currently being used in game development, but it is still considered an experimental framework based on an experimental concept. Please use in your projects at your own risk.
 
+**Watch/star to follow along with progress!**
+
 ### Report Issues
 
 - **[Report New Issue](https://github.com/Blunderchips/Dwarf2D/issues/new )**
