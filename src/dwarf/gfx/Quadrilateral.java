@@ -19,7 +19,7 @@ public class Quadrilateral extends Polygon {
         super();
     }
     
-    public Quadrilateral(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
+    public Quadrilateral(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
 
         if (vertices != null) {
@@ -31,7 +31,7 @@ public class Quadrilateral extends Polygon {
         } 
     }
 
-    public Quadrilateral(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, String mode, Colour colour) {
+    public Quadrilateral(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
 
         Vector2[] points = {
@@ -58,7 +58,7 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
-    public void set(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
+    public void set(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
@@ -74,7 +74,7 @@ public class Quadrilateral extends Polygon {
         }
     }
 
-    public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, String mode, Colour colour) {
+    public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);

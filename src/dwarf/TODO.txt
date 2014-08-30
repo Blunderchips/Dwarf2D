@@ -7,6 +7,6 @@
 
 - collider rotation
 - FLV support
-- Change log
+- Change log (not going to happen)
 - Ray casting
 - add more info/details to the readme

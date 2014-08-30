@@ -1,18 +1,12 @@
 package dwarf.gfx;
 
-import dwarf.Game;
+import java.util.Objects;
+import java.io.IOException;
+
 import dwarf.GameObject;
-import dwarf.engine.core.Window;
-import dwarf.lib.Slick2D.ResourceLoader;
-import dwarf.lib.Slick2D.Texture;
-import dwarf.lib.Slick2D.TextureLoader;
 import dwarf.util.Vector2;
 
-import java.io.IOException;
-import java.util.Objects;
-import javax.swing.JOptionPane;
-
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static dwarf.util.Vector2.ZERO;
 
 /**
  * A set of functions and variables required to create a malleable class for
@@ -20,13 +14,17 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
  *
  * @author Matthew 'siD' Van der Bijl
  *
+ * @see dwarf.gfx.Texture
+ * @see dwarf.gfx.TextureLoader
  * @see dwarf.GameObject
  * @see dwarf.Collidable
- * @see java.lang.Object
  */
-public class Image extends dwarf.Collidable implements GameObject, Cloneable {
+public class Image extends Rectangle implements GameObject {
 
-    private Texture tex;
+    /**
+     * The texture that stores the image for this <code>Image</code>.
+     */
+    private Texture texture;
 
     /**
      * Default constructor.
@@ -34,111 +32,60 @@ public class Image extends dwarf.Collidable implements GameObject, Cloneable {
     public Image() {
         super();
     }
-    
-    public Image(Image i) {
-        super(i.getPosition());
-        this.init(i.getTexture());
-    }
 
-    public Image(Texture texture, Vector2 position) {
-        super(position);
-        this.init(texture);
-    }
-
-    public Image(String key, Vector2 position) {
-        super(position);
-
-        Texture texture = null;
+    /**
+     * Create a new sprite from a specified image.
+     *
+     * @param path A reference to the image on which this sprite should be based
+     * @param position the position of the image on the screen
+     */
+    public Image(String path, Vector2 position) throws dwarf.DwarfException {
+        super(ZERO, position, STROKE, WHITE);
 
         try {
-            texture = TextureLoader.getTexture("JPEG", ResourceLoader.getResourceAsStream(key));
+            texture = TextureLoader.getTexture(path);
         } catch (IOException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
+            throw new dwarf.DwarfException(ex);
         }
 
-        this.init(texture);
+        super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
+    }
+
+    public Image(Image i) {
+        super(ZERO, i.getPosition(), STROKE, WHITE);
+        this.texture = i.getTexture();
+
+        super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
     }
 
     /**
-     * Callback function used to update the state of the game every frame.
-     */
-    @Override
-    public void update() {
-    }
-
-    /**
-     * Callback function used to render on the screen every frame.
+     * Callback function used to render the <code>Image</code> to the window.
      */
     @Override
     public void render() {
-        draw.texture(getPosition(), getTexture());
+        dwarf.gfx.draw.texture(super.getPosition(), getTexture());
     }
 
-    protected final void init(Texture texture) {
-        Vector2[] points = {
-            new Vector2(0, 0),
-            new Vector2(texture.getTextureWidth(), 0),
-            new Vector2(texture.getTextureWidth(), texture.getTextureHeight()),
-            new Vector2(0, texture.getTextureHeight())
-        };
-
-        this.tex = texture;
-        this.setVertices(points);
+    @Override
+    public Image clone() throws CloneNotSupportedException {
+        return new Image(this);
     }
 
     public Texture getTexture() {
-        return this.tex;
+        return this.texture;
     }
 
     public void setTexture(Texture texture) {
-        this.init(texture);
+        this.texture = texture;
     }
 
-    public void setTexture(String key) {
-        Texture texture = null;
-
-        try {
-            texture = TextureLoader.getTexture("JPEG", ResourceLoader.getResourceAsStream(key));
-        } catch (IOException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
-        }
-
-        this.init(texture);
-    }
-
-    /**
-     * Class Object is the root of the class hierarchy. Every class has Object
-     * as a superclass. All objects, including arrays, implement the methods of
-     * this class.
-     *
-     * @return a hash code value for this object.
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(getTexture());
+        hash = 89 * hash + Objects.hashCode(getTexture());
         return hash;
     }
 
-    /**
-     * Returns true if the <code>this</code> is equal to the argument and false
-     * otherwise. Consequently, if both argument are null, true is returned,
-     * false is returned. Otherwise, equality is determined by using the equals
-     * method of the first argument.
-     *
-     * @return true if the argument is equal to <code>this</code> other and
-     * false otherwise
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -150,36 +97,16 @@ public class Image extends dwarf.Collidable implements GameObject, Cloneable {
         }
 
         final Image other = (Image) obj;
-        return Objects.equals(this.getTexture(), other.getTexture());
+
+        if (!Objects.equals(this.getTexture(), other.getTexture())) {
+            return false;
+        }
+        return true;
     }
 
-    /**
-     * Gets the height of the Image as a float.
-     *
-     * @return the height of the image
-     */
-    public float getHeight() {
-        return this.getTexture().getHeight();
-    }
-
-    /**
-     * Gets the width of the Image as a float.
-     *
-     * @return the width of the texture
-     */
-    public float getWidth() {
-        return this.getTexture().getHeight();
-    }
-
-    /**
-     * Gets the width and height of the Image as a new Vector2.
-     *
-     * @return the width and the hight of the image
-     */
-    public Vector2 getDimensions() {
-        return new Vector2(
-                this.getWidth(), this.getHeight()
-        );
+    @Override
+    public String toString() {
+        return "Image{" + "texture:" + texture + "}";
     }
 
     @Override
@@ -187,8 +114,23 @@ public class Image extends dwarf.Collidable implements GameObject, Cloneable {
         return this;
     }
 
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return new Image(this);
+    public void set(Image i) {
+        super.setPosition(i.getPosition());
+        this.texture = i.getTexture();
+        super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
+
+    }
+
+    public void set(String path, Vector2 position) throws dwarf.DwarfException {
+        super.setPosition(position);
+
+        try {
+            texture = TextureLoader.getTexture(path);
+        } catch (IOException ex) {
+            throw new dwarf.DwarfException(ex);
+        }
+
+        super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
+
     }
 }

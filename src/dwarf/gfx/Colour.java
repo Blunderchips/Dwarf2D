@@ -1,8 +1,9 @@
 package dwarf.gfx;
 
-import dwarf.util.Vector3;
-import java.io.Serializable;
 import java.nio.ByteBuffer;
+
+import dwarf.util.Vector3;
+
 import static org.lwjgl.opengl.GL11.glColor4d;
 import static org.lwjgl.opengl.GL11.glColor4f;
 
@@ -15,18 +16,7 @@ import static org.lwjgl.opengl.GL11.glColor4f;
  * @see dwarf.util.Vector3
  */
 @SuppressWarnings("serial")
-public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneable {
-
-    public static final Colour white = new Colour(0xff, 0xff, 0xff, 0xff);
-    public static final Colour yellow = new Colour(0xff, 0xff, 0x0, 0xff);
-    public static final Colour red = new Colour(0xff, 0x0, 0x0, 0xff);
-    public static final Colour blue = new Colour(0x0, 0x0, 0xff, 0xff);
-    public static final Colour lime = new Colour(0x0, 0xff, 0x0, 0xff);
-    public static final Colour black = new Colour(0x0, 0x0, 0x0, 0xff);
-    public static final Colour grey = new Colour(0.5f, 0.5f, 0.5f, 0xff);
-    public static final Colour aqua = new Colour(0x0, 0xff, 0xff, 0xff);
-    public static final Colour darkGrey = new Colour(0.3f, 0.3f, 0.3f, 0xff);
-    public static final Colour magenta = new Colour(0xff, 0x0, 0xff, 0xff);
+public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
 
     private double alpha = 0x1;
 
@@ -147,7 +137,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
 
     @Override
     public String toString() {
-        return "Color [" + getRed() + ", " + getGreen() + ", " + getBlue() + ", " + getAlpha() + "]";
+        return "Colour [" + getRed() + ", " + getGreen() + ", " + getBlue() + ", " + getAlpha() + "]";
     }
 
     public Colour get() {
@@ -401,7 +391,7 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     }
 
     /**
-     * RGB to HSB conversion, pinched from java.awt.Color. The HSB value is
+     * RGB to HSB conversion, pinched from java.awt.Colour. The HSB value is
      * returned in dest[] if dest[] is supplied. Values range from 0..1
      *
      * @param dest Destination floats, or null
@@ -455,9 +445,9 @@ public class Colour extends dwarf.util.Vector3 implements Serializable, Cloneabl
     }
 
     /**
-     * HSB to RGB conversion, pinched from java.awt.Color.
+     * HSB to RGB conversion, pinched from java.awt.Colour.
      *
-     * @see java.awt.Color
+     * @see java.awt.Colour
      *
      * @param hue (0..1.0f)
      * @param saturation (0..1.0f)

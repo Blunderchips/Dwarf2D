@@ -6,6 +6,7 @@ import dwarf.util.Vector2;
 
 import static dwarf.gfx.Colour.black;
 import static dwarf.gfx.Colour.white;
+import static dwarf.gfx.Polygon.STROKE;
 
 public class shapeTest {
 
@@ -17,7 +18,7 @@ public class shapeTest {
                 dwarf.gfx.util.setBackgroundColour(white);
 
                 for (int i = 3; i < 25; i++) {
-                    super.addGameObject(new Shape(i, 65, new Vector2(375, 20), "stroke", black));
+                    super.addGameObject(new Shape(i, 65, new Vector2(375, 20), STROKE, black));
                 }
             }
 

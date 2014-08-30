@@ -19,13 +19,13 @@ import static dwarf.gfx.draw.*;
  * @see dwarf.Collidable
  * @see dwarf.gfx.draw
  */
-public class Polygon extends dwarf.Collidable implements GameObject, shapeConstants {
+public class Polygon extends dwarf.Collidable implements GameObject, shapeConstants, Colours {
 
-    public final static String FILL = "fill";
-    public final static String STROKE = "stroke";
+    public final static byte FILL = 0x0;
+    public final static byte STROKE = 0x1;
 
     private Colour colour;
-    private String mode;
+    private byte mode;
 
     /**
      * Default constructor.
@@ -42,9 +42,9 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    public Polygon(Vector2 position, String mode, Colour colour) {
+    public Polygon(Vector2 position, int mode, Colour colour) {
         super(position);
-        this.init(mode, colour);
+        this.init((byte) mode, colour);
     }
 
     /**
@@ -56,14 +56,14 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    public Polygon(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
+    public Polygon(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super(position);
-        this.init(vertices, mode, colour);
+        this.init(vertices, (byte) mode, colour);
     }
 
     public Polygon(Polygon polygon) {
         super(polygon.getPosition());
-        this.init(polygon.getVertices(), polygon.getMode(), polygon.getColour());
+        this.init(polygon.getVertices(), (byte) polygon.getMode(), polygon.getColour());
     }
 
     /**
@@ -73,7 +73,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    protected final void init(String mode, Colour colour) {
+    protected final void init(byte mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
     }
@@ -86,7 +86,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param mode the mode of the
      * @param colour the colour of the <code>Polygon</code> to be created.
      */
-    protected final void init(Vector2[] vertices, String mode, Colour colour) {
+    protected final void init(Vector2[] vertices, byte mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
         super.setVertices(vertices);
@@ -121,7 +121,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * return false
      */
     public boolean isFill() {
-        return this.getMode().equals("fill");
+        return this.getMode() == FILL;
     }
 
     /**
@@ -140,13 +140,11 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         this.colour = colour;
     }
 
-    public void setMode(String mode) {
-        if (mode.equals("fill") || mode.equals("stroke")) {
-            this.mode = mode;
-        } else if (mode == null) {
-            throw new NullPointerException("the mode can not be null. (stroke/fill only)");
+    public void setMode(int mode) {
+        if ((byte) mode == FILL || (byte) mode == STROKE) {
+            this.mode = (byte) mode;
         } else {
-            throw new IllegalArgumentException("the state '" + mode + "' is unrecognised. (stroke/fill only)");
+            throw new dwarf.DwarfException();
         }
     }
 
@@ -194,7 +192,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         }
     }
 
-    public String getMode() {
+    public int getMode() {
         return this.mode;
     }
 
@@ -202,7 +200,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * Returns what type of shape <code>this</code> is.
      *
      * @see dwarf.gfx.shapeConstants
-     * 
+     *
      * @return what type of shape <code>this</code> is
      */
     public String getType() {
@@ -261,18 +259,18 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         return this;
     }
 
-    public void set(Vector2 position, String mode, Colour colour) {
-        this.init(mode, colour);
+    public void set(Vector2 position, int mode, Colour colour) {
+        this.init((byte) mode, colour);
         super.setPosition(position);
     }
 
-    public void set(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
-        this.init(vertices, mode, colour);
+    public void set(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
+        this.init(vertices, (byte) mode, colour);
         super.setPosition(position);
     }
 
     public void set(Polygon polygon) {
-        this.init(polygon.getVertices(), polygon.getMode(), polygon.getColour());
+        this.init(polygon.getVertices(), (byte) polygon.getMode(), polygon.getColour());
         super.setPosition(polygon.getPosition());
     }
 

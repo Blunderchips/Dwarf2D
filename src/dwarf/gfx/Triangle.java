@@ -18,11 +18,11 @@ public class Triangle extends Polygon {
         super();
     }
 
-    public Triangle(Vector2 position, String mode, Colour colour) {
+    public Triangle(Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
     }
 
-    public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, String mode, Colour colour) {
+    public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
 
         Vector2[] points = {
@@ -32,7 +32,7 @@ public class Triangle extends Polygon {
         super.setVertices(points);
     }
 
-    public Triangle(Vector2[] vertices, Vector2 position, String mode, Colour colour) {
+    public Triangle(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
 
         if (vertices != null) {
@@ -96,7 +96,7 @@ public class Triangle extends Polygon {
         super.addPoint(point);
     }
 
-    public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, String mode, Colour colour) {
+    public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);

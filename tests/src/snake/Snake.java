@@ -2,16 +2,13 @@ package snake;
 
 import java.util.ArrayList;
 
-import dwarf.Game;
 import dwarf.GameObject;
 import dwarf.gfx.Colour;
 import dwarf.gfx.draw;
 
 import static dwarf.random.chance;
+import static dwarf.gfx.Colours.white;
 
-/**
- * @author sid_th3_sl0th
- */
 public class Snake extends dwarf.Game {
 
     public static Snake game;
@@ -26,21 +23,20 @@ public class Snake extends dwarf.Game {
 
     @Override
     public void load() {
-        this.getGameObejects().clear();
-        dwarf.gfx.util.setBackgroundColour(Colour.white);
+        dwarf.gfx.util.setBackgroundColour(white);
 
         player = new Player();
         zombie = new Zombie();
         score = 0;
 
-        this.addGameObject(zombie);
-        this.addGameObject(player);
+        super.addGameObject(zombie);
+        super.addGameObject(player);
     }
 
     @Override
     public void update() {
         if (chance(7)) {
-            this.addGameObject(new coin());
+            super.addGameObject(new coin());
         }
         this.updateAllGameObjects();
     }
@@ -48,7 +44,7 @@ public class Snake extends dwarf.Game {
     @Override
     public void render() {
         draw.basicText("Score " + score, 20, 580, Colour.black);
-        this.renderAllGameObjects();
+        super.renderAllGameObjects();
     }
 
     /**
@@ -59,6 +55,6 @@ public class Snake extends dwarf.Game {
     }
 
     public ArrayList<GameObject> getGameObejects() {
-        return this.getGameObjects();
+        return super.getGameObjects();
     }
 }

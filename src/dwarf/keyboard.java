@@ -1,8 +1,10 @@
 package dwarf;
 
-import dwarf.engine.core.Window;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import dwarf.engine.core.Window;
+
 import org.lwjgl.LWJGLException;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -311,7 +313,7 @@ public final class keyboard {
             JOptionPane.showMessageDialog(
                     Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
-            Game.close(new dwarf.DwarfException(ex));
+            throw new DwarfError(ex);
         }
 
         keyboard.currentKeys = new ArrayList<>();

@@ -423,10 +423,10 @@ public class Collidable extends java.lang.Object implements Cloneable {
             return false;
         } else if (getClass() != obj.getClass()) {
             return false;
-        } else if (!super.equals(obj)) {
-            return false;
         }
+        
         final Collidable coll = (Collidable) obj;
+        
         if (!Objects.equals(this.getVertices(), coll.getVertices())) {
             return false;
         } else {
@@ -543,7 +543,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * otherwise false.
      */
     public boolean isMouseHover() {
-        return intersects(new Circle(1, dwarf.mouse.getMousePosition(), "stroke", Colour.white));
+        return intersects(new Circle(1, dwarf.mouse.getMousePosition(), 1, Colour.white));
     }
 
     /**

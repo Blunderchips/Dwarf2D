@@ -1,9 +1,11 @@
 package dwarf;
 
-import dwarf.engine.core.Window;
-import dwarf.util.Vector2;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import dwarf.util.Vector2;
+import dwarf.engine.core.Window;
+
 import org.lwjgl.LWJGLException;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -50,7 +52,7 @@ public final class mouse {
             JOptionPane.showMessageDialog(
                     Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
             );
-            Game.close(new dwarf.DwarfException(ex));
+            throw new DwarfError(ex);
         }
 
         mouse.currentMouse = new ArrayList<>();

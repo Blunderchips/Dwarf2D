@@ -27,7 +27,7 @@ public class Shape extends Polygon {
         super();
     }
 
-    public Shape(int numSides, double lineLength, Vector2 position, String mode, Colour colour) {
+    public Shape(int numSides, double lineLength, Vector2 position, int mode, Colour colour) {
         super(position, mode, colour);
 
         numSides = abs(numSides);

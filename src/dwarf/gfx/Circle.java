@@ -43,7 +43,7 @@ public class Circle extends Shape {
         super();
     }
     
-    public Circle(double radius, Vector2 location, String mode, Colour colour) {
+    public Circle(double radius, Vector2 location, int mode, Colour colour) {
         super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
         this.radius = radius;
     }

@@ -1,7 +1,6 @@
 package snake;
 
 import dwarf.engine.core.Window;
-import dwarf.gfx.Colour;
 import dwarf.gfx.Shape;
 import dwarf.random;
 import dwarf.time;
@@ -9,9 +8,6 @@ import dwarf.util.Vector2;
 
 import static snake.Snake.player;
 
-/**
- * @author sid_th3_sl0th
- */
 public class Zombie extends Shape {
 
     private boolean alive;
@@ -21,7 +17,7 @@ public class Zombie extends Shape {
         super(4, 30, new Vector2(
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
-        ), "fill", Colour.darkGrey);
+        ), FILL, DARK_GREY);
         this.init();
     }
 

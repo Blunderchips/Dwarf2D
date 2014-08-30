@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 import dwarf.GameObject;
 import dwarf.engine.core.Window;
-import dwarf.gfx.Colour;
 import dwarf.gfx.Shape;
 import dwarf.random;
 import dwarf.util.Vector2;
@@ -21,7 +20,7 @@ public class Player extends Shape {
         super(4, 10, new Vector2(
                 interger(Window.getWidth()),
                 interger(Window.getHeight())
-        ), "fill", Colour.red);
+        ), FILL, RED);
         this.init();
     }
 

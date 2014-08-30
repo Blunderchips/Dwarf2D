@@ -19,7 +19,7 @@ import static org.lwjgl.openal.AL10.alSourceStop;
 import static org.lwjgl.openal.AL10.alSourcei;
 
 /**
- * play sounds using <a href='http://www.openal.org/'>OpenAL</a> (Open Audio
+ * play sounds using <a href='http://www.openal.org/'>OpenAL</a>. (Open Audio
  * Library)
  *
  * @author Matthew 'siD' Van der Bijl
@@ -51,7 +51,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
     public Sfx() {
         super();
     }
-    
+
     public Sfx(String key) throws DwarfException {
         super();
         this.init(key);

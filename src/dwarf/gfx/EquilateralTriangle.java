@@ -25,7 +25,7 @@ public class EquilateralTriangle extends Shape {
         super();
     }
     
-    public EquilateralTriangle(double sideLength, Vector2 position, String mode, Colour colour) {
+    public EquilateralTriangle(double sideLength, Vector2 position, int mode, Colour colour) {
         super(SHAPE_TRIANGLE, sideLength, position, mode, colour);
     }
 

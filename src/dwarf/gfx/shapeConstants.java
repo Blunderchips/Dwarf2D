@@ -183,7 +183,7 @@ public interface shapeConstants {
      */
     public static final short SHAPE_MEGAGON = 0x4240;
     /**
-     * infinite sided shape.
+     * infinite sided shape. (9,223,372,036,854,775,807)
      *
      * @see <a href='http://en.wikipedia.org/wiki/Apeirogon'>wikipedia</a>
      */

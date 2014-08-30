@@ -3,7 +3,6 @@ package dwarf.gfx;
 import java.util.Arrays;
 
 import dwarf.util.Vector2;
-import dwarf.lib.Slick2D.Texture;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
@@ -23,7 +22,7 @@ import static org.lwjgl.opengl.GL11.glFlush;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glRotated;
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
+import static org.lwjgl.opengl.GL11.glTexCoord2d;
 import static org.lwjgl.opengl.GL11.glTranslated;
 import static org.lwjgl.opengl.GL11.glVertex2d;
 import static org.lwjgl.opengl.GL11.glVertex2f;
@@ -852,24 +851,27 @@ public final class draw implements dwarf.gfx.shapeConstants {
     public static void texture(Vector2 translation, Texture texture) {
         glPushMatrix();
         {
+
             glEnable(GL_TEXTURE_2D);
 
             glTranslated(translation.getX(), translation.getY(), 0);
             glRotated(translation.getRotation(), 0, 0, 1);
 
-            Colour.white.bind();
             texture.bind();
 
             glBegin(GL_QUADS);
             {
-                glTexCoord2f(1, 1);
+                glTexCoord2d(0, texture.getHeight());
                 glVertex2d(0, 0);
-                glTexCoord2f(0, 1);
-                glVertex2d(texture.getTextureWidth(), 0);
-                glTexCoord2f(0, 0);
-                glVertex2d(texture.getTextureWidth(), texture.getTextureHeight());
-                glTexCoord2f(1, 0);
-                glVertex2d(0, texture.getTextureHeight());
+
+                glTexCoord2d(0, 0);
+                glVertex2d(0, texture.getImageHeight());
+
+                glTexCoord2d(texture.getWidth(), 0);
+                glVertex2d(texture.getImageWidth(), texture.getImageHeight());
+
+                glTexCoord2d(texture.getWidth(), texture.getHeight());
+                glVertex2d(texture.getImageWidth(), 0);
             }
             glEnd();
             glFlush();

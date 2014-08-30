@@ -22,11 +22,11 @@ public class Square extends Rectangle {
         super();
     }
 
-    public Square(float sideLength, Vector2 position, String mode, Colour colour) {
+    public Square(float sideLength, Vector2 position, int mode, Colour colour) {
         super(sideLength, sideLength, position, mode, colour);
     }
 
-    public Square(double sideLength, Vector2 position, String mode, Colour colour) {
+    public Square(double sideLength, Vector2 position, int mode, Colour colour) {
         super(sideLength, sideLength, position, mode, colour);
     }
 
@@ -52,14 +52,14 @@ public class Square extends Rectangle {
         throw new UnsupportedOperationException();
     }
 
-    public void set(float sideLength, Vector2 position, String mode, Colour colour) {
+    public void set(float sideLength, Vector2 position, int mode, Colour colour) {
         this.setLineLength(sideLength);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(double sideLength, Vector2 position, String mode, Colour colour) {
+    public void set(double sideLength, Vector2 position, int mode, Colour colour) {
         this.setLineLength(sideLength);
         super.setPosition(position);
         super.setMode(mode);

@@ -57,17 +57,17 @@ public class Rectangle extends Quadrilateral {
         super();
     }
 
-    public Rectangle(float width, float height, Vector2 position, String mode, Colour colour) {
+    public Rectangle(float width, float height, Vector2 position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
     }
 
-    public Rectangle(double width, double height, Vector2 position, String mode, Colour colour) {
+    public Rectangle(double width, double height, Vector2 position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
     }
 
-    public Rectangle(Vector2 dimensions, Vector2 position, String mode, Colour colour) {
+    public Rectangle(Vector2 dimensions, Vector2 position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
@@ -227,21 +227,21 @@ public class Rectangle extends Quadrilateral {
         );
     }
 
-    public void set(float width, float height, Vector2 position, String mode, Colour colour) {
+    public void set(float width, float height, Vector2 position, int mode, Colour colour) {
         this.setVertices(width, height);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(double width, double height, Vector2 position, String mode, Colour colour) {
+    public void set(double width, double height, Vector2 position, int mode, Colour colour) {
         this.setVertices(width, height);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(Vector2 dimensions, Vector2 position, String mode, Colour colour) {
+    public void set(Vector2 dimensions, Vector2 position, int mode, Colour colour) {
         this.setVertices(dimensions.getX(), dimensions.getY());
         super.setPosition(position);
         super.setMode(mode);
@@ -323,7 +323,7 @@ public class Rectangle extends Quadrilateral {
                 this.getDimensions().getX(),
                 10 * this.getDimensions().getY() / 100,
                 super.getPosition(),
-                "stroke", null
+                STROKE, null
         );
 
         rect.setPosition(
@@ -347,7 +347,7 @@ public class Rectangle extends Quadrilateral {
                 10 * this.getDimensions().getX() / 100,
                 this.getDimensions().getY(),
                 super.getPosition(),
-                "stroke", null
+                STROKE, null
         );
 
         rect.setPosition(
@@ -371,7 +371,7 @@ public class Rectangle extends Quadrilateral {
                 this.getDimensions().getX(),
                 10 * this.getDimensions().getY() / 100,
                 super.getPosition(),
-                "stroke", null
+                STROKE, null
         ).getCollidable();
     }
 
@@ -388,7 +388,7 @@ public class Rectangle extends Quadrilateral {
                 10 * this.getDimensions().getX() / 100,
                 this.getDimensions().getY(),
                 super.getPosition(),
-                "stroke", null
+                STROKE, null
         ).getCollidable();
     }
 
