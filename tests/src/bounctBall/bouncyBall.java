@@ -23,7 +23,7 @@ public class bouncyBall {
 
             @Override
             public void load() {
-                dwarf.gfx.util.setBackgroundColour(white);
+                dwarf.gfx.background.setColour(white);
 
                 this.ball = new Circle(50, new Vector2(400, 300), FILL, blue);
                 this.base = new Rectangle(800, 50, Vector2.ZERO, FILL, black);

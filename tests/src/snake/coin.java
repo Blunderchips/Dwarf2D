@@ -75,7 +75,7 @@ public class coin extends Shape {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Shape clone() throws CloneNotSupportedException {
         return super.clone();
     }
 }

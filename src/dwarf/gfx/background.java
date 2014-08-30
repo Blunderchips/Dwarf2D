@@ -5,14 +5,14 @@ package dwarf.gfx;
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public final class util {
+public final class background {
 
     private static Colour backgroundColour = new Colour();
 
     /**
      * you can not instantiate this class.
      */
-    public util() throws UnsupportedOperationException {
+    public background() throws UnsupportedOperationException {
         // Prevents instantiation of this class.
         throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
@@ -27,8 +27,8 @@ public final class util {
      * @param green green component (byte)
      * @param blue blue component (byte)
      */
-    public static void setBackgroundColour(byte red, byte green, byte blue) {
-        util.backgroundColour = new Colour(red, green, blue);
+    public static void setColour(byte red, byte green, byte blue) {
+        background.backgroundColour = new Colour(red, green, blue);
     }
 
     /**
@@ -41,17 +41,17 @@ public final class util {
      * @param blue blue component (byte)
      * @param alpha alpha component (byte)
      */
-    public static void setBackgroundColour(byte red, byte green, byte blue, byte alpha) {
+    public static void setColour(byte red, byte green, byte blue, byte alpha) {
 
-        util.backgroundColour = new Colour(red, green, blue, alpha);
+        background.backgroundColour = new Colour(red, green, blue, alpha);
     }
 
-    public static void setBackgroundColour(Colour backgroundColour) {
-        util.backgroundColour = backgroundColour;
+    public static void setColour(Colour backgroundColour) {
+        background.backgroundColour = backgroundColour;
     }
 
-    public static Colour getBackgroundColour() {
-        return util.backgroundColour;
+    public static Colour getColour() {
+        return background.backgroundColour;
     }
 
 }

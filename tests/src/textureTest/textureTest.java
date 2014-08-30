@@ -16,7 +16,7 @@ public class textureTest {
 
             @Override
             public void load() {
-                dwarf.gfx.util.setBackgroundColour(white);
+                dwarf.gfx.background.setColour(white);
                 try {
                     this.tex = new Image("./textureTest/pixelDwarf.jpeg", new Vector2(280, 250));
                 } catch (DwarfException ex) {

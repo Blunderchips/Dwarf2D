@@ -15,7 +15,7 @@ public class shapeTest {
 
             @Override
             public void load() {
-                dwarf.gfx.util.setBackgroundColour(white);
+                dwarf.gfx.background.setColour(white);
 
                 for (int i = 3; i < 25; i++) {
                     super.addGameObject(new Shape(i, 65, new Vector2(375, 20), STROKE, black));

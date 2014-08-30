@@ -23,7 +23,7 @@ public class Snake extends dwarf.Game {
 
     @Override
     public void load() {
-        dwarf.gfx.util.setBackgroundColour(white);
+        dwarf.gfx.background.setColour(white);
 
         player = new Player();
         zombie = new Zombie();

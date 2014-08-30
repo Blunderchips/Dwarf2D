@@ -11,7 +11,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import static dwarf.gfx.util.getBackgroundColour;
+import static dwarf.gfx.background.getColour;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
@@ -104,7 +104,7 @@ public final class Window {
     protected static void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glTranslated(Window.getActiveCamera().getPosition().getX(), Window.getActiveCamera().getPosition().getY(), 0);
-        draw.fillRect(getWidth(), getHeight(), Window.getActiveCamera().getPosition(), getBackgroundColour());
+        draw.fillRect(getWidth(), getHeight(), Window.getActiveCamera().getPosition(), getColour());
     }
 
     /**
