@@ -1,13 +1,9 @@
 package dwarf;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-
-import dwarf.engine.core.Window;
 
 import org.lwjgl.LWJGLException;
 
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Provides an interface to the user's keyboard.

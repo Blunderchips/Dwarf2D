@@ -41,21 +41,12 @@ import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public final class openGL {
+public interface openGL {
 
     /**
-     * you can not instantiate this class.
+     * initializes openGL.
      */
-    public openGL() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new UnsupportedOperationException(
-                "you can not instantiate this class.");
-    }
-
-    /**
-     * initializes openGL
-     */
-    protected static final void init() {
+    public static void init() {
         // util.debug("INFO", "openGL version: " + openGL.getVersion());
 
         glMatrixMode(GL_PROJECTION);

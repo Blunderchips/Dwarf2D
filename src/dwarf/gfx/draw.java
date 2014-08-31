@@ -28,22 +28,15 @@ import static org.lwjgl.opengl.GL11.glVertex2d;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
 /**
- * draws shapes to the screen using <a href='http://www.opengl.org/'>OpenGL</a>.
+ * Provides an interface to draw shapes and textures to the screen using <a
+ * href='http://www.opengl.org/'>OpenGL</a>.
  *
  * @author Matthew 'siD' Van der Bijl
  *
+ * @see dwarf.gfx.Texture
  * @see dwarf.gfx.shapeConstants
  */
-public final class draw implements dwarf.gfx.shapeConstants {
-
-    /**
-     * you can not instantiate this class.
-     */
-    public draw() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new UnsupportedOperationException(
-                "you can not instantiate this class.");
-    }
+public interface draw extends dwarf.gfx.shapeConstants {
 
     public static void fillRect(float width, float hieght, Vector2 translation, Colour colour) {
         glPushMatrix();

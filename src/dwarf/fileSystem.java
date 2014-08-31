@@ -6,24 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Provides an interface to the user's file system.
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public final class fileSystem {
-
-    /**
-     * you can not instantiate this class.
-     */
-    public fileSystem() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new UnsupportedOperationException(
-                "you can not instantiate this class.");
-    }
+public interface fileSystem {
 
     /**
      * Recursively creates a directory.
@@ -144,27 +133,24 @@ public final class fileSystem {
      *
      * @param the location of the file + extention
      */
-    public static String[] loadFile(String location) {
+    public static String[] loadFile(String location) throws dwarf.DwarfException {
         try {
-            ArrayList temp = new ArrayList<String>();
+            ArrayList<String> temp = new ArrayList<>();
             Scanner sc = new Scanner(new FileReader(location));
 
             while (sc.hasNextLine()) {
-                boolean add = temp.add(sc.nextLine());
+                temp.add(sc.nextLine());
             }
 
             String output[] = new String[temp.size()];
 
             for (int i = 0; i < output.length; i++) {
-                output[i] = (String) temp.get(i);
+                output[i] = temp.get(i);
             }
 
             return output;
         } catch (FileNotFoundException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(null, ex, "ERROR", ERROR_MESSAGE);
-            Game.close(1);
+            throw new dwarf.DwarfException(ex);
         }
-        return null;
     }
 }

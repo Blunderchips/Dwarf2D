@@ -119,14 +119,16 @@ public final class TextureLoader {
                 true,
                 false,
                 ComponentColorModel.TRANSLUCENT,
-                DataBuffer.TYPE_BYTE);
+                DataBuffer.TYPE_BYTE
+        );
 
         glColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
                 new int[]{8, 8, 8, 0},
                 false,
                 false,
                 ComponentColorModel.OPAQUE,
-                DataBuffer.TYPE_BYTE);
+                DataBuffer.TYPE_BYTE
+        );
     }
 
     /**

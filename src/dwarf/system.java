@@ -8,20 +8,11 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
- * Provides an interface to your system and other system base utilities.
+ * Provides an interface to your system (sys) and other system base utilities.
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public final class system {
-
-    /**
-     * you can not instantiate this class.
-     */
-    public system() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new UnsupportedOperationException(
-                "you can not instantiate this class.");
-    }
+public interface system {
 
     /**
      * @return Operating system version
@@ -145,10 +136,10 @@ public final class system {
         return System.getProperty("java.compiler");
     }
 
-    public String executeCommand(String command) {
+    public static String executeCommand(String command) {
         StringBuilder output = new StringBuilder();
 
-        Process p;
+        Process p = null;
         try {
             p = Runtime.getRuntime().exec(command);
             p.waitFor();
@@ -170,6 +161,9 @@ public final class system {
         return output.toString();
     }
 
+    /**
+     * @return the version of the Lightweight Java Game Library (LWJGL) in use.
+     */
     public static String getLWJGLVersion() {
         return org.lwjgl.Sys.getVersion();
     }

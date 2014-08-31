@@ -4,22 +4,13 @@ import dwarf.util.Vector2;
 import dwarf.util.Vector3;
 
 /**
- * handles all random numbers and events.
+ * Provides an interface to handle all random numbers and events.
  *
  * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Math#random()
  */
-public final class random {
-
-    /**
-     * you can not instantiate this class.
-     */
-    public random() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new UnsupportedOperationException(
-                "you can not instantiate this class.");
-    }
+public interface random {
 
     public static int interger() {
         return Math.abs((int) (Math.random() * 100) - 100);

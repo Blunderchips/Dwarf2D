@@ -11,16 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public final class util {
-
-    /**
-     * you can not instantiate this class.
-     */
-    public util() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new UnsupportedOperationException(
-                "you can not instantiate this class.");
-    }
+public interface util {
 
     public static String[] explode(String split, String input) {
         return input.split(split);
@@ -67,7 +58,7 @@ public final class util {
         }
     }
 
-    public static final byte[] intToByteArray(int value) {
+    public static byte[] intToByteArray(int value) {
         return new byte[]{(byte) (value >>> 24), (byte) (value >>> 16),
             (byte) (value >>> 8), (byte) value};
     }

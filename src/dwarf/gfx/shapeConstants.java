@@ -1,8 +1,13 @@
 package dwarf.gfx;
 
 /**
+ * Constants used to help the draw, Polygon and Shape classes.
  *
  * @author Matthew 'siD' Van der Bijl
+ *
+ * @see dwarf.gfx.draw
+ * @see dwarf.gfx.Shape
+ * @see dwarf.gfx.Polygon
  */
 public interface shapeConstants {
 

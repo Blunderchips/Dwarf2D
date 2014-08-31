@@ -1,13 +1,10 @@
 package dwarf.engine.core;
 
-import dwarf.Game;
-import javax.swing.JOptionPane;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
 import org.lwjgl.openal.ALCcontext;
 import org.lwjgl.openal.ALCdevice;
 
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static org.lwjgl.openal.AL10.AL_EXTENSIONS;
 import static org.lwjgl.openal.AL10.AL_RENDERER;
 import static org.lwjgl.openal.AL10.AL_VENDOR;
@@ -27,21 +24,12 @@ import static org.lwjgl.openal.AL10.alGetString;
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public final class openAL {
-
-    /**
-     * you can not instantiate this class.
-     */
-    public openAL() throws UnsupportedOperationException {
-        // Prevents instantiation of this class.
-        throw new Error(
-                "you can not instantiate this class.");
-    }
+public interface openAL {
 
     /**
      * initializes <a href='http://www.openal.org/'>OpenAL</a>
      */
-    protected static final void init() {
+    public static void init() {
         try {
             AL.create();
             // util.debug("INFO", "openAL version: " + openAL.getVersion());
@@ -50,7 +38,7 @@ public final class openAL {
         }
     }
 
-    protected static void dispose() {
+    public static void dispose() {
         AL.destroy();
     }
 

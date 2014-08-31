@@ -11,4 +11,8 @@ public interface Child {
     public static ArrayList<Child> getSiblings(Child child) {
         return child.getParent().getChildren();
     }
+
+    public static boolean hasSiblings(Child child) {
+        return child.getParent().getChildren().size() > 1;
+    }
 }
