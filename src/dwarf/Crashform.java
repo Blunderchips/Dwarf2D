@@ -1,9 +1,5 @@
 package dwarf;
 
-import javax.swing.JTextArea;
-
-import dwarf.engine.core.Window;
-
 /**
  * Crashes are unexpected shutdowns of the Dwarf 2D Engine. When the engine
  * crashes, it typically closes immediately, though it may show an error report
@@ -32,17 +28,16 @@ public class Crashform extends javax.swing.JFrame {
         super("Dwarf2D - " + ex.getClass().getName());
         initComponents();
 
-        super.setLocationRelativeTo(Window.getParent());
+        super.setLocationRelativeTo(dwarf.engine.core.Window.getParent());
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         super.toFront();
         super.setEnabled(true);
         super.setVisible(true);
 
         this.setDisplay(ex);
-        this.txtDisplay.setEditable(false);
     }
 
-    public JTextArea getDisplay() {
+    public javax.swing.JTextArea getDisplay() {
         return this.txtDisplay;
     }
 
@@ -75,14 +70,13 @@ public class Crashform extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
-        jScrollPane = new javax.swing.JScrollPane();
-        txtDisplay = new javax.swing.JTextArea();
+        this.jScrollPane = new javax.swing.JScrollPane();
+        this.txtDisplay = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtDisplay.setColumns(20);
-        txtDisplay.setRows(5);
-        jScrollPane.setViewportView(txtDisplay);
+        this.txtDisplay.setEditable(false);
+        this.txtDisplay.setColumns(20);
+        this.txtDisplay.setRows(5);
+        this.jScrollPane.setViewportView(txtDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,7 +113,7 @@ public class Crashform extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Crashform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
-            new Crashform(new Exception()).setVisible(true);
+            new Crashform(new Exception());
         });
     }
 }

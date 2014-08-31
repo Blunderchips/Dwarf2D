@@ -16,7 +16,7 @@ public class textureTest {
             public void load() {
                 dwarf.gfx.background.setColour(white);
                 try {
-                    super.addGameObject(new Image("./texthureTest/pixelDwarf.jpeg", new Vector2(280, 250)));
+                    super.addGameObject(new Image("./textureTest/pixelDwarf.jpeg", new Vector2(280, 250)));
                 } catch (DwarfException ex) {
                     ex.display();
                 }
