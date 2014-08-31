@@ -67,7 +67,8 @@ public class Sfx extends java.lang.Object implements Cloneable {
             this.setData(WaveData.create(new BufferedInputStream(new FileInputStream(key))));
         } catch (FileNotFoundException ex) {
             throw new DwarfException(ex);
-        }System.out.println("fg");
+        }
+        System.out.println("fg");
         this.setBuffer(alGenBuffers());
 
         alBufferData(getBuffer(), getData().getFormat(), getData().getData(), getData().getSamplerate());
@@ -225,10 +226,6 @@ public class Sfx extends java.lang.Object implements Cloneable {
 
     @Override
     public Sfx clone() throws CloneNotSupportedException {
-        try {
-            return new Sfx(this);
-        } catch (DwarfException ex) {
-            throw new DwarfException(ex); // should never happen.
-        }
+        return new Sfx(this);
     }
 }

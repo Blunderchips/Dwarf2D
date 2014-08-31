@@ -114,6 +114,7 @@ public abstract class Game extends Engine {
      */
     public static void main(String[] args) {
         new Game(".:Dwarf 2D:.") {
+
             @Override
             public void load() {
                 //This function is called exactly once at the beginning of the game.
@@ -291,22 +292,6 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * Class Object is the root of the class hierarchy. Every class has Object
-     * as a superclass. All objects, including arrays, implement the methods of
-     * this class.
-     *
-     * @return a hash code value for this object.
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(propertyChangeSupport);
-        hash = 37 * hash + Objects.hashCode(vetoableChangeSupport);
-        return hash;
-    }
-
-    /**
      * Returns true if the <code>this</code> is equal to the argument and false
      * otherwise. Consequently, if both argument are null, true is returned,
      * false is returned. Otherwise, equality is determined by using the equals
@@ -322,16 +307,36 @@ public abstract class Game extends Engine {
             return false;
         } else if (getClass() != obj.getClass()) {
             return false;
-        } else if (!super.equals(obj)) {
+        }
+
+        final Game other = (Game) obj;
+
+        if (!Objects.equals(this.propertyChangeSupport, other.propertyChangeSupport)) {
+            return false;
+        } else if (!Objects.equals(this.vetoableChangeSupport, other.vetoableChangeSupport)) {
+            return false;
+        } else if (!Objects.equals(this.getGameObjects(), other.getGameObjects())) {
             return false;
         }
 
-        final Game game = (Game) obj;
-        if (!Objects.equals(this.propertyChangeSupport, game.propertyChangeSupport)) {
-            return false;
-        } else {
-            return Objects.equals(this.vetoableChangeSupport, game.vetoableChangeSupport);
-        }
+        return true;
+    }
+
+    /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(propertyChangeSupport);
+        hash = 47 * hash + Objects.hashCode(vetoableChangeSupport);
+        hash = 47 * hash + Objects.hashCode(getGameObjects());
+        return hash;
     }
 
     @Override
@@ -339,6 +344,7 @@ public abstract class Game extends Engine {
         return "Game = {"
                 + "propertyChangeSupport: " + propertyChangeSupport + ", "
                 + "vetoableChangeSupport: " + vetoableChangeSupport + ", "
+                + "GameObjects: " + getGameObjects().toString() + ", "
                 + "super: " + super.toString()
                 + "}";
     }
@@ -377,17 +383,25 @@ public abstract class Game extends Engine {
     }
 
     /**
-     * clears all <code>GameObject</code> in the main <code>GameObject</code>
+     * reset <code>GameObject</code> in the main <code>GameObject</code>
      * <code>ArrayList</code>.
      *
      * @return will return false if it fails and true if it does not
      */
-    public boolean clearGameObjects() {
+    public boolean resetGameObjects() {
         try {
             this.gameObjects = new ArrayList<>();
             return true;
         } catch (DwarfException ex) {
             throw ex;
         }
+    }
+
+    /**
+     * clears all <code>GameObject</code> in the main <code>GameObject</code>
+     * <code>ArrayList</code>.
+     */
+    public void clearGameObjects() {
+        this.gameObjects.clear();
     }
 }
