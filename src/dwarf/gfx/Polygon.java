@@ -27,11 +27,17 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     private Colour colour;
     private byte mode;
 
+    private boolean update;
+    private boolean render;
+
     /**
      * Default constructor.
      */
     public Polygon() {
         super();
+        
+        this.update = true;
+        this.render = true;
     }
 
     /**
@@ -44,6 +50,10 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      */
     public Polygon(Vector2 position, int mode, Colour colour) {
         super(position);
+        
+        this.update = true;
+        this.render = true;
+        
         this.init((byte) mode, colour);
     }
 
@@ -58,11 +68,19 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      */
     public Polygon(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super(position);
+        
+        this.update = true;
+        this.render = true;
+        
         this.init(vertices, (byte) mode, colour);
     }
 
     public Polygon(Polygon polygon) {
         super(polygon.getPosition());
+        
+        this.update = true;
+        this.render = true;
+        
         this.init(polygon.getVertices(), (byte) polygon.getMode(), polygon.getColour());
     }
 
@@ -109,10 +127,12 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      */
     @Override
     public void render() {
-        if (isFill()) {
-            draw.fillPolygon(super.getVertices(), super.getPosition(), this.getColour());
-        } else {
-            draw.strokePolygon(super.getVertices(), super.getPosition(), this.getColour());
+        if (getRender()) {
+            if (isFill()) {
+                draw.fillPolygon(super.getVertices(), super.getPosition(), this.getColour());
+            } else {
+                draw.strokePolygon(super.getVertices(), super.getPosition(), this.getColour());
+            }
         }
     }
 
@@ -291,5 +311,21 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         }
 
         return result;
+    }
+    
+    public boolean getRender() {
+        return this.render;
+    }
+    
+    public void setRender(boolean render){
+        this.render = render;
+    }
+    
+    public boolean getUpdate() {
+        return this.update;
+    }
+    
+    public void setUpdate(boolean update){
+        this.update = update;
     }
 }
