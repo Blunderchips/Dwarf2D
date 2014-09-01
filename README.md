@@ -23,7 +23,6 @@ You can download the source code right off of <a href='https://github.com/Blunde
 
 HTTPS: https://github.com/Blunderchips/Dwarf2D.git <br/>
 SSH: git@github.com:Blunderchips/Dwarf2D.git <br/>
-Subversion: https://github.com/Blunderchips/Dwarf2D <br/>
 
 
 ###Documentation
