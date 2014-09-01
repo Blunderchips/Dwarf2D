@@ -1,8 +1,8 @@
 package dwarf;
 
 /**
- * A GameObject can update and render.
- * 
+ * Description of anything that can be rendered to the screen or can be updated.
+ *
  * @author Matthew 'siD' Van der Bijl
  */
 public interface GameObject {

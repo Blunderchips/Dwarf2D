@@ -3,7 +3,8 @@ package dwarf.gfx;
 import dwarf.util.Vector2;
 
 /**
- * A basic 4 sided polygon.
+ * A quadrilateral is a polygon with four sides/edges and four vertices/corners.
+ * (A basic 4 sided polygon)
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -24,7 +25,7 @@ public class Quadrilateral extends Polygon {
 
         if (vertices != null) {
             if (vertices.length != 4) {
-                throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 vertices.");
+                throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 vertices/corners.");
             } else {
                 super.setVertices(vertices);
             }
@@ -65,7 +66,7 @@ public class Quadrilateral extends Polygon {
 
         if (vertices != null) {
             if (vertices.length != 4) {
-                throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 vertices.");
+                throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 vertices/corners.");
             } else {
                 super.setVertices(vertices);
             }
@@ -108,5 +109,35 @@ public class Quadrilateral extends Polygon {
     @Deprecated
     public void addPoint(double xPos, double yPos) {
         super.addPoint(xPos, yPos);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(double[] xPoints, double[] yPoints) {
+        super.setVertices(xPoints, yPoints);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(java.awt.Polygon p) {
+        super.setVertices(p);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(Vector2[] vertices) {
+        super.setVertices(vertices);
+    }
+
+    public boolean isCyclicQuad() {
+        return false; //TODO
+    }
+
+    public boolean isRectangle() {
+        return this instanceof Rectangle; //TODO
+    }
+
+    public boolean isSquare() {
+        return this instanceof Square; //TODO
     }
 }

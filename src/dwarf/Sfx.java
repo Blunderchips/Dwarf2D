@@ -20,11 +20,13 @@ import static org.lwjgl.openal.AL10.alSourcei;
 
 /**
  * play sounds using <a href='http://www.openal.org/'>OpenAL</a>. (Open Audio
- * Library)
+ * Library) Load various sound formats for use with <a
+ * href='http://www.openal.org/'>OpenAL</a> (.wav, .xm, .ogg, etc).
  *
  * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
+ * @see java.lang.Cloneable
  * @see dwarf.engine.core.openAL
  * @see <a href='http://www.openal.org/'>openal.org</a>
  */
@@ -40,7 +42,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
         Sfx.isMute = isMute;
     }
 
-    private String key;
+    private String path;
     private int source;
     private int buffer;
     private WaveData data;
@@ -52,31 +54,42 @@ public class Sfx extends java.lang.Object implements Cloneable {
         super();
     }
 
-    public Sfx(String key) throws DwarfException {
+    public Sfx(String path) throws DwarfException {
         super();
-        this.init(key);
+
+        try {
+            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(path)));
+        } catch (FileNotFoundException notFoundException) {
+            throw new DwarfException(notFoundException);
+        } finally {
+            this.buffer = alGenBuffers();
+
+            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
+            this.data.dispose();
+
+            this.path = path;
+            this.source = alGenSources();
+            alSourcei(source, AL_BUFFER, buffer);
+        }
     }
 
     public Sfx(Sfx audio) throws DwarfException {
         super();
-        this.init(audio.getKey());
-    }
 
-    private void init(String key) throws DwarfException {
         try {
-            this.setData(WaveData.create(new BufferedInputStream(new FileInputStream(key))));
-        } catch (FileNotFoundException ex) {
-            throw new DwarfException(ex);
+            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(audio.getPath())));
+        } catch (FileNotFoundException notFoundException) {
+            throw new DwarfException(notFoundException);
+        } finally {
+            this.buffer = alGenBuffers();
+
+            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
+            this.data.dispose();
+
+            this.path = audio.getPath();
+            this.source = alGenSources();
+            alSourcei(source, AL_BUFFER, buffer);
         }
-        System.out.println("fg");
-        this.setBuffer(alGenBuffers());
-
-        alBufferData(getBuffer(), getData().getFormat(), getData().getData(), getData().getSamplerate());
-        this.getData().dispose();
-
-        this.key = key;
-        this.setSource(alGenSources());
-        alSourcei(getSource(), AL_BUFFER, getBuffer());
     }
 
     /**
@@ -204,24 +217,46 @@ public class Sfx extends java.lang.Object implements Cloneable {
                 + "}";
     }
 
-    public String getKey() {
-        return this.key;
+    public String getPath() {
+        return this.path;
     }
 
     public Sfx get() {
         return this;
     }
 
-    public void set(Sfx sfx) {
-        this.buffer = sfx.getBuffer();
-        this.data = sfx.getData();
-        this.source = sfx.getSource();
+    public void set(Sfx audio) {
+        try {
+            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(audio.getPath())));
+        } catch (FileNotFoundException notFoundException) {
+            throw new DwarfException(notFoundException);
+        } finally {
+            this.buffer = alGenBuffers();
+
+            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
+            this.data.dispose();
+
+            this.path = audio.getPath();
+            this.source = alGenSources();
+            alSourcei(source, AL_BUFFER, buffer);
+        }
     }
 
-    public void set(int buffer, WaveData waveData, int source) {
-        this.buffer = buffer;
-        this.data = waveData;
-        this.source = source;
+    public void set(String path) {
+        try {
+            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(path)));
+        } catch (FileNotFoundException notFoundException) {
+            throw new DwarfException(notFoundException);
+        } finally {
+            this.buffer = alGenBuffers();
+
+            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
+            this.data.dispose();
+
+            this.path = path;
+            this.source = alGenSources();
+            alSourcei(source, AL_BUFFER, buffer);
+        }
     }
 
     @Override

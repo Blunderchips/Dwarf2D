@@ -17,12 +17,12 @@ public interface fileSystem {
     /**
      * Recursively creates a directory.
      *
-     * @param fileName - The directory to create + path.
+     * @param path - The directory to create + path.
      * @return True if the directory was created, false if not.
      */
-    public static boolean createDirectory(String fileName) {
+    public static boolean createDirectory(String path) {
         try {
-            File f = new File(fileName);
+            File f = new File(path);
             f.mkdirs();
             f.createNewFile();
             return true;
@@ -35,12 +35,12 @@ public interface fileSystem {
     /**
      * Check whether a file or directory exists.
      *
-     * @param filename - The path to a potential file or directory.
+     * @param path - The path to a potential file or directory.
      * @return True if there is a file or directory with the specified name.
      * False otherwise.
      */
-    public static boolean exists(String filename) {
-        return new File(filename).exists();
+    public static boolean exists(String path) {
+        return new File(path).exists();
     }
 
     /**
@@ -68,63 +68,63 @@ public interface fileSystem {
     /**
      * Gets the size in bytes of a file.
      *
-     * @param fileName public static long getSize(String fileName
+     * @param path public static long getSize(String fileName
      * @return The size in bytes of the file
      */
-    public static long getSize(String fileName) {
-        return new File(fileName).getTotalSpace();
+    public static long getSize(String path) {
+        return new File(path).getTotalSpace();
     }
 
     /**
      * Gets the last modification time of a file.
      *
-     * @param fileName public static long getSize(String fileName
+     * @param path public static long getSize(String fileName
      * @return The size in bytes of the file
      */
-    public static long getLastModified(String fileName) {
-        return new File(fileName).lastModified();
+    public static long getLastModified(String path) {
+        return new File(path).lastModified();
     }
 
     /**
      * Removes a file or empty directory.
      *
-     * @param fileName public static long getSize(String fileName
+     * @param path public static long getSize(String fileName
      * @return <code>true</code> if and only if the file or directory is
      * successfully deleted; <code>false</code> otherwise
      */
-    public static boolean remove(String fileName) {
-        return new File(fileName).delete();
+    public static boolean remove(String path) {
+        return new File(path).delete();
     }
 
     /**
      * Check whether something is a directory.
      *
-     * @param fileName The path to a potential directory.
+     * @param path The path to a potential directory.
      * @return True if there is a directory with the specified name. False
      * otherwise.
      */
-    public static boolean isDirectory(String fileName) {
-        return new File(fileName).isDirectory();
+    public static boolean isDirectory(String path) {
+        return new File(path).isDirectory();
     }
 
     /**
      * Check whether something is a file.
      *
-     * @param fileName The path to a potential directory.
+     * @param path The path to a potential directory.
      * @return True if there is a file with the specified name. False otherwise.
      */
-    public static boolean isFile(String fileName) {
-        return new File(fileName).isFile();
+    public static boolean isFile(String path) {
+        return new File(path).isFile();
     }
 
     /**
      * Recursively creates a directory.
      *
-     * @param fileName The path to a potential directory.
+     * @param path The path to a potential directory.
      * @return True if the directory was created, false if not.
      */
-    public static boolean mkdir(String fileName) {
-        return new File(fileName).mkdir();
+    public static boolean mkdir(String path) {
+        return new File(path).mkdir();
     }
 
     @SuppressWarnings("unchecked")

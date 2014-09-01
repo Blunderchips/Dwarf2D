@@ -5,8 +5,6 @@ import java.util.Objects;
 import dwarf.GameObject;
 import dwarf.util.Vector2;
 
-import static dwarf.gfx.draw.*;
-
 /**
  * A basic shape with more than 3 sides.A rectilinear figure bounded by more
  * than three right lines is usually called a polygon. A polygon is said to be

@@ -32,8 +32,6 @@
 package dwarf.lib.LWJGL;
 
 import com.sun.media.sound.WaveFileReader;
-import dwarf.Game;
-import dwarf.engine.core.Window;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -47,36 +45,40 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
+
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO16;
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO8;
 import static org.lwjgl.openal.AL10.AL_FORMAT_STEREO16;
 import static org.lwjgl.openal.AL10.AL_FORMAT_STEREO8;
 
 /**
- * utility class for loading wavefiles (.wav).
+ * utility class for loading wavefiles.
+ *
+ * @see java.lang.Object
+ * @see java.lang.Cloneable
  */
-public class WaveData extends java.lang.Object {
+public class WaveData extends java.lang.Object implements java.lang.Cloneable {
 
     /**
-     * actual wave data
+     * actual wave data.
      */
     private ByteBuffer data;
 
     /**
-     * format type of data
+     * format type of data.
      */
     private int format;
 
     /**
-     * sample rate of data
+     * sample rate of data.
      */
     private int samplerate;
 
+    /**
+     * Default constructor.
+     */
     public WaveData() {
         super();
-        this.init(null, 0, 0);
     }
 
     /**
@@ -88,20 +90,18 @@ public class WaveData extends java.lang.Object {
      */
     public WaveData(ByteBuffer data, int format, int samplerate) {
         super();
-        this.init(data, format, samplerate);
+
+        this.data = data;
+        this.format = format;
+        this.samplerate = samplerate;
     }
 
     public WaveData(WaveData waveData) {
         super();
-        this.init(
-                waveData.getData(), waveData.getFormat(), waveData.getSamplerate()
-        );
-    }
 
-    private void init(ByteBuffer data, int format, int samplerate) {
-        this.data = data;
-        this.format = format;
-        this.samplerate = samplerate;
+        this.data = waveData.getData();
+        this.format = waveData.getFormat();
+        this.samplerate = waveData.getFormat();
     }
 
     /**
@@ -117,16 +117,14 @@ public class WaveData extends java.lang.Object {
      * @param path URL to file
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(URL path) {
+    public static WaveData create(URL path) throws dwarf.DwarfException {
         try {
             // due to an issue with AudioSystem.getAudioInputStream
             // and mixing unsigned and signed code
             // we will use the reader directly
             return create(new WaveFileReader().getAudioInputStream(new BufferedInputStream(path.openStream())));
         } catch (IOException | UnsupportedAudioFileException ex) {
-            System.err.println(ex);
-            org.lwjgl.LWJGLUtil.log("Unable to create from: " + path + ", " + ex.getMessage());
-            return null;
+            throw new dwarf.DwarfException(ex);
         }
     }
 
@@ -146,14 +144,12 @@ public class WaveData extends java.lang.Object {
      * @param is InputStream to read from
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(InputStream is) {
+    public static WaveData create(InputStream is) throws dwarf.DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(is));
         } catch (UnsupportedAudioFileException | IOException ex) {
-            System.out.println(ex);
-            org.lwjgl.LWJGLUtil.log("Unable to create from inputstream, " + ex.getMessage());
-            return null;
+            throw new dwarf.DwarfException(ex);
         }
     }
 
@@ -163,15 +159,13 @@ public class WaveData extends java.lang.Object {
      * @param buffer array of bytes containing the complete wave file
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(byte[] buffer) {
+    public static WaveData create(byte[] buffer) throws dwarf.DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(
                             new BufferedInputStream(new ByteArrayInputStream(buffer))));
         } catch (UnsupportedAudioFileException | IOException ex) {
-            System.err.println(ex);
-            org.lwjgl.LWJGLUtil.log("Unable to create from byte array, " + ex.getMessage());
-            return null;
+            throw new dwarf.DwarfException(ex);
         }
     }
 
@@ -183,7 +177,7 @@ public class WaveData extends java.lang.Object {
      * @param buffer ByteBuffer containing sound file
      * @return WaveData containing data, or null if a failure occured
      */
-    public static WaveData create(ByteBuffer buffer) {
+    public static WaveData create(ByteBuffer buffer) throws dwarf.DwarfException {
         try {
             byte[] bytes = null;
 
@@ -194,10 +188,8 @@ public class WaveData extends java.lang.Object {
                 buffer.get(bytes);
             }
             return create(bytes);
-        } catch (Exception ex) {
-            System.err.println(ex);
-            org.lwjgl.LWJGLUtil.log("Unable to create from ByteBuffer, " + ex.getMessage());
-            return null;
+        } catch (dwarf.DwarfException ex) {
+            throw new dwarf.DwarfException(ex);
         }
     }
 
@@ -207,7 +199,7 @@ public class WaveData extends java.lang.Object {
      * @param ais AudioInputStream to read from
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(AudioInputStream ais) {
+    public static WaveData create(AudioInputStream ais) throws dwarf.DwarfException {
         //get format of data
         AudioFormat audioformat = ais.getFormat();
 
@@ -247,9 +239,8 @@ public class WaveData extends java.lang.Object {
                 total += read;
             }
             buffer = convertAudioBytes(buf, audioformat.getSampleSizeInBits() == 16, audioformat.isBigEndian() ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
-        } catch (IOException ex) {
-            System.err.println(ex);
-            return null;
+        } catch (IOException ioe) {
+            throw new dwarf.DwarfException(ioe);
         }
 
         //create our result
@@ -259,12 +250,8 @@ public class WaveData extends java.lang.Object {
         //close stream
         try {
             ais.close();
-        } catch (IOException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
+        } catch (IOException ioe) {
+            throw new dwarf.DwarfException(ioe);
         }
 
         return wavedata;
@@ -287,6 +274,7 @@ public class WaveData extends java.lang.Object {
             }
         }
         dest.rewind();
+        
         return dest;
     }
 
@@ -323,17 +311,18 @@ public class WaveData extends java.lang.Object {
             return false;
         } else if (getClass() != obj.getClass()) {
             return false;
-        } else if (!super.equals(obj)) {
+        }
+
+        final WaveData waveData = (WaveData) obj;
+
+        if (!Objects.equals(this.getData(), waveData.getData())) {
+            return false;
+        } else if (this.getFormat() != waveData.getFormat()) {
+            return false;
+        } else if (this.getSamplerate() != waveData.getSamplerate()) {
             return false;
         }
-        final WaveData other = (WaveData) obj;
-        if (!Objects.equals(this.getData(), other.getData())) {
-            return false;
-        } else if (this.getFormat() != other.getFormat()) {
-            return false;
-        } else if (this.getSamplerate() != other.getSamplerate()) {
-            return false;
-        }
+
         return true;
     }
 
@@ -360,12 +349,19 @@ public class WaveData extends java.lang.Object {
     }
 
     public void set(ByteBuffer data, int format, int samplerate) {
-        this.init(data, format, samplerate);
+        this.data = data;
+        this.format = format;
+        this.samplerate = samplerate;
     }
 
     public void set(WaveData waveData) {
-        this.init(
-                waveData.getData(), waveData.getFormat(), waveData.getSamplerate()
-        );
+        this.data = waveData.getData();
+        this.format = waveData.getFormat();
+        this.samplerate = waveData.getFormat();
+    }
+
+    @Override
+    public WaveData clone() throws CloneNotSupportedException {
+        return new WaveData(this);
     }
 }

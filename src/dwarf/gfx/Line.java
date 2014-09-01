@@ -1,8 +1,9 @@
 package dwarf.gfx;
 
+import java.util.Objects;
+
 import dwarf.Collidable;
 import dwarf.util.Vector2;
-import java.util.Objects;
 
 public class Line extends Polygon {
 

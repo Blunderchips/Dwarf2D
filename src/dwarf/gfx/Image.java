@@ -10,7 +10,8 @@ import static dwarf.util.Vector2.ZERO;
 
 /**
  * A set of functions and variables required to create a malleable class for
- * drawing pictures to the game window.
+ * drawing pictures to the game window in. Load various image formats for use
+ * with <a href='http://www.opengl.org/'>OpenGL</a> (png, gif, jpg, etc).
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -43,17 +44,17 @@ public class Image extends Rectangle implements GameObject {
         super(ZERO, position, STROKE, WHITE);
 
         try {
-            texture = TextureLoader.getTexture(path);
+            this.texture = TextureLoader.getTexture(path);
         } catch (IOException ex) {
             throw new dwarf.DwarfException(ex);
+        } finally {
+            super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
         }
-
-        super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
     }
 
-    public Image(Image i) {
-        super(ZERO, i.getPosition(), STROKE, WHITE);
-        this.texture = i.getTexture();
+    public Image(Image img) {
+        super(ZERO, img.getPosition(), STROKE, WHITE);
+        this.texture = img.getTexture();
 
         super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
     }
@@ -63,7 +64,9 @@ public class Image extends Rectangle implements GameObject {
      */
     @Override
     public void render() {
-        dwarf.gfx.draw.texture(super.getPosition(), getTexture());
+        if (getRender()) {
+            dwarf.gfx.draw.texture(super.getPosition(), getTexture());
+        }
     }
 
     @Override
@@ -96,9 +99,9 @@ public class Image extends Rectangle implements GameObject {
             return false;
         }
 
-        final Image other = (Image) obj;
+        final Image img = (Image) obj;
 
-        if (!Objects.equals(this.getTexture(), other.getTexture())) {
+        if (!Objects.equals(this.getTexture(), img.getTexture())) {
             return false;
         }
         return true;
@@ -114,9 +117,9 @@ public class Image extends Rectangle implements GameObject {
         return this;
     }
 
-    public void set(Image i) {
-        super.setPosition(i.getPosition());
-        this.texture = i.getTexture();
+    public void set(Image img) {
+        super.setPosition(img.getPosition());
+        this.texture = img.getTexture();
         super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
 
     }

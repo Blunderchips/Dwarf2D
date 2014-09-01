@@ -15,4 +15,13 @@ public interface Child {
     public static boolean hasSiblings(Child child) {
         return child.getParent().getChildren().size() > 1;
     }
+
+    public static boolean hasParent(Child child) {
+        try {
+            child.getParent().getChildren();
+            return true;
+        } catch (NullPointerException npe) {
+            return false;
+        }
+    }
 }

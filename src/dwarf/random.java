@@ -93,4 +93,8 @@ public interface random {
                 random.interger(minimum, maximum)
         );
     }
+
+    public static Object elementOfArray(Object[] array) {
+        return array[interger(array.length - 1)];
+    }
 }

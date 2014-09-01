@@ -108,6 +108,24 @@ public class Triangle extends Polygon {
         super.addPoint(xPos, yPos);
     }
 
+    @Override
+    @Deprecated
+    public void setVertices(double[] xPoints, double[] yPoints) {
+        super.setVertices(xPoints, yPoints);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(java.awt.Polygon p) {
+        super.setVertices(p);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(Vector2[] vertices) {
+        super.setVertices(vertices);
+    }
+
     public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
@@ -135,5 +153,13 @@ public class Triangle extends Polygon {
     @Override
     public Triangle get() {
         return this;
+    }
+
+    public boolean isCongruent(Triangle t) {
+        return false; //TODO
+    }
+    
+    public boolean isSimilar(Triangle t) {
+        return false; //TODO
     }
 }
