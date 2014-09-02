@@ -429,11 +429,7 @@ public class Vector3 extends java.lang.Object implements Cloneable {
      */
     @Override
     public Vector3 clone() throws CloneNotSupportedException {
-        try {
-            return new Vector3(this);
-        } catch (Exception ex) {
-            throw ex;
-        }
+        return new Vector3(this);
     }
 
     public double[] toArray() {

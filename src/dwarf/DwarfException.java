@@ -69,15 +69,14 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
     }
 
     /**
-     * Constructs an instance of <code>DwarfException</code> with the specified
-     * exception.
+     * Creates a new object of the same class as this object.
      *
-     * @param exception the specified Exception
+     * @exception OutOfMemoryError if there is not enough memory.
+     * @throws java.lang.CloneNotSupportedException if clone is not supported
+     * thought this should not happen.
+     *
+     * @return a clone of this instance.
      */
-    public DwarfException(Exception exception) {
-        super(exception.getMessage(), exception.getCause());
-    }
-
     @Override
     public DwarfException clone() throws CloneNotSupportedException {
         return new DwarfException(this);
@@ -91,18 +90,38 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
         System.err.println(this);
     }
 
+    /**
+     * Displays the error in a new crash form.
+     *
+     * @see dwarf.Crashform
+     */
     public void display() {
         new dwarf.Crashform(this);
     }
 
+    /**
+     * returns the <code>DwarfException</code> as a new <code>Exception</code>.
+     *
+     * @see java.lang.Exception
+     *
+     * @return <code>this</code> as a <code>Exception</code>
+     */
     public java.lang.Exception toException() {
-        return new Exception(this.getMessage(), this.getCause());
+        return new Exception(this);
     }
 
+    /**
+     * returns the <code>DwarfException</code> as a new
+     * <code>LWJGLException</code>.
+     *
+     * @see org.lwjgl.LWJGLException
+     *
+     * @return <code>this</code> as a <code>LWJGLException</code>
+     */
     public org.lwjgl.LWJGLException toLWJGLException() {
-        return new org.lwjgl.LWJGLException(this.getMessage(), this.getCause());
+        return new org.lwjgl.LWJGLException(this);
     }
-    
+
     public void destroyEngine() {
         dwarf.engine.core.Engine.dispose();
     }

@@ -24,7 +24,7 @@ public class Crashform extends javax.swing.JFrame {
      *
      * @param ex the cause of the error
      */
-    public Crashform(Exception ex) {
+    public Crashform(Throwable ex) {
         super("Dwarf2D - " + ex.getClass().getName());
 
         this.jScrollPane = new javax.swing.JScrollPane();
@@ -70,7 +70,7 @@ public class Crashform extends javax.swing.JFrame {
         return this;
     }
 
-    private void setDisplay(Exception ex) {
+    private void setDisplay(Throwable ex) {
         String msg = " ---Dwarf Crash Report--" + "\n \n";
 
         //system details

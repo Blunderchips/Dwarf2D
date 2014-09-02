@@ -10,12 +10,12 @@ package dwarf;
  *
  * @see java.lang.Exception
  * @see java.lang.Error
- * 
+ *
  * @see dwarf.Crashform
  * @see dwarf.engine.core.Engine#dispose()
  */
 @SuppressWarnings("serial")
-public class DwarfError extends java.lang.Exception implements Cloneable {
+public class DwarfError extends java.lang.Error implements Cloneable {
 
     /**
      * Default constructor. Creates a new instance of <code>DwarfError</code>
@@ -73,6 +73,15 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
         super(msg, cause, enableSuppression, writableStackTrace);
     }
 
+    /**
+     * Creates a new object of the same class as this object.
+     *
+     * @exception OutOfMemoryError if there is not enough memory.
+     * @throws java.lang.CloneNotSupportedException if clone is not supported
+     * thought this should not happen.
+     *
+     * @return a clone of this instance.
+     */
     @Override
     public DwarfError clone() throws CloneNotSupportedException {
         return new DwarfError(this);
@@ -81,31 +90,43 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
     public DwarfError get() {
         return this;
     }
-    
+
     public void destroyEngine() {
         dwarf.engine.core.Engine.dispose();
     }
-    
-    public java.lang.Exception toException() {
-        return new Exception(this.getMessage(), this.getCause());
-    }
-    
+
     /**
-     * returns the <code>DwarfException</code> as a new <code>LWJGLException</code>.
+     * returns the <code>DwarfException</code> as a new <code>Exception</code>.
+     *
+     * @see java.lang.Exception
+     *
+     * @return <code>this</code> as a <code>Exception</code>
+     */
+    public java.lang.Exception toException() {
+        return new Exception(this);
+    }
+
+    /**
+     * returns the <code>DwarfException</code> as a new
+     * <code>LWJGLException</code>.
+     *
+     * @see org.lwjgl.LWJGLException
      *
      * @return <code>this</code> as a <code>LWJGLException</code>
      */
     public org.lwjgl.LWJGLException toLWJGLException() {
-        return new org.lwjgl.LWJGLException(this.getMessage(), this.getCause());
+        return new org.lwjgl.LWJGLException(this);
     }
-    
+
     public void print() {
         System.err.println(this);
     }
-   
+
     /**
      * Displays the error in a new crash form.
-     */ 
+     *
+     * @see dwarf.Crashform
+     */
     public void display() {
         new dwarf.Crashform(this);
     }
