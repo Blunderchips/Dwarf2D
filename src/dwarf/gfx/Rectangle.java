@@ -1,7 +1,6 @@
 package dwarf.gfx;
 
 import dwarf.Collidable;
-import dwarf.DwarfException;
 import dwarf.util.Vector2;
 
 /**
@@ -48,7 +47,7 @@ public class Rectangle extends Quadrilateral {
     /**
      * the dimensions of the <code>Rectangle</code>.
      */
-    private Vector2 dimensions;
+    private java.awt.Dimension dimensions;
 
     /**
      * Default constructor.
@@ -74,20 +73,21 @@ public class Rectangle extends Quadrilateral {
 
     public Rectangle(Rectangle rectangle) {
         super(null, rectangle.getPosition(), rectangle.getMode(), rectangle.getColour());
-        this.setVertices(rectangle.getDimensions().getX(), rectangle.getDimensions().getY());
+        this.setVertices(rectangle.getDimensions().getWidth(), rectangle.getDimensions().getHeight());
     }
 
     /**
      * @param width the width of the <code>Rectangle</code>.
      * @param height the height of the <code>Rectangle</code>
      */
+    @SuppressWarnings("deprecation")
     protected final void setVertices(double width, double height) {
 //        this.addPoint(new Vector2(0, 0));
 //        this.addPoint(new Vector2(0, height));
 //        this.addPoint(new Vector2(width, height));
 //        this.addPoint(new Vector2(width, 0));
 
-        this.dimensions = new Vector2(width, height);
+        this.dimensions = new java.awt.Dimension((int) width, (int) height);
 
         // --
         Vector2[] vertices = {
@@ -107,10 +107,10 @@ public class Rectangle extends Quadrilateral {
      * @return he area of the <code>Rectangle</code>
      */
     public float getArea() {
-        return (float) (this.getDimensions().getX() * this.getDimensions().getY());
+        return (float) (this.getDimensions().getWidth() * this.getDimensions().getHeight());
     }
 
-    public Vector2 getDimensions() {
+    public java.awt.Dimension getDimensions() {
         return this.dimensions;
     }
 
@@ -128,12 +128,13 @@ public class Rectangle extends Quadrilateral {
      *
      * @see dwarf.Collidable#intersects(dwarf.Collidable)
      *
+     * @throws DwarfException if the face is not recognized
      * @param face the face of the <code>Rectanlge</code> to be tested
      * @param coll - the <code>Collidable</code> to be tested
      * @return true if the <code>Collidable</code> has intersected/collided with
      * the inputed face of this.
      */
-    public boolean intersects(int face, Collidable coll) {
+    public boolean intersects(int face, Collidable coll) throws dwarf.DwarfException {
 
         switch ((byte) face) {
             case NORTH_FACE:
@@ -153,14 +154,14 @@ public class Rectangle extends Quadrilateral {
                 return coll.intersects(getWestFace());
 
             default:
-                System.err.println("the face '" + face + "' is not reconized");
-                return false;
+                throw new dwarf.DwarfException("the face '" + face + "' is not recognized.");
         }
     }
 
+    @Override
     public boolean isSquare() {
         if (super.getType().equals("quadrilateral")) {
-            return this instanceof Square || this.getDimensions().getX() == this.getDimensions().getY();
+            return this instanceof Square || this.getDimensions().getWidth() == this.getDimensions().getHeight();
         } else {
             return false;
         }
@@ -172,11 +173,17 @@ public class Rectangle extends Quadrilateral {
     }
 
     public void scale(double delta) {
-        this.getDimensions().mul(delta);
+        this.getDimensions().setSize(
+                this.getDimensions().getWidth() * delta,
+                this.getDimensions().getHeight() * delta
+        );
     }
 
-    public void scale(Vector2 delta) {
-        this.getDimensions().mul(delta);
+    public void scale(double deltaX, double deltaY) {
+        this.getDimensions().setSize(
+                this.getDimensions().getWidth() * deltaX,
+                this.getDimensions().getHeight() * deltaY
+        );
     }
 
     /**
@@ -191,16 +198,16 @@ public class Rectangle extends Quadrilateral {
     public java.awt.Rectangle toRectangle() {
         return new java.awt.Rectangle(
                 (int) getPosition().getX(), (int) getPosition().getY(),
-                (int) getDimensions().getX(), (int) getDimensions().getY()
+                (int) getDimensions().getWidth(), (int) getDimensions().getHeight()
         );
     }
 
     public double getHalfX() {
-        return this.getDimensions().getX() / 2;
+        return this.getDimensions().getWidth() / 2;
     }
 
     public double getHalfY() {
-        return this.getDimensions().getY() / 2;
+        return this.getDimensions().getHeight() / 2;
     }
 
     @Override
@@ -250,8 +257,8 @@ public class Rectangle extends Quadrilateral {
 
     public void set(Rectangle rectangle) {
         this.setVertices(
-                rectangle.getDimensions().getX(),
-                rectangle.getDimensions().getY()
+                rectangle.getDimensions().getWidth(),
+                rectangle.getDimensions().getHeight()
         );
 
         // --
@@ -261,6 +268,7 @@ public class Rectangle extends Quadrilateral {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setVertices(double[] xPoints, double[] yPoints) {
         if (xPoints.length == 4 && yPoints.length == 4) {
             super.setVertices(xPoints, yPoints);
@@ -270,6 +278,7 @@ public class Rectangle extends Quadrilateral {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setVertices(Vector2[] vertices) {
         if (vertices.length == 4) {
             super.setVertices(vertices);
@@ -297,16 +306,16 @@ public class Rectangle extends Quadrilateral {
      * @throws dwarf.DwarfException throws a error if this is not a square
      * @return this as a new Square if possible otherwise will throw a error
      */
-    public Square toSquare() throws DwarfException {
+    public Square toSquare() throws dwarf.DwarfException {
         if (isSquare()) {
             return new Square(
-                    this.getDimensions().getX(),
+                    this.getDimensions().getWidth(),
                     super.getPosition(),
                     super.getMode(),
                     super.getColour()
             );
         } else {
-            throw new DwarfException("this is not a square. (length != breadth)");
+            throw new dwarf.DwarfException("this is not a square. (length != breadth)");
         }
     }
 
@@ -320,15 +329,15 @@ public class Rectangle extends Quadrilateral {
      */
     public Collidable getNorthFace() {
         Rectangle rect = new Rectangle(
-                this.getDimensions().getX(),
-                10 * this.getDimensions().getY() / 100,
+                this.getDimensions().getWidth(),
+                10 * this.getDimensions().getHeight() / 100,
                 super.getPosition(),
                 STROKE, null
         );
 
         rect.setPosition(
                 super.getPosition().getX(),
-                super.getPosition().getY() + this.getDimensions().getY() - rect.getDimensions().getY()
+                super.getPosition().getY() + this.getDimensions().getHeight() - rect.getDimensions().getHeight()
         );
 
         return rect.getCollidable();
@@ -344,14 +353,14 @@ public class Rectangle extends Quadrilateral {
      */
     public Collidable getEastFace() {
         Rectangle rect = new Rectangle(
-                10 * this.getDimensions().getX() / 100,
-                this.getDimensions().getY(),
+                10 * this.getDimensions().getWidth() / 100,
+                this.getDimensions().getHeight(),
                 super.getPosition(),
                 STROKE, null
         );
 
         rect.setPosition(
-                super.getPosition().getX() + this.getDimensions().getX() - rect.getDimensions().getX(),
+                super.getPosition().getX() + this.getDimensions().getWidth() - rect.getDimensions().getWidth(),
                 super.getPosition().getY()
         );
 
@@ -368,8 +377,8 @@ public class Rectangle extends Quadrilateral {
      */
     public Collidable getSouthFace() {
         return new Rectangle(
-                this.getDimensions().getX(),
-                10 * this.getDimensions().getY() / 100,
+                this.getDimensions().getWidth(),
+                10 * this.getDimensions().getHeight() / 100,
                 super.getPosition(),
                 STROKE, null
         ).getCollidable();
@@ -385,8 +394,8 @@ public class Rectangle extends Quadrilateral {
      */
     public Collidable getWestFace() {
         return new Rectangle(
-                10 * this.getDimensions().getX() / 100,
-                this.getDimensions().getY(),
+                10 * this.getDimensions().getWidth() / 100,
+                this.getDimensions().getHeight(),
                 super.getPosition(),
                 STROKE, null
         ).getCollidable();

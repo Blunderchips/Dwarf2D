@@ -1,36 +1,31 @@
 package dwarf.gfx;
 
-import java.nio.ByteBuffer;
-
-import dwarf.util.Vector3;
-
-import static org.lwjgl.opengl.GL11.glColor4d;
-
 /**
  * A simple wrapper round the values required for a mutable colour class.
  *
  * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Object
- * @see dwarf.util.Vector3
+ * @see java.lang.Cloneable
+ * @see dwarf.gfx.Colours
  */
 @SuppressWarnings("serial")
-public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
-
-    private double alpha = 0x1;
+public class Colour extends java.lang.Object implements Cloneable, Colours {
 
     /**
+     * the colour the colour to be inputed. In the default sRGB space.
+     *
      * @param colour the colour to be inputed
      */
     public static void setColour(Colour colour) {
-        glColor4d(colour.getX(), colour.getY(), colour.getZ(), colour.getAlpha());
+        Colour.setColour(colour.getRed(), colour.getGreen(), colour.getBlue(), colour.getAlpha());
     }
 
     /**
-     * @param colours (RBG)
+     * @param colour (RBG)
      */
-    public static void setColour(Vector3 colours) {
-        setColour(new Colour(colours.getX(), colours.getY(), colours.getZ(), 1));
+    public static void setColour(dwarf.util.Vector3 colour) {
+        Colour.setColour(new Colour((float) colour.getX(), (float) colour.getY(), (float) colour.getZ(), 1));
     }
 
     /**
@@ -38,8 +33,12 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
      * @param green the green component of the colour
      * @param blue the blue component of the colour
      */
-    public static void setColour(byte red, byte green, byte blue) {
-        setColour(red, green, blue, 1);
+    public static void setColour(float red, float green, float blue) {
+        Colour.setColour(red, green, blue, 1);
+    }
+
+    public static void setColour(java.awt.Color colour) {
+        Colour.setColour(colour.getRed(), colour.getGreen(), colour.getBlue(), colour.getAlpha());
     }
 
     /**
@@ -48,47 +47,87 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
      * @param blue the blue component of the colour
      * @param alpha the alpha component of the colour
      */
-    public static void setColour(byte red, byte green, byte blue, double alpha) {
-        glColor4d(red, green, blue, alpha);
+    public static void setColour(float red, float green, float blue, float alpha) {
+        org.lwjgl.opengl.GL11.glColor4d(red, green, blue, alpha);
     }
+
+    /**
+     * the red component of the colour.
+     */
+    private float red;
+    /**
+     * the green component of the colour.
+     */
+    private float green;
+    /**
+     * the blue component of the colour.
+     */
+    private float blue;
+
+    private float alpha = 0x1;
 
     /**
      * Default constructor.
      */
     public Colour() {
-        super(0, 0, 0);
+        super();
+
+        this.red = 0;
+        this.green = 0;
+        this.blue = 0;
     }
 
     public Colour(Colour colour) {
-        super(colour.getX(), colour.getY(), colour.getZ());
+        super();
+
+        this.red = colour.getRed();
+        this.green = colour.getGreen();
+        this.blue = colour.getBlue();
         this.alpha = colour.getAlpha();
     }
 
-    public Colour(Vector3 input) {
-        super(input.getX(), input.getY(), input.getZ());
+    public Colour(dwarf.util.Vector3 colour) {
+        super();
+
+        this.red = (float) colour.getX();
+        this.green = (float) colour.getY();
+        this.blue = (float) colour.getZ();
     }
 
-    public Colour(Vector3 input, float alpha) {
-        super(input.getX(), input.getY(), input.getZ());
+    public Colour(dwarf.util.Vector3 colour, float alpha) {
+        super();
+
+        this.red = (float) colour.getX();
+        this.green = (float) colour.getY();
+        this.blue = (float) colour.getZ();
         this.alpha = alpha;
     }
 
-    public Colour(double red, double green, double blue) {
-        super(red, green, blue);
+    public Colour(float red, float green, float blue) {
+        super();
+
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = 1;
     }
 
-    public Colour(double red, double green, double blue, double alpha) {
-        super(red, green, blue);
+    public Colour(float red, float green, float blue, float alpha) {
+        super();
+
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
         this.alpha = alpha;
     }
 
-    public Colour(byte red, byte green, byte blue, byte alpha) {
-        super(red, green, blue);
-        this.alpha = alpha;
-    }
+    public Colour(java.awt.Color colour) {
+        super();
 
-    public Colour(byte red, byte green, byte blue) {
-        super(red, green, blue);
+        this.red = colour.getRed();
+        this.green = colour.getGreen();
+        this.blue = colour.getBlue();
+        this.alpha = colour.getAlpha();
     }
 
     /**
@@ -99,22 +138,18 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
      * @param value The value to interpret for the colour
      */
     public Colour(int value) {
-        int red = (value & 0x00FF0000) >> 0x10;
-        int green = (value & 0x0000FF00) >> 0x8;
-        int blue = (value & 0x000000FF);
-        int alpha = (value & 0xFF000000) >> 0x18;
+        this.red = (((value & 0x00FF0000) >> 0x10) / 255.0f);
+        this.green = (((value & 0x0000FF00) >> 0x8) / 255.0f);
+        this.blue = ((value & 0x000000FF) / 255.0f);
 
-        if (alpha < 0x0) {
+        this.alpha = ((value & 0xFF000000) >> 0x18) / 255.0f;
+
+        if (alpha < 0) {
             alpha += 0x100;
         }
-        if (alpha == 0x0) {
+        if (alpha == 0) {
             alpha = 0xff;
         }
-
-        this.setX(red / 255.0f);
-        this.setY(green / 255.0f);
-        this.setZ(blue / 255.0f);
-        this.setAlpha(alpha / 255.0f);
     }
 
     /**
@@ -128,15 +163,15 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
     }
 
     /**
-     * Bind this colour to the GL context
+     * Bind this colour to the GL context.
      */
     public void bind() {
-        glColor4d(this.getX(), this.getY(), this.getZ(), this.getAlpha());
+        org.lwjgl.opengl.GL11.glColor4d(red, blue, green, alpha);
     }
 
     @Override
     public String toString() {
-        return "Colour [" + getRed() + ", " + getGreen() + ", " + getBlue() + ", " + getAlpha() + "]";
+        return "Colour[" + getRed() + ", " + getGreen() + ", " + getBlue() + ", " + getAlpha() + "]";
     }
 
     public Colour get() {
@@ -144,7 +179,7 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
     }
 
     /**
-     * Make a brighter instance of this colour
+     * Make a brighter instance of this colour.
      *
      * @return returns a brighter colour
      */
@@ -152,112 +187,78 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
         return brighter(0.2f);
     }
 
-    public int getRedByte() {
-        return (int) (this.getX() * 0xff);
+    public float getRedByte() {
+        return this.red * 0xff;
     }
 
-    public int getGreenByte() {
-        return (int) (this.getY() * 0xff);
+    public float getGreenByte() {
+        return this.green * 0xff;
     }
 
-    public int getBlueByte() {
-        return (int) (this.getZ() * 0xff);
+    public float getBlueByte() {
+        return this.blue * 0xff;
     }
 
-    public int getAlphaByte() {
-        return (int) (this.alpha * 0xff);
+    public float getAlphaByte() {
+        return (this.alpha * 0xff);
     }
 
     /**
-     * Make a brighter instance of this colour
+     * Make a brighter instance of this colour.
      *
      * @param scale what the colour is to be scaled by
      * @return a scales up colour
      */
     public Colour brighter(float scale) {
-        scale += 1;
-        Colour temp = new Colour((float) this.getX() * scale, (float) this.getY() * scale, (float) this.getZ() * scale, this.getAlpha());
-
-        return temp;
+        return new Colour(this.getRed() * scale + 1, this.getGreen() * scale + 1, this.getBlue() * scale + 1, this.getAlpha());
     }
 
     /**
-     * Scale the components of the colour by the given value
+     * Scale the components of the colour by the given value.
      *
      * @param value The value to scale by
      */
     public void scale(float value) {
-        this.setRed((float) getX() * value);
-        this.setGreen((float) this.getY() * value);
-        this.setBlue((float) this.getZ() * value);
+        this.red = (this.getRed() * value);
+        this.green = (this.getGreen() * value);
+        this.blue = (this.getBlue() * value);
         this.alpha *= value;
     }
 
-    /**
-     * Add another colour to this one
-     *
-     * @param c The colour to add
-     * @return The copy which has had the color added to it
-     */
-    public Colour addToCopy(Colour c) {
-        Colour copy = new Colour(this.getX(), this.getY(), this.getZ(), this.getAlpha());
-        copy.translateX(c.getX());
-        copy.trannslateY(c.getY());
-        copy.translateZ(c.getZ());
-        copy.alpha += c.getAlpha();
-
-        return copy;
-    }
-
     public void setRed(float r) {
-        this.setX(r);
+        this.red = r;
     }
 
     public void setGreen(float g) {
-        this.setY(g);
+        this.green = g;
     }
 
     public void setBlue(float b) {
-        this.setZ(b);
+        this.blue = b;
     }
 
     public void setAlpha(float a) {
         this.alpha = a;
     }
 
-    public double getRed() {
-        return this.getX();
+    public float getRed() {
+        return this.red;
     }
 
-    public double getGreen() {
-        return this.getY();
+    public float getGreen() {
+        return this.green;
     }
 
-    public double getBlue() {
-        return this.getZ();
+    public float getBlue() {
+        return this.blue;
     }
 
-    public double getAlpha() {
+    public float getAlpha() {
         return this.alpha;
     }
 
     public void realse() {
-        glColor4d(0xff, 0xff, 0xff, 1);
-    }
-
-    /**
-     * Class Object is the root of the class hierarchy. Every class has Object
-     * as a superclass. All objects, including arrays, implement the methods of
-     * this class.
-     *
-     * @return a hash code value for this object.
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Float.floatToIntBits((float) this.getAlpha());
-        return hash;
+        org.lwjgl.opengl.GL11.glColor4d(0xff, 0xff, 0xff, 1);
     }
 
     /**
@@ -280,51 +281,69 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
     }
 
     /**
+     * Class Object is the root of the class hierarchy. Every class has Object
+     * as a superclass. All objects, including arrays, implement the methods of
+     * this class.
+     *
+     * @return a hash code value for this object.
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = (int) (79 * hash + this.red);
+        hash = (int) (79 * hash + this.green);
+        hash = (int) (79 * hash + this.blue);
+        hash = 79 * hash + Float.floatToIntBits(this.alpha);
+        return hash;
+    }
+
+    /**
      * Read a color from a byte buffer
      *
      * @param src The source buffer
      */
-    public void readABGR(ByteBuffer src) {
+    public void readABGR(java.nio.ByteBuffer src) {
         this.setAlpha(src.get());
         this.setBlue(src.get());
         this.setGreen(src.get());
         this.setRed(src.get());
     }
 
-    public void writeRGBA(ByteBuffer dest) {
+    public void writeRGBA(java.nio.ByteBuffer dest) {
         dest.put((byte) this.getRed());
         dest.put((byte) this.getGreen());
         dest.put((byte) this.getBlue());
         dest.put((byte) this.getAlpha());
     }
 
-    public void writeRGB(ByteBuffer dest) {
+    public void writeRGB(java.nio.ByteBuffer dest) {
         dest.put((byte) this.getRed());
         dest.put((byte) this.getGreen());
         dest.put((byte) this.getBlue());
     }
 
-    public void writeABGR(ByteBuffer dest) {
+    public void writeABGR(java.nio.ByteBuffer dest) {
         dest.put((byte) this.getAlpha());
         dest.put((byte) this.getBlue());
         dest.put((byte) this.getGreen());
         dest.put((byte) this.getRed());
     }
 
-    public void writeARGB(ByteBuffer dest) {
+    public void writeARGB(java.nio.ByteBuffer dest) {
         dest.put((byte) this.getAlpha());
         dest.put((byte) this.getRed());
         dest.put((byte) this.getGreen());
         dest.put((byte) this.getBlue());
     }
 
-    public void writeBGR(ByteBuffer dest) {
+    public void writeBGR(java.nio.ByteBuffer dest) {
         dest.put((byte) this.getBlue());
         dest.put((byte) this.getGreen());
         dest.put((byte) this.getRed());
     }
 
-    public void writeBGRA(ByteBuffer dest) {
+    public void writeBGRA(java.nio.ByteBuffer dest) {
         dest.put((byte) this.getBlue());
         dest.put((byte) this.getGreen());
         dest.put((byte) this.getRed());
@@ -336,45 +355,10 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
      *
      * @param src The source buffer
      */
-    public void readRGBA(ByteBuffer src) {
+    public void readRGBA(java.nio.ByteBuffer src) {
         this.setRed(src.get());
         this.setGreen(src.get());
         this.setBlue(src.get());
-        this.setAlpha(src.get());
-    }
-
-    /**
-     * Read a color from a byte buffer
-     *
-     * @param src The source buffer
-     */
-    public void readRGB(ByteBuffer src) {
-        this.setRed(src.get());
-        this.setGreen(src.get());
-        this.setBlue(src.get());
-    }
-
-    /**
-     * Read a color from a byte buffer
-     *
-     * @param src The source buffer
-     */
-    public void readARGB(ByteBuffer src) {
-        this.setAlpha(src.get());
-        this.setRed(src.get());
-        this.setGreen(src.get());
-        this.setBlue(src.get());
-    }
-
-    /**
-     * Read a color from a byte buffer
-     *
-     * @param src The source buffer
-     */
-    public void readBGRA(ByteBuffer src) {
-        this.setBlue(src.get());
-        this.setGreen(src.get());
-        this.setRed(src.get());
         this.setAlpha(src.get());
     }
 
@@ -383,7 +367,42 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
      *
      * @param src The source buffer
      */
-    public void readBGR(ByteBuffer src) {
+    public void readRGB(java.nio.ByteBuffer src) {
+        this.setRed(src.get());
+        this.setGreen(src.get());
+        this.setBlue(src.get());
+    }
+
+    /**
+     * Read a color from a byte buffer
+     *
+     * @param src The source buffer
+     */
+    public void readARGB(java.nio.ByteBuffer src) {
+        this.setAlpha(src.get());
+        this.setRed(src.get());
+        this.setGreen(src.get());
+        this.setBlue(src.get());
+    }
+
+    /**
+     * Read a color from a byte buffer
+     *
+     * @param src The source buffer
+     */
+    public void readBGRA(java.nio.ByteBuffer src) {
+        this.setBlue(src.get());
+        this.setGreen(src.get());
+        this.setRed(src.get());
+        this.setAlpha(src.get());
+    }
+
+    /**
+     * Read a color from a byte buffer
+     *
+     * @param src The source buffer
+     */
+    public void readBGR(java.nio.ByteBuffer src) {
         this.setBlue(src.get());
         this.setGreen(src.get());
         this.setRed(src.get());
@@ -457,7 +476,7 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
 
             this.setRed(brightness * 255F + 0.5F);
             this.setGreen(brightness * 255F + 0.5F);
-            this.setBlue(brightness * 255F + 0.5F);
+            this.setBlue((brightness * 255F + 0.5F));
 
         } else {
 
@@ -503,7 +522,60 @@ public class Colour extends dwarf.util.Vector3 implements Cloneable, Colours {
     }
 
     @Override
-    public Vector3 clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Colour clone() throws CloneNotSupportedException {
+        return new Colour(this);
+    }
+
+    public dwarf.util.Vector3 toVector3() {
+        return new dwarf.util.Vector3(
+                this.getRed(),
+                this.getGreen(),
+                this.getBlue()
+        );
+    }
+
+    public void set(Colour colour) {
+        this.red = colour.getRed();
+        this.green = colour.getGreen();
+        this.blue = colour.getBlue();
+        this.alpha = colour.getAlpha();
+    }
+
+    public void set(dwarf.util.Vector3 colour) {
+        this.red = (float) colour.getX();
+        this.green = (float) colour.getY();
+        this.blue = (float) colour.getZ();
+    }
+
+    public void set(dwarf.util.Vector3 colour, float alpha) {
+        this.red = (float) colour.getX();
+        this.green = (float) colour.getY();
+        this.blue = (float) colour.getZ();
+        this.alpha = alpha;
+    }
+
+    public void set(float red, float green, float blue) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = 1;
+    }
+
+    public void set(float red, float green, float blue, float alpha) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = alpha;
+    }
+
+    public void set(java.awt.Color colour) {
+        this.red = colour.getRed();
+        this.green = colour.getGreen();
+        this.blue = colour.getBlue();
+        this.alpha = colour.getAlpha();
+    }
+
+    public java.awt.Color toColor() {
+        return new java.awt.Color(red, green, blue, alpha);
     }
 }

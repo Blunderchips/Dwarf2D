@@ -2,13 +2,14 @@ package coulourTest;
 
 import dwarf.Game;
 import dwarf.gfx.Colour;
+import dwarf.gfx.Colours;
 import dwarf.gfx.Rectangle;
 import dwarf.util.Vector2;
 
 import static dwarf.gfx.Colours.white;
 import static dwarf.gfx.Polygon.FILL;
 
-public class colourTest {
+public class colourTest implements Colours {
 
     public static void main(String[] args) {
         new Game("colour test - Dwarf 2D") {
@@ -18,8 +19,8 @@ public class colourTest {
                 dwarf.gfx.background.setColour(white);
 
                 Colour colours[] = {
-                    Colour.AQUA, Colour.BLACK, Colour.BLUE, Colour.DARK_GREY, Colour.GREY, Colour.LIGHT_GREY,
-                    Colour.LIME, Colour.MAGENTA, Colour.ORANGE, Colour.PINK, Colour.RED, Colour.WHITE, Colour.YELLOW
+                    AQUA, BLACK, BLUE, DARK_GREY, GREY, LIGHT_GREY,
+                    LIME, MAGENTA, ORANGE, PINK, RED, WHITE, YELLOW
                 };
 
                 double xPos = 0;

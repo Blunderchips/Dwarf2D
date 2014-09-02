@@ -35,7 +35,7 @@ public class Square extends Rectangle {
     }
 
     public float getLineLength() {
-        return (float) super.getDimensions().getX();
+        return (float) super.getDimensions().getWidth();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public void scale(Vector2 delta) {
+    public void scale(double deltaX, double deltaY) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
@@ -77,5 +77,4 @@ public class Square extends Rectangle {
     public Square clone() throws CloneNotSupportedException {
         return new Square(this);
     }
-
 }

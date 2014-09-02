@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeSupport;
 
-import dwarf.util.Vector2;
-import dwarf.engine.core.Engine;
-
 import static java.lang.Math.abs;
 
 /**
@@ -20,7 +17,7 @@ import static java.lang.Math.abs;
  * @see dwarf.engine.core.Engine
  * @see dwarf.engine.core.Window
  */
-public abstract class Game extends Engine {
+public abstract class Game extends dwarf.engine.core.Engine {
 
     public static boolean debug = true;
     //NetBeans wanted these:
@@ -87,26 +84,26 @@ public abstract class Game extends Engine {
     /**
      * @param dimensions the dimensions of the window to be created.
      */
-    public Game(Vector2 dimensions) {
+    public Game(java.awt.Dimension dimensions) {
         super();
 
         this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
         this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
 
-        this.init((int) dimensions.getX(), (int) dimensions.getY(), null);
+        this.init((int) dimensions.getWidth(), (int) dimensions.getHeight(), null);
     }
 
     /**
      * @param dimensions the dimensions of the window to be created.
      * @param title the title of the window to be created.
      */
-    public Game(Vector2 dimensions, String title) {
+    public Game(java.awt.Dimension dimensions, String title) {
         super();
 
         this.vetoableChangeSupport = new java.beans.VetoableChangeSupport(this);
         this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
 
-        this.init((int) dimensions.getX(), (int) dimensions.getY(), title);
+        this.init((int) dimensions.getWidth(), (int) dimensions.getHeight(), title);
     }
 
     /**
@@ -143,7 +140,7 @@ public abstract class Game extends Engine {
      */
     @SuppressWarnings("Convert2Diamond")
     private void init(int width, int height, String title) {
-        if (width == 0x0 || height == 0x0) {
+        if (width == 0 || height == 0) {
             throw new IllegalArgumentException(
                     "the width nor the hieght can be equal to zero.");
         }
@@ -192,7 +189,7 @@ public abstract class Game extends Engine {
      * @return true if successful and false if it fails
      */
     @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-    public boolean setGameObjects(ArrayList<GameObject> gameObjects) {
+    public boolean setGameObjects(ArrayList<GameObject> gameObjects) throws dwarf.DwarfException {
         try {
             this.gameObjects = gameObjects;
             return true;
@@ -208,7 +205,7 @@ public abstract class Game extends Engine {
      * @param input the <code>GameObject</code> to be added.
      * @return true if successful and false if it fails.
      */
-    public boolean addGameObject(GameObject input) {
+    public boolean addGameObject(GameObject input) throws dwarf.DwarfException {
         try {
             return this.getGameObjects().add(input);
         } catch (DwarfException ex) {
@@ -223,7 +220,7 @@ public abstract class Game extends Engine {
      * @param input the <code>GameObject</code> to be added.
      * @return true if successful and false if it fails.
      */
-    public boolean addGameObject(Object input) {
+    public boolean addGameObject(Object input) throws dwarf.DwarfException {
         try {
             return this.getGameObjects().add((GameObject) input);
         } catch (DwarfException ex) {
@@ -238,7 +235,7 @@ public abstract class Game extends Engine {
      * @param input the <code>GameObject</code> to be removed.
      * @return true if successful and false if it fails.
      */
-    public boolean removeGameObject(GameObject input) {
+    public boolean removeGameObject(GameObject input) throws dwarf.DwarfException {
         try {
             return this.getGameObjects().remove(input);
         } catch (Exception ex) {
@@ -254,7 +251,7 @@ public abstract class Game extends Engine {
      * @return true if successful and false if it fails.
      */
     @SuppressWarnings("element-type-mismatch")
-    public boolean removeGameObject(Object input) {
+    public boolean removeGameObject(Object input) throws dwarf.DwarfException {
         try {
             return this.getGameObjects().remove(input);
         } catch (DwarfException ex) {
@@ -269,7 +266,7 @@ public abstract class Game extends Engine {
      * @param index of the <code>GameObject</code> to be removed.
      * @return true if successful and false if it fails.
      */
-    public boolean removeGameObject(int index) {
+    public boolean removeGameObject(int index) throws dwarf.DwarfException {
         try {
             this.getGameObjects().remove(index);
             return true;
@@ -279,7 +276,7 @@ public abstract class Game extends Engine {
     }
 
     public static void close(int status) {
-        Engine.dispose();
+        dwarf.engine.core.Engine.dispose();
         System.exit(status);
     }
 
@@ -287,8 +284,8 @@ public abstract class Game extends Engine {
         Game.close(0);
     }
 
-    public static void close(Exception ex) {
-        throw new DwarfError(ex);
+    public static void close(Throwable cause) {
+        throw new DwarfError(cause);
     }
 
     /**
@@ -388,7 +385,7 @@ public abstract class Game extends Engine {
      *
      * @return will return false if it fails and true if it does not
      */
-    public boolean resetGameObjects() {
+    public boolean resetGameObjects() throws dwarf.DwarfException {
         try {
             this.gameObjects = new ArrayList<>();
             return true;

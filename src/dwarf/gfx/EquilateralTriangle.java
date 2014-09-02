@@ -60,4 +60,33 @@ public class EquilateralTriangle extends Shape {
         super.changeNumSides(input);
     }
 
+    @Override
+    @Deprecated
+    public void addPoints(Vector2[] points) {
+        super.addPoints(points);
+    }
+
+    @Override
+    @Deprecated
+    public void addPoint(double xPos, double yPos) {
+        super.addPoint(xPos, yPos);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(double[] xPoints, double[] yPoints) {
+        super.setVertices(xPoints, yPoints);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(java.awt.Polygon p) {
+        super.setVertices(p);
+    }
+
+    @Override
+    @Deprecated
+    public void setVertices(Vector2[] vertices) {
+        super.setVertices(vertices);
+    }
 }

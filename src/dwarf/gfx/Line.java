@@ -32,6 +32,9 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
         this.pointA = pointA;
         this.pointB = pointB;
         this.colour = colour;
+        
+        this.update = true;
+        this.render = true;
 
         // --
         Vector2 tempA = pointA;

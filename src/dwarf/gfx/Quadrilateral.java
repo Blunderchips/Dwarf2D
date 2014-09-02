@@ -134,10 +134,18 @@ public class Quadrilateral extends Polygon {
     }
 
     public boolean isRectangle() {
-        return this instanceof Rectangle; //TODO
+        if (super.getType().equals("quadrilateral")) {
+            return this instanceof Rectangle; //TODO       
+        } else {
+            return false;
+        }
     }
 
     public boolean isSquare() {
-        return this instanceof Square; //TODO
+        if (super.getType().equals("quadrilateral")) {
+            return this instanceof Square; //TODO
+        } else {
+            return false;
+        }
     }
 }
