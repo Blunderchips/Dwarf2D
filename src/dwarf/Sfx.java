@@ -242,7 +242,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
         }
     }
 
-    public void set(String path) {
+    public void set(String path) throws DwarfException{
         try {
             this.data = WaveData.create(new BufferedInputStream(new FileInputStream(path)));
         } catch (FileNotFoundException notFoundException) {

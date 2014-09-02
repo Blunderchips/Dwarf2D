@@ -10,7 +10,6 @@ import static org.lwjgl.opengl.GL20.GL_COMPILE_STATUS;
 import static org.lwjgl.opengl.GL20.glAttachShader;
 import static org.lwjgl.opengl.GL20.glCompileShader;
 import static org.lwjgl.opengl.GL20.glCreateProgram;
-import static org.lwjgl.opengl.GL20.glCreateShader;
 import static org.lwjgl.opengl.GL20.glDeleteProgram;
 import static org.lwjgl.opengl.GL20.glDeleteShader;
 import static org.lwjgl.opengl.GL20.glGetShaderi;
@@ -56,7 +55,9 @@ public class Shader extends java.lang.Object implements Cloneable {
         glUseProgram(0);
     }
 
+    private int type;
     private int program;
+    private String path;
     private StringBuilder source;
 
     /**
@@ -69,50 +70,19 @@ public class Shader extends java.lang.Object implements Cloneable {
     public Shader(Shader shader) {
         super();
 
-        this.source = shader.getSource();
-        this.program = shader.getProgram();
+        this.path = shader.getPath();
+        this.type = shader.getType();
+
+        this.init();
     }
 
-    public Shader(int type, String key) {
+    public Shader(int type, String path) throws dwarf.DwarfException {
         super();
 
-        this.source = new StringBuilder();
+        this.path = path;
+        this.type = type;
 
-        if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
-            this.setProgram(glCreateShader(type));
-        } else {
-            throw new IllegalArgumentException("the shader type '" + type + "' is unrecognised.");
-        }
-
-        BufferedReader scanner = null;
-        try {
-            scanner = new BufferedReader(new FileReader(key));
-            String ln;
-            while ((ln = scanner.readLine()) != null) {
-                source.append(ln).append('\n');
-            }
-        } catch (IOException ex) {
-            System.err.println("Shader was not loaded properly. \n" + ex);
-        } finally {
-            if (scanner != null) {
-                try {
-                    scanner.close();
-                } catch (IOException ex) {
-                    System.err.println(ex);
-                }
-            }
-        }
-
-        glShaderSource(getProgram(), getSource());
-        glCompileShader(getProgram());
-
-        if (glGetShaderi(getProgram(), GL_COMPILE_STATUS) == GL_FALSE) {
-            System.err.println("Shader wan not able to be compiled correctly.");
-        }
-
-        glAttachShader(SHADER_PROGRAM, getProgram());
-        glLinkProgram(SHADER_PROGRAM);
-        glValidateProgram(SHADER_PROGRAM);
+        this.init();
     }
 
     /**
@@ -123,7 +93,7 @@ public class Shader extends java.lang.Object implements Cloneable {
      *
      * @return Shader.VERTEX_SHADER (35633)
      */
-    public int getVertexShader() {
+    public static int getVertexShader() {
         return Shader.VERTEX_SHADER;
     }
 
@@ -136,7 +106,7 @@ public class Shader extends java.lang.Object implements Cloneable {
      *
      * @return Shader.FRAGMENT_SHADER (35632)
      */
-    public int getFragmentShader() {
+    public static int getFragmentShader() {
         return Shader.FRAGMENT_SHADER;
     }
 
@@ -149,28 +119,16 @@ public class Shader extends java.lang.Object implements Cloneable {
      *
      * @return Shader.SHADER_PROGRAM
      */
-    public int getShaderProgram() {
+    public static int getShaderProgram() {
         return Shader.SHADER_PROGRAM;
     }
 
-    public final int getProgram() {
+    public int getProgram() {
         return this.program;
     }
 
-    public final void setProgram(int program) {
-        this.program = program;
-    }
-
-    public final StringBuilder getSource() {
-        return this.source;
-    }
-
-    public final void setSource(StringBuilder source) {
-        this.source = source;
-    }
-
     public void delete() {
-        glDeleteShader(getProgram());
+        glDeleteShader(program);
     }
 
     /**
@@ -184,9 +142,17 @@ public class Shader extends java.lang.Object implements Cloneable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + getProgram();
-        hash = 89 * hash + Objects.hashCode(getSource());
+        hash = 89 * hash + program;
+        hash = 89 * hash + Objects.hashCode(source);
         return hash;
+    }
+
+    public String getPath() {
+        return this.path;
+    }
+
+    public StringBuilder getSource() {
+        return this.source;
     }
 
     /**
@@ -206,12 +172,15 @@ public class Shader extends java.lang.Object implements Cloneable {
         } else if (getClass() != obj.getClass()) {
             return false;
         }
-        final Shader other = (Shader) obj;
-        if (this.getProgram() != other.getProgram()) {
+
+        final Shader shader = (Shader) obj;
+
+        if (this.getProgram() != shader.getProgram()) {
             return false;
-        } else if (!Objects.equals(this.getSource(), other.getSource())) {
+        } else if (!Objects.equals(this.getSource(), shader.getSource())) {
             return false;
         }
+
         return true;
     }
 
@@ -228,53 +197,72 @@ public class Shader extends java.lang.Object implements Cloneable {
         return this;
     }
 
-    public void set(int type, String key) {
+    public final void init() throws DwarfException {
         this.source = new StringBuilder();
 
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
-            this.setProgram(glCreateShader(type));
-        } else {
-            throw new IllegalArgumentException("the shader type '" + type + "' is unrecognised.");
-        }
-
-        BufferedReader scanner = null;
-        try {
-            scanner = new BufferedReader(new FileReader(key));
-            String ln;
-            while ((ln = scanner.readLine()) != null) {
-                source.append(ln).append('\n');
-            }
-        } catch (IOException ex) {
-            System.err.println("Shader was not loaded properly. \n" + ex);
-        } finally {
-            if (scanner != null) {
-                try {
-                    scanner.close();
-                } catch (IOException ex) {
-                    System.err.println(ex);
+            BufferedReader scanner = null;
+            try {
+                scanner = new BufferedReader(new FileReader(path));
+                String ln;
+                while ((ln = scanner.readLine()) != null) {
+                    this.source.append(ln).append('\n');
+                }
+            } catch (IOException ioe) {
+                throw new DwarfException(ioe);
+            } finally {
+                if (scanner != null) {
+                    try {
+                        scanner.close();
+                    } catch (IOException ioe) {
+                        throw new DwarfException(ioe);
+                    }
                 }
             }
+
+            glShaderSource(program, source);
+            glCompileShader(program);
+
+            if (glGetShaderi(program, GL_COMPILE_STATUS) == GL_FALSE) {
+                throw new DwarfException("Shader wan not able to be compiled correctly.");
+            }
+
+            glAttachShader(SHADER_PROGRAM, program);
+            glLinkProgram(SHADER_PROGRAM);
+            glValidateProgram(SHADER_PROGRAM);
+        } else {
+            throw new DwarfException("the shader type '" + type + "' is unrecognised.");
         }
-
-        glShaderSource(getProgram(), getSource());
-        glCompileShader(getProgram());
-
-        if (glGetShaderi(getProgram(), GL_COMPILE_STATUS) == GL_FALSE) {
-            System.err.println("Shader wan not able to be compiled correctly.");
-        }
-
-        glAttachShader(SHADER_PROGRAM, getProgram());
-        glLinkProgram(SHADER_PROGRAM);
-        glValidateProgram(SHADER_PROGRAM);
     }
 
     public void set(Shader shader) {
-        this.source = shader.getSource();
-        this.program = shader.getProgram();
+        this.path = shader.getPath();
+        this.type = shader.getType();
+
+        this.init();
+    }
+
+    public void set(int type, String path) {
+        this.path = path;
+        this.type = type;
+
+        this.init();
     }
 
     @Override
     public Shader clone() throws CloneNotSupportedException {
         return new Shader(this);
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }
