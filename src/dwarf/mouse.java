@@ -48,10 +48,6 @@ public final class mouse {
         try {
             org.lwjgl.input.Mouse.create();
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE
-            );
             new DwarfError(ex).display();
         }
 

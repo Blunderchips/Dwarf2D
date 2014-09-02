@@ -19,7 +19,7 @@ public interface fileSystem {
      *
      * @param path - The directory to create + path
      * @throws DwarfException if not successful
-     * @return True if the directory was created
+     * @return true if the directory was created
      */
     public static boolean createDirectory(String path) throws dwarf.DwarfException {
         try {
@@ -36,7 +36,7 @@ public interface fileSystem {
      * Check whether a file or directory exists.
      *
      * @param path - The path to a potential file or directory.
-     * @return True if there is a file or directory with the specified name.
+     * @return true if there is a file or directory with the specified name.
      * False otherwise.
      */
     public static boolean exists(String path) {
@@ -150,8 +150,8 @@ public interface fileSystem {
             }
 
             return output;
-        } catch (FileNotFoundException ex) {
-            throw new dwarf.DwarfException(ex);
+        } catch (FileNotFoundException notFoundException) {
+            throw new dwarf.DwarfException(notFoundException);
         }
     }
 }

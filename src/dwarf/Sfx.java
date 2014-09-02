@@ -57,39 +57,15 @@ public class Sfx extends java.lang.Object implements Cloneable {
     public Sfx(String path) throws DwarfException {
         super();
 
-        try {
-            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(path)));
-        } catch (FileNotFoundException notFoundException) {
-            throw new DwarfException(notFoundException);
-        } finally {
-            this.buffer = alGenBuffers();
-
-            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
-            this.data.dispose();
-
-            this.path = path;
-            this.source = alGenSources();
-            alSourcei(source, AL_BUFFER, buffer);
-        }
+        this.path = path;
+        this.init();
     }
 
     public Sfx(Sfx audio) throws DwarfException {
         super();
 
-        try {
-            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(audio.getPath())));
-        } catch (FileNotFoundException notFoundException) {
-            throw new DwarfException(notFoundException);
-        } finally {
-            this.buffer = alGenBuffers();
-
-            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
-            this.data.dispose();
-
-            this.path = audio.getPath();
-            this.source = alGenSources();
-            alSourcei(source, AL_BUFFER, buffer);
-        }
+        this.path = audio.getPath();
+        this.init();
     }
 
     /**
@@ -97,7 +73,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
      */
     public void play() {
         if (!isMute()) {
-            alSourcePlay(getSource());
+            alSourcePlay(source);
         }
     }
 
@@ -105,28 +81,28 @@ public class Sfx extends java.lang.Object implements Cloneable {
      * pauses the sound.
      */
     public void pause() {
-        alSourcePause(getSource());
+        alSourcePause(source);
     }
 
     /**
      * stops the sound.
      */
     public void stop() {
-        alSourceStop(getSource());
+        alSourceStop(source);
     }
 
     /**
      * rewinds the sound.
      */
     public void rewind() {
-        alSourceRewind(getSource());
+        alSourceRewind(source);
     }
 
     /**
      * dispose if the sound.
      */
     public void destroy() {
-        alDeleteBuffers(getBuffer());
+        alDeleteBuffers(buffer);
     }
 
     public int getSource() {
@@ -143,14 +119,6 @@ public class Sfx extends java.lang.Object implements Cloneable {
 
     public void setSource(int source) {
         this.source = source;
-    }
-
-    public void setBuffer(int buffer) {
-        this.buffer = buffer;
-    }
-
-    public void setData(WaveData data) {
-        this.data = data;
     }
 
     public int format() {
@@ -171,10 +139,11 @@ public class Sfx extends java.lang.Object implements Cloneable {
      */
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 13 * hash + getSource();
-        hash = 13 * hash + getBuffer();
-        hash = 13 * hash + Objects.hashCode(getData());
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.path);
+        hash = 37 * hash + this.source;
+        hash = 37 * hash + this.buffer;
+        hash = 37 * hash + Objects.hashCode(this.data);
         return hash;
     }
 
@@ -194,17 +163,21 @@ public class Sfx extends java.lang.Object implements Cloneable {
             return false;
         } else if (getClass() != obj.getClass()) {
             return false;
-        } else if (!super.equals(obj)) {
-            return false;
         }
+
         final Sfx other = (Sfx) obj;
-        if (this.getSource() != other.getSource()) {
+
+        if (!Objects.equals(this.path, other.path)) {
             return false;
-        } else if (this.getBuffer() != other.getBuffer()) {
+        } else if (this.source != other.source) {
             return false;
-        } else {
-            return Objects.equals(this.getData(), other.getData());
+        } else if (this.buffer != other.buffer) {
+            return false;
+        } else if (!Objects.equals(this.data, other.data)) {
+            return false;
         }
+
+        return true;
     }
 
     @Override
@@ -226,41 +199,37 @@ public class Sfx extends java.lang.Object implements Cloneable {
     }
 
     public void set(Sfx audio) {
-        try {
-            this.data = WaveData.create(new BufferedInputStream(new FileInputStream(audio.getPath())));
-        } catch (FileNotFoundException notFoundException) {
-            throw new DwarfException(notFoundException);
-        } finally {
-            this.buffer = alGenBuffers();
-
-            alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
-            this.data.dispose();
-
-            this.path = audio.getPath();
-            this.source = alGenSources();
-            alSourcei(source, AL_BUFFER, buffer);
-        }
+        this.path = audio.getPath();
+        this.init();
     }
 
-    public void set(String path) throws DwarfException{
+    public void set(String path) throws DwarfException {
+        this.path = path;
+        this.init();
+    }
+
+    @Override
+    public Sfx clone() throws CloneNotSupportedException {
+        return new Sfx(this);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the
+     * <code>Sfx</code>. WARNING: Do NOT modify this code.
+     *
+     * @throws DwarfException if the source is not found
+     */
+    public final void init() throws dwarf.DwarfException {
         try {
             this.data = WaveData.create(new BufferedInputStream(new FileInputStream(path)));
         } catch (FileNotFoundException notFoundException) {
             throw new DwarfException(notFoundException);
         } finally {
             this.buffer = alGenBuffers();
-
             alBufferData(buffer, data.getFormat(), data.getData(), data.getSamplerate());
             this.data.dispose();
-
-            this.path = path;
             this.source = alGenSources();
             alSourcei(source, AL_BUFFER, buffer);
         }
-    }
-
-    @Override
-    public Sfx clone() throws CloneNotSupportedException {
-        return new Sfx(this);
     }
 }

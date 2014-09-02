@@ -1,7 +1,7 @@
 package dwarf.gfx;
 
 /**
- * Constants used to help the draw, Polygon and Shape classes.
+ * Constants used to help the draw, Polygon, Line and Shape classes.
  *
  * @author Matthew 'siD' Van der Bijl
  *

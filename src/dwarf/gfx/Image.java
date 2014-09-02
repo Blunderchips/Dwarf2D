@@ -23,7 +23,8 @@ import static dwarf.util.Vector2.ZERO;
 public class Image extends Rectangle implements GameObject {
 
     /**
-     * The texture that stores the image for this <code>Image</code>.
+     * The texture that stores the image for this <code>Image</code>. (will hold
+     * the image details)
      */
     private Texture texture;
 
@@ -45,8 +46,8 @@ public class Image extends Rectangle implements GameObject {
 
         try {
             this.texture = TextureLoader.getTexture(path);
-        } catch (IOException ex) {
-            throw new dwarf.DwarfException(ex);
+        } catch (IOException ioe) {
+            throw new dwarf.DwarfException(ioe);
         } finally {
             super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));
         }
@@ -129,8 +130,8 @@ public class Image extends Rectangle implements GameObject {
 
         try {
             texture = TextureLoader.getTexture(path);
-        } catch (IOException ex) {
-            throw new dwarf.DwarfException(ex);
+        } catch (IOException ioe) {
+            throw new dwarf.DwarfException(ioe);
         }
 
         super.setDimensions(new Vector2(texture.getImageWidth(), texture.getImageHeight()));

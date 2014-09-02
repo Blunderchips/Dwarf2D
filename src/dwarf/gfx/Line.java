@@ -2,13 +2,22 @@ package dwarf.gfx;
 
 import java.util.Objects;
 
+import dwarf.GameObject;
 import dwarf.Collidable;
 import dwarf.util.Vector2;
 
-public class Line extends Polygon {
+public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     private Vector2 pointA;
     private Vector2 pointB;
+
+    /**
+     * the colour of the line.
+     */
+    private Colour colour;
+
+    private boolean update;
+    private boolean render;
 
     /**
      * Default constructor.
@@ -22,8 +31,7 @@ public class Line extends Polygon {
 
         this.pointA = pointA;
         this.pointB = pointB;
-
-        super.setColour(colour);
+        this.colour = colour;
 
         // --
         Vector2 tempA = pointA;
@@ -54,20 +62,21 @@ public class Line extends Polygon {
     @Override
     public void render() {
         if (getRender()) {
-            dwarf.gfx.draw.line(pointA, pointB, getColour());
+            dwarf.gfx.draw.line(pointA, pointB, colour);
         }
     }
 
     @Override
     public String toString() {
-        return "Line{" + "pointA:" + pointA + ", pointB:" + pointB + '}';
+        return "Line{" + "pointA:" + pointA + ", pointB:" + pointB + ", colour:" + colour + "}";
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(getPointA());
-        hash = 29 * hash + Objects.hashCode(getPointB());
+        hash = 29 * hash + Objects.hashCode(pointA);
+        hash = 29 * hash + Objects.hashCode(pointB);
+        hash = 29 * hash + Objects.hashCode(colour);
         return hash;
     }
 
@@ -79,11 +88,13 @@ public class Line extends Polygon {
             return false;
         }
 
-        final Line line = (Line) obj;
+        final Line other = (Line) obj;
 
-        if (!Objects.equals(this.getPointA(), line.getPointA())) {
+        if (!Objects.equals(this.pointA, other.pointA)) {
             return false;
-        } else if (!Objects.equals(this.getPointB(), line.getPointB())) {
+        } else if (!Objects.equals(this.pointB, other.pointB)) {
+            return false;
+        } else if (!Objects.equals(this.colour, other.colour)) {
             return false;
         }
 
@@ -151,12 +162,6 @@ public class Line extends Polygon {
 
     @Override
     @Deprecated
-    public void set(Vector2 position, int mode, Colour colour) {
-        super.set(position, mode, colour);
-    }
-
-    @Override
-    @Deprecated
     public float getAverageWidth() {
         return (float) this.midPoint().getX();
     }
@@ -214,103 +219,62 @@ public class Line extends Polygon {
 
     @Override
     @Deprecated
-    public double getPerimeter() {
-        return super.getPerimeter();
+    public void gotoPos(double xPos, double yPos, float speed) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void set(Polygon polygon) {
-        super.set(polygon);
+    public void gotoPos(double xPos, double yPos) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void set(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
-        super.set(vertices, position, mode, colour);
+    public void gotoPos(Vector2 destination) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public String getType() {
-        return super.getType();
+    public void gotoPos(Vector2 destination, float speed) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void setMode(int mode) {
-        super.setMode(mode);
-    }
-
-    @Override
-    public boolean isStroke() {
-        return super.isStroke();
+    public void setPosition(double xPos, double yPos) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public boolean isFill() {
-        return super.isFill();
+    public void setPosition(Vector2 position) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void gotoPos(double xPos, double yPos, float speed) {
-        super.gotoPos(xPos, yPos, speed);
+    public void translateY(double deltaY) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void gotoPos(double xPos, double yPos) {
-        super.gotoPos(xPos, yPos);
+    public void translateX(double deltaX) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void gotoPos(Vector2 destination) {
-        super.gotoPos(destination);
+    public void translate(Vector2 delta) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void gotoPos(Vector2 destination, float speed) {
-        super.gotoPos(destination, speed);
-    }
-
-    @Override
-    @Deprecated
-    public void setPosition(double xPos, double yPos) {
-        super.setPosition(xPos, yPos);
-    }
-
-    @Override
-    @Deprecated
-    public void setPosition(Vector2 position) {
-        super.setPosition(position);
-    }
-
-    @Override
-    @Deprecated
-    public void translateY(double deltaY) {
-        super.translateY(deltaY);
-    }
-
-    @Override
-    @Deprecated
-    public void translateX(double deltaX) {
-        super.translateX(deltaX);
-    }
-
-    @Override
-    @Deprecated
-    public void translate(Vector2 delta) {
-        super.translate(delta);
-    }
-
-    @Override
-    @Deprecated
-    public void translate(double deltaX, double deltaY) {
-        super.translate(deltaX, deltaY);
+    public void translate(double deltaX, double deltaY) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -353,5 +317,29 @@ public class Line extends Polygon {
     @Deprecated
     public void addPoint(Vector2 point) {
         super.addPoint(point);
+    }
+
+    public Colour getColour() {
+        return this.colour;
+    }
+
+    public void setColour(Colour colour) {
+        this.colour = colour;
+    }
+
+    public boolean getUpdate() {
+        return this.update;
+    }
+
+    public void setUpdate(boolean update) {
+        this.update = update;
+    }
+
+    public boolean getRender() {
+        return this.render;
+    }
+
+    public void setRender(boolean render) {
+        this.render = render;
     }
 }

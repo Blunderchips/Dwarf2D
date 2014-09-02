@@ -16,13 +16,21 @@ import dwarf.util.Vector2;
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  * @see dwarf.gfx.draw
+ * @see dwarf.gfx.shapeConstants
+ * @see dwarf.gfx.Colours
  */
 public class Polygon extends dwarf.Collidable implements GameObject, shapeConstants, Colours {
 
     public final static byte FILL = 0x0;
     public final static byte STROKE = 0x1;
 
+    /**
+     * the colour of the Polygon.
+     */
     private Colour colour;
+    /**
+     * the mode of the Polygon. (stroke/fill)
+     */
     private byte mode;
 
     private boolean update;
@@ -33,9 +41,6 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      */
     public Polygon() {
         super();
-        
-        this.update = true;
-        this.render = true;
     }
 
     /**
@@ -48,10 +53,10 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      */
     public Polygon(Vector2 position, int mode, Colour colour) {
         super(position);
-        
+
         this.update = true;
         this.render = true;
-        
+
         this.init((byte) mode, colour);
     }
 
@@ -66,19 +71,19 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      */
     public Polygon(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
         super(position);
-        
+
         this.update = true;
         this.render = true;
-        
+
         this.init(vertices, (byte) mode, colour);
     }
 
     public Polygon(Polygon polygon) {
         super(polygon.getPosition());
-        
+
         this.update = true;
         this.render = true;
-        
+
         this.init(polygon.getVertices(), (byte) polygon.getMode(), polygon.getColour());
     }
 
@@ -177,8 +182,8 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 47 * hash + Objects.hashCode(getColour());
-        hash = 47 * hash + Objects.hashCode(getMode());
+        hash = 47 * hash + Objects.hashCode(mode);
+        hash = 47 * hash + Objects.hashCode(colour);
         return hash;
     }
 
@@ -196,18 +201,21 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        } else if (getClass() != obj.getClass()) {
             return false;
         } else if (!super.equals(obj)) {
             return false;
         }
+
         final Polygon other = (Polygon) obj;
+
         if (!Objects.equals(this.getColour(), other.getColour())) {
             return false;
-        } else {
-            return Objects.equals(this.getMode(), other.getMode());
+        } else if (Objects.equals(this.getMode(), other.getMode())) {
+            return false;
         }
+
+        return true;
     }
 
     public int getMode() {
@@ -303,27 +311,27 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         for (int i = 0; i < getNumVertices(); i++) {
             try {
                 result += Vector2.gradient(getVertices()[i], getVertices()[i + 1]);
-            } catch (ArrayIndexOutOfBoundsException ex) {
+            } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
                 break;
             }
         }
 
         return result;
     }
-    
+
     public boolean getRender() {
         return this.render;
     }
-    
-    public void setRender(boolean render){
+
+    public void setRender(boolean render) {
         this.render = render;
     }
-    
+
     public boolean getUpdate() {
         return this.update;
     }
-    
-    public void setUpdate(boolean update){
+
+    public void setUpdate(boolean update) {
         this.update = update;
     }
 }

@@ -189,7 +189,6 @@ public class Shader extends java.lang.Object implements Cloneable {
         return "Shader = {"
                 + "program:" + getProgram() + ", "
                 + "source: " + getSource() + ", "
-                + "super: " + super.toString()
                 + "}";
     }
 
@@ -197,7 +196,13 @@ public class Shader extends java.lang.Object implements Cloneable {
         return this;
     }
 
-    public final void init() throws DwarfException {
+    /**
+     * This method is called from within the constructor to initialize the
+     * <code>Shader</code>. WARNING: Do NOT modify this code.
+     * 
+     * @throws DwarfException if the source is not found
+     */
+    public final void init() throws dwarf.DwarfException {
         this.source = new StringBuilder();
 
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {

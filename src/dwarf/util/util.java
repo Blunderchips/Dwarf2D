@@ -1,16 +1,17 @@
 package dwarf.util;
 
-/**
- * general utilities.
- *
- * @author Matthew 'siD' Van der Bijl
- */
-import dwarf.Game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import dwarf.Game;
+
+/**
+ * Provides an interface that offers general utilities.
+ *
+ * @author Matthew 'siD' Van der Bijl
+ */
 public interface util {
 
     public static String[] explode(String split, String input) {
@@ -18,7 +19,7 @@ public interface util {
     }
 
     public static String[] RemoveEmptyStrings(String[] strings) {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
 
         for (String string : strings) {
             if (!string.equals("")) {

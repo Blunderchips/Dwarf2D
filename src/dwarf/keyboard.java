@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 import org.lwjgl.LWJGLException;
 
-
 /**
  * Provides an interface to the user's keyboard.
  *
  * @author Matthew 'siD' Van der Bijl
  *
+ * @see org.lwjgl.input.Keyboard
+ *
  * @see dwarf.engine.core.Input
  * @see dwarf.engine.core.Keyboard
- * @see org.lwjgl.input.Keyboard
  */
 public final class keyboard implements dwarf.engine.core.Keyboard {
 
