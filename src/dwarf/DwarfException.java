@@ -6,6 +6,7 @@ package dwarf;
  *
  * @author Matthew 'siD' Van der Bijl
  *
+ * @see dwarf.Crashform
  * @see java.lang.Exception
  */
 @SuppressWarnings("serial")
@@ -100,5 +101,9 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
 
     public org.lwjgl.LWJGLException toLWJGLException() {
         return new org.lwjgl.LWJGLException(this.getMessage(), this.getCause());
+    }
+    
+    public void destroyEngine() {
+        dwarf.engine.core.Engine.dispose();
     }
 }
