@@ -73,22 +73,11 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
         super(msg, cause, enableSuppression, writableStackTrace);
     }
 
-    /**
-     * Constructs an instance of <code>DwarfException</code> with the specified
-     * exception. Will "destroy" the <code>Engine</code>.
-     *
-     * @param cause the cause of tthe error
-     */
-    public DwarfError(Throwable cause) {
-        super(cause.getMessage(), cause.getCause());
-    }
-
     @Override
     public DwarfError clone() throws CloneNotSupportedException {
         return new DwarfError(this);
     }
 
-    @Override
     public DwarfError get() {
         return this;
     }
