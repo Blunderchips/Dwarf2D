@@ -28,7 +28,10 @@ public class Camera extends java.lang.Object implements Cloneable, GameObject {
     public static Camera getMainCamera() {
         return Camera.mainCamera;
     }
-
+    
+    /**
+     * the location of the camera.
+     */
     private Vector2 position;
 
     /**
