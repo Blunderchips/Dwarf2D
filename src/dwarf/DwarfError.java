@@ -9,11 +9,13 @@ package dwarf;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see java.lang.Exception
- * @see dwarf.DwarfException
+ * @see java.lang.Error
+ * 
+ * @see dwarf.Crashform
  * @see dwarf.engine.core.Engine#dispose()
  */
 @SuppressWarnings("serial")
-public class DwarfError extends dwarf.DwarfException {
+public class DwarfError extends java.lang.Exception implements Cloneable {
 
     /**
      * Default constructor. Creates a new instance of <code>DwarfError</code>
@@ -23,8 +25,6 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError() {
         super();
-        super.display();
-        dwarf.engine.core.Engine.dispose();
     }
 
     /**
@@ -37,8 +37,6 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(String msg) {
         super(msg);
-        super.display();
-        dwarf.engine.core.Engine.dispose();
     }
 
     /**
@@ -52,8 +50,6 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(String msg, Throwable cause) {
         super(msg, cause);
-        super.display();
-        dwarf.engine.core.Engine.dispose();
     }
 
     /**
@@ -66,8 +62,6 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(Throwable cause) {
         super(cause);
-        super.display();
-        dwarf.engine.core.Engine.dispose();
     }
 
     /**
@@ -87,8 +81,6 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(String msg, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(msg, cause, enableSuppression, writableStackTrace);
-        super.display();
-        dwarf.engine.core.Engine.dispose();
     }
 
     /**
@@ -101,8 +93,6 @@ public class DwarfError extends dwarf.DwarfException {
      */
     public DwarfError(Exception exception) {
         super(exception.getMessage(), exception.getCause());
-        super.display();
-        dwarf.engine.core.Engine.dispose();
     }
 
     @Override
@@ -113,5 +103,25 @@ public class DwarfError extends dwarf.DwarfException {
     @Override
     public DwarfError get() {
         return this;
+    }
+    
+    public void destroyEngine() {
+        dwarf.engine.core.Engine.dispose();
+    }
+    
+    public java.lang.Exception toException() {
+        return new Exception(this.getMessage(), this.getCause());
+    }
+    
+    public org.lwjgl.LWJGLException toLWJGLException() {
+        return new org.lwjgl.LWJGLException(this.getMessage(), this.getCause());
+    }
+    
+    public void print() {
+        System.err.println(this);
+    }
+    
+    public void display() {
+        new dwarf.Crashform(this);
     }
 }
