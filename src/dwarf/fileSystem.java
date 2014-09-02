@@ -20,15 +20,14 @@ public interface fileSystem {
      * @param path - The directory to create + path.
      * @return True if the directory was created, false if not.
      */
-    public static boolean createDirectory(String path) {
+    public static boolean createDirectory(String path) throws dwarf.DwarfException {
         try {
             File f = new File(path);
             f.mkdirs();
             f.createNewFile();
             return true;
-        } catch (IOException ex) {
-            System.err.println(ex);
-            return false;
+        } catch (IOException ioe) {
+            throw new dwarf.DwarfException(ioe);
         }
     }
 
