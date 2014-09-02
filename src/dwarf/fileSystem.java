@@ -17,8 +17,9 @@ public interface fileSystem {
     /**
      * Recursively creates a directory.
      *
-     * @param path - The directory to create + path.
-     * @return True if the directory was created, false if not.
+     * @param path - The directory to create + path
+     * @throws DwarfException if not successful
+     * @return True if the directory was created
      */
     public static boolean createDirectory(String path) throws dwarf.DwarfException {
         try {
@@ -130,6 +131,7 @@ public interface fileSystem {
     /**
      * reads in the content of a file
      *
+     * @throws DwarfException if not successful
      * @param the location of the file + extention
      */
     public static String[] loadFile(String location) throws dwarf.DwarfException {
