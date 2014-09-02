@@ -10,4 +10,5 @@
 - Change log (not going to happen)
 - Ray casting
 - add more info/details to the readme
-- create a index for tests
+- create a index for tests (html)
+- create nyan cat test?!?!?
