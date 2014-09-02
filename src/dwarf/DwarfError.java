@@ -20,8 +20,6 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
     /**
      * Default constructor. Creates a new instance of <code>DwarfError</code>
      * without detail message. Will "destroy" the <code>Engine</code>.
-     *
-     * @see dwarf.engine.core.Engine#dispose()
      */
     public DwarfError() {
         super();
@@ -30,8 +28,6 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
     /**
      * Constructs an instance of <code>DwarfError</code> with the specified
      * detail message (msg). Will "destroy" the <code>Engine</code>.
-     *
-     * @see dwarf.engine.core.Engine#dispose()
      *
      * @param msg the detail message.
      */
@@ -42,8 +38,6 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
     /**
      * Constructs an instance of <code>DwarfError</code> with the specified
      * detail message (msg) and cause. Will "destroy" the <code>Engine</code>.
-     *
-     * @see dwarf.engine.core.Engine#dispose()
      *
      * @param msg String identifier for exception
      * @param cause the cause of the error
@@ -56,8 +50,6 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
      * Constructs an instance of <code>DwarfError</code> with the specified
      * cause. Will "destroy" the <code>Engine</code>.
      *
-     * @see dwarf.engine.core.Engine#dispose()
-     *
      * @param cause the cause of the error
      */
     public DwarfError(Throwable cause) {
@@ -68,8 +60,6 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
      * Constructs a new <code>DwarfError</code> with the specified detail
      * message (msg), cause, suppression enabled or disabled, and writable stack
      * trace enabled or disabled. Will "destroy" the <code>Engine</code>.
-     *
-     * @see dwarf.engine.core.Engine#dispose()
      *
      * @param msg the detail message.
      * @param cause the cause. (A <code>null</code> value is permitted, and
@@ -87,12 +77,10 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
      * Constructs an instance of <code>DwarfException</code> with the specified
      * exception. Will "destroy" the <code>Engine</code>.
      *
-     * @see dwarf.engine.core.Engine#dispose()
-     *
-     * @param exception the specified Exception
+     * @param cause the cause of tthe error
      */
-    public DwarfError(Exception exception) {
-        super(exception.getMessage(), exception.getCause());
+    public DwarfError(Throwable cause) {
+        super(cause.getMessage(), cause.getCause());
     }
 
     @Override
@@ -113,6 +101,11 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
         return new Exception(this.getMessage(), this.getCause());
     }
     
+    /**
+     * returns the <code>DwarfException</code> as a new <code>LWJGLException</code>.
+     *
+     * @return <code>this</code> as a <code>LWJGLException</code>
+     */
     public org.lwjgl.LWJGLException toLWJGLException() {
         return new org.lwjgl.LWJGLException(this.getMessage(), this.getCause());
     }
@@ -120,7 +113,10 @@ public class DwarfError extends java.lang.Exception implements Cloneable {
     public void print() {
         System.err.println(this);
     }
-    
+   
+    /**
+     * Displays the error in a new crash form.
+     */ 
     public void display() {
         new dwarf.Crashform(this);
     }
