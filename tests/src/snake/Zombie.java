@@ -4,6 +4,7 @@ import dwarf.engine.core.Window;
 import dwarf.gfx.Shape;
 import dwarf.random;
 import dwarf.time;
+import dwarf.util.Point;
 import dwarf.util.Vector2;
 
 import static snake.Snake.player;
@@ -14,7 +15,7 @@ public class Zombie extends Shape {
     private double speed;
 
     public Zombie() {
-        super(4, 30, new Vector2(
+        super(4, 30, new Point(
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
         ), FILL, DARK_GREY);
@@ -50,7 +51,7 @@ public class Zombie extends Shape {
 
     public void die() {
         this.alive = false;
-        this.setPosition(Vector2.NaN);
+        this.setPosition(Point.NaN);
     }
 
     @Override

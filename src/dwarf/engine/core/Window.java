@@ -1,19 +1,15 @@
 package dwarf.engine.core;
 
-import dwarf.Game;
+import java.nio.ByteBuffer;
+
 import dwarf.gfx.draw;
 import dwarf.util.Vector2;
-
-import java.nio.ByteBuffer;
-import javax.swing.JOptionPane;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import static dwarf.gfx.background.getColour;
-
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
@@ -45,12 +41,16 @@ public final class Window {
 
     private static java.awt.Canvas parent = null;
 
-    private static Camera activeCamera = Camera.mainCamera;
+    public static Camera activeCamera = Camera.mainCamera;
 
-    protected static void update() {
+    public static void update() {
         glClear(GL_COLOR_BUFFER_BIT);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+    }
+
+    public static void create(java.awt.Dimension dimensions, String title) throws dwarf.DwarfException {
+        Window.create((int) dimensions.getWidth(), (int) dimensions.getHeight(), title);
     }
 
     /**
@@ -60,8 +60,8 @@ public final class Window {
      * @param height The height of the display
      * @param title The title of the display
      */
-    protected static void create(int width, int height, String title) {
-
+    public static void create(int width, int height, String title) throws dwarf.DwarfException {
+//        
 //        Window.parent = new Canvas();
 //        
 //        Window.parent.setName(title);
@@ -73,6 +73,7 @@ public final class Window {
 //        Window.parent.setEnabled(true);
 //        Window.parent.setFocusable(true);
 //        Window.parent.setVisible(true);
+//        
         try {
             Display.setDisplayMode(new DisplayMode(width, height));
             Display.setTitle(title);
@@ -83,30 +84,30 @@ public final class Window {
             Display.setInitialBackground(0x0, 0x0, 0x0);
             Display.create();
         } catch (LWJGLException ex) {
-            new dwarf.DwarfException(ex).display();
+            throw new dwarf.DwarfException(ex);
         }
     }
 
     /**
      * "destroys" the window.
      */
-    protected static void dispose() {
+    public static void dispose() {
         Display.destroy();
     }
 
     /**
      * clears the window.
      */
-    protected static void clear() {
+    public static void clear() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glTranslated(Window.getActiveCamera().getPosition().getX(), Window.getActiveCamera().getPosition().getY(), 0);
-        draw.fillRect(getWidth(), getHeight(), Window.getActiveCamera().getPosition(), getColour());
+        draw.fillRect(getWidth(), getHeight(), Window.getActiveCamera().getPosition(), 0, getColour());
     }
 
     /**
      * updates the window.
      */
-    protected static void render() {
+    public static void render() {
         Display.update();
         Display.sync(64);
     }
@@ -175,23 +176,18 @@ public final class Window {
      *
      * @return Display.isCurrent()
      */
-    public static boolean isCurrent() {
+    public static boolean isCurrent() throws dwarf.DwarfException {
         try {
             return Display.isCurrent();
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
+            throw new dwarf.DwarfException(ex);
         }
-        return false;
     }
 
     /**
      * Checks if the window is active.
      *
-     * @return Display.isActive()
+     * @return Display.isActive)
      */
     public static boolean isActive() {
         return Display.isActive();
@@ -218,19 +214,14 @@ public final class Window {
      *
      * @param fullscreen Whether to enter or exit fullscreen mode.
      */
-    public static void setFullscreen(boolean fullscreen) {
+    public static void setFullscreen(boolean fullscreen) throws dwarf.DwarfException {
         Window.fullscreen = fullscreen;
 
         try {
             Display.setFullscreen(fullscreen);
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
+            throw new dwarf.DwarfException(ex);
         }
-
     }
 
     public static void setVSync(boolean vSync) {
@@ -268,15 +259,11 @@ public final class Window {
      * @param brightness The brightness value between -1.0 and 1.0, inclusive
      * @param contrast The contrast, larger than 0.0.
      */
-    public static void setDisplayConfiguration(float gamma, float brightness, float contrast) {
+    public static void setDisplayConfiguration(float gamma, float brightness, float contrast) throws dwarf.DwarfException {
         try {
             Display.setDisplayConfiguration(gamma, brightness, contrast);
         } catch (LWJGLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    getParent(), ex, getTitle() + " - ERROR", ERROR_MESSAGE
-            );
-            Game.close(ex);
+            throw new dwarf.DwarfException(ex);
         }
     }
 
@@ -289,8 +276,8 @@ public final class Window {
      *
      * @return The width and height of the window as new <code>Vectro2</code>
      */
-    public static Vector2 getDimensions() {
-        return new Vector2(Display.getWidth(), Display.getHeight());
+    public static java.awt.Dimension getDimensions() {
+        return new java.awt.Dimension(Display.getWidth(), Display.getHeight());
     }
 
     public static Camera getActiveCamera() {

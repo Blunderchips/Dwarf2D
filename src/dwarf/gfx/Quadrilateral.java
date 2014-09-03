@@ -1,5 +1,6 @@
 package dwarf.gfx;
 
+import dwarf.util.Point;
 import dwarf.util.Vector2;
 
 /**
@@ -20,7 +21,7 @@ public class Quadrilateral extends Polygon {
         super();
     }
 
-    public Quadrilateral(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
+    public Quadrilateral(Point[] vertices, Point position, int mode, Colour colour) {
         super(position, mode, colour);
 
         if (vertices != null) {
@@ -32,10 +33,10 @@ public class Quadrilateral extends Polygon {
         }
     }
 
-    public Quadrilateral(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, int mode, Colour colour) {
+    public Quadrilateral(Point vertexA, Point vertexB, Point vertexC, Point vertexD, Point position, int mode, Colour colour) {
         super(position, mode, colour);
 
-        Vector2[] points = {
+        Point[] points = {
             vertexA, vertexB, vertexC, vertexD
         };
 
@@ -49,7 +50,7 @@ public class Quadrilateral extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoint(Vector2 point) {
+    public void addPoint(Point point) {
         super.addPoint(point);
     }
 
@@ -59,7 +60,7 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
-    public void set(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
+    public void set(Point[] vertices, Point position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
@@ -75,12 +76,12 @@ public class Quadrilateral extends Polygon {
         }
     }
 
-    public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 vertexD, Vector2 position, int mode, Colour colour) {
+    public void set(Point vertexA, Point vertexB, Point vertexC, Point vertexD, Point position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
 
-        Vector2[] points = {
+        Point[] points = {
             vertexA, vertexB, vertexC, vertexD
         };
 
@@ -101,7 +102,7 @@ public class Quadrilateral extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoints(Vector2[] points) {
+    public void addPoints(Point[] points) {
         super.addPoints(points);
     }
 
@@ -125,7 +126,7 @@ public class Quadrilateral extends Polygon {
 
     @Override
     @Deprecated
-    public void setVertices(Vector2[] vertices) {
+    public void setVertices(Point[] vertices) {
         super.setVertices(vertices);
     }
 

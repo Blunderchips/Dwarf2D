@@ -3,9 +3,10 @@ package dwarf.engine.core;
 import java.util.Objects;
 
 import dwarf.GameObject;
+import dwarf.util.Point;
 import dwarf.util.Vector2;
 
-import static dwarf.util.Vector2.ZERO;
+import static dwarf.util.Point.ZERO;
 
 /**
  * @author Matthew 'siD' Van der Bijl
@@ -32,7 +33,7 @@ public class Camera extends java.lang.Object implements Cloneable, GameObject {
     /**
      * the location of the camera.
      */
-    private Vector2 position;
+    private Point position;
 
     /**
      * Default constructor.
@@ -42,7 +43,7 @@ public class Camera extends java.lang.Object implements Cloneable, GameObject {
         this.position = ZERO;
     }
 
-    public Camera(Vector2 position) {
+    public Camera(Point position) {
         super();
         this.position = position;
     }
@@ -66,11 +67,11 @@ public class Camera extends java.lang.Object implements Cloneable, GameObject {
     public void render() {
     }
 
-    public Vector2 getPosition() {
+    public Point getPosition() {
         return this.position;
     }
 
-    public void setPosition(Vector2 position) {
+    public void setPosition(Point position) {
         this.position = position;
     }
 

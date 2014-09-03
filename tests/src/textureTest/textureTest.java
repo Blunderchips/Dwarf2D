@@ -2,10 +2,10 @@ package textureTest;
 
 import dwarf.DwarfException;
 import dwarf.Game;
-import dwarf.gfx.Image;
-import dwarf.util.Vector2;
-
 import static dwarf.gfx.Colours.white;
+import dwarf.gfx.Image;
+import dwarf.util.Point;
+
 
 public class textureTest {
 
@@ -16,7 +16,7 @@ public class textureTest {
             public void load() {
                 dwarf.gfx.background.setColour(white);
                 try {
-                    super.addGameObject(new Image("./textureTest/pixelDwarf.jpeg", new Vector2(280, 250)));
+                    super.addGameObject(new Image("./textureTest/pixelDwarf.jpeg", new Point(280, 250)));
                 } catch (DwarfException ex) {
                     ex.display();
                 }

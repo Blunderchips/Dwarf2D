@@ -1,9 +1,8 @@
 package dwarf.gfx;
 
-import java.util.Objects;
-
 import dwarf.GameObject;
-import dwarf.util.Vector2;
+import dwarf.util.Point;
+import java.util.Objects;
 
 /**
  * A basic shape with more than 3 sides.A rectilinear figure bounded by more
@@ -51,7 +50,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    public Polygon(Vector2 position, int mode, Colour colour) {
+    public Polygon(Point position, int mode, Colour colour) {
         super(position);
 
         this.update = true;
@@ -69,7 +68,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    public Polygon(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
+    public Polygon(Point[] vertices, Point position, int mode, Colour colour) {
         super(position);
 
         this.update = true;
@@ -107,7 +106,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param mode the mode of the
      * @param colour the colour of the <code>Polygon</code> to be created.
      */
-    protected final void init(Vector2[] vertices, byte mode, Colour colour) {
+    protected final void init(Point[] vertices, byte mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
         super.setVertices(vertices);
@@ -132,9 +131,9 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     public void render() {
         if (getRender()) {
             if (isFill()) {
-                draw.fillPolygon(super.getVertices(), super.getPosition(), this.getColour());
+                draw.fillPolygon(super.getVertices(), super.getPosition(), 0, this.getColour());
             } else {
-                draw.strokePolygon(super.getVertices(), super.getPosition(), this.getColour());
+                draw.strokePolygon(super.getVertices(), super.getPosition(), 0, this.getColour());
             }
         }
     }
@@ -285,12 +284,12 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         return this;
     }
 
-    public void set(Vector2 position, int mode, Colour colour) {
+    public void set(Point position, int mode, Colour colour) {
         this.init((byte) mode, colour);
         super.setPosition(position);
     }
 
-    public void set(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
+    public void set(Point[] vertices, Point position, int mode, Colour colour) {
         this.init(vertices, (byte) mode, colour);
         super.setPosition(position);
     }
@@ -306,11 +305,11 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     }
 
     public double getPerimeter() {
-        double result = Vector2.gradient(getVertices()[0], getVertices()[getNumVertices() - 1]);
+        double result = Point.distance(getVertices()[0], getVertices()[getNumVertices() - 1]);
 
         for (int i = 0; i < getNumVertices(); i++) {
             try {
-                result += Vector2.gradient(getVertices()[i], getVertices()[i + 1]);
+                result += Point.distance(getVertices()[i], getVertices()[i + 1]);
             } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
                 break;
             }

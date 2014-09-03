@@ -1,14 +1,14 @@
 package dwarf;
 
+import dwarf.engine.core.Window;
+
+import dwarf.util.Point;
+import dwarf.util.Vector2;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-import dwarf.util.Vector2;
-import dwarf.engine.core.Window;
-
-import org.lwjgl.LWJGLException;
-
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import org.lwjgl.LWJGLException;
 
 /**
  * Provides an interface to the user's mouse.
@@ -86,8 +86,8 @@ public final class mouse {
         org.lwjgl.input.Mouse.destroy();
     }
 
-    public static Vector2 getMousePosition() {
-        return new Vector2(org.lwjgl.input.Mouse.getX(), org.lwjgl.input.Mouse.getY());
+    public static Point getMousePosition() {
+        return new Point(org.lwjgl.input.Mouse.getX(), org.lwjgl.input.Mouse.getY());
     }
 
     /**

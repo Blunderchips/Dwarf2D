@@ -1,13 +1,14 @@
 package dwarf.gfx;
 
-import java.util.Objects;
-
+import static dwarf.gfx.draw.SHAPE_CIRCLE;
+import static dwarf.gfx.shapeConstants.SHAPE_CIRCLE;
+import dwarf.util.Point;
 import dwarf.util.Vector2;
-
 import static dwarf.util.math.PI;
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
-import static dwarf.gfx.draw.SHAPE_CIRCLE;
+import static dwarf.util.math.sqr;
+import java.util.Objects;
 
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.
@@ -43,7 +44,7 @@ public class Circle extends Shape {
         super();
     }
 
-    public Circle(double radius, Vector2 location, int mode, Colour colour) {
+    public Circle(double radius, Point location, int mode, Colour colour) {
         super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
         this.radius = radius;
     }
@@ -156,24 +157,24 @@ public class Circle extends Shape {
     }
 
     @Override
-    public Vector2 getCenterX() {
-        return new Vector2(
+    public Point getCenterX() {
+        return new Point(
                 this.getPosition().getX() + this.getRadius(),
                 this.getPosition().getY()
         );
     }
 
     @Override
-    public Vector2 getCenterY() {
-        return new Vector2(
+    public Point getCenterY() {
+        return new Point(
                 this.getPosition().getX(),
                 this.getPosition().getY() + this.getRadius()
         );
     }
 
     @Override
-    public Vector2 getCenter() {
-        return new Vector2(
+    public Point getCenter() {
+        return new Point(
                 this.getCenterX().getX(),
                 this.getCenterY().getY()
         );
@@ -181,7 +182,7 @@ public class Circle extends Shape {
 
     @Override
     @Deprecated
-    public void addPoint(Vector2 point) {
+    public void addPoint(Point point) {
         super.addPoint(point);
     }
 

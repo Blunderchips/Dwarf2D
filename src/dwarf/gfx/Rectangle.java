@@ -1,7 +1,9 @@
 package dwarf.gfx;
 
 import dwarf.Collidable;
+import dwarf.util.Point;
 import dwarf.util.Vector2;
+import java.awt.Dimension;
 
 /**
  * A 4 sided shape where opposite sides are equal. (a parallelogram with a right
@@ -56,17 +58,22 @@ public class Rectangle extends Quadrilateral {
         super();
     }
 
-    public Rectangle(float width, float height, Vector2 position, int mode, Colour colour) {
+    public Rectangle(float width, float height, Point position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
     }
 
-    public Rectangle(double width, double height, Vector2 position, int mode, Colour colour) {
+    public Rectangle(double width, double height, Point position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
     }
 
-    public Rectangle(Vector2 dimensions, Vector2 position, int mode, Colour colour) {
+    public Rectangle(Dimension dimensions, Point position, int mode, Colour colour) {
+        super(null, position, mode, colour);
+        this.setVertices(dimensions.getWidth(), dimensions.getHeight());
+    }
+    
+    public Rectangle(Point dimensions, Point position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
@@ -90,11 +97,11 @@ public class Rectangle extends Quadrilateral {
         this.dimensions = new java.awt.Dimension((int) width, (int) height);
 
         // --
-        Vector2[] vertices = {
-            new Vector2(0, 0),
-            new Vector2(0, height),
-            new Vector2(width, height),
-            new Vector2(width, 0)
+        Point[] vertices = {
+            new Point(0, 0),
+            new Point(0, height),
+            new Point(width, height),
+            new Point(width, 0)
         };
         // --
 
@@ -114,7 +121,7 @@ public class Rectangle extends Quadrilateral {
         return this.dimensions;
     }
 
-    public void setDimensions(Vector2 dimensions) {
+    public void setDimensions(Point dimensions) {
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
 
@@ -127,8 +134,6 @@ public class Rectangle extends Quadrilateral {
      * inputed <code>Collidable</code>.
      *
      * @see dwarf.Collidable#intersects(dwarf.Collidable)
-     *
-     * @throws DwarfException if the face is not recognized
      * @param face the face of the <code>Rectanlge</code> to be tested
      * @param coll - the <code>Collidable</code> to be tested
      * @return true if the <code>Collidable</code> has intersected/collided with
@@ -211,45 +216,45 @@ public class Rectangle extends Quadrilateral {
     }
 
     @Override
-    public Vector2 getCenterX() {
-        return new Vector2(
+    public Point getCenterX() {
+        return new Point(
                 this.getPosition().getX() + this.getHalfX(),
                 this.getPosition().getY()
         );
     }
 
     @Override
-    public Vector2 getCenterY() {
-        return new Vector2(
+    public Point getCenterY() {
+        return new Point(
                 this.getPosition().getX(),
                 this.getPosition().getY() + this.getHalfY()
         );
     }
 
     @Override
-    public Vector2 getCenter() {
-        return new Vector2(
+    public Point getCenter() {
+        return new Point(
                 this.getCenterX().getX(),
                 this.getCenterY().getY()
         );
     }
 
-    public void set(float width, float height, Vector2 position, int mode, Colour colour) {
+    public void set(float width, float height, Point position, int mode, Colour colour) {
         this.setVertices(width, height);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(double width, double height, Vector2 position, int mode, Colour colour) {
+    public void set(double width, double height, Point position, int mode, Colour colour) {
         this.setVertices(width, height);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(Vector2 dimensions, Vector2 position, int mode, Colour colour) {
-        this.setVertices(dimensions.getX(), dimensions.getY());
+    public void set(java.awt.Dimension dimensions, Point position, int mode, Colour colour) {
+        this.setVertices(dimensions.getWidth(), dimensions.getHeight());
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
@@ -279,7 +284,7 @@ public class Rectangle extends Quadrilateral {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void setVertices(Vector2[] vertices) {
+    public void setVertices(Point[] vertices) {
         if (vertices.length == 4) {
             super.setVertices(vertices);
         } else {

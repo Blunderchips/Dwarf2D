@@ -1,6 +1,6 @@
 package dwarf.gfx;
 
-import dwarf.util.Vector2;
+import dwarf.util.Point;
 
 /**
  * @author Matthew 'siD' Van der Bijl
@@ -18,21 +18,21 @@ public class Triangle extends Polygon {
         super();
     }
 
-    public Triangle(Vector2 position, int mode, Colour colour) {
+    public Triangle(Point position, int mode, Colour colour) {
         super(position, mode, colour);
     }
 
-    public Triangle(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, int mode, Colour colour) {
+    public Triangle(Point vertexA, Point vertexB, Point vertexC, Point position, int mode, Colour colour) {
         super(position, mode, colour);
 
-        Vector2[] points = {
+        Point[] points = {
             vertexA, vertexB, vertexC
         };
 
         super.setVertices(points);
     }
 
-    public Triangle(Vector2[] vertices, Vector2 position, int mode, Colour colour) {
+    public Triangle(Point[] vertices, Point position, int mode, Colour colour) {
         super(position, mode, colour);
 
         if (vertices != null) {
@@ -51,9 +51,9 @@ public class Triangle extends Polygon {
     public boolean isRightAngledTriangle() {
         if (super.getType().equals("triangle")) {
 
-            double a = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[1]);
-            double b = Vector2.distanceSq(super.getVertices()[1], super.getVertices()[2]);
-            double c = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[2]);
+            double a = Point.distanceSq(super.getVertices()[0], super.getVertices()[1]);
+            double b = Point.distanceSq(super.getVertices()[1], super.getVertices()[2]);
+            double c = Point.distanceSq(super.getVertices()[0], super.getVertices()[2]);
 
             if (a == b + c) {
                 return true;
@@ -72,9 +72,9 @@ public class Triangle extends Polygon {
     public boolean isIsosTriangle() {
         if (super.getType().equals("triangle")) {
 
-            double a = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[1]);
-            double b = Vector2.distanceSq(super.getVertices()[1], super.getVertices()[2]);
-            double c = Vector2.distanceSq(super.getVertices()[0], super.getVertices()[2]);
+            double a = Point.distanceSq(super.getVertices()[0], super.getVertices()[1]);
+            double b = Point.distanceSq(super.getVertices()[1], super.getVertices()[2]);
+            double c = Point.distanceSq(super.getVertices()[0], super.getVertices()[2]);
 
             if (a == b) {
                 return true;
@@ -92,13 +92,13 @@ public class Triangle extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoint(Vector2 point) {
+    public void addPoint(Point point) {
         super.addPoint(point);
     }
 
     @Override
     @Deprecated
-    public void addPoints(Vector2[] points) {
+    public void addPoints(Point[] points) {
         super.addPoints(points);
     }
 
@@ -122,16 +122,16 @@ public class Triangle extends Polygon {
 
     @Override
     @Deprecated
-    public void setVertices(Vector2[] vertices) {
+    public void setVertices(Point[] vertices) {
         super.setVertices(vertices);
     }
 
-    public void set(Vector2 vertexA, Vector2 vertexB, Vector2 vertexC, Vector2 position, int mode, Colour colour) {
+    public void set(Point vertexA, Point vertexB, Point vertexC, Point position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
 
-        Vector2[] points = {
+        Point[] points = {
             vertexA, vertexB, vertexC
         };
 

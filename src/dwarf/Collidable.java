@@ -1,16 +1,15 @@
 package dwarf;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.ArrayList;
-
+import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
-import dwarf.util.Vector2;
-import dwarf.engine.core.Window;
-
 import static dwarf.mouse.MOUSE_LEFT;
-import static dwarf.util.Vector2.ZERO;
+import dwarf.util.Point;
+import static dwarf.util.Point.ZERO;
+import dwarf.util.Vector2;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
@@ -30,8 +29,8 @@ import static dwarf.util.Vector2.ZERO;
  */
 public class Collidable extends java.lang.Object implements Cloneable {
 
-    private ArrayList<Vector2> vertices;
-    private Vector2 position;
+    private ArrayList<Point> vertices;
+    private Point position;
 
     /**
      * Default constructor.
@@ -49,7 +48,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * @param position the location of the <code>Collidable</code> of the game
      * window (<code>Vector2</code>)
      */
-    public Collidable(Vector2 position) {
+    public Collidable(Point position) {
         super();
 
         this.position = position;
@@ -72,26 +71,26 @@ public class Collidable extends java.lang.Object implements Cloneable {
     /**
      * @return all vertices as a Vector2 array of the <code>Collidable</code>.
      */
-    public Vector2[] getVertices() {
-        Vector2[] points = new Vector2[vertices.size()];
+    public Point[] getVertices() {
+        Point[] points = new Point[vertices.size()];
 
         for (short i = 0; i < vertices.size(); i++) {
-            points[i] = new Vector2(vertices.get(i));
+            points[i] = new Point(vertices.get(i));
         }
 
         return points;
     }
 
-    public void addPoint(Vector2 point) {
+    public void addPoint(Point point) {
         this.vertices.add(point);
     }
 
     public void addPoint(double xPos, double yPos) {
-        this.addPoint(new Vector2(xPos, yPos));
+        this.addPoint(new Point(xPos, yPos));
     }
 
-    public void addPoints(Vector2[] points) {
-        for (Vector2 point : points) {
+    public void addPoints(Point[] points) {
+        for (Point point : points) {
             this.addPoint(point.getX(), point.getY());
         }
     }
@@ -111,7 +110,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * @param vertices an array of the Vector2 coordinates of * the
      * <code>Collidable</code>
      */
-    public void setVertices(Vector2[] vertices) {
+    public void setVertices(Point[] vertices) {
         double[] xPoints = new double[vertices.length];
         double[] yPoints = new double[vertices.length];
 
@@ -170,10 +169,10 @@ public class Collidable extends java.lang.Object implements Cloneable {
                     "Polygon requires the same amount of x and y values. Found "
                     + xPoints.length + "," + yPoints.length);
         } else {
-            ArrayList<Vector2> temp = new ArrayList<>(xPoints.length);
+            ArrayList<Point> temp = new ArrayList<>(xPoints.length);
 
             for (int i = 0; i < xPoints.length; i++) {
-                temp.add(new Vector2(xPoints[i], yPoints[i]));
+                temp.add(new Point(xPoints[i], yPoints[i]));
             }
 
             this.vertices = temp;
@@ -190,7 +189,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * specified coordinates {@code (x,y)};
      *         {@code false} otherwise.
      */
-    public boolean contains(Vector2 point) {
+    public boolean contains(Point point) {
         return this.contains(point.getX(), point.getY());
     }
 
@@ -274,9 +273,9 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * @param deltaY the amount to translate along the Y axis. (double)
      */
     public void translate(double deltaX, double deltaY) {
-        this.getPosition().translate(new Vector2(deltaX, deltaY));
-        for (Vector2 point : getVertices()) {
-            point.translate(new Vector2(deltaX, deltaY));
+        this.getPosition().translate(new Point(deltaX, deltaY));
+        for (Point point : getVertices()) {
+            point.translate(new Point(deltaX, deltaY));
         }
     }
 
@@ -286,10 +285,10 @@ public class Collidable extends java.lang.Object implements Cloneable {
      *
      * @param delta the amount to translate along the axis.
      */
-    public void translate(Vector2 delta) {
-        this.getPosition().translate(new Vector2(delta.getX(), delta.getY()));
-        for (Vector2 point : getVertices()) {
-            point.translate(new Vector2(delta.getX(), delta.getY()));
+    public void translate(Point delta) {
+        this.getPosition().translate(new Point(delta.getX(), delta.getY()));
+        for (Point point : getVertices()) {
+            point.translate(new Point(delta.getX(), delta.getY()));
         }
     }
 
@@ -301,7 +300,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      */
     public void translateX(double deltaX) {
         this.getPosition().translateX(deltaX);
-        for (Vector2 point : getVertices()) {
+        for (Point point : getVertices()) {
             point.translateX(deltaX);
         }
     }
@@ -314,7 +313,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      */
     public void translateY(double deltaY) {
         this.getPosition().translateY(deltaY);
-        for (Vector2 point : getVertices()) {
+        for (Point point : getVertices()) {
             point.translateY(deltaY);
         }
     }
@@ -328,7 +327,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
      */
     @SuppressWarnings("Convert2Diamond")
     public void reset() {
-        this.vertices = new ArrayList<Vector2>();
+        this.vertices = new ArrayList<Point>();
     }
 
     /**
@@ -359,7 +358,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
     public float getAverageHeight() {
         float result = 0;
 
-        for (Vector2 point : getVertices()) {
+        for (Point point : getVertices()) {
             result += point.getX();
         }
 
@@ -376,18 +375,18 @@ public class Collidable extends java.lang.Object implements Cloneable {
     public float getAverageWidth() {
         float result = 0;
 
-        for (Vector2 point : getVertices()) {
+        for (Point point : getVertices()) {
             result += point.getX();
         }
 
         return result / getNumVertices();
     }
 
-    public Vector2 getPosition() {
+    public Point getPosition() {
         return this.position;
     }
 
-    public void setPosition(Vector2 position) {
+    public void setPosition(Point position) {
         this.position = position;
     }
 
@@ -448,11 +447,10 @@ public class Collidable extends java.lang.Object implements Cloneable {
      *
      * @return the position of the center of the <code>Collidable</code>.
      */
-    public Vector2 getCenter() {
-        return new Vector2(
+    public Point getCenter() {
+        return new Point(
                 this.getCenterX().getX(),
-                this.getCenterY().getY(),
-                this.getPosition().getRotation()
+                this.getCenterY().getY()
         );
     }
 
@@ -463,11 +461,10 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * @return the coordinate of the center of the <code>Collidable</code> in
      * the horizontal axis
      */
-    public Vector2 getCenterX() {
-        return new Vector2(
+    public Point getCenterX() {
+        return new Point(
                 this.getPosition().getX() - this.getAverageWidth(),
-                this.getPosition().getY(),
-                this.getPosition().getRotation()
+                this.getPosition().getY()
         );
     }
 
@@ -478,11 +475,10 @@ public class Collidable extends java.lang.Object implements Cloneable {
      * @return the coordinate of the center of the <code>Collidable</code> in
      * the vertical axis
      */
-    public Vector2 getCenterY() {
-        return new Vector2(
+    public Point getCenterY() {
+        return new Point(
                 this.getPosition().getX(),
-                this.getPosition().getY() - this.getAverageWidth(),
-                this.getPosition().getRotation()
+                this.getPosition().getY() - this.getAverageWidth()
         );
     }
 
@@ -533,7 +529,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
     }
 
     public void setPosition(double xPos, double yPos) {
-        this.setPosition(new Vector2(xPos, yPos));
+        this.setPosition(new Point(xPos, yPos));
     }
 
     /**
@@ -607,7 +603,7 @@ public class Collidable extends java.lang.Object implements Cloneable {
         return false;
     }
 
-    public void gotoPos(Vector2 destination, float speed) {
+    public void gotoPos(Point destination, float speed) {
         if (this.getPosition().getX() > destination.getX()) {
             this.getPosition().translateX(-speed);
         }
@@ -622,16 +618,16 @@ public class Collidable extends java.lang.Object implements Cloneable {
         }
     }
 
-    public void gotoPos(Vector2 destination) {
+    public void gotoPos(Point destination) {
         this.gotoPos(destination, 1);
     }
 
     public void gotoPos(double xPos, double yPos) {
-        this.gotoPos(new Vector2(xPos, yPos), 1);
+        this.gotoPos(new Point(xPos, yPos), 1);
     }
 
     public void gotoPos(double xPos, double yPos, float speed) {
-        this.gotoPos(new Vector2(xPos, yPos), speed);
+        this.gotoPos(new Point(xPos, yPos), speed);
     }
 
     public final Collidable getCollidable() {

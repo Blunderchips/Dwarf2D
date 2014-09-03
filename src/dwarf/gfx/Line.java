@@ -1,15 +1,15 @@
 package dwarf.gfx;
 
-import java.util.Objects;
-
-import dwarf.GameObject;
 import dwarf.Collidable;
+import dwarf.GameObject;
+import dwarf.util.Point;
 import dwarf.util.Vector2;
+import java.util.Objects;
 
 public class Line extends dwarf.Collidable implements GameObject, Colours {
 
-    private Vector2 pointA;
-    private Vector2 pointB;
+    private Point pointA;
+    private Point pointB;
 
     /**
      * the colour of the line.
@@ -26,29 +26,29 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
         super();
     }
 
-    public Line(Vector2 pointA, Vector2 pointB, Colour colour) {
+    public Line(Point pointA, Point pointB, Colour colour) {
         super();
 
         this.pointA = pointA;
         this.pointB = pointB;
         this.colour = colour;
-        
+
         this.update = true;
         this.render = true;
 
         // --
-        Vector2 tempA = pointA;
-        Vector2 tempB = pointA;
-        Vector2 tempC = pointB;
-        Vector2 tempD = pointB;
+        Point tempA = pointA;
+        Point tempB = pointA;
+        Point tempC = pointB;
+        Point tempD = pointB;
 
-        tempA.add(1);
-        tempB.sub(1);
-        tempC.add(1);
-        tempD.sub(1);
+        tempA.translate(1);
+        tempB.translate(-1);
+        tempC.translate(1);
+        tempD.translate(-1);
         // --
 
-        super.setVertices(new Vector2[]{tempA, tempB, tempC, tempD});
+        super.setVertices(new Point[]{tempA, tempB, tempC, tempD});
     }
 
     public Line(Line line) {
@@ -104,43 +104,36 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
         return true;
     }
 
-    public Vector2 getPointA() {
+    public Point getPointA() {
         return this.pointA;
     }
 
-    public void setPointA(Vector2 pointA) {
+    public void setPointA(Point pointA) {
         this.pointA = pointA;
     }
 
-    public Vector2 getPointB() {
+    public Point getPointB() {
         return this.pointB;
     }
 
-    public void setPointB(Vector2 pointB) {
+    public void setPointB(Point pointB) {
         this.pointB = pointB;
     }
 
-    public Vector2 midPoint() {
-        double x = (this.pointA.getX() + this.pointB.getX()) / 2;
-        double y = (this.pointA.getY() + this.pointB.getY()) / 2;
-
-        return new Vector2(x, y);
+    public Point midPoint() {
+        return Point.midPoint(pointA, pointB);
     }
 
     public double gradient() {
-        return (this.pointA.getY() - this.pointB.getY()) / (this.pointA.getX() - this.pointB.getX());
+        return Point.gradient(pointA, pointB);
     }
 
-    public double length() {
-        return Math.sqrt(
-                java.lang.Math.pow((this.pointA.getX() - this.pointB.getX()), 2)
-                + java.lang.Math.pow((this.pointA.getY() - this.pointB.getY()), 2)
-        );
+    public double distance() {
+        return Point.distance(pointA, pointB);
     }
 
-    public double lengthSq() {
-        return java.lang.Math.pow((this.pointA.getX() - this.pointB.getX()), 2)
-                + java.lang.Math.pow((this.pointA.getY() - this.pointB.getY()), 2);
+    public double distanceSq() {
+        return Point.distanceSq(pointA, pointB);
     }
 
     @Override
@@ -190,7 +183,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
      */
     @Override
     @Deprecated
-    public Vector2 getCenterY() {
+    public Point getCenterY() {
         return this.midPoint();
     }
 
@@ -203,7 +196,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
      */
     @Override
     @Deprecated
-    public Vector2 getCenterX() {
+    public Point getCenterX() {
         return this.midPoint();
     }
 
@@ -216,7 +209,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
      */
     @Override
     @Deprecated
-    public Vector2 getCenter() {
+    public Point getCenter() {
         return this.midPoint();
     }
 
@@ -234,13 +227,13 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     @Override
     @Deprecated
-    public void gotoPos(Vector2 destination) throws UnsupportedOperationException {
+    public void gotoPos(Point destination) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void gotoPos(Vector2 destination, float speed) throws UnsupportedOperationException {
+    public void gotoPos(Point destination, float speed) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
@@ -252,7 +245,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     @Override
     @Deprecated
-    public void setPosition(Vector2 position) throws UnsupportedOperationException {
+    public void setPosition(Point position) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
@@ -270,7 +263,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     @Override
     @Deprecated
-    public void translate(Vector2 delta) throws UnsupportedOperationException {
+    public void translate(Point delta) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
@@ -294,7 +287,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     @Override
     @Deprecated
-    public void setVertices(Vector2[] vertices) {
+    public void setVertices(Point[] vertices) {
         super.setVertices(vertices);
     }
 
@@ -306,7 +299,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     @Override
     @Deprecated
-    public void addPoints(Vector2[] points) {
+    public void addPoints(Point[] points) {
         super.addPoints(points);
     }
 
@@ -318,7 +311,7 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     @Override
     @Deprecated
-    public void addPoint(Vector2 point) {
+    public void addPoint(Point point) {
         super.addPoint(point);
     }
 

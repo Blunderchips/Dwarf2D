@@ -1,15 +1,14 @@
 package snake;
 
-import javax.swing.JOptionPane;
-
 import dwarf.GameObject;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Shape;
 import dwarf.random;
-import dwarf.util.Vector2;
-
-import static snake.Snake.game;
 import static dwarf.random.interger;
+import dwarf.util.Point;
+import dwarf.util.Vector2;
+import javax.swing.JOptionPane;
+import static snake.Snake.game;
 
 public class Player extends Shape {
 
@@ -17,7 +16,7 @@ public class Player extends Shape {
     private Vector2 velocity;
 
     public Player() {
-        super(4, 10, new Vector2(
+        super(4, 10, new Point(
                 interger(Window.getWidth()),
                 interger(Window.getHeight())
         ), FILL, RED);
@@ -61,17 +60,17 @@ public class Player extends Shape {
         }
 
         this.boundryCheck();
-        this.translate(velocity);
+        this.translate(velocity.toPoint());
     }
 
     public void die() {
         JOptionPane.showMessageDialog(null, "Score: " + Snake.score, "You are Dead.", 0);
 
-        Snake.player.setPosition(new Vector2(
+        Snake.player.setPosition(new Point(
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
         ));
-        Snake.zombie.setPosition(new Vector2(
+        Snake.zombie.setPosition(new Point(
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
         ));

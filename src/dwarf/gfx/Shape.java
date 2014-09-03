@@ -1,12 +1,11 @@
 package dwarf.gfx;
 
-import dwarf.util.math;
+import dwarf.util.Point;
 import dwarf.util.Vector2;
-
+import dwarf.util.math;
+import static dwarf.util.math.sin;
 import static java.lang.Math.abs;
 import static java.lang.Math.tan;
-
-import static dwarf.util.math.sin;
 
 /**
  * A regular figure that has sides, edges and angles that are congruent.
@@ -27,7 +26,7 @@ public class Shape extends Polygon {
         super();
     }
 
-    public Shape(int numSides, double lineLength, Vector2 position, int mode, Colour colour) {
+    public Shape(int numSides, double lineLength, Point position, int mode, Colour colour) {
         super(position, mode, colour);
 
         numSides = abs(numSides);
@@ -53,7 +52,7 @@ public class Shape extends Polygon {
         this.numSides = (byte) numSides;
         this.lineLength = lineLength;
 
-        Vector2[] point = new Vector2[numSides];
+        Point[] point = new Point[numSides];
 
         Vector2 temp = new Vector2();
 
@@ -63,7 +62,7 @@ public class Shape extends Polygon {
             temp.move(getLineLength());
             temp.rotate(angle);
 
-            point[i] = new Vector2(temp.getX(), (temp.getY()));
+            point[i] = new Point(temp.getX(), (temp.getY()));
         }
 
         super.setVertices(point);
@@ -179,7 +178,7 @@ public class Shape extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoint(Vector2 point) {
+    public void addPoint(Point point) {
         super.addPoint(point);
     }
 
@@ -190,7 +189,7 @@ public class Shape extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoints(Vector2[] points) {
+    public void addPoints(Point[] points) {
         super.addPoints(points);
     }
 
@@ -214,7 +213,7 @@ public class Shape extends Polygon {
 
     @Override
     @Deprecated
-    public void setVertices(Vector2[] vertices) {
+    public void setVertices(Point[] vertices) {
         super.setVertices(vertices);
     }
 }

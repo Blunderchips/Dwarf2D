@@ -3,11 +3,12 @@ package coulourTest;
 import dwarf.Game;
 import dwarf.gfx.Colour;
 import dwarf.gfx.Colours;
-import dwarf.gfx.Rectangle;
-import dwarf.util.Vector2;
-
 import static dwarf.gfx.Colours.white;
 import static dwarf.gfx.Polygon.FILL;
+import dwarf.gfx.Rectangle;
+import dwarf.util.Point;
+import dwarf.util.Vector2;
+
 
 public class colourTest implements Colours {
 
@@ -27,7 +28,7 @@ public class colourTest implements Colours {
                 double yPos = 0;
 
                 for (Colour colour : colours) {
-                    super.addGameObject(new Rectangle(800 / colours.length, 600, new Vector2(xPos, yPos), FILL, colour));
+                    super.addGameObject(new Rectangle(800 / colours.length, 600, new Point(xPos, yPos), FILL, colour));
                     xPos += 800 / colours.length;
                 }
             }

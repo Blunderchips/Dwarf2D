@@ -52,43 +52,6 @@ public class Vector2 extends java.lang.Object implements Cloneable {
     private double y;
 
     /**
-     * returns the gradient between two Vectors2.
-     *
-     * @param vectorA the first Vector2
-     * @param vectorB the second Vector2
-     * @return returns the gradient between two Vectors
-     */
-    public static double gradient(Vector2 vectorA, Vector2 vectorB) {
-        return (vectorA.getY() - vectorB.getY()) / (vectorA.getX() - vectorB.getX());
-    }
-
-    /**
-     * returns the distance between two Vectors2.
-     *
-     * @param vectorA the first Vector2
-     * @param vectorB the second Vector2
-     * @return returns the distance between two Vectors
-     */
-    public static double distance(Vector2 vectorA, Vector2 vectorB) {
-        return Math.sqrt(
-                java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
-                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-        );
-    }
-
-    /**
-     * returns the square distance between two Vectors2.
-     *
-     * @param vectorA the first Vector
-     * @param vectorB the second Vector
-     * @return returns the square distance between two Vectors
-     */
-    public static double distanceSq(Vector2 vectorA, Vector2 vectorB) {
-        return java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
-                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2);
-    }
-
-    /**
      * Default constructor.
      */
     public Vector2() {
@@ -149,10 +112,6 @@ public class Vector2 extends java.lang.Object implements Cloneable {
         } else {
             throw new IllegalArgumentException("the double array inputed does not have 2 points");
         }
-    }
-
-    public Vector2 midpoint(Vector2 vectorA, Vector2 vectorB) {
-        return new Vector2(((vectorA.getX() + vectorB.getX()) / 2), ((vectorA.getY() + vectorB.getY()) / 2));
     }
 
     public double length() {
@@ -301,7 +260,7 @@ public class Vector2 extends java.lang.Object implements Cloneable {
         this.y += delta.getY();
     }
 
-    public void change(double delta) {
+    public void translate(double delta) {
         this.x += delta;
         this.y += delta;
     }
@@ -389,32 +348,6 @@ public class Vector2 extends java.lang.Object implements Cloneable {
                 return this.getY();
         }
         throw new IllegalArgumentException("index must be either 0, 1");
-    }
-
-    public double smallestAngleBetween(Vector2 otherVector) {
-        double dotProduct = dot(otherVector);
-        double angle = Math.acos(dotProduct);
-        return angle;
-    }
-
-    public double angleBetween(Vector2 otherVector) {
-        double angle = Math.atan2(otherVector.getY(), otherVector.getX())
-                - Math.atan2(this.getY(), this.getX());
-        return angle;
-    }
-
-    public double getAngle() {
-        return Math.atan2(this.getY(), this.getX());
-    }
-
-    public Vector2 limit(double max) {
-        double m = length();
-        if (m > max) {
-            double div = m / max;
-            return new Vector2(this.getX() / div, this.getY() / div);
-        } else {
-            return this;
-        }
     }
 
     /**
@@ -568,5 +501,9 @@ public class Vector2 extends java.lang.Object implements Cloneable {
         } catch (Exception ex) {
             throw new DwarfException(ex);
         }
+    }
+    
+    public Point toPoint() {
+        return new Point(x, y);
     }
 }

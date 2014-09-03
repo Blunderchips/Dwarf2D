@@ -1,14 +1,11 @@
 package dwarf.gfx;
 
-import java.util.Arrays;
-
+import dwarf.util.Point;
 import dwarf.util.Vector2;
-
+import static dwarf.util.math.TWO_PI;
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
-
-import static dwarf.util.math.TWO_PI;
-
+import java.util.Arrays;
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.GL_POINTS;
 import static org.lwjgl.opengl.GL11.GL_POLYGON;
@@ -38,11 +35,11 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
  */
 public interface draw extends dwarf.gfx.shapeConstants {
 
-    public static void fillRect(float width, float hieght, Vector2 translation, Colour colour) {
+    public static void fillRect(float width, float hieght, Point translation, double rotation, Colour colour) {
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             colour.bind();
 
@@ -564,18 +561,18 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void fillPolygon(Vector2[] points, Vector2 translation, Colour colour) {
+    public static void fillPolygon(Point[] points, Point translation, double rotation, Colour colour) {
 
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             colour.bind();
 
             glBegin(GL_POLYGON);
             {
-                for (Vector2 point : points) {
+                for (Point point : points) {
                     glVertex2d(point.getX(), point.getY());
                 }
             }
@@ -587,7 +584,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void fillShape(int numSides, double lineLength, Vector2 translation, Colour colour) {
+    public static void fillShape(int numSides, double lineLength, Point translation, double rotation, Colour colour) {
 
         if (numSides >= 3) {
 
@@ -603,7 +600,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
             glPushMatrix();
             {
                 glTranslated(translation.getX(), translation.getY(), 0);
-                glRotated(translation.getRotation(), 0, 0, 1);
+                glRotated(rotation, 0, 0, 1);
 
                 colour.bind();
 
@@ -629,7 +626,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
         }
     }
 
-    public static void line(Vector2 A, Vector2 B, Colour colour) {
+    public static void line(Point A, Point B, Colour colour) {
 
         glPushMatrix();
         {
@@ -647,29 +644,29 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void strokeRect(int width, int hieght, Vector2 translation, Colour colour) {
+    public static void strokeRect(int width, int hieght, Point translation, double rotation, Colour colour) {
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
-            line(new Vector2(0, 0), new Vector2(0, hieght), colour);
-            line(new Vector2(0, hieght), new Vector2(width, hieght), colour);
-            line(new Vector2(width, hieght), new Vector2(width, 0), colour);
-            line(new Vector2(width, 0), new Vector2(0, 0), colour);
+            line(new Point(0, 0), new Point(0, hieght), colour);
+            line(new Point(0, hieght), new Point(width, hieght), colour);
+            line(new Point(width, hieght), new Point(width, 0), colour);
+            line(new Point(width, 0), new Point(0, 0), colour);
         }
         glPopMatrix();
     }
 
-    public static void strokePolygon(Vector2[] points, Vector2 translation, Colour colour) {
+    public static void strokePolygon(Point[] points, Point translation, double rotation, Colour colour) {
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             colour.bind();
 
-            line(new Vector2(points[0]), points[1], colour);
+            line(new Point(points[0]), points[1], colour);
 
             for (byte i = 1; i < (points.length - 1); i++) {
                 line(points[i], points[i + 1], colour);
@@ -682,7 +679,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void strokeShape(int numSides, double lineLength, Vector2 translation, Colour colour) {
+    public static void strokeShape(int numSides, double lineLength, Point translation, double rotation, Colour colour) {
 
         numSides = abs(numSides);
 
@@ -700,7 +697,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
             glPushMatrix();
             {
                 glTranslated(translation.getX(), translation.getY(), 0);
-                glRotated(translation.getRotation(), 0, 0, 1);
+                glRotated(rotation, 0, 0, 1);
 
                 colour.bind();
 
@@ -708,7 +705,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
                     tempA.move(lineLength);
                     tempA.rotate(angle);
 
-                    line(tempB, tempA, colour);
+                    line(tempB.toPoint(), tempA.toPoint(), colour);
 
                     tempB.set(tempA);
                 }
@@ -722,22 +719,21 @@ public interface draw extends dwarf.gfx.shapeConstants {
         }
     }
 
-    public static void strokePolyLine(Vector2[] points, Vector2 translation, Colour colour) {
+    public static void strokePolyLine(Point[] points, Point translation, double rotation, Colour colour) {
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             colour.bind();
 
-            line(new Vector2(translation.getX(), translation.getY()), points[1], colour);
+            line(new Point(translation.getX(), translation.getY()), points[1], colour);
 
             try {
                 for (byte i = 0; i < points.length; i++) {
                     line(points[i], points[i + 1], colour);
                 }
             } catch (Exception ex) {
-                //System.err.println(ex);
             }
 
             colour.realse();
@@ -745,15 +741,15 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void fillCircle(double radius, Vector2 position, Colour colour) {
-        draw.fillShape(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), position, colour);
+    public static void fillCircle(double radius, Point position, double rotation, Colour colour) {
+        draw.fillShape(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), position, rotation, colour);
     }
 
-    public static void strokeCircle(double radius, Vector2 position, Colour colour) {
-        draw.strokeShape(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), position, colour);
+    public static void strokeCircle(double radius, Point position, double rotation, Colour colour) {
+        draw.strokeShape(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), position, rotation, colour);
     }
 
-    public static void strokeArc(double radius, Vector2 translation, Colour colour) {
+    public static void strokeArc(double radius, Point translation, double rotation, Colour colour) {
 
         Vector2 tempA = new Vector2();
         Vector2 tempB = new Vector2();
@@ -761,7 +757,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             colour.bind();
             tempA.rotate(90);
@@ -770,7 +766,7 @@ public interface draw extends dwarf.gfx.shapeConstants {
                 tempA.move(((TWO_PI * radius) / 60));
                 tempA.rotate(6);
 
-                line(tempB, tempA, colour);
+                line(tempB.toPoint(), tempA.toPoint(), colour);
 
                 tempB.set(tempA);
             }
@@ -780,14 +776,14 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void fillArc(double radius, Vector2 translation, Colour colour) {
+    public static void fillArc(double radius, Point translation, double rotation, Colour colour) {
 
         Vector2 temp = new Vector2();
 
         glPushMatrix();
         {
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             colour.bind();
             temp.rotate(90);
@@ -813,8 +809,8 @@ public interface draw extends dwarf.gfx.shapeConstants {
 
     public static void parabola(float a, float b, float c, float length, Colour colour) {
 
-        Vector2 tuna = new Vector2();
-        Vector2 bacon = new Vector2();
+        Point tuna = new Point();
+        Point bacon = new Point();
 
         for (float x = 0; x != length; x++) {
             tuna.setX(x);
@@ -828,8 +824,8 @@ public interface draw extends dwarf.gfx.shapeConstants {
 
     public static void line(float m, float c, float length, Colour colour) {
 
-        Vector2 tuna = new Vector2();
-        Vector2 bacon = new Vector2();
+        Point tuna = new Point();
+        Point bacon = new Point();
 
         for (float x = 0; x != length; x++) {
             tuna.setX(x);
@@ -841,14 +837,14 @@ public interface draw extends dwarf.gfx.shapeConstants {
         }
     }
 
-    public static void texture(Vector2 translation, Texture texture) {
+    public static void texture(Point translation, double rotation, Texture texture) {
         glPushMatrix();
         {
 
             glEnable(GL_TEXTURE_2D);
 
             glTranslated(translation.getX(), translation.getY(), 0);
-            glRotated(translation.getRotation(), 0, 0, 1);
+            glRotated(rotation, 0, 0, 1);
 
             texture.bind();
 

@@ -2,16 +2,14 @@ package bouncyBall;
 
 import dwarf.Game;
 import dwarf.gfx.Circle;
-
-import dwarf.gfx.Polygon;
-import dwarf.gfx.Rectangle;
-import dwarf.time;
-import dwarf.util.Vector2;
-
-import static dwarf.gfx.Polygon.FILL;
 import static dwarf.gfx.Colours.black;
 import static dwarf.gfx.Colours.blue;
 import static dwarf.gfx.Colours.white;
+import dwarf.gfx.Polygon;
+import static dwarf.gfx.Polygon.FILL;
+import dwarf.gfx.Rectangle;
+import dwarf.time;
+import dwarf.util.Point;
 
 public class bouncyBall {
 
@@ -27,8 +25,8 @@ public class bouncyBall {
             public void load() {
                 dwarf.gfx.background.setColour(white);
 
-                this.ball = new Circle(50, new Vector2(400, 300), FILL, blue);
-                this.base = new Rectangle(800, 50, Vector2.ZERO, FILL, black);
+                this.ball = new Circle(50, new Point(400, 300), FILL, blue);
+                this.base = new Rectangle(800, 50, Point.ZERO, FILL, black);
 
                 super.addGameObject(ball);
                 super.addGameObject(base);

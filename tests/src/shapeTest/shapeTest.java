@@ -1,12 +1,12 @@
 package shapeTest;
 
 import dwarf.Game;
-import dwarf.gfx.Shape;
-import dwarf.util.Vector2;
 
-import static dwarf.gfx.Colour.black;
-import static dwarf.gfx.Colour.white;
+import static dwarf.gfx.Colours.black;
+import static dwarf.gfx.Colours.white;
 import static dwarf.gfx.Polygon.STROKE;
+import dwarf.gfx.Shape;
+import dwarf.util.Point;
 
 public class shapeTest {
 
@@ -18,7 +18,7 @@ public class shapeTest {
                 dwarf.gfx.background.setColour(white);
 
                 for (int i = 3; i < 25; i++) {
-                    super.addGameObject(new Shape(i, 65, new Vector2(375, 20), STROKE, black));
+                    super.addGameObject(new Shape(i, 65, new Point(375, 20), STROKE, black));
                 }
             }
 
