@@ -1,14 +1,12 @@
 package dwarf.gfx;
 
-import static dwarf.gfx.draw.SHAPE_CIRCLE;
-import static dwarf.gfx.shapeConstants.SHAPE_CIRCLE;
+import java.util.Objects;
+
 import dwarf.util.Point;
-import dwarf.util.Vector2;
+
 import static dwarf.util.math.PI;
 import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
-import static dwarf.util.math.sqr;
-import java.util.Objects;
 
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.

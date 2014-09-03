@@ -1,11 +1,16 @@
 package dwarf.gfx;
 
+import java.util.Arrays;
+
+import dwarf.LWJGL.Texture;
 import dwarf.util.Point;
 import dwarf.util.Vector2;
-import static dwarf.util.math.TWO_PI;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
-import java.util.Arrays;
+
+import static dwarf.util.math.TWO_PI;
+
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.GL_POINTS;
 import static org.lwjgl.opengl.GL11.GL_POLYGON;

@@ -52,49 +52,6 @@ public class Vector3 extends java.lang.Object implements Cloneable {
     private double z;
 
     /**
-     * returns the distance between two Vectors3.
-     *
-     * @param vectorA the first Vector3
-     * @param vectorB the second Vector3
-     * @return returns the distance between two Vectors
-     */
-    public static double distance(Vector3 vectorA, Vector3 vectorB) {
-        return Math.sqrt(java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
-                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2)
-        );
-    }
-
-    /**
-     * the square distance between two Vectors3.
-     *
-     * @param vectorA the first Vector
-     * @param vectorB the second Vector
-     * @return returns the square distance between two Vectors
-     */
-    public static double distanceSq(Vector3 vectorA, Vector3 vectorB) {
-        return java.lang.Math.pow((vectorA.getX() - vectorB.getX()), 2)
-                + java.lang.Math.pow((vectorA.getY() - vectorB.getY()), 2)
-                + java.lang.Math.pow((vectorA.getZ() - vectorB.getZ()), 2
-                );
-    }
-
-    /**
-     * returns the midpoint between two Vectors3.
-     *
-     * @param vectorA the first Vector
-     * @param vectorB the second Vector
-     * @return returns the midpoint between two Vectors
-     */
-    public static Vector3 midpoint(Vector3 vectorA, Vector3 vectorB) {
-        return new Vector3(
-                (vectorA.getX() + vectorB.getX()) / 2,
-                (vectorA.getY() + vectorB.getY()) / 2,
-                (vectorA.getZ() + vectorB.getZ()) / 2
-        );
-    }
-
-    /**
      * Default constructor.
      */
     public Vector3() {
@@ -453,35 +410,5 @@ public class Vector3 extends java.lang.Object implements Cloneable {
         double angle = Math.acos(dotProduct);
 
         return angle;
-    }
-
-    /**
-     * returns the distance between this and another Vector3.
-     *
-     * @param p the point to be tested
-     * @return returns the distance between this and another Vector3
-     */
-    public double distance(Vector3 p) {
-        return Vector3.distance(this, p);
-    }
-
-    /**
-     * returns the square distance between this and another Vector3.
-     *
-     * @param p the point to be tested
-     * @return returns the square distance between this and another Vector3
-     */
-    public double distanceSq(Vector3 p) {
-        return Vector3.distanceSq(this, p);
-    }
-
-    /**
-     * returns the midpoint between this and another Point.
-     *
-     * @param p the point to be tested
-     * @return returns the midpoint between this and another Vector3
-     */
-    public Vector3 midpoint(Vector3 p) {
-        return Vector3.midpoint(this, p);
     }
 }

@@ -3,12 +3,11 @@ package coulourTest;
 import dwarf.Game;
 import dwarf.gfx.Colour;
 import dwarf.gfx.Colours;
-import static dwarf.gfx.Colours.white;
-import static dwarf.gfx.Polygon.FILL;
 import dwarf.gfx.Rectangle;
 import dwarf.util.Point;
-import dwarf.util.Vector2;
 
+import static dwarf.gfx.Polygon.FILL;
+import static dwarf.gfx.Colours.white;
 
 public class colourTest implements Colours {
 

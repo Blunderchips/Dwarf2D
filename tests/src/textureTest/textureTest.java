@@ -2,10 +2,10 @@ package textureTest;
 
 import dwarf.DwarfException;
 import dwarf.Game;
-import static dwarf.gfx.Colours.white;
 import dwarf.gfx.Image;
 import dwarf.util.Point;
 
+import static dwarf.gfx.Colours.white;
 
 public class textureTest {
 

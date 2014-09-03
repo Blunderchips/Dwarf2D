@@ -3,10 +3,11 @@ package dwarf.gfx;
 import java.util.Objects;
 import java.io.IOException;
 
+import dwarf.LWJGL.Texture;
 import dwarf.GameObject;
 import dwarf.util.Point;
-
-import static dwarf.util.Point.ZERO;
+import dwarf.LWJGL.TextureLoader;
+import java.awt.Dimension;
 
 /**
  * A set of functions and variables required to create a malleable class for
@@ -63,7 +64,6 @@ public class Image extends Rectangle implements GameObject {
     /**
      * Callback function used to render the <code>Image</code> to the window.
      */
-    
     @Override
     public void render() {
         if (getRender()) {
@@ -136,6 +136,10 @@ public class Image extends Rectangle implements GameObject {
         }
 
         super.setDimensions(new Point(texture.getImageWidth(), texture.getImageHeight()));
+    }
 
+    @Override
+    public Dimension getDimensions() {
+        return new Dimension(texture.getImageWidth(), texture.getImageHeight());
     }
 }

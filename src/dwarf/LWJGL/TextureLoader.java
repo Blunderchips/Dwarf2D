@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package dwarf.gfx;
+package dwarf.LWJGL;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -49,7 +49,6 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Hashtable;
-
 import javax.swing.ImageIcon;
 
 import org.lwjgl.BufferUtils;

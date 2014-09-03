@@ -1,14 +1,16 @@
 package snake;
 
+import javax.swing.JOptionPane;
+
 import dwarf.GameObject;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Shape;
 import dwarf.random;
-import static dwarf.random.interger;
 import dwarf.util.Point;
 import dwarf.util.Vector2;
-import javax.swing.JOptionPane;
+
 import static snake.Snake.game;
+import static dwarf.random.interger;
 
 public class Player extends Shape {
 

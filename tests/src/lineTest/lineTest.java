@@ -1,13 +1,13 @@
 package lineTest;
 
 import dwarf.Game;
-import static dwarf.gfx.Colours.black;
-import static dwarf.gfx.Colours.red;
-import static dwarf.gfx.Colours.white;
 import dwarf.gfx.Line;
 import dwarf.gfx.Square;
 import dwarf.util.Point;
 
+import static dwarf.gfx.Colours.black;
+import static dwarf.gfx.Colours.red;
+import static dwarf.gfx.Colours.white;
 
 public class lineTest {
 

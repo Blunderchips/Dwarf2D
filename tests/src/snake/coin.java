@@ -5,6 +5,7 @@ import dwarf.gfx.Shape;
 import dwarf.random;
 import dwarf.util.Point;
 import dwarf.util.Vector2;
+
 import static snake.Snake.player;
 import static snake.Snake.score;
 

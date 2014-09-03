@@ -96,12 +96,12 @@ public interface Colours {
     /**
      * The colour lime. In the default sRGB space.
      */
-    public final static Colour lime = new Colour(0x0, 0xff, 0x0);
+    public final static Colour blue = new Colour(0x0, 0xff, 0x0);
 
     /**
      * The colour lime. In the default sRGB space.
      */
-    public final static Colour LIME = lime;
+    public final static Colour BLUE = blue;
 
     /**
      * The colour magenta. In the default sRGB space.
@@ -126,10 +126,10 @@ public interface Colours {
     /**
      * The color blue. In the default sRGB space.
      */
-    public final static Colour blue = new Colour(0x0, 0x0, 0xff);
+    public final static Colour lime = new Colour(0x0, 0x0, 0xff);
 
     /**
      * The color blue. In the default sRGB space.
      */
-    public final static Colour BLUE = blue;
+    public final static Colour LIME = lime;
 }

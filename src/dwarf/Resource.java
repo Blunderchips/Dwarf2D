@@ -97,7 +97,7 @@ public class Resource extends java.lang.Object implements Cloneable {
 
     @Override
     public String toString() {
-        return "Resource={" + "path: " + getPath() + "}";
+        return "Resource=[" + "path: " + getPath() + "]";
     }
 
     public Resource get() {

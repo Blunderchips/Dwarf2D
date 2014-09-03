@@ -1,11 +1,11 @@
 package dwarf.util;
 
 /**
- * A 2D double point class, which looks remarkably like an LWJGL one.
+ * A 2D double point class, which looks remarkably like an LWJGL one...
  *
- * @author sid_th3_sl0th
+ * @author MAtthew
  */
-public class Point extends java.lang.Object {
+public class Point extends java.lang.Object implements Cloneable {
 
     public static Point midPoint(Point pointA, Point pointB) {
         double x = (pointA.getX() + pointB.getX()) / 2;
@@ -142,6 +142,38 @@ public class Point extends java.lang.Object {
 
     public void translateY(double deltaY) {
         this.y += deltaY;
+    }
+
+    @Override
+    public Point clone() throws CloneNotSupportedException {
+        return new Point(this);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + (int) (Double.doubleToLongBits(getX()) ^ (Double.doubleToLongBits(getX()) >>> 32));
+        hash = 19 * hash + (int) (Double.doubleToLongBits(getY()) ^ (Double.doubleToLongBits(getY()) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Point other = (Point) obj;
+
+        if (Double.doubleToLongBits(this.getX()) != Double.doubleToLongBits(other.getX())) {
+            return false;
+        } else if (Double.doubleToLongBits(this.getY()) != Double.doubleToLongBits(other.getY())) {
+            return false;
+        }
+
+        return true;
     }
 
 }

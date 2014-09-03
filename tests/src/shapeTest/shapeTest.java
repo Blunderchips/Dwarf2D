@@ -1,12 +1,12 @@
 package shapeTest;
 
 import dwarf.Game;
+import dwarf.gfx.Shape;
+import dwarf.util.Point;
 
 import static dwarf.gfx.Colours.black;
 import static dwarf.gfx.Colours.white;
 import static dwarf.gfx.Polygon.STROKE;
-import dwarf.gfx.Shape;
-import dwarf.util.Point;
 
 public class shapeTest {
 
