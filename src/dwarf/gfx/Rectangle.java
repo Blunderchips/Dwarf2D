@@ -1,8 +1,7 @@
 package dwarf.gfx;
 
 import dwarf.Collidable;
-import dwarf.util.Point;
-import dwarf.util.Vector2;
+import dwarf.util.Point2D;
 import java.awt.Dimension;
 
 /**
@@ -58,22 +57,22 @@ public class Rectangle extends Quadrilateral {
         super();
     }
 
-    public Rectangle(float width, float height, Point position, int mode, Colour colour) {
+    public Rectangle(float width, float height, Point2D position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
     }
 
-    public Rectangle(double width, double height, Point position, int mode, Colour colour) {
+    public Rectangle(double width, double height, Point2D position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(width, height);
     }
 
-    public Rectangle(Dimension dimensions, Point position, int mode, Colour colour) {
+    public Rectangle(Dimension dimensions, Point2D position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(dimensions.getWidth(), dimensions.getHeight());
     }
     
-    public Rectangle(Point dimensions, Point position, int mode, Colour colour) {
+    public Rectangle(Point2D dimensions, Point2D position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
@@ -97,11 +96,11 @@ public class Rectangle extends Quadrilateral {
         this.dimensions = new java.awt.Dimension((int) width, (int) height);
 
         // --
-        Point[] vertices = {
-            new Point(0, 0),
-            new Point(0, height),
-            new Point(width, height),
-            new Point(width, 0)
+        Point2D[] vertices = {
+            new Point2D(0, 0),
+            new Point2D(0, height),
+            new Point2D(width, height),
+            new Point2D(width, 0)
         };
         // --
 
@@ -121,7 +120,7 @@ public class Rectangle extends Quadrilateral {
         return this.dimensions;
     }
 
-    public void setDimensions(Point dimensions) {
+    public void setDimensions(Point2D dimensions) {
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
 
@@ -216,44 +215,44 @@ public class Rectangle extends Quadrilateral {
     }
 
     @Override
-    public Point getCenterX() {
-        return new Point(
+    public Point2D getCenterX() {
+        return new Point2D(
                 this.getPosition().getX() + this.getHalfX(),
                 this.getPosition().getY()
         );
     }
 
     @Override
-    public Point getCenterY() {
-        return new Point(
+    public Point2D getCenterY() {
+        return new Point2D(
                 this.getPosition().getX(),
                 this.getPosition().getY() + this.getHalfY()
         );
     }
 
     @Override
-    public Point getCenter() {
-        return new Point(
+    public Point2D getCenter() {
+        return new Point2D(
                 this.getCenterX().getX(),
                 this.getCenterY().getY()
         );
     }
 
-    public void set(float width, float height, Point position, int mode, Colour colour) {
+    public void set(float width, float height, Point2D position, int mode, Colour colour) {
         this.setVertices(width, height);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(double width, double height, Point position, int mode, Colour colour) {
+    public void set(double width, double height, Point2D position, int mode, Colour colour) {
         this.setVertices(width, height);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
 
-    public void set(java.awt.Dimension dimensions, Point position, int mode, Colour colour) {
+    public void set(java.awt.Dimension dimensions, Point2D position, int mode, Colour colour) {
         this.setVertices(dimensions.getWidth(), dimensions.getHeight());
         super.setPosition(position);
         super.setMode(mode);
@@ -284,7 +283,7 @@ public class Rectangle extends Quadrilateral {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void setVertices(Point[] vertices) {
+    public void setVertices(Point2D[] vertices) {
         if (vertices.length == 4) {
             super.setVertices(vertices);
         } else {

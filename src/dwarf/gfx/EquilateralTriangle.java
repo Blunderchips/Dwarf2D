@@ -5,7 +5,7 @@ import dwarf.util.Vector2;
 
 import static dwarf.util.math.sqr;
 import static dwarf.gfx.draw.SHAPE_TRIANGLE;
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 
 /**
  * A 3 sided polygon where are 3 sides are equal.
@@ -26,7 +26,7 @@ public class EquilateralTriangle extends Shape {
         super();
     }
 
-    public EquilateralTriangle(double sideLength, Point position, int mode, Colour colour) {
+    public EquilateralTriangle(double sideLength, Point2D position, int mode, Colour colour) {
         super(SHAPE_TRIANGLE, sideLength, position, mode, colour);
     }
 
@@ -41,7 +41,7 @@ public class EquilateralTriangle extends Shape {
 
     @Override
     @Deprecated
-    public void addPoint(Point point) {
+    public void addPoint(Point2D point) {
         super.addPoint(point);
     }
 
@@ -63,7 +63,7 @@ public class EquilateralTriangle extends Shape {
 
     @Override
     @Deprecated
-    public void addPoints(Point[] points) {
+    public void addPoints(Point2D[] points) {
         super.addPoints(points);
     }
 
@@ -87,7 +87,7 @@ public class EquilateralTriangle extends Shape {
 
     @Override
     @Deprecated
-    public void setVertices(Point[] vertices) {
+    public void setVertices(Point2D[] vertices) {
         super.setVertices(vertices);
     }
 }

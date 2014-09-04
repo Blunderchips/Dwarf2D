@@ -1,7 +1,7 @@
 package dwarf.gfx;
 
 import dwarf.GameObject;
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 import java.util.Objects;
 
 /**
@@ -50,7 +50,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    public Polygon(Point position, int mode, Colour colour) {
+    public Polygon(Point2D position, int mode, Colour colour) {
         super(position);
 
         this.update = true;
@@ -68,7 +68,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
      * created
      */
-    public Polygon(Point[] vertices, Point position, int mode, Colour colour) {
+    public Polygon(Point2D[] vertices, Point2D position, int mode, Colour colour) {
         super(position);
 
         this.update = true;
@@ -106,7 +106,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * @param mode the mode of the
      * @param colour the colour of the <code>Polygon</code> to be created.
      */
-    protected final void init(Point[] vertices, byte mode, Colour colour) {
+    protected final void init(Point2D[] vertices, byte mode, Colour colour) {
         this.setColour(colour);
         this.setMode(mode);
         super.setVertices(vertices);
@@ -122,10 +122,10 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     /**
      * Callback function used to render the <code>Polygon</code> to the screen.
      *
-     * @see dwarf.gfx.draw#fillPolygon(dwarf.util.Vector2[], dwarf.util.Vector2,
-     * dwarf.gfx.Colour)
-     * @see dwarf.gfx.draw#strokePolygon(dwarf.util.Vector2[],
-     * dwarf.util.Vector2, dwarf.gfx.Colour)
+     * @see dwarf.gfx.draw#fillPolygon(dwarf.util.Point2D[], dwarf.util.Point2D,
+     * double, dwarf.gfx.Colour)
+     * @see dwarf.gfx.draw#strokePolygon(dwarf.util.Point2D[],
+     * dwarf.util.Point2D, double, dwarf.gfx.Colour)
      */
     @Override
     public void render() {
@@ -284,12 +284,12 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         return this;
     }
 
-    public void set(Point position, int mode, Colour colour) {
+    public void set(Point2D position, int mode, Colour colour) {
         this.init((byte) mode, colour);
         super.setPosition(position);
     }
 
-    public void set(Point[] vertices, Point position, int mode, Colour colour) {
+    public void set(Point2D[] vertices, Point2D position, int mode, Colour colour) {
         this.init(vertices, (byte) mode, colour);
         super.setPosition(position);
     }
@@ -305,11 +305,11 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     }
 
     public double getPerimeter() {
-        double result = Point.distance(getVertices()[0], getVertices()[getNumVertices() - 1]);
+        double result = Point2D.distance(getVertices()[0], getVertices()[getNumVertices() - 1]);
 
         for (int i = 0; i < getNumVertices(); i++) {
             try {
-                result += Point.distance(getVertices()[i], getVertices()[i + 1]);
+                result += Point2D.distance(getVertices()[i], getVertices()[i + 1]);
             } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
                 break;
             }

@@ -2,7 +2,7 @@ package shapeTest;
 
 import dwarf.Game;
 import dwarf.gfx.Shape;
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 
 import static dwarf.gfx.Colours.black;
 import static dwarf.gfx.Colours.white;
@@ -18,7 +18,7 @@ public class shapeTest {
                 dwarf.gfx.background.setColour(white);
 
                 for (int i = 3; i < 25; i++) {
-                    super.addGameObject(new Shape(i, 65, new Point(375, 20), STROKE, black));
+                    super.addGameObject(new Shape(i, 65, new Point2D(375, 20), STROKE, black));
                 }
             }
 

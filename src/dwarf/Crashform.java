@@ -22,10 +22,10 @@ public class Crashform extends javax.swing.JFrame {
     /**
      * Creates new form Crashform with a specified <code>Exception</code>.
      *
-     * @param ex the cause of the error
+     * @param cause the cause of the error
      */
-    public Crashform(Throwable ex) {
-        super("Dwarf2D - " + ex.getClass().getName());
+    public Crashform(Throwable cause) {
+        super("Dwarf2D - " + cause.getClass().getName());
 
         this.jScrollPane = new javax.swing.JScrollPane();
         this.txtDisplay = new javax.swing.JTextArea();
@@ -53,13 +53,13 @@ public class Crashform extends javax.swing.JFrame {
         );
         super.pack();
 
+        super.toFront();
         super.setLocationRelativeTo(dwarf.engine.core.Window.getParent());
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        super.toFront();
         super.setEnabled(true);
         super.setVisible(true);
 
-        this.setDisplay(ex);
+        this.setDisplay(cause);
     }
 
     public javax.swing.JTextArea getDisplay() {
@@ -70,7 +70,7 @@ public class Crashform extends javax.swing.JFrame {
         return this;
     }
 
-    private void setDisplay(Throwable ex) {
+    private void setDisplay(Throwable cause) {
         String msg = " ---Dwarf Crash Report--" + "\n \n";
 
         //system details
@@ -84,8 +84,8 @@ public class Crashform extends javax.swing.JFrame {
         msg += " LWJGL: " + dwarf.system.getLWJGLVersion() + "\n \n";
 
         //exception details
-        msg += " " + ex.toString() + "\n";
-        for (StackTraceElement element : ex.getStackTrace()) {
+        msg += " " + cause.toString() + "\n";
+        for (StackTraceElement element : cause.getStackTrace()) {
             msg += "\t " + element + "\n";
         }
 

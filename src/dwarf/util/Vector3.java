@@ -94,7 +94,7 @@ public class Vector3 extends java.lang.Object implements Cloneable {
             this.y = ds[1];
             this.z = ds[2];
         } else {
-            throw new IllegalArgumentException("the double array inputed does not have 3 elements.");
+            throw new dwarf.DwarfException("illegal argument");
         }
     }
 
@@ -106,7 +106,7 @@ public class Vector3 extends java.lang.Object implements Cloneable {
             this.y = fs[1];
             this.z = fs[2];
         } else {
-            throw new IllegalArgumentException("the double array inputed does not have 3 elements.");
+            throw new dwarf.DwarfException("illegal argument");
         }
     }
 
@@ -402,7 +402,7 @@ public class Vector3 extends java.lang.Object implements Cloneable {
             case 2:
                 return z;
         }
-        throw new IllegalArgumentException();
+        throw new dwarf.DwarfException("illegal argument");
     }
 
     public double angleBetween(Vector3 otherVector) {

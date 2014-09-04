@@ -1,7 +1,6 @@
 package dwarf.gfx;
 
-import dwarf.util.Point;
-import dwarf.util.Vector2;
+import dwarf.util.Point2D;
 
 /**
  * A quadrilateral is a polygon with four sides/edges and four vertices/corners.
@@ -21,22 +20,22 @@ public class Quadrilateral extends Polygon {
         super();
     }
 
-    public Quadrilateral(Point[] vertices, Point position, int mode, Colour colour) {
+    public Quadrilateral(Point2D[] vertices, Point2D position, int mode, Colour colour) {
         super(position, mode, colour);
 
         if (vertices != null) {
             if (vertices.length != 4) {
-                throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 vertices/corners.");
+                throw new IllegalArgumentException("illegal argument");
             } else {
                 super.setVertices(vertices);
             }
         }
     }
 
-    public Quadrilateral(Point vertexA, Point vertexB, Point vertexC, Point vertexD, Point position, int mode, Colour colour) {
+    public Quadrilateral(Point2D vertexA, Point2D vertexB, Point2D vertexC, Point2D vertexD, Point2D position, int mode, Colour colour) {
         super(position, mode, colour);
 
-        Point[] points = {
+        Point2D[] points = {
             vertexA, vertexB, vertexC, vertexD
         };
 
@@ -50,7 +49,7 @@ public class Quadrilateral extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoint(Point point) {
+    public void addPoint(Point2D point) {
         super.addPoint(point);
     }
 
@@ -60,14 +59,14 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
-    public void set(Point[] vertices, Point position, int mode, Colour colour) {
+    public void set(Point2D[] vertices, Point2D position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
 
         if (vertices != null) {
             if (vertices.length != 4) {
-                throw new IllegalArgumentException("lol you stupid idiot, quadrilaterals have 4 sides and thus are made up of 4 vertices/corners.");
+                throw new IllegalArgumentException("illegal argument");
             } else {
                 super.setVertices(vertices);
             }
@@ -76,12 +75,12 @@ public class Quadrilateral extends Polygon {
         }
     }
 
-    public void set(Point vertexA, Point vertexB, Point vertexC, Point vertexD, Point position, int mode, Colour colour) {
+    public void set(Point2D vertexA, Point2D vertexB, Point2D vertexC, Point2D vertexD, Point2D position, int mode, Colour colour) {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
 
-        Point[] points = {
+        Point2D[] points = {
             vertexA, vertexB, vertexC, vertexD
         };
 
@@ -102,7 +101,7 @@ public class Quadrilateral extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoints(Point[] points) {
+    public void addPoints(Point2D[] points) {
         super.addPoints(points);
     }
 
@@ -126,10 +125,16 @@ public class Quadrilateral extends Polygon {
 
     @Override
     @Deprecated
-    public void setVertices(Point[] vertices) {
+    public void setVertices(Point2D[] vertices) {
         super.setVertices(vertices);
     }
 
+    /**
+     * A cyclic quadrilateral is a four-sided figure with all four vertices
+     * lying on the circumference of a circle.
+     *
+     * @return true if this is a cyclic quad
+     */
     public boolean isCyclicQuad() {
         return false; //TODO
     }

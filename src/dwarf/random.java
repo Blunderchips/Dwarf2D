@@ -1,5 +1,7 @@
 package dwarf;
 
+import dwarf.util.Point2D;
+import dwarf.util.Point3D;
 import dwarf.util.Vector2;
 import dwarf.util.Vector3;
 
@@ -89,6 +91,51 @@ public interface random {
     public static Vector3 vec3(int maximum, int minimum) {
         return new Vector3(
                 random.interger(minimum, maximum),
+                random.interger(minimum, maximum),
+                random.interger(minimum, maximum)
+        );
+    }
+
+    public static Point3D point3D() {
+        return new Point3D(
+                random.interger(),
+                random.interger(),
+                random.interger()
+        );
+    }
+
+    public static Point3D point3D(int maximum) {
+        return new Point3D(
+                random.interger(maximum),
+                random.interger(maximum),
+                random.interger(maximum)
+        );
+    }
+
+    public static Point3D point3D(int maximum, int minimum) {
+        return new Point3D(
+                random.interger(minimum, maximum),
+                random.interger(minimum, maximum),
+                random.interger(minimum, maximum)
+        );
+    }
+
+    public static Point2D point2D() {
+        return new Point2D(
+                random.interger(),
+                random.interger()
+        );
+    }
+
+    public static Point2D point2D(int maximum) {
+        return new Point2D(
+                random.interger(maximum),
+                random.interger(maximum)
+        );
+    }
+
+    public static Point2D point2D(int maximum, int minimum) {
+        return new Point2D(
                 random.interger(minimum, maximum),
                 random.interger(minimum, maximum)
         );

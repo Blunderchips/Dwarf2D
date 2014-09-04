@@ -503,7 +503,7 @@ public class Vector2 extends java.lang.Object implements Cloneable {
         }
     }
     
-    public Point toPoint() {
-        return new Point(x, y);
+    public Point2D toPoint() {
+        return new Point2D(x, y);
     }
 }

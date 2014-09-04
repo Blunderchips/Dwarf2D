@@ -19,10 +19,10 @@ import static org.lwjgl.openal.AL10.alGetString;
  * href='http://www.opengl.org/'>OpenGL</a>. Early versions of the framework
  * were open source software, but the later revisions are proprietary.
  *
+ * @author Matthew 'siD' Van der Bijl
+ *
  * @see <a href='http://en.wikipedia.org/wiki/OpenAL'>wikipedia</a>
  * @see <a href='http://www.openal.org/'>openal.org</a>
- *
- * @author Matthew 'siD' Van der Bijl
  */
 public interface openAL {
 

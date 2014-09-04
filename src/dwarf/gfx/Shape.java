@@ -1,6 +1,6 @@
 package dwarf.gfx;
 
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 import dwarf.util.Vector2;
 import dwarf.util.math;
 import static dwarf.util.math.sin;
@@ -26,7 +26,7 @@ public class Shape extends Polygon {
         super();
     }
 
-    public Shape(int numSides, double lineLength, Point position, int mode, Colour colour) {
+    public Shape(int numSides, double lineLength, Point2D position, int mode, Colour colour) {
         super(position, mode, colour);
 
         numSides = abs(numSides);
@@ -52,7 +52,7 @@ public class Shape extends Polygon {
         this.numSides = (byte) numSides;
         this.lineLength = lineLength;
 
-        Point[] point = new Point[numSides];
+        Point2D[] point = new Point2D[numSides];
 
         Vector2 temp = new Vector2();
 
@@ -62,7 +62,7 @@ public class Shape extends Polygon {
             temp.move(getLineLength());
             temp.rotate(angle);
 
-            point[i] = new Point(temp.getX(), (temp.getY()));
+            point[i] = new Point2D(temp.getX(), (temp.getY()));
         }
 
         super.setVertices(point);
@@ -178,7 +178,7 @@ public class Shape extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoint(Point point) {
+    public void addPoint(Point2D point) {
         super.addPoint(point);
     }
 
@@ -189,7 +189,7 @@ public class Shape extends Polygon {
 
     @Override
     @Deprecated
-    public void addPoints(Point[] points) {
+    public void addPoints(Point2D[] points) {
         super.addPoints(points);
     }
 
@@ -213,7 +213,7 @@ public class Shape extends Polygon {
 
     @Override
     @Deprecated
-    public void setVertices(Point[] vertices) {
+    public void setVertices(Point2D[] vertices) {
         super.setVertices(vertices);
     }
 }

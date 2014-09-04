@@ -2,7 +2,7 @@ package dwarf.gfx;
 
 import java.util.Objects;
 
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 
 import static dwarf.util.math.PI;
 import static dwarf.util.math.TWO_PI;
@@ -42,7 +42,7 @@ public class Circle extends Shape {
         super();
     }
 
-    public Circle(double radius, Point location, int mode, Colour colour) {
+    public Circle(double radius, Point2D location, int mode, Colour colour) {
         super(SHAPE_CIRCLE, ((TWO_PI * radius) / 60), location, mode, colour);
         this.radius = radius;
     }
@@ -155,24 +155,24 @@ public class Circle extends Shape {
     }
 
     @Override
-    public Point getCenterX() {
-        return new Point(
+    public Point2D getCenterX() {
+        return new Point2D(
                 this.getPosition().getX() + this.getRadius(),
                 this.getPosition().getY()
         );
     }
 
     @Override
-    public Point getCenterY() {
-        return new Point(
+    public Point2D getCenterY() {
+        return new Point2D(
                 this.getPosition().getX(),
                 this.getPosition().getY() + this.getRadius()
         );
     }
 
     @Override
-    public Point getCenter() {
-        return new Point(
+    public Point2D getCenter() {
+        return new Point2D(
                 this.getCenterX().getX(),
                 this.getCenterY().getY()
         );
@@ -180,7 +180,7 @@ public class Circle extends Shape {
 
     @Override
     @Deprecated
-    public void addPoint(Point point) {
+    public void addPoint(Point2D point) {
         super.addPoint(point);
     }
 

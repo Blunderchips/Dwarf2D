@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import dwarf.LWJGL.Texture;
 import dwarf.GameObject;
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 import dwarf.LWJGL.TextureLoader;
 import java.awt.Dimension;
 
@@ -16,8 +16,8 @@ import java.awt.Dimension;
  *
  * @author Matthew 'siD' Van der Bijl
  *
- * @see dwarf.gfx.Texture
- * @see dwarf.gfx.TextureLoader
+ * @see dwarf.LWJGL.Texture
+ * @see dwarf.LWJGL.TextureLoader
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  */
@@ -42,23 +42,23 @@ public class Image extends Rectangle implements GameObject {
      * @param path A reference to the image on which this sprite should be based
      * @param position the position of the image on the screen
      */
-    public Image(String path, Point position) throws dwarf.DwarfException {
-        super(new Point(), position, STROKE, WHITE);
+    public Image(String path, Point2D position) throws dwarf.DwarfException {
+        super(new Point2D(), position, STROKE, WHITE);
 
         try {
             this.texture = TextureLoader.getTexture(path);
         } catch (IOException ioe) {
             throw new dwarf.DwarfException(ioe);
         } finally {
-            super.setDimensions(new Point(texture.getImageWidth(), texture.getImageHeight()));
+            super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
         }
     }
 
     public Image(Image img) {
-        super(new Point(), img.getPosition(), STROKE, WHITE);
+        super(new Point2D(), img.getPosition(), STROKE, WHITE);
         this.texture = img.getTexture();
 
-        super.setDimensions(new Point(texture.getImageWidth(), texture.getImageHeight()));
+        super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
     }
 
     /**
@@ -122,11 +122,11 @@ public class Image extends Rectangle implements GameObject {
     public void set(Image img) {
         super.setPosition(img.getPosition());
         this.texture = img.getTexture();
-        super.setDimensions(new Point(texture.getImageWidth(), texture.getImageHeight()));
+        super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
 
     }
 
-    public void set(String path, Point position) throws dwarf.DwarfException {
+    public void set(String path, Point2D position) throws dwarf.DwarfException {
         super.setPosition(position);
 
         try {
@@ -135,7 +135,7 @@ public class Image extends Rectangle implements GameObject {
             throw new dwarf.DwarfException(ioe);
         }
 
-        super.setDimensions(new Point(texture.getImageWidth(), texture.getImageHeight()));
+        super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
     }
 
     @Override

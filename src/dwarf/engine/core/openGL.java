@@ -36,10 +36,10 @@ import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
  * with a graphics processing unit (GPU), to achieve hardware-accelerated
  * rendering.
  *
+ * @author Matthew 'siD' Van der Bijl
+ *
  * @see <a href='http://en.wikipedia.org/wiki/OpenGL'>wikipedia</a>
  * @see <a href='http://www.opengl.org/'>opengl.org</a>
- *
- * @author Matthew 'siD' Van der Bijl
  */
 public interface openGL {
 

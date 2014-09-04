@@ -1,7 +1,7 @@
 package dwarf.util;
 
 /**
- * Utility and fast math functions.
+ * Provides an interface for math functions and constants.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -36,7 +36,7 @@ public interface math {
 
     public static int pow(int base, int power) {
         if (power < 0) {
-            throw new IllegalArgumentException("This function does not support negative powers.");
+            throw new dwarf.DwarfException("This function does not support negative powers.");
         } else {
             int ans = (base);
             for (int i = 1; i < power; i++) {

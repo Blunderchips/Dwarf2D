@@ -1,159 +1,173 @@
 package dwarf.util;
 
+import java.util.Arrays;
+
 /**
- * A 2D double point class, which looks remarkably like an LWJGL one...
+ * A point is what has a position in polydimensional space but no dimension,
+ * magnitude nor direction. A Point is neither a solid, nor a surface, nor a
+ * line hence no length, breadth nor depth.
  *
- * @author MAtthew
+ * @author Matthew 'siD' Van der Bijl
+ *
+ * @see java.lang.Object
+ * @see java.lang.Cloneable
  */
-public class Point extends java.lang.Object implements Cloneable {
+public class Point extends java.lang.Object implements java.lang.Cloneable {
 
-    public static Point midPoint(Point pointA, Point pointB) {
-        double x = (pointA.getX() + pointB.getX()) / 2;
-        double y = (pointA.getY() + pointB.getY()) / 2;
+    public static final byte X = 0x0;
+    public static final byte Y = 0x1;
+    public static final byte Z = 0x2;
 
-        return new Point(x, y);
+    /**
+     * returns the length of the line between the two inputed Points.
+     *
+     * @see dwarf.util.Line#length()
+     *
+     * @param A the first Point
+     * @param B the second Point
+     * @return the distance between two Points
+     */
+    public static final double distance(Point A, Point B) {
+        return new Line(A, B).length();
     }
 
-    public static double gradient(Point pointA, Point pointB) {
-        return (pointA.getY() - pointB.getY()) / (pointA.getX() - pointB.getX());
+    /**
+     * returns the squared length of the line between the two inputed Points.
+     *
+     * @see dwarf.util.Line#lengthSq()
+     *
+     * @param A the first Point
+     * @param B the second Point
+     * @return the distance between two Points
+     */
+    public static final double distanceSq(Point A, Point B) {
+        return new Line(A, B).lengthSq();
     }
 
-    public static double distance(Point pointA, Point pointB) {
-        return Math.sqrt(
-                java.lang.Math.pow((pointA.getX() - pointB.getX()), 2)
-                + java.lang.Math.pow((pointA.getY() - pointB.getY()), 2)
-        );
+    /**
+     * returns the midpoint of the line between the two inputed Points.
+     *
+     * @see dwarf.util.Line#midpoint()
+     *
+     * @param A the first Point
+     * @param B the second Point
+     * @return the midpoint between two Points
+     */
+    public static final Point midpoint(Point A, Point B) {
+        return new Line(A, B).midpoint();
     }
 
-    public static double distanceSq(Point pointA, Point pointB) {
-        return java.lang.Math.pow((pointA.getX() - pointB.getX()), 2)
-                + java.lang.Math.pow((pointA.getY() - pointB.getY()), 2);
-    }
+    private double[] components;
 
-    public static final Point ZERO = new Point(0, 0);
-    public static final Point UNIT_X = new Point(1, 0);
-    public static final Point UNIT_Y = new Point(0, 1);
-    public static final Point UNIT_XY = new Point(1, 1);
-
-    /**
-     * A constant holding a Not-a-Number (NaN) value of type
-     * <code>Vector2</code>.
-     */
-    public final static Point NaN = new Point(Double.NaN, Double.NaN);
-    /**
-     * A constant holding the positive infinity of type <code>Vector2</code>.
-     */
-    public static final Point POSITIVE_INFINITY = new Point(
-            Double.POSITIVE_INFINITY,
-            Double.POSITIVE_INFINITY
-    );
-    /**
-     * A constant holding the negative infinity of type <code>Vector2</code>.
-     */
-    public static final Point NEGATIVE_INFINITY = new Point(
-            Double.NEGATIVE_INFINITY,
-            Double.NEGATIVE_INFINITY
-    );
-
-    /**
-     * the x-component of this <code>Point</code>
-     */
-    private double x;
-    /**
-     * the y-component of this <code>Point</code>
-     */
-    private double y;
-
-    /**
-     * Default constructor.
-     */
     public Point() {
         super();
 
-        this.x = 0;
-        this.y = 0;
+        this.components = null;
     }
 
-    public Point(double x, double y) {
+    public Point(double[] components) {
         super();
 
-        this.x = x;
-        this.y = y;
+        this.components = components;
     }
 
-    public Point(float x, float y) {
-        super();
-
-        this.x = x;
-        this.y = y;
-    }
-
+    /**
+     * Constructs and initializes a point with the same location as the
+     * specified Point object.
+     *
+     * @param p the specified Point
+     */
     public Point(Point p) {
         super();
 
-        this.x = p.getX();
-        this.y = p.getY();
+        this.components = p.getComponents();
     }
 
-    public void set(double x, double y) {
-        this.x = x;
-        this.y = y;
+    /**
+     * A 2-dimensional, single-precision, double-point Point.
+     *
+     * @param x the X value of the Point
+     * @param y the Y value of the Point
+     */
+    public Point(double x, double y) {
+        super();
+
+        this.components = new double[]{x, y};
     }
 
-    public void set(float x, float y) {
-        this.x = x;
-        this.y = y;
+    /**
+     * A 3-dimensional, single-precision, double-point Point.
+     *
+     * @param x the X value of the Point
+     * @param y the Y value of the Point
+     * @param z the Z value of the Point
+     */
+    public Point(double x, double y, double z) {
+        super();
+
+        this.components = new double[]{x, y, z};
+    }
+
+    public double[] getComponents() {
+        return this.components;
+    }
+
+    public void setComponents(double[] components) {
+        this.components = components;
+    }
+
+    public Point get() {
+        return this;
+    }
+
+    public double get(int index) {
+        return this.getComponent(index);
+    }
+
+    public void set(double[] components) {
+        this.components = components;
     }
 
     public void set(Point p) {
-        this.x = p.getX();
-        this.y = p.getY();
+        this.components = p.getComponents();
     }
 
-    public double getX() {
-        return x;
+    public double getComponent(int index) {
+        try {
+            return this.components[index];
+        } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
+            return 0;
+        }
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public void setComponent(int index, double component) {
+        this.components[index] = component;
     }
 
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void translate(Point delta) {
-        this.x += delta.getX();
-        this.y += delta.getY();
-    }
-
-    public void translate(double delta) {
-        this.x += delta;
-        this.y += delta;
-    }
-
-    public void translateX(double deltaX) {
-        this.x += deltaX;
-    }
-
-    public void translateY(double deltaY) {
-        this.y += deltaY;
+    public int getNumDimensions() {
+        return this.components.length;
     }
 
     @Override
-    public Point clone() throws CloneNotSupportedException {
-        return new Point(this);
+    public String toString() {
+
+        String result = "";
+
+        for (int i = 0; i < getNumDimensions() - 1; i++) {
+            try {
+                result += components[i] + ", ";
+            } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
+                break;
+            }
+        }
+
+        return "Point[" + result + components[getNumDimensions() - 1] + "]";
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + (int) (Double.doubleToLongBits(getX()) ^ (Double.doubleToLongBits(getX()) >>> 32));
-        hash = 19 * hash + (int) (Double.doubleToLongBits(getY()) ^ (Double.doubleToLongBits(getY()) >>> 32));
+        hash = 89 * hash + Arrays.hashCode(getComponents());
         return hash;
     }
 
@@ -167,13 +181,29 @@ public class Point extends java.lang.Object implements Cloneable {
 
         final Point other = (Point) obj;
 
-        if (Double.doubleToLongBits(this.getX()) != Double.doubleToLongBits(other.getX())) {
-            return false;
-        } else if (Double.doubleToLongBits(this.getY()) != Double.doubleToLongBits(other.getY())) {
+        if (!Arrays.equals(this.getComponents(), other.getComponents())) {
             return false;
         }
 
         return true;
     }
 
+    @Override
+    protected Point clone() throws CloneNotSupportedException {
+        return new Point(this);
+    }
+
+    public void translate(double delta) {
+        for (double component : getComponents()) {
+            component += delta;
+        }
+    }
+
+    public void translate(int index, double delta) {
+        try {
+            this.components[index] += delta;
+        } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
+            throw outOfBoundsException;
+        }
+    }
 }

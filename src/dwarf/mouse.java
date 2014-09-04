@@ -2,7 +2,7 @@ package dwarf;
 
 import dwarf.engine.core.Window;
 
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 import dwarf.util.Vector2;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -86,8 +86,8 @@ public final class mouse {
         org.lwjgl.input.Mouse.destroy();
     }
 
-    public static Point getMousePosition() {
-        return new Point(org.lwjgl.input.Mouse.getX(), org.lwjgl.input.Mouse.getY());
+    public static Point2D getMousePosition() {
+        return new Point2D(org.lwjgl.input.Mouse.getX(), org.lwjgl.input.Mouse.getY());
     }
 
     /**

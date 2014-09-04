@@ -3,7 +3,7 @@ package snake;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Shape;
 import dwarf.random;
-import dwarf.util.Point;
+import dwarf.util.Point2D;
 import dwarf.util.Vector2;
 
 import static snake.Snake.player;
@@ -16,7 +16,7 @@ public class coin extends Shape {
     private boolean alive;
 
     public coin() {
-        super(4, 30, new Point(
+        super(4, 30, new Point2D(
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
         ), FILL, LIME);
@@ -41,7 +41,7 @@ public class coin extends Shape {
 
     public void destory() {
         this.alive = false;
-        this.setPosition(Point.NaN);
+        this.setPosition(Point2D.NaN);
     }
 
     @Override

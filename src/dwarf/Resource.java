@@ -21,7 +21,6 @@ public class Resource extends java.lang.Object implements Cloneable {
      */
     public Resource() {
         super();
-        this.path = null;
     }
 
     /**

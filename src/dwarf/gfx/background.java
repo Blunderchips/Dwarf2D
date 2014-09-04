@@ -1,5 +1,7 @@
 package dwarf.gfx;
 
+import java.awt.Color;
+
 /**
  * utilities class for all background graphical operations.
  *
@@ -42,12 +44,15 @@ public final class background {
      * @param alpha alpha component (byte)
      */
     public static void setColour(byte red, byte green, byte blue, byte alpha) {
-
         background.backgroundColour = new Colour(red, green, blue, alpha);
     }
 
     public static void setColour(Colour backgroundColour) {
         background.backgroundColour = backgroundColour;
+    }
+
+    public static void setColour(Color backgroundColour) {
+        background.backgroundColour = new Colour(backgroundColour);
     }
 
     public static Colour getColour() {
