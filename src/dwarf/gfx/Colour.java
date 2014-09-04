@@ -33,7 +33,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
      * @param green the green component of the colour
      * @param blue the blue component of the colour
      */
-    public static void setColour(float red, float green, float blue) {
+    public static void setColour(double red, double green, double blue) {
         Colour.setColour(red, green, blue, 1);
     }
 
@@ -47,22 +47,22 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
      * @param blue the blue component of the colour
      * @param alpha the alpha component of the colour
      */
-    public static void setColour(float red, float green, float blue, float alpha) {
+    public static void setColour(double red, double green, double blue, float alpha) {
         org.lwjgl.opengl.GL11.glColor4d(red, green, blue, alpha);
     }
 
     /**
      * the red component of the colour.
      */
-    private float red;
+    private double red;
     /**
      * the green component of the colour.
      */
-    private float green;
+    private double green;
     /**
      * the blue component of the colour.
      */
-    private float blue;
+    private double blue;
 
     private float alpha = 0x1;
 
@@ -89,21 +89,21 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
     public Colour(dwarf.util.Vector3 colour) {
         super();
 
-        this.red = (float) colour.getX();
-        this.green = (float) colour.getY();
-        this.blue = (float) colour.getZ();
+        this.red = colour.getX();
+        this.green = colour.getY();
+        this.blue = colour.getZ();
     }
 
     public Colour(dwarf.util.Vector3 colour, float alpha) {
         super();
 
-        this.red = (float) colour.getX();
-        this.green = (float) colour.getY();
-        this.blue = (float) colour.getZ();
+        this.red = colour.getX();
+        this.green = colour.getY();
+        this.blue = colour.getZ();
         this.alpha = alpha;
     }
 
-    public Colour(float red, float green, float blue) {
+    public Colour(double red, double green, double blue) {
         super();
 
         this.red = red;
@@ -112,7 +112,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
         this.alpha = 1;
     }
 
-    public Colour(float red, float green, float blue, float alpha) {
+    public Colour(double red, double green, double blue, float alpha) {
         super();
 
         this.red = red;
@@ -166,7 +166,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
      * Bind this colour to the GL context.
      */
     public void bind() {
-        org.lwjgl.opengl.GL11.glColor4d(red, blue, green, alpha);
+        org.lwjgl.opengl.GL11.glColor4d(red, green, blue, alpha);
     }
 
     @Override
@@ -187,15 +187,15 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
         return brighter(0.2f);
     }
 
-    public float getRedByte() {
+    public double getRedByte() {
         return this.red * 0xff;
     }
 
-    public float getGreenByte() {
+    public double getGreenByte() {
         return this.green * 0xff;
     }
 
-    public float getBlueByte() {
+    public double getBlueByte() {
         return this.blue * 0xff;
     }
 
@@ -209,7 +209,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
      * @param scale what the colour is to be scaled by
      * @return a scales up colour
      */
-    public Colour brighter(float scale) {
+    public Colour brighter(double scale) {
         return new Colour(this.getRed() * scale + 1, this.getGreen() * scale + 1, this.getBlue() * scale + 1, this.getAlpha());
     }
 
@@ -241,15 +241,15 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
         this.alpha = a;
     }
 
-    public float getRed() {
+    public double getRed() {
         return this.red;
     }
 
-    public float getGreen() {
+    public double getGreen() {
         return this.green;
     }
 
-    public float getBlue() {
+    public double getBlue() {
         return this.blue;
     }
 
@@ -576,6 +576,6 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
     }
 
     public java.awt.Color toColor() {
-        return new java.awt.Color(red, green, blue, alpha);
+        return new java.awt.Color((float) red, (float) green, (float) blue, alpha);
     }
 }

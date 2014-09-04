@@ -21,7 +21,7 @@ public class Player extends Shape {
         super(4, 10, new Point2D(
                 interger(Window.getWidth()),
                 interger(Window.getHeight())
-        ), FILL, RED);
+        ), FILL, red);
         this.init();
     }
 
@@ -60,7 +60,7 @@ public class Player extends Shape {
         if (dwarf.keyboard.isKeyPressed("a")) {
             this.velocity = new Vector2(-speed, 0);
         }
-        
+
         this.boundryCheck();
         this.translate(velocity.toPoint());
     }

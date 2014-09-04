@@ -43,7 +43,7 @@ public class Image extends Rectangle implements GameObject {
      * @param position the position of the image on the screen
      */
     public Image(String path, Point2D position) throws dwarf.DwarfException {
-        super(new Point2D(), position, STROKE, WHITE);
+        super(new Point2D(), position, STROKE, Colour.white);
 
         try {
             this.texture = TextureLoader.getTexture(path);
@@ -55,7 +55,7 @@ public class Image extends Rectangle implements GameObject {
     }
 
     public Image(Image img) {
-        super(new Point2D(), img.getPosition(), STROKE, WHITE);
+        super(new Point2D(), img.getPosition(), STROKE, Colour.white);
         this.texture = img.getTexture();
 
         super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));

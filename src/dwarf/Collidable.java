@@ -3,10 +3,10 @@ package dwarf;
 import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
+import dwarf.gfx.Colours;
 import static dwarf.mouse.MOUSE_LEFT;
 import dwarf.util.Point2D;
 import static dwarf.util.Point2D.ZERO;
-import dwarf.util.Vector2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -423,9 +423,9 @@ public class Collidable extends java.lang.Object implements Cloneable {
         } else if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final Collidable coll = (Collidable) obj;
-        
+
         if (!Objects.equals(this.getVertices(), coll.getVertices())) {
             return false;
         } else {
