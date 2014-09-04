@@ -71,7 +71,7 @@ public class Rectangle extends Quadrilateral {
         super(null, position, mode, colour);
         this.setVertices(dimensions.getWidth(), dimensions.getHeight());
     }
-    
+
     public Rectangle(Point2D dimensions, Point2D position, int mode, Colour colour) {
         super(null, position, mode, colour);
         this.setVertices(dimensions.getX(), dimensions.getY());

@@ -1,8 +1,9 @@
 package dwarf.gfx;
 
+import java.util.Objects;
+
 import dwarf.GameObject;
 import dwarf.util.Point2D;
-import java.util.Objects;
 
 /**
  * A basic shape with more than 3 sides.A rectilinear figure bounded by more
@@ -332,5 +333,66 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
 
     public void setUpdate(boolean update) {
         this.update = update;
+    }
+
+    /**
+     * A cyclic quadrilateral is a four-sided figure with all four vertices
+     * lying on the circumference of a circle.
+     *
+     * @return true if this is a cyclic quad
+     */
+    public boolean isCyclicQuad() {
+        //if this is a rectangle it will be a cyclic quad.
+        if (this.isRectangle()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isRectangle() {
+        if (this.getType().equals("quadrilateral")) {
+
+            dwarf.util.Line[] sides = {
+                new dwarf.util.Line(super.getVertices()[0], super.getVertices()[1]),
+                new dwarf.util.Line(super.getVertices()[1], super.getVertices()[2]),
+                new dwarf.util.Line(super.getVertices()[2], super.getVertices()[3]),
+                new dwarf.util.Line(super.getVertices()[3], super.getVertices()[0])
+            };
+
+            return sides[0].length() == sides[1].length() && sides[1].length() == sides[3].length();
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isSquare() {
+        if (this.getType().equals("quadrilateral")) {
+
+            dwarf.util.Line[] sides = {
+                new dwarf.util.Line(super.getVertices()[0], super.getVertices()[1]),
+                new dwarf.util.Line(super.getVertices()[1], super.getVertices()[2]),
+                new dwarf.util.Line(super.getVertices()[2], super.getVertices()[3]),
+                new dwarf.util.Line(super.getVertices()[3], super.getVertices()[0])
+            };
+
+            if (sides[0].length() != sides[3].length()) {
+                return false;
+            } else {
+                for (int i = 0; i < sides.length; i++) {
+                    try {
+                        if (sides[i].length() != sides[i + 1].length()) {
+                            return false;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
+                        break;
+                    }
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

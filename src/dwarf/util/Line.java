@@ -6,22 +6,24 @@ import java.util.Objects;
  * A line is length with out breath nor width, It represents the displacement
  * between two points.
  *
+ * <p>
  * If a line had any breadth or depth, no matter how small, it would exist in
  * more than one dimension; hence a line has neither breadth nor depth and only
- * exist in one dimension. A Line is neither a solid nor a surface.
+ * exist in one dimension. A Line is neither a solid nor a surface.</p>
  *
+ * <p>
  * If the points share a component in any dimension the line created between
  * them can be called straight or right in that dimension, Illustration: If we
  * suspend a weight by a string, the string becomes stretched, and we say it is
  * straight, by which we mean to express that it has assumed a peculiar definite
  * shape. If we mentally abstract from this string all thickness, we obtain the
- * notion of the simplest of all lines, which we call a straight line.
+ * notion of the simplest of all lines, which we call a straight line.</p>
+ *
+ * @author Matthew 'siD' Van der Bijl
  *
  * @see dwarf.util.Point
  * @see java.lang.Object
  * @see java.lang.Cloneable
- *
- * @author Matthew 'siD' Van der Bijl
  */
 public class Line extends java.lang.Object implements java.lang.Cloneable {
 

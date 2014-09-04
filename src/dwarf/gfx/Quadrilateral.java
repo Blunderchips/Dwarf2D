@@ -128,30 +128,4 @@ public class Quadrilateral extends Polygon {
     public void setVertices(Point2D[] vertices) {
         super.setVertices(vertices);
     }
-
-    /**
-     * A cyclic quadrilateral is a four-sided figure with all four vertices
-     * lying on the circumference of a circle.
-     *
-     * @return true if this is a cyclic quad
-     */
-    public boolean isCyclicQuad() {
-        return false; //TODO
-    }
-
-    public boolean isRectangle() {
-        if (super.getType().equals("quadrilateral")) {
-            return this instanceof Rectangle; //TODO       
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isSquare() {
-        if (super.getType().equals("quadrilateral")) {
-            return this instanceof Square; //TODO
-        } else {
-            return false;
-        }
-    }
 }
