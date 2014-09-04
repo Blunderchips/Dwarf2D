@@ -32,7 +32,7 @@ We also provide [Javadocs](http://95.85.60.226/javadoc/ "javadoc") online (This 
 
 ###Dependencies
 * LWJGL 2.9.1 or newer - You can download this from their <a href='http://lwjgl.org/download.php' title='lwjgl.org'>website</a>.
-* Java (the latest would be best) - You can also download this from their <a href='https://www.java.com/' title='java.com'>website</a>.
+* Java (the latest would be best) - You can also download this from their <a href='https://www.java.com/en/download/' title='java.com'>website</a>.
 
 
 ***
