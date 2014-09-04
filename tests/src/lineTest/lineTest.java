@@ -24,7 +24,6 @@ public class lineTest {
 
             @Override
             public void update() {
-
             }
 
             @Override

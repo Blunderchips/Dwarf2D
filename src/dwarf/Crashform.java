@@ -1,5 +1,8 @@
 package dwarf;
 
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+
 /**
  * Crashes are unexpected shutdowns of the Dwarf 2D Engine. When the engine
  * crashes, it typically closes immediately, though it may show an error report
@@ -16,8 +19,8 @@ package dwarf;
 @SuppressWarnings("serial")
 public class Crashform extends javax.swing.JFrame {
 
-    private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JTextArea txtDisplay;
+    private final JScrollPane jScrollPane;
+    private final JTextArea txtDisplay;
 
     /**
      * Creates new form Crashform with a specified <code>Exception</code>.

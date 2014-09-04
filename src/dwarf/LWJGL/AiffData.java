@@ -31,7 +31,6 @@
  */
 package dwarf.LWJGL;
 
-import dwarf.DwarfException;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -42,19 +41,18 @@ import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
 import java.util.Objects;
 
+import dwarf.DwarfException;
+
+import org.lwjgl.openal.AL10;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioFormat.Encoding;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import org.lwjgl.openal.AL10;
-
 /**
  * Utitlity class for loading wavefiles.
- *
- * @author Brian Matzon <brian@matzon.dk>
- * @version $Revision: 2286 $
  */
 public class AiffData {
 
