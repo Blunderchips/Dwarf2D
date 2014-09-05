@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public class Point extends java.lang.Object implements java.lang.Cloneable {
+public class Point extends java.lang.Object implements Cloneable {
 
     public static final byte X = 0x0;
     public static final byte Y = 0x1;

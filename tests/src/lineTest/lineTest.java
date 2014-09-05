@@ -5,14 +5,14 @@ import dwarf.gfx.Line;
 import dwarf.gfx.Square;
 import dwarf.util.Point2D;
 
-import static dwarf.gfx.Colours.black;
 import static dwarf.gfx.Colours.red;
+import static dwarf.gfx.Colours.black;
 import static dwarf.gfx.Colours.white;
 
 public class lineTest {
 
     public static void main(String[] args) {
-        new Game() {
+        new Game("line test - Dwarf 2D") {
 
             @Override
             public void load() {

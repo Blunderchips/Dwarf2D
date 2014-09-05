@@ -122,6 +122,9 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
         return new org.lwjgl.LWJGLException(this);
     }
 
+    /**
+     * "Destroys" the game engine.
+     */
     public void destroyEngine() {
         dwarf.engine.core.Engine.dispose();
     }

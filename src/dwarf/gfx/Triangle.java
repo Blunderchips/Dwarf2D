@@ -163,4 +163,12 @@ public class Triangle extends Polygon {
     public boolean isSimilar(Triangle t) {
         return false; //TODO
     }
+    
+    public boolean isCongruent(EquilateralTriangle et) {
+        return false; //TODO
+    }
+    
+    public boolean isSimilar(EquilateralTriangle et) {
+        return false; //TODO
+    }
 }

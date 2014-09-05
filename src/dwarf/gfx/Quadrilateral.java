@@ -21,12 +21,12 @@ public class Quadrilateral extends Polygon {
         super();
     }
 
-    public Quadrilateral(Point2D[] vertices, Point2D position, int mode, Colour colour) {
+    public Quadrilateral(Point2D[] vertices, Point2D position, int mode, Colour colour) throws DwarfException {
         super(position, mode, colour);
 
         if (vertices != null) {
             if (vertices.length != 4) {
-                throw new IllegalArgumentException("illegal argument");
+                throw new DwarfException("illegal argument");
             } else {
                 super.setVertices(vertices);
             }
@@ -60,7 +60,7 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
-    public void set(Point2D[] vertices, Point2D position, int mode, Colour colour) {
+    public void set(Point2D[] vertices, Point2D position, int mode, Colour colour) throws DwarfException {
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);

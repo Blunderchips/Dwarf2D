@@ -52,37 +52,6 @@ public class Circle extends Shape {
         this.radius = circle.getRadius();
     }
 
-    /**
-     * Returns true if the <code>this</code> is equal to the argument and false
-     * otherwise. Consequently, if both argument are null, true is returned,
-     * false is returned. Otherwise, equality is determined by using the equals
-     * method of the first argument.
-     *
-     * @return true if the argument is equal to <code>this</code> other and
-     * false otherwise
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        } else if (getClass() != obj.getClass()) {
-            return false;
-        } else if (!super.equals(obj)) {
-            return false;
-        }
-
-        final Circle other = (Circle) obj;
-
-        if (Double.doubleToLongBits(this.getRadius()) != Double.doubleToLongBits(other.getRadius())) {
-            return false;
-        } else if (!Objects.equals(getColour(), other.getColour())) {
-            return false;
-        } else {
-            return Objects.equals(getColour(), other.getColour());
-        }
-    }
-
     public double getCircumference() {
         return TWO_PI * radius;
     }

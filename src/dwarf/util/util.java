@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import dwarf.Game;
+import dwarf.DwarfException;
 
 /**
  * Provides an interface that offers general utilities.
@@ -13,6 +14,9 @@ import dwarf.Game;
  * @author Matthew 'siD' Van der Bijl
  */
 public interface util {
+
+    public static int ASCENDING_ORDER = 0x0;
+    public static int DESCENDING_ORDER = 0x1;
 
     public static String[] explode(String split, String input) {
         return input.split(split);
@@ -84,5 +88,179 @@ public interface util {
             }
         }
         return flippedPixels;
+    }
+
+    public static int[] sort(int[] nums, int order) throws DwarfException {
+        switch (order) {
+            case ASCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] > nums[j]) {
+                            int temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            case DESCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] < nums[j]) {
+                            int temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            default:
+                throw new DwarfException("illegal argument");
+        }
+    }
+
+    public static float[] sort(float[] nums, int order) throws DwarfException {
+        switch (order) {
+            case ASCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] > nums[j]) {
+                            float temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            case DESCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] < nums[j]) {
+                            float temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            default:
+                throw new DwarfException("illegal argument");
+        }
+    }
+
+    public static long[] sort(long[] nums, int order) throws DwarfException {
+        switch (order) {
+            case ASCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] > nums[j]) {
+                            long temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            case DESCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] < nums[j]) {
+                            long temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            default:
+                throw new DwarfException("illegal argument");
+        }
+    }
+
+    public static double[] sort(double[] nums, int order) throws DwarfException {
+        switch (order) {
+            case ASCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] > nums[j]) {
+                            double temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            case DESCENDING_ORDER:
+                for (int i = 0; i < nums.length; i++) {
+                    for (int j = i + 1; j < nums.length; j++) {
+                        if (nums[i] < nums[j]) {
+                            double temp = nums[i];
+                            nums[i] = nums[j];
+                            nums[j] = temp;
+                        }
+                    }
+                }
+                return nums;
+            default:
+                throw new DwarfException("illegal argument");
+        }
+    }
+
+    public static char[] sort(char[] chars, int order) throws DwarfException {
+        switch (order) {
+            case ASCENDING_ORDER:
+                for (int i = 0; i < chars.length; i++) {
+                    for (int j = i + 1; j < chars.length; j++) {
+                        if (chars[i] > chars[j]) {
+                            char temp = chars[i];
+                            chars[i] = chars[j];
+                            chars[j] = temp;
+                        }
+                    }
+                }
+                return chars;
+            case DESCENDING_ORDER:
+                for (int i = 0; i < chars.length; i++) {
+                    for (int j = i + 1; j < chars.length; j++) {
+                        if (chars[i] < chars[j]) {
+                            char temp = chars[i];
+                            chars[i] = chars[j];
+                            chars[j] = temp;
+                        }
+                    }
+                }
+                return chars;
+            default:
+                throw new DwarfException("illegal argument");
+        }
+    }
+
+    public static String[] sort(String[] strings, int order) throws DwarfException {
+        switch (order) {
+            case ASCENDING_ORDER:
+                for (int i = 0; i < strings.length; i++) {
+                    for (int j = i + 1; j < strings.length; j++) {
+                        if (strings[i].compareTo(strings[j]) > 1) {
+                            String temp = strings[i];
+                            strings[i] = strings[j];
+                            strings[j] = temp;
+                        }
+                    }
+                }
+                return strings;
+            case DESCENDING_ORDER:
+                for (int i = 0; i < strings.length; i++) {
+                    for (int j = i + 1; j < strings.length; j++) {
+                        if (strings[i].compareTo(strings[j]) > 1) {
+                            String temp = strings[i];
+                            strings[i] = strings[j];
+                            strings[j] = temp;
+                        }
+                    }
+                }
+                return strings;
+            default:
+                throw new DwarfException("illegal argument");
+        }
     }
 }

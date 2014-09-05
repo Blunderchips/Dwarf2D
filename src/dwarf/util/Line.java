@@ -2,6 +2,8 @@ package dwarf.util;
 
 import java.util.Objects;
 
+import dwarf.DwarfException;
+
 /**
  * A line is length with out breath nor width, It represents the displacement
  * between two points.
@@ -25,7 +27,7 @@ import java.util.Objects;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public class Line extends java.lang.Object implements java.lang.Cloneable {
+public class Line extends java.lang.Object implements Cloneable {
 
     private Point A, B;
 
@@ -188,12 +190,12 @@ public class Line extends java.lang.Object implements java.lang.Cloneable {
         B.translate(delta);
     }
 
-    public void translate(int index, double delta) {
+    public void translate(int index, double delta) throws DwarfException {
         try {
             A.translate(index, delta);
             B.translate(index, delta);
         } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
-            throw new dwarf.DwarfException(outOfBoundsException);
+            throw new DwarfException(outOfBoundsException);
         }
     }
 }

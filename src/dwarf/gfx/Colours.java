@@ -17,7 +17,6 @@ public interface Colours {
      * The colour grey. In the default sRGB space.
      */
     public final static Colour grey = new Colour(0.5f, 0.5f, 0.5f, 0xff);
-    ;
 
     /**
      * The colour grey. In the default sRGB space.

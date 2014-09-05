@@ -89,4 +89,20 @@ public class EquilateralTriangle extends Shape {
     public void setVertices(Point2D[] vertices) {
         super.setVertices(vertices);
     }
+    
+    public boolean isCongruent(EquilateralTriangle et) {
+        return super.getLineLength() == et.getLineLength();
+    }
+    
+    public boolean isSimilar(EquilateralTriangle et) {
+        return true;
+    }
+    
+    public boolean isCongruent(Triangle t) {
+        return false; //TODO
+    }
+    
+    public boolean isSimilar(Triangle t) {
+        return false; //TODO
+    }
 }

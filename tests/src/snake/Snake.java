@@ -1,10 +1,11 @@
 package snake;
 
+import java.util.ArrayList;
+
 import dwarf.time;
 import dwarf.gfx.draw;
 import dwarf.GameObject;
 import dwarf.gfx.Colour;
-import java.util.ArrayList;
 
 import static dwarf.random.chance;
 import static dwarf.gfx.Colours.white;

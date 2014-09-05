@@ -1,10 +1,11 @@
 package dwarf.gfx;
 
+import java.util.ArrayList;
+
 import dwarf.DwarfException;
 import dwarf.GameObject;
 import dwarf.random;
 import dwarf.util.Point2D;
-import java.util.ArrayList;
 
 /**
  * @author Matthew 'siD' Van der Bijl
@@ -70,7 +71,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
         return result;
     }
 
-    public boolean setTextures(Image[] textures) {
+    public boolean setTextures(Image[] textures) throws DwarfException {
         try {
             this.textures.clear();
 
@@ -79,12 +80,11 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
             }
             return true;
         } catch (Exception ex) {
-            System.err.println(ex);
-            return false;
+            throw new DwarfException(ex);
         }
     }
 
-    public boolean setTextures(ArrayList<Image> textures) {
+    public boolean setTextures(ArrayList<Image> textures) throws DwarfException {
         try {
             this.textures = textures;
             return true;
@@ -104,7 +104,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
      * @param input the <code>GameObject</code> to be added.
      * @return true if successful and false if it fails.
      */
-    public boolean addTexture(Image input) {
+    public boolean addTexture(Image input) throws DwarfException {
         try {
             return this.textures.add(input);
         } catch (Exception ex) {
@@ -119,7 +119,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
      * @param input the <code>GameObject</code> to be added.
      * @return true if successful and false if it fails.
      */
-    public boolean addTexture(Object input) {
+    public boolean addTexture(Object input) throws DwarfException {
         try {
             return this.textures.add((Image) input);
         } catch (Exception ex) {
@@ -134,7 +134,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
      * @param input the <code>GameObject</code> to be removed.
      * @return true if successful and false if it fails.
      */
-    public boolean removeTexture(Image input) {
+    public boolean removeTexture(Image input) throws DwarfException {
         try {
             return this.textures.remove(input);
         } catch (Exception ex) {
@@ -150,7 +150,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
      * @return true if successful and false if it fails.
      */
     @SuppressWarnings("element-type-mismatch")
-    public boolean removeGameObject(Object input) {
+    public boolean removeGameObject(Object input) throws DwarfException {
         try {
             return this.textures.remove(input);
         } catch (Exception ex) {
@@ -165,7 +165,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
      * @param index of the <code>GameObject</code> to be removed.
      * @return true if successful and false if it fails.
      */
-    public boolean removeGameObject(int index) {
+    public boolean removeGameObject(int index) throws DwarfException {
         try {
             this.textures.remove(index);
             return true;

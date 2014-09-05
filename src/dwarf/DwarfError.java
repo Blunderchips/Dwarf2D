@@ -91,10 +91,6 @@ public class DwarfError extends java.lang.Error implements Cloneable {
         return this;
     }
 
-    public void destroyEngine() {
-        dwarf.engine.core.Engine.dispose();
-    }
-
     /**
      * returns the <code>DwarfException</code> as a new <code>Exception</code>.
      *
@@ -129,5 +125,12 @@ public class DwarfError extends java.lang.Error implements Cloneable {
      */
     public void display() {
         new dwarf.Crashform(this);
+    }
+
+    /**
+     * "Destroys" the game engine.
+     */
+    public void destroyEngine() {
+        dwarf.engine.core.Engine.dispose();
     }
 }
