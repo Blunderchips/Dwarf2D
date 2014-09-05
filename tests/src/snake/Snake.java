@@ -1,12 +1,13 @@
 package snake;
 
+import dwarf.time;
+import dwarf.gfx.draw;
 import dwarf.GameObject;
 import dwarf.gfx.Colour;
-import static dwarf.gfx.Colours.white;
-import dwarf.gfx.draw;
-import static dwarf.random.chance;
-import dwarf.time;
 import java.util.ArrayList;
+
+import static dwarf.random.chance;
+import static dwarf.gfx.Colours.white;
 
 public class Snake extends dwarf.Game {
 
@@ -28,8 +29,6 @@ public class Snake extends dwarf.Game {
         zombie = new Zombie();
         score = 0;
 
-        
-        
         super.addGameObject(zombie);
         super.addGameObject(player);
     }
@@ -38,8 +37,10 @@ public class Snake extends dwarf.Game {
     public void update() {
         if (chance(7)) {
             super.addGameObject(new coin());
-        }System.out.println(time.getDeltaTime());
+        }
         this.updateAllGameObjects();
+
+        System.out.println("Delta Time: " + time.getDeltaTime());
     }
 
     @Override

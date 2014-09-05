@@ -19,8 +19,8 @@ import javax.swing.JScrollPane;
 @SuppressWarnings("serial")
 public class Crashform extends javax.swing.JFrame {
 
-    private final JScrollPane jScrollPane;
     private final JTextArea txtDisplay;
+    private final JScrollPane jScrollPane;
 
     /**
      * Creates new form Crashform with a specified <code>Exception</code>.

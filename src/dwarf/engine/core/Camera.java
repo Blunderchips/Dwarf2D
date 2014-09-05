@@ -152,8 +152,7 @@ public class Camera extends java.lang.Object implements Cloneable, GameObject {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Camera clone() throws CloneNotSupportedException {
         return new Camera(this);
     }
-
 }

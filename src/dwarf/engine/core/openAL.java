@@ -1,15 +1,15 @@
 package dwarf.engine.core;
 
-import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
-import org.lwjgl.openal.ALCcontext;
+import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.ALCdevice;
+import org.lwjgl.openal.ALCcontext;
 
-import static org.lwjgl.openal.AL10.AL_EXTENSIONS;
-import static org.lwjgl.openal.AL10.AL_RENDERER;
 import static org.lwjgl.openal.AL10.AL_VENDOR;
 import static org.lwjgl.openal.AL10.AL_VERSION;
 import static org.lwjgl.openal.AL10.alGetString;
+import static org.lwjgl.openal.AL10.AL_RENDERER;
+import static org.lwjgl.openal.AL10.AL_EXTENSIONS;
 
 /**
  * <a href='http://www.openal.org/'>OpenAL</a> (Open Audio Library) is a

@@ -188,7 +188,7 @@ public class Shader extends java.lang.Object implements Cloneable {
     public String toString() {
         return "Shader = {"
                 + "program:" + getProgram() + ", "
-                + "source: " + getSource() + ", "
+                + "source: " + getSource()
                 + "}";
     }
 

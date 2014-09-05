@@ -3,6 +3,8 @@ package dwarf;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Provides an interface to your system's clock and other time base utilities.
@@ -85,27 +87,31 @@ public final class time {
      * @param nanos time to wait in nanoseconds.
      * @param tStart The time from which the waiting should start.
      *
-     * @throws InterruptedException if another thread has interrupted the
-     * current thread
+     * @throws DwarfException if another thread has interrupted the current
+     * thread
      */
-    public static void sleepFromTime(long nanos, long tStart) throws InterruptedException {
+    public static void sleepFromTime(long nanos, long tStart) throws DwarfException {
         long sleepNanos = nanos - sleepPrecision;
 
         // First, use Java's Thread.sleep() if it is precise enough
         if (nanos / sleepPrecision >= 2) {
-            long actualDelayMillis = (sleepNanos) / 1000000L;
-            int nanoRest = (int) (sleepNanos % 1000000L);
-            if (Thread.interrupted()) {
-                throw new InterruptedException("Time.sleepFromTime interrupted in sleep.");
+            try {
+                long actualDelayMillis = (sleepNanos) / 1000000L;
+                int nanoRest = (int) (sleepNanos % 1000000L);
+                if (Thread.interrupted()) {
+                    throw new DwarfException("Time.sleepFromTime interrupted in sleep.");
+                }
+                Thread.sleep(actualDelayMillis, nanoRest);
+            } catch (InterruptedException ie) {
+                throw new DwarfException(ie);
             }
-            Thread.sleep(actualDelayMillis, nanoRest);
         }
 
         // Second, yield in a busy loop if precise enough
         while ((System.nanoTime() - tStart + worstYieldTime) < nanos) {
             long t1 = System.nanoTime();
             if (Thread.interrupted()) {
-                throw new InterruptedException("Time.sleepFromTime interrupted in yield.");
+                throw new DwarfException("Time.sleepFromTime interrupted in yield.");
             }
             Thread.yield();
             long yieldTime = System.nanoTime() - t1;
@@ -117,7 +123,7 @@ public final class time {
         // Third, run a busy loop for the rest of the time
         while ((System.nanoTime() - tStart) < nanos) {
             if (Thread.interrupted()) {
-                throw new InterruptedException("Time.sleepFromTime interrupted in busy loop.");
+                throw new DwarfException("Time.sleepFromTime interrupted in busy loop.");
             }
         }
     }
@@ -128,11 +134,11 @@ public final class time {
      *
      * @param millis the length of time to sleep in milliseconds
      */
-    public static void sleep(Long millis) {
+    public static void sleep(Long millis) throws dwarf.DwarfException {
         try {
             Thread.sleep(millis);
-        } catch (InterruptedException ex) {
-            System.err.println(ex);
+        } catch (InterruptedException ie) {
+            throw new DwarfException(ie);
         }
     }
 
