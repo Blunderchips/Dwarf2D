@@ -5,8 +5,8 @@ import java.util.Objects;
 import dwarf.util.Point2D;
 
 import static dwarf.util.math.PI;
-import static dwarf.util.math.TWO_PI;
 import static dwarf.util.math.sqr;
+import static dwarf.util.math.TWO_PI;
 
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.
@@ -133,15 +133,19 @@ public class Circle extends Shape {
 
     public void setRadius(double radius) {
         this.radius = radius;
-        super.init(SHAPE_CIRCLE, radius);
+
+        super.setNumSides(SHAPE_CIRCLE);
+        super.setLineLength(((TWO_PI * radius) / 60));
+
+        super.init();
     }
 
-    public float getHalfWidth() {
-        return (float) radius;
+    public double getHalfWidth() {
+        return radius;
     }
 
-    public float getHalfHeight() {
-        return (float) radius;
+    public double getHalfHeight() {
+        return radius;
     }
 
     @Override
@@ -200,5 +204,4 @@ public class Circle extends Shape {
     public void changeNumSides(int input) {
         super.changeNumSides(input);
     }
-
 }

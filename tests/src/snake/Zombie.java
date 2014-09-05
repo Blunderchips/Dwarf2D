@@ -18,10 +18,10 @@ public class Zombie extends Shape {
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
         ), FILL, darkGrey);
-        this.init();
+        this.load();
     }
 
-    private void init() {
+    private void load() {
         this.speed = 5;
         this.alive = true;
     }

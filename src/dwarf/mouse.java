@@ -1,13 +1,10 @@
 package dwarf;
 
-import dwarf.engine.core.Window;
+import java.util.ArrayList;
 
 import dwarf.util.Point2D;
 import dwarf.util.Vector2;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import org.lwjgl.LWJGLException;
 
 /**

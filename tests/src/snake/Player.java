@@ -22,10 +22,10 @@ public class Player extends Shape {
                 interger(Window.getWidth()),
                 interger(Window.getHeight())
         ), FILL, red);
-        this.init();
+        this.load();
     }
 
-    private void init() {
+    private void load() {
         this.speed = 5;
         this.velocity = new Vector2(speed, 0);
     }

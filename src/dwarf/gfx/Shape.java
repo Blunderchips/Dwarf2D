@@ -1,11 +1,13 @@
 package dwarf.gfx;
 
+import dwarf.util.math;
 import dwarf.util.Point2D;
 import dwarf.util.Vector2;
-import dwarf.util.math;
-import static dwarf.util.math.sin;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.tan;
+
+import static dwarf.util.math.sin;
 
 /**
  * A regular figure that has sides, edges and angles that are congruent.
@@ -37,20 +39,29 @@ public class Shape extends Polygon {
                 numSides = 60;
             }
 
-            this.init(numSides, lineLength);
+            this.numSides = (byte) numSides;
+            this.lineLength = lineLength;
+
+            this.init();
         } else {
-            throw new dwarf.DwarfException("lol you stupid idiot, shapes require 3 or more sides.");
+            throw new dwarf.DwarfException("illegal argument");
         }
     }
 
     public Shape(Shape shape) {
         super(shape.getPosition(), shape.getMode(), shape.getColour());
-        this.init(shape.getNumSides(), shape.getLineLength());
+
+        this.numSides = (byte) shape.getNumSides();
+        this.lineLength = shape.getLineLength();
+
+        this.init();
     }
 
-    protected final void init(int numSides, double lineLength) {
-        this.numSides = (byte) numSides;
-        this.lineLength = lineLength;
+    /**
+     * This method is called from within the constructor to initialize the
+     * <code>Shape</code>. WARNING: Do NOT modify this code.
+     */
+    protected final void init() {
 
         Point2D[] point = new Point2D[numSides];
 

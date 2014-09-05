@@ -25,7 +25,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
      * @param colour (RBG)
      */
     public static void setColour(dwarf.util.Vector3 colour) {
-        Colour.setColour(new Colour((float) colour.getX(), (float) colour.getY(), (float) colour.getZ(), 1));
+        Colour.setColour(new Colour(colour.getX(), colour.getY(), colour.getZ(), 1));
     }
 
     /**

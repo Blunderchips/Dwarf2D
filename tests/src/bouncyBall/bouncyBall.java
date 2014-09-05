@@ -1,11 +1,11 @@
 package bouncyBall;
 
+import dwarf.time;
 import dwarf.Game;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Polygon;
-import dwarf.gfx.Rectangle;
-import dwarf.time;
 import dwarf.util.Point2D;
+import dwarf.gfx.Rectangle;
 
 import static dwarf.gfx.Colours.black;
 import static dwarf.gfx.Colours.blue;

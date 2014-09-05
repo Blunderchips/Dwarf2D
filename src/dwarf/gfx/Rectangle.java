@@ -1,8 +1,9 @@
 package dwarf.gfx;
 
+import java.awt.Dimension;
+
 import dwarf.Collidable;
 import dwarf.util.Point2D;
-import java.awt.Dimension;
 
 /**
  * A 4 sided shape where opposite sides are equal. (a parallelogram with a right
@@ -83,11 +84,14 @@ public class Rectangle extends Quadrilateral {
     }
 
     /**
+     * This method is called from within the constructor to initialize the
+     * <code>Rectangle</code>. WARNING: Do NOT modify this code.
+     *
      * @param width the width of the <code>Rectangle</code>.
      * @param height the height of the <code>Rectangle</code>
      */
     @SuppressWarnings("deprecation")
-    protected final void setVertices(double width, double height) {
+    public final void setVertices(double width, double height) {
 //        this.addPoint(new Vector2(0, 0));
 //        this.addPoint(new Vector2(0, height));
 //        this.addPoint(new Vector2(width, height));
@@ -206,18 +210,18 @@ public class Rectangle extends Quadrilateral {
         );
     }
 
-    public double getHalfX() {
+    public double getHalfWidth() {
         return this.getDimensions().getWidth() / 2;
     }
 
-    public double getHalfY() {
+    public double getHalfHeight() {
         return this.getDimensions().getHeight() / 2;
     }
 
     @Override
     public Point2D getCenterX() {
         return new Point2D(
-                this.getPosition().getX() + this.getHalfX(),
+                this.getPosition().getX() + this.getHalfWidth(),
                 this.getPosition().getY()
         );
     }
@@ -226,7 +230,7 @@ public class Rectangle extends Quadrilateral {
     public Point2D getCenterY() {
         return new Point2D(
                 this.getPosition().getX(),
-                this.getPosition().getY() + this.getHalfY()
+                this.getPosition().getY() + this.getHalfHeight()
         );
     }
 
@@ -293,12 +297,12 @@ public class Rectangle extends Quadrilateral {
 
     @Override
     public float getAverageWidth() {
-        return (float) this.getHalfX();
+        return (float) this.getHalfWidth();
     }
 
     @Override
     public float getAverageHeight() {
-        return (float) this.getHalfY();
+        return (float) this.getHalfHeight();
     }
 
     /**

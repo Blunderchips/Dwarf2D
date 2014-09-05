@@ -57,7 +57,8 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         this.update = true;
         this.render = true;
 
-        this.init((byte) mode, colour);
+        this.setMode(mode);
+        this.colour = colour;
     }
 
     /**
@@ -75,7 +76,10 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         this.update = true;
         this.render = true;
 
-        this.init(vertices, (byte) mode, colour);
+        this.setMode(mode);
+        this.colour = colour;
+
+        super.setVertices(vertices);
     }
 
     public Polygon(Polygon polygon) {
@@ -84,33 +88,10 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         this.update = true;
         this.render = true;
 
-        this.init(polygon.getVertices(), (byte) polygon.getMode(), polygon.getColour());
-    }
+        this.setMode(polygon.getMode());
+        this.colour = polygon.getColour();
 
-    /**
-     * Constructs a new <code>Polygon</code> with no vertices.
-     *
-     * @param mode the mode of the <code>Polygon</code> to be created
-     * @param colour the <code>Colour</code> of the <code>Polygon</code> to be
-     * created
-     */
-    protected final void init(byte mode, Colour colour) {
-        this.setColour(colour);
-        this.setMode(mode);
-    }
-
-    /**
-     * Constructs a new <code>Polygon</code> from a <code>Vector2</code> array
-     * of parts of vertex points.
-     *
-     * @param vertices the vertices of the <code>Polygon</code> to be created.
-     * @param mode the mode of the
-     * @param colour the colour of the <code>Polygon</code> to be created.
-     */
-    protected final void init(Point2D[] vertices, byte mode, Colour colour) {
-        this.setColour(colour);
-        this.setMode(mode);
-        super.setVertices(vertices);
+        super.setVertices(polygon.getVertices());
     }
 
     /**
@@ -163,11 +144,15 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         this.colour = colour;
     }
 
-    public void setMode(int mode) {
+    /**
+     * This method is called from within the constructor to initialize the
+     * <code>Polygon</code>. WARNING: Do NOT modify this code.
+     */
+    public final void setMode(int mode) {
         if ((byte) mode == FILL || (byte) mode == STROKE) {
             this.mode = (byte) mode;
         } else {
-            throw new dwarf.DwarfException();
+            throw new dwarf.DwarfException("illegal argument");
         }
     }
 
@@ -285,18 +270,22 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
         return this;
     }
 
-    public void set(Point2D position, int mode, Colour colour) {
-        this.init((byte) mode, colour);
-        super.setPosition(position);
-    }
-
     public void set(Point2D[] vertices, Point2D position, int mode, Colour colour) {
-        this.init(vertices, (byte) mode, colour);
+        this.update = true;
+        this.render = true;
+
+        this.setMode(mode);
+        this.colour = colour;
+
+        super.setVertices(vertices);
         super.setPosition(position);
     }
 
     public void set(Polygon polygon) {
-        this.init(polygon.getVertices(), (byte) polygon.getMode(), polygon.getColour());
+        this.setMode(polygon.getMode());
+        this.colour = polygon.getColour();
+
+        super.setVertices(polygon.getVertices());
         super.setPosition(polygon.getPosition());
     }
 

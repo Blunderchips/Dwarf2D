@@ -20,10 +20,10 @@ public class coin extends Shape {
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
         ), FILL, lime);
-        this.init();
+        this.load();
     }
 
-    private void init() {
+    private void load() {
         this.velocity = new Vector2(speed, 0);
         this.alive = true;
     }

@@ -1,6 +1,7 @@
 package dwarf.gfx;
 
 import dwarf.util.Point2D;
+import dwarf.DwarfException;
 
 /**
  * @author Matthew 'siD' Van der Bijl
@@ -37,7 +38,7 @@ public class Triangle extends Polygon {
 
         if (vertices != null) {
             if (vertices.length != 3) {
-                throw new IllegalArgumentException("illegal argument");
+                throw new DwarfException("illegal argument");
             } else {
                 super.setVertices(vertices);
             }

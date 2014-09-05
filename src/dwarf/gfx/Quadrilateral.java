@@ -1,6 +1,7 @@
 package dwarf.gfx;
 
 import dwarf.util.Point2D;
+import dwarf.DwarfException;
 
 /**
  * A quadrilateral is a polygon with four sides/edges and four vertices/corners.
@@ -66,12 +67,12 @@ public class Quadrilateral extends Polygon {
 
         if (vertices != null) {
             if (vertices.length != 4) {
-                throw new IllegalArgumentException("illegal argument");
+                throw new DwarfException("illegal argument");
             } else {
                 super.setVertices(vertices);
             }
         } else {
-            throw new IllegalArgumentException();
+            throw new DwarfException("illegal argument");
         }
     }
 

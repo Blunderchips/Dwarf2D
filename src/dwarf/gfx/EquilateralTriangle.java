@@ -1,11 +1,10 @@
 package dwarf.gfx;
 
 import dwarf.util.math;
-import dwarf.util.Vector2;
+import dwarf.util.Point2D;
 
 import static dwarf.util.math.sqr;
 import static dwarf.gfx.draw.SHAPE_TRIANGLE;
-import dwarf.util.Point2D;
 
 /**
  * A 3 sided polygon where are 3 sides are equal.
