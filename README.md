@@ -38,5 +38,7 @@ We also provide [Javadocs](http://95.85.60.226/javadoc/ "javadoc") online (This 
 	- [NetBeans](https://netbeans.org/)
 	- [IntelliJ IDEA](http://www.jetbrains.com/idea/)
 
+####Everyone who's created or contributed to issues and pull requests, which make the project better!
+
 
 ***
