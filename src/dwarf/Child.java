@@ -26,7 +26,7 @@ public interface Child {
    /**
     * returns true if the inputed <code>Child</code> has a <code>Parent</code> otherwise false.
     *
-    * @param parent the <code>Child</code> to be tested
+    * @param child the <code>Child</code> to be tested
     * @return if the child a has parent or not
     */
     public static boolean hasParent(Child child) {

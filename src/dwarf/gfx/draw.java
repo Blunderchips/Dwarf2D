@@ -64,11 +64,11 @@ public interface draw extends dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void basicText(String string, Vector2 position, Colour colour) {
+    public static void basicText(String string, Point2D position, Colour colour) {
         basicText(string, (float) position.getX(), (float) position.getY(), colour);
     }
 
-    public static void basicText(char[] string, Vector2 position, Colour colour) {
+    public static void basicText(char[] string, Point2D position, Colour colour) {
         basicText(Arrays.toString(string), (float) position.getX(), (float) position.getY(), colour);
     }
 

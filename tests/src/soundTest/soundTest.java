@@ -2,7 +2,7 @@ package soundTest;
 
 import dwarf.Sfx;
 import dwarf.Game;
-import dwarf.util.Vector2;
+import dwarf.util.Point2D;
 import dwarf.DwarfException;
 
 import static dwarf.gfx.Colours.black;
@@ -36,7 +36,7 @@ public class soundTest {
 
             @Override
             public void render() {
-                dwarf.gfx.draw.basicText("Press the spacebar to the play sound.", new Vector2(250, 400), black);
+                dwarf.gfx.draw.basicText("Press the spacebar to the play sound.", new Point2D(250, 400), black);
             }
         };
     }

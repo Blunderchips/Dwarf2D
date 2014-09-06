@@ -3,7 +3,8 @@ package dwarf.engine.core;
 import java.nio.ByteBuffer;
 
 import dwarf.gfx.draw;
-import dwarf.util.Vector2;
+import dwarf.util.Point2D;
+import dwarf.DwarfException;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -49,7 +50,7 @@ public final class Window {
         glLoadIdentity();
     }
 
-    public static void create(java.awt.Dimension dimensions, String title) throws dwarf.DwarfException {
+    public static void create(java.awt.Dimension dimensions, String title) throws DwarfException {
         Window.create((int) dimensions.getWidth(), (int) dimensions.getHeight(), title);
     }
 
@@ -60,7 +61,7 @@ public final class Window {
      * @param height The height of the display
      * @param title The title of the display
      */
-    public static void create(int width, int height, String title) throws dwarf.DwarfException {
+    public static void create(int width, int height, String title) throws DwarfException {
 //        
 //        Window.parent = new Canvas();
 //        
@@ -84,7 +85,7 @@ public final class Window {
             Display.setInitialBackground(0x0, 0x0, 0x0);
             Display.create();
         } catch (LWJGLException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -176,11 +177,11 @@ public final class Window {
      *
      * @return Display.isCurrent()
      */
-    public static boolean isCurrent() throws dwarf.DwarfException {
+    public static boolean isCurrent() throws DwarfException {
         try {
             return Display.isCurrent();
         } catch (LWJGLException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -214,13 +215,13 @@ public final class Window {
      *
      * @param fullscreen Whether to enter or exit fullscreen mode.
      */
-    public static void setFullscreen(boolean fullscreen) throws dwarf.DwarfException {
+    public static void setFullscreen(boolean fullscreen) throws DwarfException {
         Window.fullscreen = fullscreen;
 
         try {
             Display.setFullscreen(fullscreen);
         } catch (LWJGLException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -267,8 +268,8 @@ public final class Window {
         }
     }
 
-    public static Vector2 getlocation() {
-        return new Vector2(Display.getX(), Display.getY());
+    public static Point2D getlocation() {
+        return new Point2D(Display.getX(), Display.getY());
     }
 
     /**
