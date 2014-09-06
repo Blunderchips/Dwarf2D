@@ -18,9 +18,9 @@ public class lineTest {
             public void load() {
                 dwarf.gfx.background.setColour(white);
 
+                super.addGameObject(new Square(50, new Point2D(375, 300), 0, red));
                 super.addGameObject(new Line(new Point2D(0, 300), new Point2D(800, 300), black));
                 super.addGameObject(new Line(new Point2D(400, 0), new Point2D(400, 600), black));
-                super.addGameObject(new Square(50, new Point2D(375, 300), 0, red));
             }
 
             @Override
@@ -33,5 +33,4 @@ public class lineTest {
             }
         };
     }
-
 }
