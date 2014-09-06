@@ -33,6 +33,10 @@ We also provide [Javadocs](http://95.85.60.226/javadoc/ "javadoc") online (This 
 ###Dependencies
 * LWJGL 2.9.1 or newer - You can download this from their <a href='http://lwjgl.org/download.php' title='lwjgl.org'>website</a>.
 * Java (the latest would be best) - You can also download this from their <a href='https://www.java.com/en/download/' title='java.com'>website</a>.
+- Build Toolchain (Can be any one of the following, doesn't need to be all of them)
+	- [Eclipse](http://eclipse.org/)
+	- [NetBeans](https://netbeans.org/)
+	- [IntelliJ IDEA](http://www.jetbrains.com/idea/)
 
 
 ***
