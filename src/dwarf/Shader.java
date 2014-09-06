@@ -76,7 +76,7 @@ public class Shader extends java.lang.Object implements Cloneable {
         this.init();
     }
 
-    public Shader(int type, String path) throws dwarf.DwarfException {
+    public Shader(int type, String path) throws DwarfException {
         super();
 
         this.path = path;
@@ -186,10 +186,10 @@ public class Shader extends java.lang.Object implements Cloneable {
 
     @Override
     public String toString() {
-        return "Shader = {"
+        return "Shader["
                 + "program:" + getProgram() + ", "
                 + "source: " + getSource()
-                + "}";
+                + "]";
     }
 
     public Shader get() {
@@ -202,7 +202,7 @@ public class Shader extends java.lang.Object implements Cloneable {
      * 
      * @throws DwarfException if the source is not found
      */
-    public final void init() throws dwarf.DwarfException {
+    public final void init() throws DwarfException {
         this.source = new StringBuilder();
 
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {

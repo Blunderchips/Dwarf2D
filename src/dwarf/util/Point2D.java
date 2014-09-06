@@ -1,5 +1,7 @@
 package dwarf.util;
 
+import dwarf.DwarfException;
+
 /**
  * A 2-dimensional, single-precision, double-point Point.
  *
@@ -74,7 +76,7 @@ public class Point2D extends dwarf.util.Point {
     public Point2D(Point2D p) {
         super(new double[]{p.getX(), p.getY()});
     }
-    
+
     public Point2D(Point p) {
         super(new double[]{p.get(X), p.get(Y)});
     }
@@ -134,11 +136,11 @@ public class Point2D extends dwarf.util.Point {
     }
 
     @Override
-    public void translate(int index, double delta) {
+    public void translate(int index, double delta) throws DwarfException {
         if (index <= 1) {
             super.translate(index, delta);
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 
@@ -148,20 +150,20 @@ public class Point2D extends dwarf.util.Point {
     }
 
     @Override
-    public void set(double[] components) {
+    public void set(double[] components) throws DwarfException {
         if (components.length == 2) {
             super.set(components);
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 
     @Override
-    public void setComponents(double[] components) {
+    public void setComponents(double[] components) throws DwarfException {
         if (components.length == 2) {
             super.set(components);
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 

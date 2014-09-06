@@ -42,7 +42,6 @@ import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
-import java.io.IOException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -50,6 +49,8 @@ import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Hashtable;
 import javax.swing.ImageIcon;
+
+import dwarf.DwarfException;
 
 import org.lwjgl.BufferUtils;
 
@@ -145,9 +146,9 @@ public final class TextureLoader {
      *
      * @param resourceName The location of the resource to load
      * @return The loaded texture
-     * @throws IOException Indicates a failure to access the resource
+     * @throws DwarfException Indicates a failure to access the resource
      */
-    public static Texture getTexture(String resourceName) throws IOException {
+    public static Texture getTexture(String resourceName) throws DwarfException {
         Texture tex = table.get(resourceName);
 
         if (tex != null) {
@@ -174,52 +175,56 @@ public final class TextureLoader {
      * @param minFilter The minimising filter
      * @param magFilter The magnification filter
      * @return The loaded texture
-     * @throws IOException Indicates a failure to access the resource
+     * @throws DwarfException Indicates a failure to access the resource
      */
     public static Texture getTexture(String resourceName,
             int target,
             int dstPixelFormat,
             int minFilter,
-            int magFilter) throws IOException {
-        int srcPixelFormat;
+            int magFilter) throws DwarfException {
+        try {
+            int srcPixelFormat;
 
-        // create the texture ID for this texture
-        int textureID = createTextureID();
-        Texture texture = new Texture(target, textureID);
+            // create the texture ID for this texture
+            int textureID = createTextureID();
+            Texture texture = new Texture(target, textureID);
 
-        // bind this texture
-        glBindTexture(target, textureID);
+            // bind this texture
+            glBindTexture(target, textureID);
 
-        BufferedImage bufferedImage = loadImage(resourceName);
-        texture.setWidth(bufferedImage.getWidth());
-        texture.setHeight(bufferedImage.getHeight());
+            BufferedImage bufferedImage = loadImage(resourceName);
+            texture.setWidth(bufferedImage.getWidth());
+            texture.setHeight(bufferedImage.getHeight());
 
-        if (bufferedImage.getColorModel().hasAlpha()) {
-            srcPixelFormat = GL_RGBA;
-        } else {
-            srcPixelFormat = GL_RGB;
+            if (bufferedImage.getColorModel().hasAlpha()) {
+                srcPixelFormat = GL_RGBA;
+            } else {
+                srcPixelFormat = GL_RGB;
+            }
+
+            // convert that image into a byte buffer of texture data
+            ByteBuffer textureBuffer = convertImageData(bufferedImage, texture);
+
+            if (target == GL_TEXTURE_2D) {
+                glTexParameteri(target, GL_TEXTURE_MIN_FILTER, minFilter);
+                glTexParameteri(target, GL_TEXTURE_MAG_FILTER, magFilter);
+            }
+
+            // produce a texture from the byte buffer
+            glTexImage2D(target,
+                    0,
+                    dstPixelFormat,
+                    get2Fold(bufferedImage.getWidth()),
+                    get2Fold(bufferedImage.getHeight()),
+                    0,
+                    srcPixelFormat,
+                    GL_UNSIGNED_BYTE,
+                    textureBuffer);
+
+            return texture;
+        } catch (DwarfException ex) {
+            throw new DwarfException(ex);
         }
-
-        // convert that image into a byte buffer of texture data
-        ByteBuffer textureBuffer = convertImageData(bufferedImage, texture);
-
-        if (target == GL_TEXTURE_2D) {
-            glTexParameteri(target, GL_TEXTURE_MIN_FILTER, minFilter);
-            glTexParameteri(target, GL_TEXTURE_MAG_FILTER, magFilter);
-        }
-
-        // produce a texture from the byte buffer
-        glTexImage2D(target,
-                0,
-                dstPixelFormat,
-                get2Fold(bufferedImage.getWidth()),
-                get2Fold(bufferedImage.getHeight()),
-                0,
-                srcPixelFormat,
-                GL_UNSIGNED_BYTE,
-                textureBuffer);
-
-        return texture;
     }
 
     /**
@@ -296,13 +301,13 @@ public final class TextureLoader {
      *
      * @param path The location of the resource to load
      * @return The loaded buffered image
-     * @throws IOException Indicates a failure to find a resource
+     * @throws DwarfException Indicates a failure to find a resource
      */
-    private static BufferedImage loadImage(String path) throws IOException {
+    private static BufferedImage loadImage(String path) throws DwarfException {
         URL url = TextureLoader.class.getClassLoader().getResource(path);
 
         if (url == null) {
-            throw new IOException("Cannot find: " + path);
+            throw new DwarfException("Cannot find: " + path);
         }
 
         // due to an issue with ImageIO and mixed signed code

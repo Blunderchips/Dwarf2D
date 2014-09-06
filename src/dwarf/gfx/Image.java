@@ -1,13 +1,13 @@
 package dwarf.gfx;
 
 import java.util.Objects;
-import java.io.IOException;
+import java.awt.Dimension;
 
+import dwarf.DwarfException;
 import dwarf.LWJGL.Texture;
 import dwarf.GameObject;
 import dwarf.util.Point2D;
 import dwarf.LWJGL.TextureLoader;
-import java.awt.Dimension;
 
 /**
  * A set of functions and variables required to create a malleable class for
@@ -42,13 +42,13 @@ public class Image extends Rectangle implements GameObject {
      * @param path A reference to the image on which this sprite should be based
      * @param position the position of the image on the screen
      */
-    public Image(String path, Point2D position) throws dwarf.DwarfException {
+    public Image(String path, Point2D position) throws DwarfException {
         super(new Point2D(), position, STROKE, Colour.white);
 
         try {
             this.texture = TextureLoader.getTexture(path);
-        } catch (IOException ioe) {
-            throw new dwarf.DwarfException(ioe);
+        } catch (DwarfException ex) {
+            throw ex;
         } finally {
             super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
         }
@@ -131,8 +131,8 @@ public class Image extends Rectangle implements GameObject {
 
         try {
             texture = TextureLoader.getTexture(path);
-        } catch (IOException ioe) {
-            throw new dwarf.DwarfException(ioe);
+        } catch (DwarfException ex) {
+            throw ex;
         }
 
         super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));

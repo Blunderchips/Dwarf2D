@@ -5,7 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * Provides an interface to your system's clock and other time base utilities.
+ * Provides an interface to your system's clock and other time base utilities to
+ * the user.
  *
  * @author Matthew 'siD' Van der Bijl
  */
@@ -37,8 +38,10 @@ public final class time {
     private static double dt;
 
     /**
-     * @return Returns the value of a timer with an unspecified starting time.
-     * The time is accurate to the microsecond.
+     * Returns the value of a timer with an unspecified starting time. The time
+     * is accurate to the microsecond.
+     *
+     * @return the value of a timer with an unspecified starting time
      */
     public static long getNano() {
         return System.nanoTime();
@@ -64,7 +67,7 @@ public final class time {
      * can fluctuate depending on what level of processing the last frame
      * required.
      *
-     * @return Returns the time between the last two frames.
+     * @return the time between the last two frames.
      */
     public static final double getDeltaTime() {
         return time.dt;
@@ -132,7 +135,7 @@ public final class time {
      *
      * @param millis the length of time to sleep in milliseconds
      */
-    public static void sleep(Long millis) throws dwarf.DwarfException {
+    public static void sleep(Long millis) throws DwarfException {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException ie) {

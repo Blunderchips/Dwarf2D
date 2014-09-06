@@ -2,6 +2,8 @@ package dwarf.util;
 
 import java.util.Arrays;
 
+import dwarf.DwarfException;
+
 /**
  * A point is what has a position in polydimensional space but no dimension,
  * magnitude nor direction. A Point is neither a solid, nor a surface, nor a
@@ -199,11 +201,11 @@ public class Point extends java.lang.Object implements Cloneable {
         }
     }
 
-    public void translate(int index, double delta) {
+    public void translate(int index, double delta) throws DwarfException {
         try {
             this.components[index] += delta;
         } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
-            throw outOfBoundsException;
+            throw new DwarfException(outOfBoundsException);
         }
     }
 }

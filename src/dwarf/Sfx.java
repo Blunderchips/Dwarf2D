@@ -19,8 +19,8 @@ import static org.lwjgl.openal.AL10.alSourceStop;
 import static org.lwjgl.openal.AL10.alSourcei;
 
 /**
- * play sounds using <a href='http://www.openal.org/'>OpenAL</a>. (Open Audio
- * Library) Load various sound formats for use with <a
+ * play Sound effect (sfx) using <a href='http://www.openal.org/'>OpenAL</a>.
+ * (Open Audio Library) Load various sound formats for use with <a
  * href='http://www.openal.org/'>OpenAL</a> (.wav, .xm, .ogg, etc).
  *
  * @author Matthew 'siD' Van der Bijl
