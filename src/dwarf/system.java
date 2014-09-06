@@ -1,11 +1,8 @@
 package dwarf;
 
-import dwarf.engine.core.Window;
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Provides an interface to your system (sys) and other system base utilities.
@@ -136,7 +133,7 @@ public interface system {
         return System.getProperty("java.compiler");
     }
 
-    public static String executeCommand(String command) {
+    public static String executeCommand(String command) throws DwarfException {
         StringBuilder output = new StringBuilder();
 
         Process p = null;
@@ -152,10 +149,7 @@ public interface system {
             }
 
         } catch (IOException | InterruptedException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(
-                    Window.getParent(), ex, Window.getTitle() + " - ERROR", ERROR_MESSAGE);
-            Game.close(ex);
+            throw new DwarfException(ex);
         }
 
         return output.toString();

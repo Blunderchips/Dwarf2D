@@ -3,11 +3,12 @@ package dwarf.gfx;
 import dwarf.util.math;
 import dwarf.util.Point2D;
 import dwarf.util.Vector2;
+import dwarf.DwarfException;
+
+import static dwarf.util.math.sin;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.tan;
-
-import static dwarf.util.math.sin;
 
 /**
  * A regular figure that has sides, edges and angles that are congruent.
@@ -44,7 +45,7 @@ public class Shape extends Polygon {
 
             this.init();
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 

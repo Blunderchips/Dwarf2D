@@ -22,59 +22,59 @@ public class Square extends Rectangle {
     public Square() {
         super();
     }
-    
+
     public Square(float sideLength, Point2D position, int mode, Colour colour) {
         super(sideLength, sideLength, position, mode, colour);
     }
-    
+
     public Square(double sideLength, Point2D position, int mode, Colour colour) {
         super(sideLength, sideLength, position, mode, colour);
     }
-    
+
     public Square(Square square) {
         super(square.getLineLength(), square.getLineLength(), square.getPosition(), square.getMode(), square.getColour());
     }
-    
+
     public float getLineLength() {
         return (float) super.getDimensions().getWidth();
     }
-    
+
     @Override
     public Square get() {
         return this;
     }
-    
+
     public void setLineLength(double sideLength) {
         super.setSize(sideLength, sideLength);
     }
-    
+
     @Override
     @Deprecated
     public void scale(double deltaX, double deltaY) {
         super.scale(deltaX, deltaY);
     }
-    
+
     public void set(float sideLength, Point2D position, int mode, Colour colour) {
         this.setLineLength(sideLength);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
-    
+
     public void set(double sideLength, Point2D position, int mode, Colour colour) {
         this.setLineLength(sideLength);
         super.setPosition(position);
         super.setMode(mode);
         super.setColour(colour);
     }
-    
+
     public void set(Square square) {
         this.setLineLength(square.getLineLength());
         super.setPosition(square.getPosition());
         super.setMode(square.getMode());
         super.setColour(square.getColour());
     }
-    
+
     @Override
     public Square clone() throws CloneNotSupportedException {
         return new Square(this);

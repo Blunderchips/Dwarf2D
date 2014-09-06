@@ -3,8 +3,6 @@ package dwarf;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Provides an interface to your system's clock and other time base utilities.

@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
  *
  * @see javax.swing.JFrame
  * @see java.lang.Exception
+ * @see java.lang.Throwable
  *
  * @see dwarf.DwarfError
  * @see dwarf.DwarfException
@@ -23,19 +24,20 @@ public class Crashform extends javax.swing.JFrame {
     private final JScrollPane jScrollPane;
 
     /**
-     * Creates new form Crashform with a specified <code>Exception</code>.
+     * Creates new form Crashform with a specified <code>Throwable</code> as the
+     * cause.
      *
      * @param cause the cause of the error
      */
     public Crashform(Throwable cause) {
         super("Dwarf2D - " + cause.getClass().getName());
 
-        this.jScrollPane = new javax.swing.JScrollPane();
         this.txtDisplay = new javax.swing.JTextArea();
+        this.jScrollPane = new javax.swing.JScrollPane();
 
-        this.txtDisplay.setEditable(false);
-        this.txtDisplay.setColumns(20);
         this.txtDisplay.setRows(5);
+        this.txtDisplay.setColumns(20);
+        this.txtDisplay.setEditable(false);
         this.jScrollPane.setViewportView(txtDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -65,7 +67,7 @@ public class Crashform extends javax.swing.JFrame {
         this.setDisplay(cause);
     }
 
-    public javax.swing.JTextArea getDisplay() {
+    public JTextArea getDisplay() {
         return this.txtDisplay;
     }
 

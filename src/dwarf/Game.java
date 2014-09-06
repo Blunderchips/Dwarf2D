@@ -20,7 +20,6 @@ import static java.lang.Math.abs;
 public abstract class Game extends dwarf.engine.core.Engine {
 
     public static boolean debug = true;
-    //NetBeans wanted these:
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
     private final transient PropertyChangeSupport propertyChangeSupport;
     private final transient VetoableChangeSupport vetoableChangeSupport;
@@ -130,13 +129,15 @@ public abstract class Game extends dwarf.engine.core.Engine {
     }
 
     /**
-     * initialises the <code>Game</code>.
+     * initialises the <code>Game</code>.This method is called from within the
+     * constructor to initialize the <code>Shape</code>. WARNING: Do NOT modify
+     * this code.
+     *
+     * @see dwarf.engine.core.Engine#start(int, int, java.lang.String)
      *
      * @param width the width of the window
      * @param height the height of the window
      * @param title the title of the window
-     *
-     * @see dwarf.engine.core.Engine#start(int, int, java.lang.String)
      */
     @SuppressWarnings("Convert2Diamond")
     private void init(int width, int height, String title) {
@@ -189,12 +190,12 @@ public abstract class Game extends dwarf.engine.core.Engine {
      * @return true if successful and false if it fails
      */
     @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-    public boolean setGameObjects(ArrayList<GameObject> gameObjects) throws dwarf.DwarfException {
+    public boolean setGameObjects(ArrayList<GameObject> gameObjects) throws DwarfException {
         try {
             this.gameObjects = gameObjects;
             return true;
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
@@ -205,11 +206,11 @@ public abstract class Game extends dwarf.engine.core.Engine {
      * @param input the <code>GameObject</code> to be added.
      * @return true if successful and false if it fails.
      */
-    public boolean addGameObject(GameObject input) throws dwarf.DwarfException {
+    public boolean addGameObject(GameObject input) throws DwarfException {
         try {
             return this.getGameObjects().add(input);
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
@@ -220,11 +221,11 @@ public abstract class Game extends dwarf.engine.core.Engine {
      * @param input the <code>GameObject</code> to be added.
      * @return true if successful and false if it fails.
      */
-    public boolean addGameObject(Object input) throws dwarf.DwarfException {
+    public boolean addGameObject(Object input) throws DwarfException {
         try {
             return this.getGameObjects().add((GameObject) input);
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
@@ -235,11 +236,11 @@ public abstract class Game extends dwarf.engine.core.Engine {
      * @param input the <code>GameObject</code> to be removed.
      * @return true if successful and false if it fails.
      */
-    public boolean removeGameObject(GameObject input) throws dwarf.DwarfException {
+    public boolean removeGameObject(GameObject input) throws DwarfException {
         try {
             return this.getGameObjects().remove(input);
         } catch (Exception ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
@@ -251,11 +252,11 @@ public abstract class Game extends dwarf.engine.core.Engine {
      * @return true if successful and false if it fails.
      */
     @SuppressWarnings("element-type-mismatch")
-    public boolean removeGameObject(Object input) throws dwarf.DwarfException {
+    public boolean removeGameObject(Object input) throws DwarfException {
         try {
             return this.getGameObjects().remove(input);
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
@@ -266,12 +267,12 @@ public abstract class Game extends dwarf.engine.core.Engine {
      * @param index of the <code>GameObject</code> to be removed.
      * @return true if successful and false if it fails.
      */
-    public boolean removeGameObject(int index) throws dwarf.DwarfException {
+    public boolean removeGameObject(int index) throws DwarfException {
         try {
             this.getGameObjects().remove(index);
             return true;
         } catch (Exception ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
@@ -341,8 +342,7 @@ public abstract class Game extends dwarf.engine.core.Engine {
         return "Game = {"
                 + "propertyChangeSupport: " + propertyChangeSupport + ", "
                 + "vetoableChangeSupport: " + vetoableChangeSupport + ", "
-                + "GameObjects: " + getGameObjects().toString() + ", "
-                + "super: " + super.toString()
+                + "GameObjects: " + getGameObjects().toString()
                 + "}";
     }
 
@@ -385,12 +385,12 @@ public abstract class Game extends dwarf.engine.core.Engine {
      *
      * @return will return false if it fails and true if it does not
      */
-    public boolean resetGameObjects() throws dwarf.DwarfException {
+    public boolean resetGameObjects() throws DwarfException {
         try {
             this.gameObjects = new ArrayList<>();
             return true;
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
         }
     }
 
