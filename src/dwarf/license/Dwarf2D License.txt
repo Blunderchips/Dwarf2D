@@ -1,5 +1,5 @@
 /*
- * Dwarf2D Java 2D game development framework
+ * Dwarf2D - Java game development framework
  * Copyright (C) 2014  Matthew Van der Bijl
  * 
  * This program is free software: you can redistribute it and/or modify
