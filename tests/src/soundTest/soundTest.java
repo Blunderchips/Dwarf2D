@@ -21,7 +21,7 @@ public class soundTest {
                 dwarf.gfx.background.setColour(white);
 
                 try {
-                    this.song = new Sfx("./src/soundTest/sound.wav");
+                    this.song = new Sfx("./src/sgoundTest/sound.wav");
                 } catch (DwarfException ex) {
                     ex.display();
                 }

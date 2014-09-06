@@ -401,4 +401,8 @@ public abstract class Game extends dwarf.engine.core.Engine {
     public void clearGameObjects() {
         this.gameObjects.clear();
     }
+
+    public int getNumGameObjects() {
+        return this.gameObjects.size();
+    }
 }

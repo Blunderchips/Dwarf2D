@@ -185,8 +185,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
         return "Sound = {"
                 + "source: " + getSource() + ", "
                 + "buffer: " + getBuffer() + ", "
-                + "data: " + getData() + ", "
-                + "super: " + super.toString()
+                + "data: " + getData()
                 + "}";
     }
 
@@ -219,7 +218,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
      *
      * @throws DwarfException if the source is not found
      */
-    public final void init() throws dwarf.DwarfException {
+    public final void init() throws DwarfException {
         try {
             this.data = WaveData.create(new BufferedInputStream(new FileInputStream(path)));
         } catch (FileNotFoundException notFoundException) {
