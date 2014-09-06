@@ -2,6 +2,7 @@ package dwarf;
 
 import java.util.Objects;
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeSupport;
 
@@ -14,10 +15,13 @@ import static java.lang.Math.abs;
  *
  * @author Matthew 'siD' Van der Bijl
  *
+ * @see java.io.Serializable
+ *
  * @see dwarf.engine.core.Engine
  * @see dwarf.engine.core.Window
  */
-public abstract class Game extends dwarf.engine.core.Engine {
+@SuppressWarnings("serial")
+public abstract class Game extends dwarf.engine.core.Engine implements Serializable {
 
     public static boolean debug = true;
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";

@@ -11,5 +11,7 @@
  * Dwarf2D is currently being used in game development, but it is still
  * considered an experimental framework based on an experimental concept. Please
  * use in your projects at your own risk.</p>
+ *
+ * @author Matthew 'siD' Van der Bijl
  */
 package dwarf;

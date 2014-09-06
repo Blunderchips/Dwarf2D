@@ -1,15 +1,17 @@
 package dwarf;
 
-import dwarf.engine.core.Window;
-import dwarf.gfx.Circle;
-import dwarf.gfx.Colour;
-import dwarf.gfx.Colours;
-import static dwarf.mouse.MOUSE_LEFT;
-import dwarf.util.Point2D;
-import static dwarf.util.Point2D.ZERO;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.io.Serializable;
+
+import dwarf.engine.core.Window;
+import dwarf.gfx.Circle;
+import dwarf.gfx.Colour;
+import dwarf.util.Point2D;
+
+import static dwarf.mouse.MOUSE_LEFT;
+import static dwarf.util.Point2D.ZERO;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
@@ -26,8 +28,10 @@ import java.util.Objects;
  *
  * @see java.lang.Object
  * @see java.lang.Cloneable
+ * @see java.io.Serializable
  */
-public class Collidable extends java.lang.Object implements Cloneable {
+@SuppressWarnings("serial")
+public class Collidable extends java.lang.Object implements Cloneable, Serializable {
 
     private ArrayList<Point2D> vertices;
     private Point2D position;

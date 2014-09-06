@@ -7,5 +7,7 @@
  * which is at location (0;0). The X axis is horizontal: larger values are
  * further to the right. The Y axis is vertical: larger values are further
  * towards the top of the window.
+ * 
+ * @author Matthew 'siD' Van der Bijl
  */
 package dwarf.gfx;

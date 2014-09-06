@@ -8,8 +8,8 @@ package dwarf;
  *
  * @author Matthew 'siD' Van der Bijl
  *
- * @see java.lang.Exception
  * @see java.lang.Error
+ * @see java.lang.Exception
  *
  * @see dwarf.Crashform
  * @see dwarf.engine.core.Engine#dispose()
