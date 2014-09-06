@@ -44,6 +44,13 @@ public class Line extends java.lang.Object implements Cloneable {
         this.A = A;
         this.B = B;
     }
+    
+    public Line(Point2D A, Point2D B) {
+        super();
+
+        this.A = A;
+        this.B = B;
+    }
 
     public Line(Line l) {
         super();

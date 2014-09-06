@@ -1,9 +1,10 @@
 package dwarf.gfx;
 
+import java.util.Objects;
+
 import dwarf.Collidable;
 import dwarf.GameObject;
 import dwarf.util.Point2D;
-import java.util.Objects;
 
 public class Line extends dwarf.Collidable implements GameObject, Colours {
 
@@ -119,52 +120,16 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
         this.pointB = pointB;
     }
 
-    public Point2D midPoint() {
-        return Point2D.midPoint(pointA, pointB);
-    }
-
-    public double gradient() {
-        return Point2D.gradient(pointA, pointB);
-    }
-
-    public double distance() {
-        return Point2D.distance(pointA, pointB);
-    }
-
-    public double distanceSq() {
-        return Point2D.distanceSq(pointA, pointB);
-    }
-
-    @Override
-    public Line clone() throws CloneNotSupportedException {
-        return new Line(this);
-    }
-
-    public boolean isPerpendicular(Line l) {
-        return this.gradient() * l.gradient() == -1;
-    }
-
-    public boolean isParallel(Line l) {
-        return this.gradient() == l.gradient();
-    }
-
-    public double getAngleBetween(Line l) {
-        double slopeA = (this.getPointA().getY() - this.getPointA().getY()) / (this.getPointA().getX() - this.getPointB().getX());
-        double slopeB = (l.getPointA().getY() - l.getPointA().getY()) / (l.getPointA().getX() - l.getPointB().getX());
-
-        return Math.atan((slopeA - slopeB) / (1 - (slopeA * slopeB)));
-    }
-
     @Override
     @Deprecated
     public float getAverageWidth() {
-        return (float) this.midPoint().getX();
+        return super.getAverageWidth();
     }
 
     @Override
     @Deprecated
     public float getAverageHeight() {
-        return (float) this.midPoint().getY();
+        return super.getAverageHeight();
     }
 
     @Override
@@ -173,43 +138,22 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
         return 2;
     }
 
-    /**
-     * this method not supported.
-     *
-     * @see dwarf.gfx.Line#midPoint()
-     * @deprecated method not supported
-     * @return the midpoint of the line
-     */
     @Override
     @Deprecated
     public Point2D getCenterY() {
-        return this.midPoint();
+        return super.getCenterY();
     }
 
-    /**
-     * this method not supported.
-     *
-     * @see dwarf.gfx.Line#midPoint()
-     * @deprecated method not supported
-     * @return the midpoint of the line
-     */
     @Override
     @Deprecated
     public Point2D getCenterX() {
-        return this.midPoint();
+        return super.getCenterX();
     }
 
-    /**
-     * this method not supported.
-     *
-     * @see dwarf.gfx.Line#midPoint()
-     * @deprecated method not supported
-     * @return the midpoint of the line
-     */
     @Override
     @Deprecated
     public Point2D getCenter() {
-        return this.midPoint();
+        return super.getCenter();
     }
 
     @Override
@@ -336,5 +280,14 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
 
     public void setRender(boolean render) {
         this.render = render;
+    }
+
+    public dwarf.util.Line toLine() {
+        return new dwarf.util.Line(pointA, pointB);
+    }
+
+    @Override
+    public Line clone() throws CloneNotSupportedException {
+        return new Line(this);
     }
 }

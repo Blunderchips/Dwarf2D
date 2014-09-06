@@ -9,7 +9,7 @@ import dwarf.Game;
 import dwarf.DwarfException;
 
 /**
- * Provides an interface that offers general utilities.
+ * Provides an interface that offers general utilities to the user.
  *
  * @author Matthew 'siD' Van der Bijl
  */

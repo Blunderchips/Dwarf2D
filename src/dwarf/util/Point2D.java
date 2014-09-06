@@ -74,6 +74,10 @@ public class Point2D extends dwarf.util.Point {
     public Point2D(Point2D p) {
         super(new double[]{p.getX(), p.getY()});
     }
+    
+    public Point2D(Point p) {
+        super(new double[]{p.get(X), p.get(Y)});
+    }
 
     public void set(double x, double y) {
         super.setComponent(X, x);

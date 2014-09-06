@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import dwarf.GameObject;
 import dwarf.util.Point2D;
+import dwarf.DwarfException;
 
 /**
  * A basic shape with more than 3 sides.A rectilinear figure bounded by more
@@ -147,12 +148,15 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     /**
      * This method is called from within the constructor to initialize the
      * <code>Polygon</code>. WARNING: Do NOT modify this code.
+     *
+     * @throws DwarfException it the inputed mode in not recognised
+     * @param mode the mode of the <code>Polygon</code>
      */
-    public final void setMode(int mode) {
+    public final void setMode(int mode) throws DwarfException {
         if ((byte) mode == FILL || (byte) mode == STROKE) {
             this.mode = (byte) mode;
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 
