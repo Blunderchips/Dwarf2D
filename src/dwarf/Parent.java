@@ -2,6 +2,13 @@ package dwarf;
 
 import java.util.ArrayList;
 
+/**
+ * Definition of anything that can have children.
+ * 
+ * @author Matthew 'siD' Van der Bijl
+ * 
+ * @see dwarf.Child
+ */
 public interface Parent {
 
     public abstract ArrayList<Child> getChildren();
@@ -20,6 +27,12 @@ public interface Parent {
         parent.getChildren().clear();
     }
 
+    /**
+     * returns true if the inputed <code>Parent</code> has children otherwise false.
+     * 
+     * @param parent the <code>Parent</code> to be tested
+     * @return if the parent has children or not
+     */
     public static boolean hasChildren(Parent parent) {
         return !parent.getChildren().isEmpty();
     }
