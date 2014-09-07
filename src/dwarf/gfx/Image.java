@@ -21,6 +21,7 @@ import dwarf.LWJGL.TextureLoader;
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  */
+@SuppressWarnings("serial")
 public class Image extends Rectangle implements GameObject {
 
     /**
@@ -120,13 +121,13 @@ public class Image extends Rectangle implements GameObject {
     }
 
     public void set(Image img) {
-        super.setPosition(img.getPosition());
         this.texture = img.getTexture();
+        super.setPosition(img.getPosition());
         super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
 
     }
 
-    public void set(String path, Point2D position) throws dwarf.DwarfException {
+    public void set(String path, Point2D position) throws DwarfException {
         super.setPosition(position);
 
         try {

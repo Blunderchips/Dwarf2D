@@ -32,10 +32,7 @@ public class Line extends java.lang.Object implements Cloneable {
     private Point A, B;
 
     public Line() {
-        super();
-
-        this.A = null;
-        this.B = null;
+        this(null, null);
     }
 
     public Line(Point A, Point B) {
@@ -44,19 +41,9 @@ public class Line extends java.lang.Object implements Cloneable {
         this.A = A;
         this.B = B;
     }
-    
-    public Line(Point2D A, Point2D B) {
-        super();
-
-        this.A = A;
-        this.B = B;
-    }
 
     public Line(Line l) {
-        super();
-
-        this.A = l.getA();
-        this.B = l.getB();
+        this(l.getA(), l.getB());
     }
 
     public Point getA() {

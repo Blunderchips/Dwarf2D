@@ -3,7 +3,7 @@ package dwarf;
 import java.util.ArrayList;
 
 /**
- * Definition of anything that can have children.
+ * Definition of anything that can have "children".
  * 
  * @author Matthew 'siD' Van der Bijl
  * 

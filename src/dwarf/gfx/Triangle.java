@@ -10,6 +10,7 @@ import dwarf.DwarfException;
  * @see dwarf.gfx.Polygon
  * @see dwarf.gfx.shapeConstants#SHAPE_TRIANGLE
  */
+@SuppressWarnings("serial")
 public class Triangle extends Polygon {
 
     /**
@@ -165,7 +166,32 @@ public class Triangle extends Polygon {
     }
     
     public boolean isCongruent(EquilateralTriangle et) {
-        return false; //TODO
+        if (super.getType().equals("triangle") && et.getType().equals("triangle")) {
+
+            dwarf.util.Line[] sides = {
+                new dwarf.util.Line(super.getVertices()[0], super.getVertices()[1]),
+                new dwarf.util.Line(super.getVertices()[1], super.getVertices()[2]),
+                new dwarf.util.Line(super.getVertices()[2], super.getVertices()[0])
+            };
+
+            if (sides[0].length() != sides[2].length()) {
+                return false;
+            } else {
+                for (int i = 0; i < sides.length; i++) {
+                    try {
+                        if (sides[i].length() != sides[i + 1].length()) {
+                            return false;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException outOfBoundsException) {
+                        break;
+                    }
+                }
+            }
+
+            return sides[0].length() == et.getLineLength();
+        } else {
+            return false;
+        }
     }
     
     public boolean isSimilar(EquilateralTriangle et) {

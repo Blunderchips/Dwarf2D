@@ -3,7 +3,7 @@ package dwarf;
 import java.util.ArrayList;
 
 /**
- * Definition of anything that can have parent.
+ * Definition of anything that can have "parent".
  * 
  * @author Matthew 'siD' Van der Bijl
  * 

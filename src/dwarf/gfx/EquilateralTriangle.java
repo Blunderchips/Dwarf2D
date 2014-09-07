@@ -16,6 +16,7 @@ import static dwarf.gfx.draw.SHAPE_TRIANGLE;
  * @see dwarf.gfx.Shape
  * @see dwarf.gfx.Polygon
  */
+@SuppressWarnings("serial")
 public class EquilateralTriangle extends Shape {
 
     /**
@@ -102,9 +103,9 @@ public class EquilateralTriangle extends Shape {
         if (super.getType().equals("triangle") && t.getType().equals("triangle")) {
 
             dwarf.util.Line[] sides = {
-                new dwarf.util.Line(super.getVertices()[0], super.getVertices()[1]),
-                new dwarf.util.Line(super.getVertices()[1], super.getVertices()[2]),
-                new dwarf.util.Line(super.getVertices()[2], super.getVertices()[0])
+                new dwarf.util.Line(t.getVertices()[0], t.getVertices()[1]),
+                new dwarf.util.Line(t.getVertices()[1], t.getVertices()[2]),
+                new dwarf.util.Line(t.getVertices()[2], t.getVertices()[0])
             };
 
             if (sides[0].length() != sides[2].length()) {
@@ -122,7 +123,6 @@ public class EquilateralTriangle extends Shape {
             }
 
             return sides[0].length() == super.getLineLength();
-
         } else {
             return false;
         }
