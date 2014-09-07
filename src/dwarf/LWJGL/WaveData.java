@@ -46,6 +46,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import dwarf.DwarfException;
+
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO16;
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO8;
 import static org.lwjgl.openal.AL10.AL_FORMAT_STEREO16;
@@ -57,7 +59,7 @@ import static org.lwjgl.openal.AL10.AL_FORMAT_STEREO8;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
-public class WaveData extends java.lang.Object implements java.lang.Cloneable {
+public class WaveData extends java.lang.Object implements Cloneable {
 
     /**
      * actual wave data.
@@ -97,11 +99,7 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
     }
 
     public WaveData(WaveData waveData) {
-        super();
-
-        this.data = waveData.getData();
-        this.format = waveData.getFormat();
-        this.samplerate = waveData.getFormat();
+        this(waveData.getData(), waveData.getFormat(), waveData.getFormat());
     }
 
     /**
@@ -117,14 +115,14 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
      * @param path URL to file
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(URL path) throws dwarf.DwarfException {
+    public static WaveData create(URL path) throws DwarfException {
         try {
             // due to an issue with AudioSystem.getAudioInputStream
             // and mixing unsigned and signed code
             // we will use the reader directly
             return create(new WaveFileReader().getAudioInputStream(new BufferedInputStream(path.openStream())));
         } catch (IOException | UnsupportedAudioFileException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -144,12 +142,12 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
      * @param is InputStream to read from
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(InputStream is) throws dwarf.DwarfException {
+    public static WaveData create(InputStream is) throws DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(is));
         } catch (UnsupportedAudioFileException | IOException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -159,13 +157,13 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
      * @param buffer array of bytes containing the complete wave file
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(byte[] buffer) throws dwarf.DwarfException {
+    public static WaveData create(byte[] buffer) throws DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(
                             new BufferedInputStream(new ByteArrayInputStream(buffer))));
         } catch (UnsupportedAudioFileException | IOException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -177,7 +175,7 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
      * @param buffer ByteBuffer containing sound file
      * @return WaveData containing data, or null if a failure occured
      */
-    public static WaveData create(ByteBuffer buffer) throws dwarf.DwarfException {
+    public static WaveData create(ByteBuffer buffer) throws DwarfException {
         try {
             byte[] bytes = null;
 
@@ -189,7 +187,7 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
             }
             return create(bytes);
         } catch (dwarf.DwarfException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -199,7 +197,7 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
      * @param ais AudioInputStream to read from
      * @return WaveData containing data, or null if a failure occurred
      */
-    public static WaveData create(AudioInputStream ais) throws dwarf.DwarfException {
+    public static WaveData create(AudioInputStream ais) throws DwarfException {
         //get format of data
         AudioFormat audioformat = ais.getFormat();
 
@@ -240,7 +238,7 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
             }
             buffer = convertAudioBytes(buf, audioformat.getSampleSizeInBits() == 16, audioformat.isBigEndian() ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
         } catch (IOException ioe) {
-            throw new dwarf.DwarfException(ioe);
+            throw new DwarfException(ioe);
         }
 
         //create our result
@@ -251,7 +249,7 @@ public class WaveData extends java.lang.Object implements java.lang.Cloneable {
         try {
             ais.close();
         } catch (IOException ioe) {
-            throw new dwarf.DwarfException(ioe);
+            throw new DwarfException(ioe);
         }
 
         return wavedata;

@@ -40,8 +40,7 @@ public class Resource extends java.lang.Object implements Cloneable {
      * @param r the given <code>Resource</code>.
      */
     public Resource(Resource r) {
-        super();
-        this.path = r.getPath();
+        this(r.getPath());
     }
 
     /**

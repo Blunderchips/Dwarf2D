@@ -88,6 +88,13 @@ public class Texture extends java.lang.Object {
     private float heightRatio;
 
     /**
+     * Default constructor.
+     */
+    public Texture() {
+        super();
+    }
+
+    /**
      * Create a new texture
      *
      * @param target The GL target

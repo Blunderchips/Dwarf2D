@@ -1,5 +1,7 @@
 package dwarf.gfx;
 
+import dwarf.util.Vector3;
+
 /**
  * A simple wrapper round the values required for a mutable colour class.
  *
@@ -63,53 +65,32 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
      * the blue component of the colour.
      */
     private double blue;
-
-    private float alpha = 0x1;
+    /**
+     * the alpha value of the colour.
+     */
+    private float alpha;
 
     /**
      * Default constructor.
      */
     public Colour() {
-        super();
-
-        this.red = 0;
-        this.green = 0;
-        this.blue = 0;
+        this(0, 0, 0, 1);
     }
 
     public Colour(Colour colour) {
-        super();
-
-        this.red = colour.getRed();
-        this.green = colour.getGreen();
-        this.blue = colour.getBlue();
-        this.alpha = colour.getAlpha();
+        this(colour.getRed(), colour.getGreen(), colour.getBlue(), colour.getAlpha());
     }
 
     public Colour(dwarf.util.Vector3 colour) {
-        super();
-
-        this.red = colour.getX();
-        this.green = colour.getY();
-        this.blue = colour.getZ();
+        this(colour.getX(), colour.getY(), colour.getZ());
     }
 
-    public Colour(dwarf.util.Vector3 colour, float alpha) {
-        super();
-
-        this.red = colour.getX();
-        this.green = colour.getY();
-        this.blue = colour.getZ();
-        this.alpha = alpha;
+    public Colour(Vector3 colour, float alpha) {
+        this(colour.getX(), colour.getY(), colour.getZ(), alpha);
     }
 
     public Colour(double red, double green, double blue) {
-        super();
-
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
-        this.alpha = 1;
+        this(red, green, blue, 1);
     }
 
     public Colour(double red, double green, double blue, float alpha) {
@@ -122,12 +103,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
     }
 
     public Colour(java.awt.Color colour) {
-        super();
-
-        this.red = colour.getRed();
-        this.green = colour.getGreen();
-        this.blue = colour.getBlue();
-        this.alpha = colour.getAlpha();
+        this(colour.getRed(), colour.getGreen(), colour.getBlue(), colour.getAlpha());
     }
 
     /**

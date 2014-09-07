@@ -55,11 +55,7 @@ public class Vector2 extends java.lang.Object implements Cloneable {
      * Default constructor.
      */
     public Vector2() {
-        super();
-
-        this.x = 0;
-        this.y = 0;
-        setRotation(0);
+        this(0, 0, 0);
     }
 
     public Vector2(double x, double y) {
@@ -79,14 +75,6 @@ public class Vector2 extends java.lang.Object implements Cloneable {
     }
 
     public Vector2(double x, double y, double rotation) {
-        super();
-
-        this.x = x;
-        this.y = y;
-        setRotation(rotation);
-    }
-
-    public Vector2(float x, float y, double rotation) {
         super();
 
         this.x = x;

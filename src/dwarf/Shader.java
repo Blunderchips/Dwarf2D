@@ -68,12 +68,7 @@ public class Shader extends java.lang.Object implements Cloneable {
     }
 
     public Shader(Shader shader) {
-        super();
-
-        this.path = shader.getPath();
-        this.type = shader.getType();
-
-        this.init();
+        this(shader.getType(), shader.getPath());
     }
 
     public Shader(int type, String path) throws DwarfException {
@@ -199,7 +194,7 @@ public class Shader extends java.lang.Object implements Cloneable {
     /**
      * This method is called from within the constructor to initialize the
      * <code>Shader</code>. WARNING: Do NOT modify this code.
-     * 
+     *
      * @throws DwarfException if the source is not found
      */
     public final void init() throws DwarfException {

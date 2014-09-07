@@ -62,10 +62,7 @@ public class Sfx extends java.lang.Object implements Cloneable {
     }
 
     public Sfx(Sfx audio) throws DwarfException {
-        super();
-
-        this.path = audio.getPath();
-        this.init();
+        this(audio.getPath());
     }
 
     /**
