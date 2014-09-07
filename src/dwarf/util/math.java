@@ -1,5 +1,7 @@
 package dwarf.util;
 
+import dwarf.DwarfException;
+
 /**
  * Provides an interface for math functions and constants.
  *
@@ -34,9 +36,9 @@ public interface math {
      */
     public static final double INV_TWO_PI = 1.0f / TWO_PI;
 
-    public static int pow(int base, int power) {
+    public static int pow(int base, int power) throws DwarfException {
         if (power < 0) {
-            throw new dwarf.DwarfException("This function does not support negative powers.");
+            throw new DwarfException("This function does not support negative powers.");
         } else {
             int ans = (base);
             for (int i = 1; i < power; i++) {

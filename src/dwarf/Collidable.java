@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.io.Serializable;
 
-import dwarf.engine.core.Window;
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
 import dwarf.util.Point2D;
+import dwarf.engine.core.Window;
 
 import static dwarf.mouse.MOUSE_LEFT;
 import static dwarf.util.Point2D.ZERO;
@@ -33,17 +33,14 @@ import static dwarf.util.Point2D.ZERO;
 @SuppressWarnings("serial")
 public class Collidable extends java.lang.Object implements Cloneable, Serializable {
 
-    private ArrayList<Point2D> vertices;
     private Point2D position;
+    private ArrayList<Point2D> vertices;
 
     /**
      * Default constructor.
      */
     public Collidable() {
-        super();
-
-        this.position = ZERO;
-        this.vertices = new ArrayList<>();
+        this(ZERO);
     }
 
     /**
@@ -200,13 +197,12 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     /**
      * Determines whether the specified coordinates are inside this
      * <code>Collidable</code>.
-     * <p>
      *
-     * @param xPos the specified X coordinate to be tested.
-     * @param yPos the specified Y coordinate to be tested.
-     * @return {@code true} if this <code>Collidable</code> contains the
-     * specified coordinates {@code (xPos, yPos)};
-     *         {@code false} otherwise.
+     * @param xPos the specified X coordinate to be tested
+     * @param yPos the specified Y coordinate to be tested
+     * @return <code>true</code> if this <code>Collidable</code> contains the
+     * specified coordinates <code>(xPos; yPos)</code> <code>false</code>
+     * otherwise.
      */
     public boolean contains(double xPos, double yPos) {
 
@@ -335,8 +331,10 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     /**
-     * The <code>Polygon</code> class encapsulates a description of a closed,
-     * two-dimensional region within a coordinate space.
+     * Returns the <code>Collidable</code> as a new Abstract Window Toolkit
+     * (AWT) <code>Polygon</code>. The <code>Polygon</code> class encapsulates a
+     * description of a closed, two-dimensional region within a coordinate
+     * space.
      *
      * @see java.awt.Polygon
      * @return a new Java AWT Polygon created by the points in the vertices
@@ -490,6 +488,8 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * returns true if the <code>Collidable</code> have intersected with this
      * <code>Collidable</code>.
      *
+     * @see dwarf.Collidable#contains(dwarf.util.Point2D)
+     *
      * @param coll - the <code>Collidable</code> to be tested
      * @return true if the <code>Collidable</code> has intersected/collided with
      * this
@@ -549,20 +549,21 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     /**
      * tests if the <code>Collidable</code> is clicked of by a mouse button.
      *
+     * @see dwarf.mouse#isMouseClicked(int) 
+     * @see dwarf.Collidable#isMouseHover() 
+     * 
      * @param button the that needs to be clicked.
      * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(int button) {
-        if (dwarf.mouse.isMouseClicked(button)) {
-            return isMouseHover();
-        } else {
-            return false;
-        }
+        return dwarf.mouse.isMouseClicked(button) && isMouseHover();
     }
 
     /**
      * tests if the <code>Collidable</code> is clicked of by the left mouse
      * button.
+     *
+     * @see dwarf.Collidable#isClickedOn(int)
      *
      * @return true is the <code>Collidable</code> is clicked on by the left
      * mouse button.
@@ -574,15 +575,14 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     /**
      * tests if the <code>Collidable</code> is clicked of by a mouse button.
      *
+     * @see dwarf.mouse#isMouseClicked(String) 
+     * @see dwarf.Collidable#isMouseHover() 
+     * 
      * @param button the that needs to be clicked.
      * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(String button) {
-        if (dwarf.mouse.isMouseClicked(button)) {
-            return isMouseHover();
-        } else {
-            return false;
-        }
+        return dwarf.mouse.isMouseClicked(button) && isMouseHover();
     }
 
     /**

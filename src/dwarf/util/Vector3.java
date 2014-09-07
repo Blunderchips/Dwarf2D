@@ -1,5 +1,7 @@
 package dwarf.util;
 
+import dwarf.DwarfException;
+
 /**
  * A 3-dimensional, single-precision, double-point vector.
  *
@@ -55,11 +57,7 @@ public class Vector3 extends java.lang.Object implements Cloneable {
      * Default constructor.
      */
     public Vector3() {
-        super();
-
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
+        this(0, 0, 0);
     }
 
     public Vector3(double x, double y, double z) {
@@ -70,23 +68,11 @@ public class Vector3 extends java.lang.Object implements Cloneable {
         this.z = z;
     }
 
-    public Vector3(float x, float y, float z) {
-        super();
-
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
     public Vector3(Vector3 v) {
-        super();
-
-        this.x = v.getX();
-        this.y = v.getY();
-        this.z = v.getZ();
+        this(v.getX(), v.getY(), v.getZ());
     }
 
-    public Vector3(double[] ds) {
+    public Vector3(double[] ds) throws DwarfException {
         super();
 
         if (ds.length == 3) {
@@ -94,11 +80,11 @@ public class Vector3 extends java.lang.Object implements Cloneable {
             this.y = ds[1];
             this.z = ds[2];
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 
-    public Vector3(float[] fs) {
+    public Vector3(float[] fs) throws DwarfException {
         super();
 
         if (fs.length == 3) {
@@ -106,7 +92,7 @@ public class Vector3 extends java.lang.Object implements Cloneable {
             this.y = fs[1];
             this.z = fs[2];
         } else {
-            throw new dwarf.DwarfException("illegal argument");
+            throw new DwarfException("illegal argument");
         }
     }
 
