@@ -6,7 +6,7 @@ import dwarf.util.Vector2;
 import dwarf.util.Vector3;
 
 /**
- * Provides an interface to handle all random numbers and events.
+ * Provides an interface to handle all random numbers and events to the user.
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -19,9 +19,10 @@ public interface random {
     }
 
     /**
-     * @param minimum Minimum value. Must be smaller than maximum.
-     * @param maximum Maximum value. Must be greater than minimum.
-     * @return Integer between min and max.
+     * @param minimum Minimum value. Must be smaller than maximum
+     * @param maximum Maximum value. Must be greater than minimum
+     *
+     * @return Integer between min and max
      */
     public static int interger(int maximum, int minimum) {
         return minimum + (int) (Math.random() * maximum);
@@ -32,7 +33,7 @@ public interface random {
     }
 
     /**
-     * @return returns a random boolean.
+     * @return returns a random boolean
      */
     public static boolean bool() {
         return (random.interger() % 2) == 0;

@@ -1,5 +1,5 @@
 /**
- * Utilities to support the library. Basically anything that didn't fit
- * elsewhere.
+ * Utilities to support the library. So basically anything that didn't fit
+ * anywhere else.
  */
 package dwarf.util;

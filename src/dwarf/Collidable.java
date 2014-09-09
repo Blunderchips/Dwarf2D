@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.io.Serializable;
+import java.awt.Polygon;
 
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
@@ -11,7 +12,6 @@ import dwarf.util.Point2D;
 import dwarf.engine.core.Window;
 
 import static dwarf.mouse.MOUSE_LEFT;
-import static dwarf.util.Point2D.ZERO;
 
 /**
  * A wrapper around the values needed for a malleable 2D polygon collision
@@ -40,20 +40,43 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * Default constructor.
      */
     public Collidable() {
-        this(ZERO);
+        super();
     }
 
-    /**
-     * creates a new <code>Collidable</code>.
-     *
-     * @param position the location of the <code>Collidable</code> of the game
-     * window (<code>Vector2</code>)
-     */
-    public Collidable(Point2D position) {
+    public Collidable(Point2D[] vertices) {
+        this(new Point2D(0, 0), vertices);
+    }
+
+    public Collidable(Point2D position, Point2D[] vertices) {
         super();
 
         this.position = position;
+
         this.vertices = new ArrayList<>();
+        this.vertices.addAll(Arrays.asList(vertices));
+    }
+
+    public Collidable(int xPos, int yPos, Point2D[] vertices) {
+        this(new Point2D(xPos, yPos), vertices);
+    }
+
+    public Collidable(double[] xPoints, double[] yPoints) {
+        this(new Point2D(0, 0), null);
+        this.setVertices(xPoints, yPoints);
+    }
+
+    public Collidable(int[] xPoints, int[] yPoints) {
+        this(new Point2D(0, 0), null);
+        this.setVertices(xPoints, yPoints);
+    }
+
+    public Collidable(Point2D position, double[] xPoints, double[] yPoints) {
+        this(position, null);
+        this.setVertices(xPoints, yPoints);
+    }
+
+    public Collidable(Polygon p) {
+        this(p.xpoints, p.ypoints);
     }
 
     /**
@@ -63,10 +86,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * @param Collidable the inputed <code>Collidable</code>.
      */
     public Collidable(Collidable Collidable) {
-        super();
-
-        this.vertices = Collidable.vertices;
-        this.position = Collidable.getPosition();
+        this(Collidable.getPosition(), Collidable.getVertices());
     }
 
     /**
@@ -106,9 +126,10 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     /**
-     * creates a new <code>Collidable</code> with the Vector2 arrays given.
+     * creates a new <code>Collidable</code> with the <code>Point</code> arrays
+     * given.
      *
-     * @param vertices an array of the Vector2 coordinates of * the
+     * @param vertices an array of the Vector2 coordinates of the
      * <code>Collidable</code>
      */
     public void setVertices(Point2D[] vertices) {
@@ -123,23 +144,47 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
         this.setVertices(xPoints, yPoints);
     }
 
-    public void setVertices(java.awt.Polygon p) {
+    public void setVertices(Polygon p) {
         double[] xpoints = new double[p.npoints];
         double[] ypoints = new double[p.npoints];
 
         for (int i = 0; i < p.npoints; i++) {
             xpoints[i] = p.xpoints[i];
-            xpoints[i] = p.ypoints[i];
+            ypoints[i] = p.ypoints[i];
         }
 
         this.setVertices(xpoints, ypoints);
     }
 
     /**
-     * The total number of points. The value of
-     * <code>getVertices().size()</code> represents the number of valid points
-     * in this <code>Collidable</code> and might be less than the number of
-     * elements in {@link #vertices} or {@link #vertices}. This value can be
+     * creates a new <code>Collidable</code> with the arrays given.This method
+     * is called from within the constructor to initialize the
+     * <code>Collidable</code>. WARNING: Do NOT modify this code.
+     *
+     * @throws IllegalArgumentException if the the number of X points does not
+     * equal the number of Y points or if they contain less than 3 points.
+     *
+     * @param xPoints an array of the x coordinates of the polygon.
+     * @param yPoints an array of the y coordinates of the polygon.
+     */
+    public final void setVertices(int[] xPoints, int[] yPoints) {
+        double[] xpoints = new double[xPoints.length];
+        double[] ypoints = new double[yPoints.length];
+
+        for (int i = 0; i < xPoints.length; i++) {
+            xpoints[i] = xPoints[i];
+        }
+        for (int i = 0; i < yPoints.length; i++) {
+            ypoints[i] = yPoints[i];
+        }
+
+        this.setVertices(xpoints, ypoints);
+    }
+
+    /**
+     * The total number of points. The value of <code>vertices.size()</code>
+     * represents the number of valid points in this <code>Collidable</code> and
+     * might be less than the number of elements in vertices. This value can be
      * NULL.
      *
      * @return the total number of points in the vertices ArrayList.
@@ -149,12 +194,17 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     /**
-     * creates a new <code>Collidable</code> with the arrays given.
+     * creates a new <code>Collidable</code> with the arrays given.This method
+     * is called from within the constructor to initialize the
+     * <code>Collidable</code>. WARNING: Do NOT modify this code.
+     *
+     * @throws IllegalArgumentException if the the number of X points does not
+     * equal the number of Y points or if they contain less than 3 points.
      *
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public void setVertices(double[] xPoints, double[] yPoints) {
+    public final void setVertices(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");
@@ -185,10 +235,9 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * <code>Collidable</code>.
      * <p>
      *
-     * @param point - Vector2d
-     * @return {@code true} if this <code>Collidable</code> contains the
-     * specified coordinates {@code (x,y)};
-     *         {@code false} otherwise.
+     * @param point the <code>Point2D</code> to be tested
+     * @return <code>true</code> if this <code>Collidable</code> contains the
+     * specified coordinates (x;y) <code>false</code> otherwise.
      */
     public boolean contains(Point2D point) {
         return this.contains(point.getX(), point.getY());
@@ -200,6 +249,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      *
      * @param xPos the specified X coordinate to be tested
      * @param yPos the specified Y coordinate to be tested
+     *
      * @return <code>true</code> if this <code>Collidable</code> contains the
      * specified coordinates <code>(xPos; yPos)</code> <code>false</code>
      * otherwise.
@@ -435,13 +485,18 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
         }
     }
 
+    /**
+     * Returns a string representation of the object. In general, the toString
+     * method returns a string that "textually represents" this object. The
+     * result should be a concise but informative representation that is easy
+     * for a person to read. It is recommended that all subclasses override this
+     * method.
+     *
+     * @return a textually representation of this object
+     */
     @Override
     public String toString() {
-        return "Collidable = {"
-                + "points: " + Arrays.toString(getVertices()) + ", "
-                + "position: " + getPosition() + ", "
-                + "super: " + super.toString()
-                + "}";
+        return "Collidable = {" + "points: " + Arrays.toString(getVertices()) + ", " + "position: " + getPosition() + "}";
     }
 
     /**
@@ -458,10 +513,10 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
 
     /**
      * Returns the coordinate of the center of the <code>Collidable</code> in
-     * the horizontal axis.
+     * the X axis.
      *
      * @return the coordinate of the center of the <code>Collidable</code> in
-     * the horizontal axis
+     * the X axis
      */
     public Point2D getCenterX() {
         return new Point2D(
@@ -472,10 +527,10 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
 
     /**
      * Returns the coordinate of the center of the <code>Collidable</code> in
-     * the vertical axis.
+     * the Y axis.
      *
      * @return the coordinate of the center of the <code>Collidable</code> in
-     * the vertical axis
+     * the Y axis
      */
     public Point2D getCenterY() {
         return new Point2D(
@@ -490,7 +545,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      *
      * @see dwarf.Collidable#contains(dwarf.util.Point2D)
      *
-     * @param coll - the <code>Collidable</code> to be tested
+     * @param coll the <code>Collidable</code> to be tested
      * @return true if the <code>Collidable</code> has intersected/collided with
      * this
      */
@@ -549,9 +604,9 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     /**
      * tests if the <code>Collidable</code> is clicked of by a mouse button.
      *
-     * @see dwarf.mouse#isMouseClicked(int) 
-     * @see dwarf.Collidable#isMouseHover() 
-     * 
+     * @see dwarf.mouse#isMouseClicked(int)
+     * @see dwarf.Collidable#isMouseHover()
+     *
      * @param button the that needs to be clicked.
      * @return true if the <code>Collidable</code> is clicked on.
      */
@@ -575,9 +630,9 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     /**
      * tests if the <code>Collidable</code> is clicked of by a mouse button.
      *
-     * @see dwarf.mouse#isMouseClicked(String) 
-     * @see dwarf.Collidable#isMouseHover() 
-     * 
+     * @see dwarf.mouse#isMouseClicked(String)
+     * @see dwarf.Collidable#isMouseHover()
+     *
      * @param button the that needs to be clicked.
      * @return true if the <code>Collidable</code> is clicked on.
      */

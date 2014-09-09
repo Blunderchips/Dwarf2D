@@ -1,9 +1,9 @@
 package dwarf;
 
-import java.io.BufferedReader;
+import java.util.Objects;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Objects;
+import java.io.BufferedReader;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.GL_COMPILE_STATUS;
@@ -19,7 +19,7 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glValidateProgram;
 
 /**
- * handles all shader files and shader operation. A Shader is a program designed
+ * Handles all shader files and shader operation. A Shader is a program designed
  * to run on some stage of a graphics processor. Its purpose is to execute one
  * of the programmable stages of the rendering pipeline.
  *
@@ -27,11 +27,12 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
  *
  * @see <a href='http://en.wikipedia.org/wiki/Shader'>wikipedia</a>
  * @see java.lang.Object
+ * @see java.lang.Cloneable
  */
 public class Shader extends java.lang.Object implements Cloneable {
 
     /**
-     * The Vertex Shader is the programmable Shader stage in the rendering
+     * A Vertex Shader is the programmable Shader stage in the rendering
      * pipeline that handles the processing of individual vertices.
      */
     public final static int VERTEX_SHADER = 0x8b31;
@@ -41,7 +42,39 @@ public class Shader extends java.lang.Object implements Cloneable {
      * and a single depth value.
      */
     public final static int FRAGMENT_SHADER = 0x8b30;
+    /**
+     * the glCreateProgram function creates an empty program object and returns
+     * a non-zero value by which it can be referenced. A program object is an
+     * object to which shader objects can be attached. This provides a mechanism
+     * to specify the shader objects that will be linked to create a program. It
+     * also provides a means for checking the compatibility of the shaders that
+     * will be used to create a program (for instance, checking the
+     * compatibility between a vertex shader and a fragment shader). When no
+     * longer needed as part of a program object, shader objects can be
+     * detached.
+     */
     public final static int SHADER_PROGRAM = glCreateProgram();
+
+    /**
+     * The Vertex Shader is the programmable Shader stage in the rendering
+     * pipeline that handles the processing of individual vertices.
+     *
+     * @return Shader.VERTEX_SHADER (35633)
+     */
+    public static int getVertexShader() {
+        return Shader.VERTEX_SHADER;
+    }
+
+    /**
+     * A Fragment Shader is a user-supplied program that, when executed, will
+     * process a Fragment from the rasterization process into a set of colours
+     * and a single depth value.
+     *
+     * @return Shader.FRAGMENT_SHADER (35632)
+     */
+    public static int getFragmentShader() {
+        return Shader.FRAGMENT_SHADER;
+    }
 
     public static void deleteShaderProgram() {
         glDeleteProgram(SHADER_PROGRAM);
@@ -81,36 +114,9 @@ public class Shader extends java.lang.Object implements Cloneable {
     }
 
     /**
-     * The Vertex Shader is the programmable Shader stage in the rendering
-     * pipeline that handles the processing of individual vertices.
-     *
-     * @see dwarf.Shader#VERTEX_SHADER
-     *
-     * @return Shader.VERTEX_SHADER (35633)
-     */
-    public static int getVertexShader() {
-        return Shader.VERTEX_SHADER;
-    }
-
-    /**
      * A Fragment Shader is a user-supplied program that, when executed, will
      * process a Fragment from the rasterization process into a set of colours
      * and a single depth value.
-     *
-     * @see dwarf.Shader#FRAGMENT_SHADER
-     *
-     * @return Shader.FRAGMENT_SHADER (35632)
-     */
-    public static int getFragmentShader() {
-        return Shader.FRAGMENT_SHADER;
-    }
-
-    /**
-     * A Fragment Shader is a user-supplied program that, when executed, will
-     * process a Fragment from the rasterization process into a set of colours
-     * and a single depth value.
-     *
-     * @see dwarf.Shader#SHADER_PROGRAM
      *
      * @return Shader.SHADER_PROGRAM
      */
@@ -131,8 +137,9 @@ public class Shader extends java.lang.Object implements Cloneable {
      * as a superclass. All objects, including arrays, implement the methods of
      * this class.
      *
-     * @return a hash code value for this object.
      * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return a hash code value for this object.
      */
     @Override
     public int hashCode() {
@@ -156,9 +163,10 @@ public class Shader extends java.lang.Object implements Cloneable {
      * false is returned. Otherwise, equality is determined by using the equals
      * method of the first argument.
      *
+     * @see java.lang.Object#equals(java.lang.Object)
+     *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
-     * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public boolean equals(Object obj) {
@@ -170,21 +178,29 @@ public class Shader extends java.lang.Object implements Cloneable {
 
         final Shader shader = (Shader) obj;
 
-        if (this.getProgram() != shader.getProgram()) {
+        if (this.program != shader.program) {
             return false;
-        } else if (!Objects.equals(this.getSource(), shader.getSource())) {
+        } else if (!Objects.equals(this.source, shader.source)) {
+            return false;
+        } else if (!Objects.equals(this.path, shader.path)) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * Returns a string representation of the object. In general, the toString
+     * method returns a string that "textually represents" this object. The
+     * result should be a concise but informative representation that is easy
+     * for a person to read. It is recommended that all subclasses override this
+     * method.
+     *
+     * @return a textually representation of this object
+     */
     @Override
     public String toString() {
-        return "Shader["
-                + "program:" + getProgram() + ", "
-                + "source: " + getSource()
-                + "]";
+        return "Shader[" + "path:" + path + ", " + "program:" + program + "]";
     }
 
     public Shader get() {
@@ -201,19 +217,19 @@ public class Shader extends java.lang.Object implements Cloneable {
         this.source = new StringBuilder();
 
         if (type == FRAGMENT_SHADER || type == VERTEX_SHADER) {
-            BufferedReader scanner = null;
+            BufferedReader sc = null;
             try {
-                scanner = new BufferedReader(new FileReader(path));
+                sc = new BufferedReader(new FileReader(path));
                 String ln;
-                while ((ln = scanner.readLine()) != null) {
+                while ((ln = sc.readLine()) != null) {
                     this.source.append(ln).append('\n');
                 }
             } catch (IOException ioe) {
                 throw new DwarfException(ioe);
             } finally {
-                if (scanner != null) {
+                if (sc != null) {
                     try {
-                        scanner.close();
+                        sc.close();
                     } catch (IOException ioe) {
                         throw new DwarfException(ioe);
                     }
@@ -224,7 +240,7 @@ public class Shader extends java.lang.Object implements Cloneable {
             glCompileShader(program);
 
             if (glGetShaderi(program, GL_COMPILE_STATUS) == GL_FALSE) {
-                throw new DwarfException("Shader wan not able to be compiled correctly.");
+                throw new DwarfException("shader wan not able to be compiled correctly.");
             }
 
             glAttachShader(SHADER_PROGRAM, program);
@@ -242,7 +258,7 @@ public class Shader extends java.lang.Object implements Cloneable {
         this.init();
     }
 
-    public void set(int type, String path) {
+    public void set(int type, String path) throws DwarfException {
         this.path = path;
         this.type = type;
 
