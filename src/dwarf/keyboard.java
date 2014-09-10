@@ -429,7 +429,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
             case "app menu":
                 return KEY_APPS;
             default:
-                throw new DwarfException("illegal argument (keycode '" + code + "' is unknown)");
+                throw new DwarfException("illegal argument. (keycode '" + code + "' is unknown)");
         }
     }
 

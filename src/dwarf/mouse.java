@@ -115,12 +115,12 @@ public final class mouse {
      *
      * @param pos The new position of the mouse
      */
-    public static void setMousePosition(Vector2 pos) {
+    public static void setMousePosition(Point2D pos) {
         org.lwjgl.input.Mouse.setCursorPosition((int) pos.getX(), (int) pos.getY());
     }
 
     public static void setMousePosition(int new_xPos, int new_yPos) {
-        setMousePosition(new Vector2(new_xPos, new_yPos));
+        setMousePosition(new Point2D(new_xPos, new_yPos));
     }
 
     public static void setCursor(boolean enabled) {
