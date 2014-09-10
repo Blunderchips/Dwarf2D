@@ -112,7 +112,7 @@ public class Image extends Rectangle implements GameObject {
 
     @Override
     public String toString() {
-        return "Image{" + "texture:" + texture + "}";
+        return "Image[position: " + super.getPosition() + "texture:" + texture + "]";
     }
 
     @Override

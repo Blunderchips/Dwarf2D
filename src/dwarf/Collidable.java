@@ -500,7 +500,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      */
     @Override
     public String toString() {
-        return "Collidable = {" + "points: " + Arrays.toString(getVertices()) + ", " + "position: " + getPosition() + "}";
+        return "Collidable[" + "points: " + Arrays.toString(getVertices()) + ", " + "position: " + getPosition() + "]";
     }
 
     /**
