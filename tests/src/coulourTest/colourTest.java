@@ -12,7 +12,7 @@ import static dwarf.gfx.Polygon.FILL;
 public class colourTest implements Colours {
 
     public static void main(String[] args) {
-        new Game(1600, 900) {
+        new Game(1600, 900, "colour test - Dwarf 2D") {
 
             @Override
             public void load() {
