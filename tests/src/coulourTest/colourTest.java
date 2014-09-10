@@ -19,16 +19,8 @@ public class colourTest implements Colours {
                 dwarf.gfx.background.setColour(white);
 
                 Colour colours[] = {
-                    aqua, aquamarine, bakersChoc, black, blue, blueViolet, brass, brightGold, bronze, bronze2, brown,
-                    cadetBlue, coolCopper, copper, coral, cornflowerBlue, darkBrown, darkGreen, darkGreenCopper, darkGrey,
-                    darkOliveGreen, darkOrchid, darkPurple, darkSlateBlue, darkSlateGray, darkSlateGrey, darkTan, darkTurquoise,
-                    darkWood, dustyRose, feldspar, firebrick, flesh, forestGreen, gold, goldenrod, greenCopper, greenYellow,
-                    grey, huntersGreen, indianRed, khaki, lightBlue, lightSteelBlue, lightSteelBlue, lightWood, lime, limeGreen,
-                    mandarinOrange, maroon, mediumForestGreen, mediumGoldenrod, mediumOrchid, mediumOrchid, mediumSeaGreen,
-                    mediumTurquoise, mediumVioletRed, mediumWood, navy, navyBlue, neonBlue, neonPink, newMidnightBlue, newTan,
-                    oldGold, orange, orchid, paleGreen, pink, plum, quartz, red, richBlue, salmon, scarlet, seaGreen, semiSweetChoc,
-                    sienna, silver, skyBlue, spicyPink, steelBlue, summerSky, tan, thistle, turquoise, veryDarkBrown, violet, violetRed,
-                    wheat, white, yellow, yellowGreen
+                    aqua, black, blue, brown, darkGrey, white,grey,
+                    lime, orange, pink, red, scarlet, yellow, violet
                 };
 
                 double xPos = 0;

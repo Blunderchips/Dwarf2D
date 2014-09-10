@@ -44,11 +44,15 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     public Collidable(Point2D position) {
-        this(new Point2D(0, 0), null);
+        super();
+        
+        this.position = position;
+        this.vertices = new ArrayList<>();
     }
-
+    
     public Collidable(Point2D[] vertices) {
-        this(new Point2D(0, 0), vertices);
+        super();
+        this.setVertices(vertices);
     }
 
     public Collidable(Point2D position, Point2D[] vertices) {
@@ -65,17 +69,23 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     public Collidable(double[] xPoints, double[] yPoints) {
-        this(new Point2D(0, 0), null);
+        super();
+
+        this.position = new Point2D(0, 0);
         this.setVertices(xPoints, yPoints);
     }
 
     public Collidable(int[] xPoints, int[] yPoints) {
-        this(new Point2D(0, 0), null);
+        super();
+
+        this.position = new Point2D(0, 0);
         this.setVertices(xPoints, yPoints);
     }
 
     public Collidable(Point2D position, double[] xPoints, double[] yPoints) {
-        this(position, null);
+        super();
+
+        this.position = new Point2D(0, 0);
         this.setVertices(xPoints, yPoints);
     }
 

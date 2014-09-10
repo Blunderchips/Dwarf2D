@@ -20,6 +20,7 @@ import dwarf.DwarfException;
  * @see dwarf.gfx.shapeConstants
  * @see dwarf.gfx.Colours
  */
+@SuppressWarnings("serial")
 public class Polygon extends dwarf.Collidable implements GameObject, shapeConstants, Colours {
 
     public final static byte FILL = 0x0;
@@ -72,7 +73,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * created
      */
     public Polygon(Point2D[] vertices, Point2D position, int mode, Colour colour) {
-        super(position);
+        super(position, null);
 
         this.update = true;
         this.render = true;
@@ -84,7 +85,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     }
 
     public Polygon(Polygon polygon) {
-        super(polygon.getPosition());
+        super(polygon.getPosition(), null);
 
         this.update = true;
         this.render = true;

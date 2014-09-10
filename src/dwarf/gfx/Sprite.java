@@ -44,7 +44,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
     }
 
     public Sprite(Image image, Point2D position) {
-        super(position);
+        super(position, null);
 
         this.textures = new ArrayList<>();
         this.textures.add(image);
