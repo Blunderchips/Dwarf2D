@@ -62,7 +62,7 @@ public class Crashform extends javax.swing.JFrame {
         super.setLocationRelativeTo(dwarf.engine.core.Window.getParent());
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         super.setEnabled(true);
-        super.setVisible(true);
+        //super.setVisible(true);
 
         this.setDisplay(cause);
     }

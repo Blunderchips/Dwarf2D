@@ -26,8 +26,17 @@ public final class mouse {
                 "you can not instantiate this class.");
     }
 
+    /**
+     * the left mouse button.
+     */
     public static final byte MOUSE_LEFT = 0x0;
+    /**
+     * the right mouse button.
+     */
     public static final byte MOUSE_RIGHT = 0x1;
+    /**
+     * the middle mouse button. (scroller click)
+     */
     public static final byte MOUSE_MIDDLE = 0x2;
 
     public static final byte NUM_MOUSEBUTTONS = (byte) org.lwjgl.input.Mouse.getButtonCount();
@@ -45,7 +54,7 @@ public final class mouse {
         try {
             org.lwjgl.input.Mouse.create();
         } catch (LWJGLException ex) {
-            new DwarfError(ex).display();
+            throw new DwarfError(ex);
         }
 
         mouse.currentMouse = new ArrayList<>();
@@ -79,12 +88,26 @@ public final class mouse {
         }
     }
 
+    /**
+     * "destroys" the keyboard.
+     */
     public static void dispose() {
         org.lwjgl.input.Mouse.destroy();
     }
 
     public static Point2D getMousePosition() {
-        return new Point2D(org.lwjgl.input.Mouse.getX(), org.lwjgl.input.Mouse.getY());
+        return new Point2D(
+                org.lwjgl.input.Mouse.getX(),
+                org.lwjgl.input.Mouse.getY()
+        );
+    }
+
+    public static int getPosX() {
+        return org.lwjgl.input.Mouse.getX();
+    }
+
+    public static int getPosY() {
+        return org.lwjgl.input.Mouse.getY();
     }
 
     /**
@@ -109,7 +132,7 @@ public final class mouse {
     }
 
     public static int getNumMouseButtons() {
-        return mouse.NUM_MOUSEBUTTONS;
+        return org.lwjgl.input.Mouse.getButtonCount();
     }
 
     public static void reset() {
@@ -225,13 +248,12 @@ public final class mouse {
     /**
      * Gets a button's name.
      *
-     * @param code The button
-     * @throws IllegalArgumentException will throw if no suitable result is
-     * found
+     * @param code The button code to be tested
+     * @throws DwarfException will throw if no suitable result is found
      * @return a String with the button's human readable name in it or will
      * throw a IllegalArgumentException if the button is unnamed
      */
-    private static byte getKeyCode(String code) throws IllegalArgumentException {
+    private static byte getKeyCode(String code) throws DwarfException {
         switch (code) {
             case "left":
                 return MOUSE_LEFT;
@@ -240,7 +262,7 @@ public final class mouse {
             case "scroler":
                 return MOUSE_MIDDLE;
             default:
-                throw new IllegalArgumentException("keycode '" + code + "' is unknown");
+                throw new DwarfException("illegal argument. (keycode '" + code + "' is unknown)");
         }
     }
 

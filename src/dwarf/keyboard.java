@@ -37,7 +37,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
         try {
             org.lwjgl.input.Keyboard.create();
         } catch (LWJGLException ex) {
-            new dwarf.DwarfException(ex).display();
+            throw new DwarfError(ex);
         }
 
         keyboard.currentKeys = new ArrayList<>();
@@ -71,12 +71,15 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
         }
     }
 
+    /**
+     * "destroys" the keyboard.
+     */
     public static void dispose() {
         org.lwjgl.input.Keyboard.destroy();
     }
 
     public static int getNumKeyCodes() {
-        return keyboard.NUM_KEYCODES;
+        return org.lwjgl.input.Keyboard.getKeyCount();
     }
 
     public static boolean isCreated() {
@@ -106,7 +109,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @return true if the key is down, otherwise it will return false.
      */
     public static boolean isKeyDown(int keyCode) {
-        return org.lwjgl.input.Keyboard.isKeyDown((short) keyCode);
+        return org.lwjgl.input.Keyboard.isKeyDown(keyCode);
     }
 
     /**
@@ -173,13 +176,13 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
     /**
      * Gets a key's name.
      *
-     * @param code The key
-     * @throws IllegalArgumentException will throw if no suitable result is
+     * @param code The key code to be tested
+     * @throws DwarfException will throw if no suitable result is
      * found
      * @return a String with the key's human readable name in it or will throw a
      * IllegalArgumentException if the key is unnamed
      */
-    private static short getKeyCode(String code) throws IllegalArgumentException {
+    private static short getKeyCode(String code) throws DwarfException {
         switch (code) {
             case "1":
                 return KEY_1;
@@ -426,7 +429,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
             case "app menu":
                 return KEY_APPS;
             default:
-                throw new IllegalArgumentException("keycode '" + code + "' is unknown");
+                throw new DwarfException("illegal argument (keycode '" + code + "' is unknown)");
         }
     }
 

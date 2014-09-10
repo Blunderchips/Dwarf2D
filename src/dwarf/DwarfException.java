@@ -94,9 +94,11 @@ public class DwarfException extends java.lang.RuntimeException implements Clonea
      * Displays the error in a new crash form.
      *
      * @see dwarf.Crashform
+     *
+     * @return a new <code>Crashform</code>
      */
-    public void display() {
-        new dwarf.Crashform(this);
+    public Crashform display() {
+        return new Crashform(this);
     }
 
     /**
