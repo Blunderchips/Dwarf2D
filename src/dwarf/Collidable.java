@@ -43,6 +43,10 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
         super();
     }
 
+    public Collidable(Point2D position) {
+        this(new Point2D(0, 0), null);
+    }
+
     public Collidable(Point2D[] vertices) {
         this(new Point2D(0, 0), vertices);
     }
@@ -167,7 +171,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public final void setVertices(int[] xPoints, int[] yPoints) {
+    public void setVertices(int[] xPoints, int[] yPoints) {
         double[] xpoints = new double[xPoints.length];
         double[] ypoints = new double[yPoints.length];
 
@@ -204,7 +208,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public final void setVertices(double[] xPoints, double[] yPoints) {
+    public void setVertices(double[] xPoints, double[] yPoints) {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");
