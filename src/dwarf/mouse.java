@@ -3,7 +3,6 @@ package dwarf;
 import java.util.ArrayList;
 
 import dwarf.util.Point2D;
-import dwarf.util.Vector2;
 
 import org.lwjgl.LWJGLException;
 

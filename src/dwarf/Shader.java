@@ -274,11 +274,32 @@ public class Shader extends java.lang.Object implements Cloneable {
         return type;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setType(int type) throws DwarfException {
+        if (type == VERTEX_SHADER || type == FRAGMENT_SHADER) {
+            this.type = type;
+            this.init();
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    /**
+     * Gets the type of the object as a string.
+     *
+     * @return the type of shader <code>this</code> is (String)
+     */
+    public String type() {
+        switch (type) {
+            case VERTEX_SHADER:
+                return "vertex shader";
+            case FRAGMENT_SHADER:
+                return "fragment shader";
+            default:
+                return null;
+        }
     }
 }
