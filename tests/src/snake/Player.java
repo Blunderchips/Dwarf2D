@@ -79,14 +79,15 @@ public class Player extends Shape {
         Snake.score = 0;
         Snake.zombie.setSpeed(1);
 
-        try {
-            for (GameObject obj : game.getGameObejects()) {
+        for (GameObject obj : game.getGameObejects()) {
+            try {
                 if (obj instanceof coin) {
                     coin zombie = (coin) obj;
                     zombie.destory();
                 }
+            }  catch (NullPointerException ex) {
+                continue;
             }
-        } catch (NullPointerException ex) {
         }
     }
 
