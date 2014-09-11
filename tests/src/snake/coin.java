@@ -19,7 +19,7 @@ public class coin extends Shape {
         super(4, 30, new Point2D(
                 random.interger(Window.getWidth()),
                 random.interger(Window.getHeight())
-        ), FILL, lime);
+        ), FILL, LIME);
         this.load();
     }
 

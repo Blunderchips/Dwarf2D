@@ -2,14 +2,11 @@ package snake;
 
 import javax.swing.JOptionPane;
 
-import dwarf.GameObject;
-import dwarf.engine.core.Window;
 import dwarf.gfx.Shape;
-import dwarf.random;
 import dwarf.util.Point2D;
 import dwarf.util.Vector2;
+import dwarf.engine.core.Window;
 
-import static snake.Snake.game;
 import static dwarf.random.interger;
 
 public class Player extends Shape {
@@ -21,7 +18,7 @@ public class Player extends Shape {
         super(4, 10, new Point2D(
                 interger(Window.getWidth()),
                 interger(Window.getHeight())
-        ), FILL, red);
+        ), FILL, RED);
         this.load();
     }
 
@@ -65,30 +62,10 @@ public class Player extends Shape {
         this.translate(velocity.toPoint());
     }
 
-    public void die() {
+    public static void die() {
         JOptionPane.showMessageDialog(null, "Score: " + Snake.score, "You are Dead.", 0);
-
-        Snake.player.setPosition(new Point2D(
-                random.interger(Window.getWidth()),
-                random.interger(Window.getHeight())
-        ));
-        Snake.zombie.setPosition(new Point2D(
-                random.interger(Window.getWidth()),
-                random.interger(Window.getHeight())
-        ));
-        Snake.score = 0;
-        Snake.zombie.setSpeed(1);
-
-        for (GameObject obj : game.getGameObejects()) {
-            try {
-                if (obj instanceof coin) {
-                    coin zombie = (coin) obj;
-                    zombie.destory();
-                }
-            }  catch (NullPointerException ex) {
-                continue;
-            }
-        }
+        Snake.game.dispose();
+        Snake.game = new Snake();
     }
 
     @Override

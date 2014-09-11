@@ -15,6 +15,7 @@ import dwarf.util.Point2D;
  * @see dwarf.Collidable
  * @see java.lang.Object
  */
+@SuppressWarnings("serial")
 public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
 
     /**

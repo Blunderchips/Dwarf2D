@@ -19,7 +19,7 @@ public class colourTest implements Colours {
                 dwarf.gfx.background.setColour(white);
 
                 Colour colours[] = {
-                    aqua, black, blue, brown, darkGrey, white,grey,
+                    aqua, black, blue, brown, darkGrey, white, grey,
                     lime, orange, pink, red, scarlet, yellow, violet
                 };
 

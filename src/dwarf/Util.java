@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import dwarf.Game;
-import dwarf.DwarfException;
-
 /**
  * Provides an interface that offers general utilities to the user.
  *

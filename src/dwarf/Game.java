@@ -311,13 +311,13 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
             return false;
         }
 
-        final Game other = (Game) obj;
+        final Game otherGame = (Game) obj;
 
-        if (!Objects.equals(this.propertyChangeSupport, other.propertyChangeSupport)) {
+        if (!Objects.equals(this.propertyChangeSupport, otherGame.propertyChangeSupport)) {
             return false;
-        } else if (!Objects.equals(this.vetoableChangeSupport, other.vetoableChangeSupport)) {
+        } else if (!Objects.equals(this.vetoableChangeSupport, otherGame.vetoableChangeSupport)) {
             return false;
-        } else if (!Objects.equals(this.getGameObjects(), other.getGameObjects())) {
+        } else if (!Objects.equals(this.gameObjects, otherGame.gameObjects)) {
             return false;
         }
 
