@@ -78,6 +78,15 @@ public class Rectangle extends Quadrilateral {
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
 
+    /**
+     * A 4 sided figure where all 4 sides are equal and both diagonals bisect
+     * each other (a lozenge/rhombus with right angles). A Square has all the
+     * properties of a parallelogram, a rectangle and a rhombus.
+     */
+    public Rectangle(double sideLength, Point2D position, int mode, Colour colour) {
+        this(sideLength, sideLength, position, mode, colour);
+    }
+
     public Rectangle(Rectangle rectangle) {
         super(null, rectangle.getPosition(), rectangle.getMode(), rectangle.getColour());
         this.setVertices(rectangle.getDimensions().getWidth(), rectangle.getDimensions().getHeight());
@@ -169,7 +178,7 @@ public class Rectangle extends Quadrilateral {
     @Override
     public boolean isSquare() {
         if (super.getType().equals("quadrilateral")) {
-            return this instanceof Square || this.getDimensions().getWidth() == this.getDimensions().getHeight();
+            return this.getDimensions().getWidth() == this.getDimensions().getHeight();
         } else {
             return false;
         }
@@ -303,28 +312,6 @@ public class Rectangle extends Quadrilateral {
     @Override
     public float getAverageHeight() {
         return (float) this.getHalfHeight();
-    }
-
-    /**
-     * if this is a square this will return a Square or it will throw a error.
-     *
-     * @see dwarf.gfx.Square
-     * @see java.lang.Exception
-     *
-     * @throws dwarf.DwarfException throws a error if this is not a square
-     * @return this as a new Square if possible otherwise will throw a error
-     */
-    public Square toSquare() throws dwarf.DwarfException {
-        if (isSquare()) {
-            return new Square(
-                    this.getDimensions().getWidth(),
-                    super.getPosition(),
-                    super.getMode(),
-                    super.getColour()
-            );
-        } else {
-            throw new dwarf.DwarfException("this is not a square. (length != breadth)");
-        }
     }
 
     /**
