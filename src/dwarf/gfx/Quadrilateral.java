@@ -12,6 +12,7 @@ import dwarf.DwarfException;
  * @see <a href='http://en.wikipedia.org/wiki/Quadrilateral'>wikipedia</a>
  * @see dwarf.gfx.Polygon
  */
+@SuppressWarnings("serial")
 public class Quadrilateral extends Polygon {
 
     /**
@@ -36,16 +37,16 @@ public class Quadrilateral extends Polygon {
     public Quadrilateral(Point2D vertexA, Point2D vertexB, Point2D vertexC, Point2D vertexD, Point2D position, int mode, Colour colour) {
         super(position, mode, colour);
 
-        Point2D[] points = {
+        Point2D[] vertices = {
             vertexA, vertexB, vertexC, vertexD
         };
 
-        super.setVertices(points);
+        super.setVertices(vertices);
     }
 
-    public Quadrilateral(Quadrilateral quadrilateral) {
-        super(quadrilateral.getPosition(), quadrilateral.getMode(), quadrilateral.getColour());
-        super.setVertices(quadrilateral.getVertices());
+    public Quadrilateral(Quadrilateral quad) {
+        super(quad.getPosition(), quad.getMode(), quad.getColour());
+        super.setVertices(quad.getVertices());
     }
 
     @Override
@@ -88,11 +89,11 @@ public class Quadrilateral extends Polygon {
         super.setVertices(points);
     }
 
-    public void set(Quadrilateral quadrilateral) {
-        super.setVertices(quadrilateral.getVertices());
-        super.setPosition(quadrilateral.getPosition());
-        super.setMode(quadrilateral.getMode());
-        super.setColour(quadrilateral.getColour());
+    public void set(Quadrilateral quad) {
+        super.setVertices(quad.getVertices());
+        super.setPosition(quad.getPosition());
+        super.setMode(quad.getMode());
+        super.setColour(quad.getColour());
     }
 
     @Override
@@ -113,20 +114,29 @@ public class Quadrilateral extends Polygon {
     }
 
     @Override
-    @Deprecated
-    public void setVertices(double[] xPoints, double[] yPoints) {
-        super.setVertices(xPoints, yPoints);
+    public void setVertices(double[] xPoints, double[] yPoints) throws DwarfException {
+        if (xPoints.length == yPoints.length && xPoints.length == 4) {
+            super.setVertices(xPoints, yPoints);
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 
     @Override
-    @Deprecated
-    public void setVertices(java.awt.Polygon p) {
-        super.setVertices(p);
+    public void setVertices(java.awt.Polygon p) throws DwarfException {
+        if (p.npoints == 4) {
+            super.setVertices(p);
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 
     @Override
-    @Deprecated
-    public void setVertices(Point2D[] vertices) {
-        super.setVertices(vertices);
+    public void setVertices(Point2D[] vertices) throws DwarfException {
+        if (vertices.length == 4) {
+            super.setVertices(vertices);
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 }

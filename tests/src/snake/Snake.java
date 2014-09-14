@@ -39,7 +39,7 @@ public class Snake extends dwarf.Game {
         if (chance(7)) {
             super.addGameObject(new coin());
         }
-        this.updateAllGameObjects();
+        super.updateAllGameObjects();
 
         System.out.println("Delta Time: " + time.getDeltaTime());
     }
