@@ -45,11 +45,11 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
 
     public Collidable(Point2D position) {
         super();
-        
+
         this.position = position;
         this.vertices = new ArrayList<>();
     }
-    
+
     public Collidable(Point2D[] vertices) {
         super();
         this.setVertices(vertices);
@@ -140,8 +140,9 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     /**
-     * creates a new <code>Collidable</code> with the <code>Point</code> arrays
-     * given.
+     * creates a new <code>Collidable</code> with the arrays given.This method
+     * is called from within the constructor to initialize the
+     * <code>Collidable</code>. WARNING: Do NOT modify this code.
      *
      * @param vertices an array of the Vector2 coordinates of the
      * <code>Collidable</code>
