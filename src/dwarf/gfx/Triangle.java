@@ -4,6 +4,9 @@ import dwarf.util.Point2D;
 import dwarf.DwarfException;
 
 /**
+ * A triangle is a polygon with three sides/edges and three vertices/corners.
+ * (A basic 3 sided polygon)
+ *
  * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Triangle'>wikipedia</a>
@@ -27,11 +30,11 @@ public class Triangle extends Polygon {
     public Triangle(Point2D vertexA, Point2D vertexB, Point2D vertexC, Point2D position, int mode, Colour colour) {
         super(position, mode, colour);
 
-        Point2D[] points = {
+        Point2D[] vertices = {
             vertexA, vertexB, vertexC
         };
 
-        super.setVertices(points);
+        super.setVertices(vertices);
     }
 
     public Triangle(Point2D[] vertices, Point2D position, int mode, Colour colour) {
@@ -111,21 +114,30 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    @Deprecated
-    public void setVertices(double[] xPoints, double[] yPoints) {
-        super.setVertices(xPoints, yPoints);
+    public void setVertices(double[] xPoints, double[] yPoints) throws DwarfException {
+        if (xPoints.length == yPoints.length && xPoints.length == 3) {
+            super.setVertices(xPoints, yPoints);
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 
     @Override
-    @Deprecated
-    public void setVertices(java.awt.Polygon p) {
-        super.setVertices(p);
+    public void setVertices(java.awt.Polygon p) throws DwarfException {
+        if (p.npoints == 3) {
+            super.setVertices(p);
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 
     @Override
-    @Deprecated
-    public void setVertices(Point2D[] vertices) {
-        super.setVertices(vertices);
+    public void setVertices(Point2D[] vertices) throws DwarfException {
+        if (vertices.length == 3) {
+            super.setVertices(vertices);
+        } else {
+            throw new DwarfException("illegal argument");
+        }
     }
 
     public void set(Point2D vertexA, Point2D vertexB, Point2D vertexC, Point2D position, int mode, Colour colour) {
@@ -133,11 +145,11 @@ public class Triangle extends Polygon {
         super.setMode(mode);
         super.setColour(colour);
 
-        Point2D[] points = {
+        Point2D[] vertices = {
             vertexA, vertexB, vertexC
         };
 
-        super.setVertices(points);
+        super.setVertices(vertices);
     }
 
     public void set(Triangle triangle) {
@@ -157,12 +169,17 @@ public class Triangle extends Polygon {
         return this;
     }
 
+    /**
+     * TODO
+     */
     public boolean isCongruent(Triangle t) {
         return false; //TODO
     }
 
+    /**
+     * TODO
+     */
     public boolean isSimilar(Triangle t) {
         return false; //TODO
     }
-
 }
