@@ -24,8 +24,17 @@ import static org.lwjgl.openal.AL10.AL_EXTENSIONS;
  * @see <a href='http://en.wikipedia.org/wiki/OpenAL'>wikipedia</a>
  * @see <a href='http://www.openal.org/'>openal.org</a>
  */
-public interface openAL {
+public final class openAL {
 
+    /**
+     * you can not instantiate this class.
+     */
+    public openAL() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
+    
     /**
      * initializes <a href='http://www.openal.org/'>OpenAL</a>
      */

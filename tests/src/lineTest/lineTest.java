@@ -2,8 +2,8 @@ package lineTest;
 
 import dwarf.Game;
 import dwarf.gfx.Line;
-import dwarf.gfx.Square;
 import dwarf.util.Point2D;
+import dwarf.gfx.Rectangle;
 
 import static dwarf.gfx.Colours.red;
 import static dwarf.gfx.Colours.black;
@@ -18,7 +18,7 @@ public class lineTest {
             public void load() {
                 dwarf.gfx.background.setColour(white);
 
-                super.addGameObject(new Square(50, new Point2D(375, 300), 0, red));
+                super.addGameObject(new Rectangle(50, new Point2D(375, 300), 0, red));
                 super.addGameObject(new Line(new Point2D(0, 300), new Point2D(800, 300), black));
                 super.addGameObject(new Line(new Point2D(400, 0), new Point2D(400, 600), black));
             }

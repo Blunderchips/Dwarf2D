@@ -27,7 +27,7 @@ public class Crashform extends javax.swing.JFrame {
      * Creates new form Crashform with a specified <code>Throwable</code> as the
      * cause.
      *
-     * @param cause the cause of the error
+     * @param cause the cause of the crash
      */
     public Crashform(Throwable cause) {
         super("Dwarf2D - " + cause.getClass().getName());
@@ -78,7 +78,7 @@ public class Crashform extends javax.swing.JFrame {
     private void setDisplay(Throwable cause) {
         String msg = " ---Dwarf Crash Report--" + "\n \n";
 
-        //system details
+        //system details:
         msg += " Time: " + dwarf.time.getTime() + " " + dwarf.time.getDate() + "\n";
         msg += " OS: " + dwarf.system.getOSName()
                 + " (" + dwarf.system.getOSArch() + ")"
@@ -88,7 +88,7 @@ public class Crashform extends javax.swing.JFrame {
                 + " (" + dwarf.system.getJavaVenderUrl() + ")" + "\n";
         msg += " LWJGL: " + dwarf.system.getLWJGLVersion() + "\n \n";
 
-        //exception details
+        //crash details:
         msg += " " + cause.toString() + "\n";
         for (StackTraceElement element : cause.getStackTrace()) {
             msg += "\t " + element + "\n";
@@ -101,6 +101,6 @@ public class Crashform extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        new Crashform(new java.lang.Exception("Crashform - Test"));
+        new Crashform(new java.lang.Exception("Crashform - Test")).setVisible(true);
     }
 }

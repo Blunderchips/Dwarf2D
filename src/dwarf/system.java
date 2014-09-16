@@ -9,8 +9,17 @@ import java.io.InputStreamReader;
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public interface system {
+public final class system {
 
+    /**
+     * you can not instantiate this class.
+     */
+    public system() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
+    
     /**
      * @return Operating system version
      */

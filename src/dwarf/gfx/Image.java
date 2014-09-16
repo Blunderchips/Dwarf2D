@@ -5,7 +5,6 @@ import java.awt.Dimension;
 
 import dwarf.DwarfException;
 import dwarf.LWJGL.Texture;
-import dwarf.GameObject;
 import dwarf.util.Point2D;
 import dwarf.LWJGL.TextureLoader;
 
@@ -22,7 +21,7 @@ import dwarf.LWJGL.TextureLoader;
  * @see dwarf.Collidable
  */
 @SuppressWarnings("serial")
-public class Image extends Rectangle implements GameObject {
+public class Image extends Rectangle {
 
     /**
      * The texture that stores the image for this <code>Image</code>. (will hold
@@ -107,6 +106,7 @@ public class Image extends Rectangle implements GameObject {
         if (!Objects.equals(this.getTexture(), img.getTexture())) {
             return false;
         }
+
         return true;
     }
 

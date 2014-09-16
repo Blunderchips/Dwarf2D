@@ -12,8 +12,17 @@ import dwarf.DwarfError;
  * @see dwarf.keyboard
  * @see dwarf.mouse
  */
-public interface Input {
+public final class Input {
 
+    /**
+     * you can not instantiate this class.
+     */
+    public Input() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
+    
     /**
      * initialises the keyboard and mouse. The display must first have been
      * created.

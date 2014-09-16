@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import dwarf.Collidable;
 import dwarf.util.Point2D;
+import dwarf.DwarfException;
 
 /**
  * A 4 sided shape where opposite sides are equal. (a parallelogram with a right
@@ -15,6 +16,7 @@ import dwarf.util.Point2D;
  * @see dwarf.gfx.Quadrilateral
  * @see dwarf.gfx.Polygon
  */
+@SuppressWarnings("serial")
 public class Rectangle extends Quadrilateral {
 
     /**
@@ -151,7 +153,7 @@ public class Rectangle extends Quadrilateral {
      * @return true if the <code>Collidable</code> has intersected/collided with
      * the inputed face of this.
      */
-    public boolean intersects(int face, Collidable coll) throws dwarf.DwarfException {
+    public boolean intersects(int face, Collidable coll) throws DwarfException {
 
         switch ((byte) face) {
             case NORTH_FACE:
@@ -171,7 +173,7 @@ public class Rectangle extends Quadrilateral {
                 return coll.intersects(getWestFace());
 
             default:
-                throw new dwarf.DwarfException("the face '" + face + "' is not recognized.");
+                throw new DwarfException("the face '" + face + "' is not recognized.");
         }
     }
 

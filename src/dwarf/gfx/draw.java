@@ -38,7 +38,16 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
  * @see dwarf.LWJGL.Texture
  * @see dwarf.gfx.shapeConstants
  */
-public interface draw extends dwarf.gfx.shapeConstants {
+public final class draw implements dwarf.gfx.shapeConstants {
+
+    /**
+     * you can not instantiate this class.
+     */
+    public draw() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
 
     public static void fillRect(float width, float hieght, Point2D translation, double rotation, Colour colour) {
         glPushMatrix();

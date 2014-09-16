@@ -12,8 +12,17 @@ import dwarf.util.Vector3;
  *
  * @see java.lang.Math#random()
  */
-public interface random {
+public final class random {
 
+    /**
+     * you can not instantiate this class.
+     */
+    public random() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
+    
     public static int interger() {
         return Math.abs((int) (Math.random() * 100) - 100);
     }

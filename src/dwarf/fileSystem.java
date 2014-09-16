@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
  *
  * @author Matthew 'siD' Van der Bijl
  */
-public interface fileSystem {
+public class fileSystem {
 
     /**
      * Recursively creates a directory.

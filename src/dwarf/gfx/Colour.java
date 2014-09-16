@@ -176,7 +176,7 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
     }
 
     public float getAlphaByte() {
-        return (this.alpha * 0xff);
+        return this.alpha * 0xff;
     }
 
     /**
@@ -518,15 +518,15 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
     }
 
     public void set(dwarf.util.Vector3 colour) {
-        this.red = (float) colour.getX();
-        this.green = (float) colour.getY();
-        this.blue = (float) colour.getZ();
+        this.red = colour.getX();
+        this.green = colour.getY();
+        this.blue = colour.getZ();
     }
 
     public void set(dwarf.util.Vector3 colour, float alpha) {
-        this.red = (float) colour.getX();
-        this.green = (float) colour.getY();
-        this.blue = (float) colour.getZ();
+        this.red = colour.getX();
+        this.green = colour.getY();
+        this.blue = colour.getZ();
         this.alpha = alpha;
     }
 

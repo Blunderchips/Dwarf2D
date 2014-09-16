@@ -179,8 +179,4 @@ public class Point3D extends dwarf.util.Point {
             throw new DwarfException("illegal argument");
         }
     }
-
-    public Point toPoint() {
-        return new Point(super.get(X), super.get(Y), super.get(Z));
-    }
 }

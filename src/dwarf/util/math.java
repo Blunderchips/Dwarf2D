@@ -9,8 +9,17 @@ import dwarf.DwarfException;
  *
  * @see java.lang.Math
  */
-public interface math {
+public final class math {
 
+    /**
+     * you can not instantiate this class.
+     */
+    public math() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
+    
     /**
      * The value PI as a double. (180 degrees)
      */

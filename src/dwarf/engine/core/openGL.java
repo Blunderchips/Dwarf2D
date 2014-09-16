@@ -41,8 +41,17 @@ import static org.lwjgl.opengl.GL20.GL_SHADING_LANGUAGE_VERSION;
  * @see <a href='http://en.wikipedia.org/wiki/OpenGL'>wikipedia</a>
  * @see <a href='http://www.opengl.org/'>opengl.org</a>
  */
-public interface openGL {
+public final class openGL {
 
+    /**
+     * you can not instantiate this class.
+     */
+    public openGL() throws UnsupportedOperationException {
+        // Prevents instantiation of this class.
+        throw new UnsupportedOperationException(
+                "you can not instantiate this class.");
+    }
+    
     /**
      * initializes openGL.
      */
