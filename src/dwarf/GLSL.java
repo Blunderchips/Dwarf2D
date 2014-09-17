@@ -2,6 +2,8 @@ package dwarf;
 
 import static dwarf.Util.readFileAsString;
 
+import static org.lwjgl.opengl.GL11.GL_FALSE;
+import static org.lwjgl.opengl.GL20.GL_COMPILE_STATUS;
 import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
 import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
 import static org.lwjgl.opengl.GL20.glAttachShader;
@@ -10,6 +12,7 @@ import static org.lwjgl.opengl.GL20.glCreateProgram;
 import static org.lwjgl.opengl.GL20.glCreateShader;
 import static org.lwjgl.opengl.GL20.glDeleteShader;
 import static org.lwjgl.opengl.GL20.glDetachShader;
+import static org.lwjgl.opengl.GL20.glGetShaderi;
 import static org.lwjgl.opengl.GL20.glGetUniformLocation;
 import static org.lwjgl.opengl.GL20.glLinkProgram;
 import static org.lwjgl.opengl.GL20.glShaderSource;
@@ -64,6 +67,8 @@ public final class GLSL {
             case 4:
                 glUniform4f(location, values[0], values[1], values[2], values[3]);
                 break;
+            default:
+                break;
         }
     }
 
@@ -85,13 +90,15 @@ public final class GLSL {
             case 4:
                 glUniform4i(location, values[0], values[1], values[2], values[3]);
                 break;
+            default:
+                break;
         }
     }
 
     /**
      * Run a given shader program
      *
-     * @param program to shader program to be run.
+     * @param program to shader program to be run
      */
     public static void useProgram(int program) {
         glUseProgram(program);
@@ -129,18 +136,26 @@ public final class GLSL {
      * @param type the type of shader to be created
      * @param path the path to the shader file
      *
+     * @throws DwarfException the shader wasn't able to be compiled correctly
+     *
      * @return the shader
      */
-    public static int createShader(String path, int type) {
+    public static int createShader(String path, int type) throws DwarfException {
         int shader = -1;
         shader = glCreateShader(type);
         try {
             glShaderSource(shader, readFileAsString(path));
         } catch (Exception ex) {
             glDeleteShader(shader);
-            return -1;
+            throw new DwarfException(ex);
+        } finally {
+            glCompileShader(shader);
+
+            if (glGetShaderi(shader, GL_COMPILE_STATUS) == GL_FALSE) {
+                throw new DwarfException("the shader wasn't able to be compiled correctly.");
+            }
         }
-        glCompileShader(shader);
+
         return shader;
     }
 
@@ -152,10 +167,12 @@ public final class GLSL {
      *
      * @param path the path to the shader file
      *
+     * @throws DwarfException the shader wasn't able to be compiled correctly
+     *
      * @return the fragment shader
      */
-    public static int createFragmentShader(String path) {
-        return createShader(path, FRAGMENT_SHADER);
+    public static int createFragmentShader(String path) throws DwarfException {
+        return GLSL.createShader(path, FRAGMENT_SHADER);
     }
 
     /**
@@ -166,9 +183,11 @@ public final class GLSL {
      *
      * @param path the path to the shader file
      *
+     * @throws DwarfException the shader wasn't able to be compiled correctly
+     *
      * @return the vertex shader
      */
-    public static int createVertexShader(String path) {
-        return createShader(path, VERTEX_SHADER);
+    public static int createVertexShader(String path) throws DwarfException {
+        return GLSL.createShader(path, VERTEX_SHADER);
     }
 }

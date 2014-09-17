@@ -100,6 +100,9 @@ public class Util {
 
     /**
      * Read the file to a String
+     *
+     * @param path the path to the file
+     * @return the file as a String
      */
     public static String readFileAsString(String path) throws DwarfException {
         StringBuilder source = new StringBuilder();
@@ -109,7 +112,7 @@ public class Util {
         try {
             reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             try {
-                String line;
+                String line = null;
                 while ((line = reader.readLine()) != null) {
                     source.append(line).append('\n');
                 }
@@ -122,8 +125,8 @@ public class Util {
                     throw new DwarfException(ex);
                 }
             }
-        } catch (UnsupportedEncodingException | DwarfException ex) {
-            throw new DwarfException(ex);
+        } catch (UnsupportedEncodingException uee) {
+            throw new DwarfException(uee);
         } finally {
             try {
                 in.close();
@@ -131,6 +134,7 @@ public class Util {
                 throw new DwarfException(ioe);
             }
         }
+        
         return source.toString();
     }
 }
