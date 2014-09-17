@@ -12,7 +12,7 @@ import static dwarf.gfx.Polygon.FILL;
 import static dwarf.gfx.Colours.WHITE;
 import dwarf.gfx.Line;
 
-public class main {
+public class pong {
 
     public static void main(String[] args) {
         new Game(1600, 900, "Pong - Dwarf 2D") {
