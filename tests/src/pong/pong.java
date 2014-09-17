@@ -3,14 +3,14 @@ package pong;
 import dwarf.time;
 import dwarf.Game;
 import dwarf.random;
-import dwarf.engine.core.Window;
+import dwarf.gfx.Line;
 import dwarf.util.Point2D;
 import dwarf.gfx.Rectangle;
+import dwarf.engine.core.Window;
 
 import static dwarf.keyboard.isKeyDown;
 import static dwarf.gfx.Polygon.FILL;
 import static dwarf.gfx.Colours.WHITE;
-import dwarf.gfx.Line;
 
 public class pong {
 
