@@ -33,7 +33,7 @@ public final class GLSL {
         throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
-    
+
     /**
      * A Vertex Shader is the programmable Shader stage in the rendering
      * pipeline that handles the processing of individual vertices.
@@ -90,6 +90,8 @@ public final class GLSL {
 
     /**
      * Run a given shader program
+     *
+     * @param program to shader program to be run.
      */
     public static void useProgram(int program) {
         glUseProgram(program);
@@ -120,12 +122,20 @@ public final class GLSL {
 
     /**
      * Create a shader
+     *
+     * @see dwarf.GLSL#VERTEX_SHADER
+     * @see dwarf.GLSL#FRAGMENT_SHADER
+     *
+     * @param type the type of shader to be created
+     * @param path the path to the shader file
+     *
+     * @return the shader
      */
-    public static int createShader(String filename, int type) {
+    public static int createShader(String path, int type) {
         int shader = -1;
         shader = glCreateShader(type);
         try {
-            glShaderSource(shader, readFileAsString(filename));
+            glShaderSource(shader, readFileAsString(path));
         } catch (Exception ex) {
             glDeleteShader(shader);
             return -1;
@@ -135,17 +145,30 @@ public final class GLSL {
     }
 
     /**
-     * Load a fragment shader
+     * Load a fragment shader.
+     *
+     * @see dwarf.GLSL#createShader
+     * @see dwarf.GLSL#FRAGMENT_SHADER
+     *
+     * @param path the path to the shader file
+     *
+     * @return the fragment shader
      */
-    public static int createFragmentShader(String filename) {
-        return createShader(filename, FRAGMENT_SHADER);
+    public static int createFragmentShader(String path) {
+        return createShader(path, FRAGMENT_SHADER);
     }
 
     /**
-     * Load a vertex shader
+     * Load a vertex shader.
+     *
+     * @see dwarf.GLSL#createShader
+     * @see dwarf.GLSL#VERTEX_SHADER
+     *
+     * @param path the path to the shader file
+     *
+     * @return the vertex shader
      */
-    public static int createVertexShader(String filename) {
-        return createShader(filename, VERTEX_SHADER);
+    public static int createVertexShader(String path) {
+        return createShader(path, VERTEX_SHADER);
     }
-
 }

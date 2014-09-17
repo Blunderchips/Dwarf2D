@@ -26,9 +26,6 @@ public class Util {
                 "you can not instantiate this class.");
     }
 
-    public static int ASCENDING_ORDER = 0x0;
-    public static int DESCENDING_ORDER = 0x1;
-
     public static String[] explode(String split, String input) {
         return input.split(split);
     }

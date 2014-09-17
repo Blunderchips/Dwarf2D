@@ -179,11 +179,8 @@ public class Rectangle extends Quadrilateral {
 
     @Override
     public boolean isSquare() {
-        if (super.getType().equals("quadrilateral")) {
-            return this.getDimensions().getWidth() == this.getDimensions().getHeight();
-        } else {
-            return false;
-        }
+        return super.getType().equals("quadrilateral")
+                && this.getDimensions().getWidth() == this.getDimensions().getHeight();
     }
 
     @Override

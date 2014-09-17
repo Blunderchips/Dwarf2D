@@ -7,9 +7,8 @@ import dwarf.util.Point2D;
 import dwarf.DwarfException;
 
 /**
- * A basic shape with more than 3 sides.A rectilinear figure bounded by more
- * than three right lines is usually called a polygon. A polygon is said to be
- * convex when it has no re-entrant angle.
+ * A basic figure made up of 3 or more sides/edges and 3 or more
+ * vertices/corners.
  *
  * @author Matthew 'siD' Van der Bijl
  *
