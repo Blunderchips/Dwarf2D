@@ -55,9 +55,7 @@ public class Util {
     public static void debug(String level, String msg) {
         switch (level) {
             case "INFO":
-                if (Game.debug) {
-                    System.err.println("[INFO] " + msg);
-                }
+                System.err.println("[INFO] " + msg);
                 break;
             case "WARNING":
                 System.err.println("[WARNING] " + msg);
@@ -134,7 +132,7 @@ public class Util {
                 throw new DwarfException(ioe);
             }
         }
-        
+
         return source.toString();
     }
 }

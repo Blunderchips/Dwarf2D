@@ -93,8 +93,6 @@ public class pong {
                     this.yvel = -yvel;
                 }
 
-                this.ball.translate(xvel, yvel);
-
                 if (ball.getPosition().getX() < Window.getWidth() && ball.getPosition().getX() > Window.getWidth() - 50) {
                     this.scoreA++;
                     this.yvel = 0;
@@ -107,6 +105,8 @@ public class pong {
                     this.ball.setPosition((Window.getWidth() / 2), (Window.getHeight() / 2));
                 }
 
+                this.ball.translate(xvel, yvel);
+                
                 if (isKeyDown("space")) {
                     this.scoreA = 0;
                     this.scoreB = 0;
