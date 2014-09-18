@@ -23,7 +23,6 @@ import static java.lang.Math.abs;
 @SuppressWarnings("serial")
 public abstract class Game extends dwarf.engine.core.Engine implements Serializable {
 
-    public static boolean debug = true;
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
     private final transient PropertyChangeSupport propertyChangeSupport;
     private final transient VetoableChangeSupport vetoableChangeSupport;
@@ -144,7 +143,7 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
      * @param title the title of the window
      */
     @SuppressWarnings("Convert2Diamond")
-    private void init(int width, int height, String title) {
+    private void init(int width, int height, String title) throws IllegalArgumentException {
         if (width == 0 || height == 0) {
             throw new IllegalArgumentException(
                     "the width nor the hieght can be equal to zero.");
@@ -198,7 +197,7 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
         try {
             this.gameObjects = gameObjects;
             return true;
-        } catch (DwarfException ex) {
+        } catch (Exception ex) {
             throw new DwarfException(ex);
         }
     }
@@ -213,7 +212,7 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
     public boolean addGameObject(GameObject input) throws DwarfException {
         try {
             return this.getGameObjects().add(input);
-        } catch (DwarfException ex) {
+        } catch (Exception ex) {
             throw new DwarfException(ex);
         }
     }
@@ -227,8 +226,12 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
      */
     public boolean addGameObject(Object input) throws DwarfException {
         try {
-            return this.getGameObjects().add((GameObject) input);
-        } catch (DwarfException ex) {
+            if (input instanceof GameObject) {
+                return this.getGameObjects().add((GameObject) input);
+            } else {
+                throw new DwarfException("illegal argument");
+            }
+        } catch (Exception ex) {
             throw new DwarfException(ex);
         }
     }
@@ -259,7 +262,7 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
     public boolean removeGameObject(Object input) throws DwarfException {
         try {
             return this.getGameObjects().remove(input);
-        } catch (DwarfException ex) {
+        } catch (Exception ex) {
             throw new DwarfException(ex);
         }
     }
@@ -351,19 +354,6 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
     }
 
     /**
-     * returns true if the game is in debug mode otherwise false
-     *
-     * @return if the game in in debug mode
-     */
-    public boolean isDebug() {
-        return Game.debug;
-    }
-
-    public void setDebugMode(boolean mode) {
-        Game.debug = mode;
-    }
-
-    /**
      * renders all <code>GameObject</code> in the main <code>GameObject</code>
      * <code>ArrayList</code>.
      */
@@ -393,7 +383,7 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
         try {
             this.gameObjects = new ArrayList<>();
             return true;
-        } catch (DwarfException ex) {
+        } catch (Exception ex) {
             throw new DwarfException(ex);
         }
     }
