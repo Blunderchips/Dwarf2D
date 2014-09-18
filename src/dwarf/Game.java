@@ -302,9 +302,11 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
      * false is returned. Otherwise, equality is determined by using the equals
      * method of the first argument.
      *
+     * @see java.lang.Object#equals(java.lang.Object)
+     * @param obj the <code>Object</code> to be tested
+     * 
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
-     * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public boolean equals(Object obj) {
