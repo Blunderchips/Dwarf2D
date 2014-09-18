@@ -1,7 +1,6 @@
 package dwarf;
 
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -48,17 +47,11 @@ public final class time {
     }
 
     public static String getTime() {
-        DateFormat df = new SimpleDateFormat("HH:mm:ss");
-        Date dateobj = new Date();
-
-        return df.format(dateobj);
+        return new SimpleDateFormat("HH:mm:ss").format(new Date());
     }
 
     public static String getDate() {
-        DateFormat df = new SimpleDateFormat("dd/MM/yy ");
-        Date dateobj = new Date();
-
-        return df.format(dateobj);
+        return new SimpleDateFormat("dd/MM/yy ").format(new Date());
     }
 
     /**
