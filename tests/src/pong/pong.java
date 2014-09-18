@@ -81,6 +81,10 @@ public class pong {
                     if (player.intersects(ball)) {
                         this.yvel = random.interger(25);
                         this.xvel = -xvel;
+                        
+                        if (random.bool()) {
+                            this.yvel = -yvel;
+                        }
                     }
                 }
 
