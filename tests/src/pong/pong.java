@@ -84,9 +84,8 @@ public class pong {
                     }
                 }
 
-                if (ball.getPosition().getY() < 0) {
-                    this.yvel = -yvel;
-                } else if (ball.getPosition().getY() > Window.getHeight() - 25) {
+                if ((ball.getPosition().getY() < 0)
+                        || (ball.getPosition().getY() > Window.getHeight() - 25)) {
                     this.yvel = -yvel;
                 }
 
