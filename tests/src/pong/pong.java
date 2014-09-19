@@ -119,6 +119,5 @@ public class pong {
                 super.renderAllGameObjects();
             }
         };
-
     }
 }
