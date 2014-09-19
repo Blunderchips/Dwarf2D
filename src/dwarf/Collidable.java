@@ -1,10 +1,10 @@
 package dwarf;
 
+import java.awt.Polygon;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
-import java.io.Serializable;
-import java.awt.Polygon;
 
 import dwarf.gfx.Circle;
 import dwarf.gfx.Colour;
@@ -31,7 +31,9 @@ import static dwarf.mouse.MOUSE_LEFT;
  * @see java.io.Serializable
  */
 @SuppressWarnings("serial")
-public class Collidable extends java.lang.Object implements Cloneable, Serializable {
+public class Collidable extends java.lang.Object implements Cloneable, Serializable, Child {
+
+    private Parent parent;
 
     private Point2D position;
     private ArrayList<Point2D> vertices;
@@ -709,7 +711,12 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     @Override
-    public Collidable clone() throws CloneNotSupportedException {
-        return new Collidable(this);
+    public Parent getParent() {
+        return parent;
+    }
+
+    @Override
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 }

@@ -14,4 +14,8 @@ public interface Parent {
     public abstract ArrayList<Child> getChildren();
 
     public abstract void setChildren(ArrayList<Child> children);
+    
+    public abstract void updateChildren();
+    
+    public abstract void renderChildren();
 }
