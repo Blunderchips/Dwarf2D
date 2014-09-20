@@ -712,7 +712,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
 
     @Override
     public Parent getParent() {
-        return parent;
+        return this.parent;
     }
 
     @Override
