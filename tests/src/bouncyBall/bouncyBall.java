@@ -1,7 +1,5 @@
 package bouncyBall;
 
-
-
 import dwarf.time;
 import dwarf.Game;
 import dwarf.gfx.Circle;

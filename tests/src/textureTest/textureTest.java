@@ -18,7 +18,7 @@ public class textureTest {
                 try {
                     super.addGameObject(new Image("./textureTest/pixelDwarf.jpeg", new Point2D(280, 250)));
                 } catch (DwarfException ex) {
-                    ex.display();
+                    ex.display().setVisible(true);
                 }
             }
 

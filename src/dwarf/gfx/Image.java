@@ -1,7 +1,7 @@
 package dwarf.gfx;
 
-import java.util.Objects;
 import java.awt.Dimension;
+import java.util.Objects;
 
 import dwarf.DwarfException;
 import dwarf.LWJGL.Texture;
@@ -19,6 +19,7 @@ import dwarf.LWJGL.TextureLoader;
  * @see dwarf.LWJGL.TextureLoader
  * @see dwarf.GameObject
  * @see dwarf.Collidable
+ * @see dwarf.gfx.Rectangle
  */
 @SuppressWarnings("serial")
 public class Image extends Rectangle {
@@ -48,9 +49,13 @@ public class Image extends Rectangle {
         try {
             this.texture = TextureLoader.getTexture(path);
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
         } finally {
-            super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
+            if (texture != null) {
+                super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
+            } else {
+                throw new DwarfException("texture not loaded correctly");
+            }
         }
     }
 
@@ -87,7 +92,7 @@ public class Image extends Rectangle {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(getTexture());
+        hash = 89 * hash + Objects.hashCode(texture);
         return hash;
     }
 
@@ -143,12 +148,16 @@ public class Image extends Rectangle {
         super.setPosition(position);
 
         try {
-            texture = TextureLoader.getTexture(path);
+            this.texture = TextureLoader.getTexture(path);
         } catch (DwarfException ex) {
-            throw ex;
+            throw new DwarfException(ex);
+        } finally {
+            if (texture != null) {
+                super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
+            } else {
+                throw new DwarfException("texture not loaded correctly");
+            }
         }
-
-        super.setDimensions(new Point2D(texture.getImageWidth(), texture.getImageHeight()));
     }
 
     @Override
