@@ -49,7 +49,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
         upKeys.clear();
 
         for (short i = 0; i < NUM_KEYCODES; i++) {
-            if (!isKeyDown(i) && currentKeys.contains(i)) {
+            if (!keyboard.isKeyDown(i) && currentKeys.contains(i)) {
                 upKeys.add(i);
             }
         }
@@ -57,7 +57,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
         downKeys.clear();
 
         for (short i = 0; i < NUM_KEYCODES; i++) {
-            if (isKeyDown(i) && !currentKeys.contains(i)) {
+            if (keyboard.isKeyDown(i) && !currentKeys.contains(i)) {
                 downKeys.add(i);
             }
         }
@@ -65,7 +65,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
         currentKeys.clear();
 
         for (short i = 0; i < NUM_KEYCODES; i++) {
-            if (isKeyDown(i)) {
+            if (keyboard.isKeyDown(i)) {
                 currentKeys.add(i);
             }
         }
@@ -122,7 +122,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @return true if the key is down, otherwise it will return false.
      */
     public static boolean isKeyDown(String keyName) {
-        return isKeyDown(getKeyCode(keyName));
+        return keyboard.isKeyDown(getKeyCode(keyName));
     }
 
     /**
@@ -133,7 +133,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @return if a key is pressed down for that frame (bool)
      */
     public static boolean isKeyPressed(int keyCode) {
-        return downKeys.contains((short) keyCode);
+        return keyboard.downKeys.contains((short) keyCode);
     }
 
     /**
@@ -146,7 +146,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @return if a key is pressed down for that frame (bool)
      */
     public static boolean isKeyPressed(String keyName) {
-        return downKeys.contains(getKeyCode(keyName));
+        return keyboard.downKeys.contains(getKeyCode(keyName));
     }
 
     /**
@@ -157,7 +157,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @return if a key is released up for that frame (bool)
      */
     public static boolean isKeyReleased(int keyCode) {
-        return upKeys.contains((short) keyCode);
+        return keyboard.upKeys.contains((short) keyCode);
     }
 
     /**
@@ -170,7 +170,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @return if a key is released up for that frame (bool)
      */
     public static boolean isKeyReleased(String keyName) {
-        return upKeys.contains(getKeyCode(keyName));
+        return keyboard.upKeys.contains(getKeyCode(keyName));
     }
 
     /**
