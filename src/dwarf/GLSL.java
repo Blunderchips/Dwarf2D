@@ -26,6 +26,22 @@ import static org.lwjgl.opengl.GL20.glUniform4f;
 import static org.lwjgl.opengl.GL20.glUniform4i;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 
+/**
+ * Provides a interface that offers GLSL (shader) support to the user.
+ *
+ * <p>
+ * OpenGL Shading Language (abbreviated: GLSL or GLslang), is a high-level
+ * shading language based on the syntax of the C programming language. It was
+ * created by the OpenGL ARB (OpenGL Architecture Review Board) to give
+ * developers more direct control of the graphics pipeline without having to use
+ * ARB assembly language or hardware-specific languages.</p>
+ *
+ * @author Matthew 'siD' Van der Bijl
+ *
+ * @see
+ * <a href='http://en.wikipedia.org/wiki/OpenGL_Shading_Language'>wikipedia</a>
+ * @see dwarf.Shader
+ */
 public final class GLSL {
 
     /**
@@ -50,7 +66,7 @@ public final class GLSL {
     public final static int FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
 
     /**
-     * Send floats to the shader
+     * Send floats to the shader.
      */
     public static void sendFloats(String name, int program, float... values) {
         int location = glGetUniformLocation(program, name);
@@ -73,7 +89,7 @@ public final class GLSL {
     }
 
     /**
-     * Send integers to the shader
+     * Send integers to the shader.
      */
     public static void sendIntegers(String name, int program, int... values) {
         int location = glGetUniformLocation(program, name);
@@ -96,7 +112,7 @@ public final class GLSL {
     }
 
     /**
-     * Run a given shader program
+     * Run a given shader program.
      *
      * @param program to shader program to be run
      */
@@ -105,14 +121,14 @@ public final class GLSL {
     }
 
     /**
-     * Reset the shader program being used
+     * Reset the shader program being used.
      */
     public static void resetShaders() {
         glUseProgram(0);
     }
 
     /**
-     * Create a shader program
+     * Create a shader program.
      */
     public static int createShaderProgram(int... shaders) {
         int program = glCreateProgram();

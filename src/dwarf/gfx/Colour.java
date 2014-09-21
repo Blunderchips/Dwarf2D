@@ -238,13 +238,16 @@ public class Colour extends java.lang.Object implements Cloneable, Colours {
     }
 
     /**
-     * Returns true if the arguments are equal to each other and false
-     * otherwise. Consequently, if both arguments are null, true is returned and
-     * if exactly one argument is null, false is returned. Otherwise, equality
-     * is determined by using the equals method of the first argument.
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
      *
-     * @return true if the arguments are equal to each other and false otherwise
+     * @param obj the <code>Object</code> to be tested
      * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
      */
     @Override
     public boolean equals(Object obj) {

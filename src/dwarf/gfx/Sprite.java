@@ -6,6 +6,7 @@ import dwarf.DwarfException;
 import dwarf.GameObject;
 import dwarf.random;
 import dwarf.util.Point2D;
+import java.util.Objects;
 
 /**
  * @author Matthew 'siD' Van der Bijl
@@ -224,4 +225,44 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
     public Sprite clone() throws CloneNotSupportedException {
         return new Sprite(this);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(textures);
+        hash = 67 * hash + Objects.hashCode(activeTexture);
+        return hash;
+    }
+
+    /**
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
+     *
+     * @param obj the <code>Object</code> to be tested
+     * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Sprite other = (Sprite) obj;
+
+        if (!Objects.equals(this.textures, other.textures)) {
+            return false;
+        } else if (!Objects.equals(this.activeTexture, other.activeTexture)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

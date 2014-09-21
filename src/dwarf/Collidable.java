@@ -29,6 +29,8 @@ import static dwarf.mouse.MOUSE_LEFT;
  * @see java.lang.Object
  * @see java.lang.Cloneable
  * @see java.io.Serializable
+ *
+ * @see dwarf.Child
  */
 @SuppressWarnings("serial")
 public class Collidable extends java.lang.Object implements Cloneable, Serializable, Child {
@@ -142,7 +144,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     /**
-     * creates a new <code>Collidable</code> with the arrays given.This method
+     * creates a new <code>Collidable</code> with the arrays given. This method
      * is called from within the constructor to initialize the
      * <code>Collidable</code>. WARNING: Do NOT modify this code.
      *
@@ -174,7 +176,7 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
     }
 
     /**
-     * creates a new <code>Collidable</code> with the arrays given.This method
+     * creates a new <code>Collidable</code> with the arrays given. This method
      * is called from within the constructor to initialize the
      * <code>Collidable</code>. WARNING: Do NOT modify this code.
      *
@@ -481,9 +483,11 @@ public class Collidable extends java.lang.Object implements Cloneable, Serializa
      * false is returned. Otherwise, equality is determined by using the equals
      * method of the first argument.
      *
-     * @return true if the argument is equal to <code>this</code> other and
-     * false otherwise.
+     * @param obj the <code>Object</code> to be tested
      * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
      */
     @Override
     public boolean equals(Object obj) {

@@ -83,6 +83,18 @@ public class Line extends dwarf.Collidable implements GameObject, Colours {
         return hash;
     }
 
+    /**
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
+     *
+     * @param obj the <code>Object</code> to be tested
+     * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

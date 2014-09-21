@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import dwarf.Collidable;
 import dwarf.util.Point2D;
 import dwarf.DwarfException;
+import java.util.Objects;
 
 /**
  * A 4 sided shape where opposite sides are equal. (a parallelogram with a right
@@ -399,4 +400,41 @@ public class Rectangle extends Quadrilateral {
     public Rectangle clone() throws CloneNotSupportedException {
         return new Rectangle(this);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(dimensions);
+        return hash;
+    }
+
+    /**
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
+     *
+     * @param obj the <code>Object</code> to be tested
+     * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Rectangle rect = (Rectangle) obj;
+
+        if (!Objects.equals(this.dimensions, rect.dimensions)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

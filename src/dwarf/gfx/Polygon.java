@@ -182,9 +182,11 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
      * false is returned. Otherwise, equality is determined by using the equals
      * method of the first argument.
      *
+     * @param obj the <code>Object</code> to be tested
+     * @see java.lang.Object#equals(java.lang.Object)
+     *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
-     * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public boolean equals(Object obj) {

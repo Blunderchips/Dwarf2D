@@ -11,6 +11,7 @@ import static dwarf.GLSL.FRAGMENT_SHADER;
  * @author Matthew 'siD' Van der Bijl
  *
  * @see <a href='http://en.wikipedia.org/wiki/Shader'>wikipedia</a>
+ * @see dwarf.GLSL
  * @see java.lang.Object
  * @see java.lang.Cloneable
  */
@@ -19,6 +20,9 @@ public class Shader extends java.lang.Object implements Cloneable {
     private int type;
     private int program;
 
+    /**
+     * Default constructor.
+     */
     public Shader() {
         super();
     }
@@ -33,19 +37,22 @@ public class Shader extends java.lang.Object implements Cloneable {
     public Shader(Shader shader) {
         super();
 
-        this.program = shader.getProgram();
         this.type = shader.getType();
+        this.program = shader.getProgram();
     }
 
+    /**
+     * uses the <code>Shader</code>
+     */
     public void use() {
         GLSL.useProgram(program);
     }
 
-    public final void setType(int type) {
+    public final void setType(int type) throws DwarfException {
         if (type == VERTEX_SHADER || type == FRAGMENT_SHADER) {
             this.type = type;
         } else {
-            throw new DwarfException();
+            throw new DwarfException("illegal argument");
         }
     }
 
@@ -104,5 +111,4 @@ public class Shader extends java.lang.Object implements Cloneable {
     public int getProgram() {
         return this.program;
     }
-
 }

@@ -4,8 +4,8 @@ import dwarf.util.Point2D;
 import dwarf.DwarfException;
 
 /**
- * A triangle is a polygon with three sides/edges and three vertices/corners.
- * (A basic 3 sided polygon)
+ * A triangle is a polygon with three sides/edges and three vertices/corners. (A
+ * basic 3 sided polygon)
  *
  * @author Matthew 'siD' Van der Bijl
  *
@@ -172,6 +172,7 @@ public class Triangle extends Polygon {
     /**
      * TODO
      */
+    @Deprecated
     public boolean isCongruent(Triangle t) {
         return false; //TODO
     }
@@ -179,7 +180,9 @@ public class Triangle extends Polygon {
     /**
      * TODO
      */
+    @Deprecated
     public boolean isSimilar(Triangle t) {
         return false; //TODO
     }
+
 }

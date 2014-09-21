@@ -1,7 +1,5 @@
 package dwarf.gfx;
 
-import java.util.Objects;
-
 import dwarf.util.Point2D;
 
 import static dwarf.util.math.PI;
@@ -173,4 +171,40 @@ public class Circle extends Shape {
     public void changeNumSides(int input) {
         super.changeNumSides(input);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.radius) ^ (Double.doubleToLongBits(this.radius) >>> 32));
+        return hash;
+    }
+
+    /**
+     * Returns true if the <code>this</code> is equal to the argument and false
+     * otherwise. Consequently, if both argument are null, true is returned,
+     * false is returned. Otherwise, equality is determined by using the equals
+     * method of the first argument.
+     *
+     * @param obj the <code>Object</code> to be tested
+     * @see java.lang.Object#equals(java.lang.Object)
+     *
+     * @return true if the argument is equal to <code>this</code> other and
+     * false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Circle other = (Circle) obj;
+
+        if (Double.doubleToLongBits(this.radius) != Double.doubleToLongBits(other.radius)) {
+            return false;
+        }
+        return true;
+    }
+
 }
