@@ -27,10 +27,11 @@ public class Crashform extends javax.swing.JFrame {
      * Creates new form Crashform with a specified <code>Throwable</code> as the
      * cause.
      *
+     * @param name name of the form
      * @param cause the cause of the crash
      */
-    public Crashform(Throwable cause) {
-        super("Dwarf2D - " + cause.getClass().getName());
+    public Crashform(String name, Throwable cause) {
+        super(name + " - " + cause.getClass().getName());
 
         this.txtDisplay = new javax.swing.JTextArea();
         this.jScrollPane = new javax.swing.JScrollPane();
@@ -64,7 +65,17 @@ public class Crashform extends javax.swing.JFrame {
         super.setEnabled(true);
         //super.setVisible(true);
 
-        this.setDisplay(cause);
+        this.setDisplay(name, cause);
+    }
+
+    /**
+     * Creates new form Crashform with a specified <code>Throwable</code> as the
+     * cause.
+     *
+     * @param cause the cause of the crash
+     */
+    public Crashform(Throwable cause) {
+        this("Dwarf2D", cause);
     }
 
     public JTextArea getDisplay() {
@@ -75,8 +86,8 @@ public class Crashform extends javax.swing.JFrame {
         return this;
     }
 
-    private void setDisplay(Throwable cause) {
-        String msg = " ---Dwarf Crash Report--" + "\n \n";
+    private void setDisplay(String name, Throwable cause) {
+        String msg = " ---" + name + " Crash Report--" + "\n \n";
 
         //system details:
         msg += " Time: " + dwarf.time.getTime() + " " + dwarf.time.getDate() + "\n";

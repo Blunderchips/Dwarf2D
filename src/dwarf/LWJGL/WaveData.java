@@ -342,7 +342,6 @@ public class WaveData extends java.lang.Object implements Cloneable {
                 + "data: " + getData() + ", "
                 + "format: " + getFormat() + ", "
                 + "samplerate: " + getSamplerate() + ", "
-                + "super: " + super.toString()
                 + "}";
     }
 
