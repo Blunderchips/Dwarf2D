@@ -21,7 +21,7 @@
   
   With a Slick design you are certain to LÖVE it!
 
-    Dwarf2D is currently being used in game development, but it is still considered an experimental framework based on an 	    experimental concept. Please use in your projects at your own risk.
+   Dwarf2D is currently being used in game development, but it is still considered an experimental framework based on an 	   experimental concept. Please use in your projects at your own risk.
 
 **Watch/star to follow along with progress!**
 
