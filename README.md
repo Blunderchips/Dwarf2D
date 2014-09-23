@@ -15,8 +15,8 @@ Dwarf2D is currently being used in game development, but it is still considered 
 
 ### Report Issues
 
-- **[Report New Issue](https://github.com/Blunderchips/Dwarf2D/issues/new )**
-- **[View Open Issues](https://github.com/Blunderchips/Dwarf2D/issues )**
+- **[Report New Issue]** (https://github.com/Blunderchips/Dwarf2D/issues/new )
+- **[View Open Issues]** (https://github.com/Blunderchips/Dwarf2D/issues )
 
 #####Everyone who's created or contributed to issues and pull requests, which make the project better!
 
@@ -30,6 +30,7 @@ SSH: git@github.com:Blunderchips/Dwarf2D.git <br/>
 ###Documentation
 The [Wiki](https://github.com/Blunderchips/Dwarf2D/wiki "wiki") contains all of the information you'll need to write a 
 Dwarf2D game. You can contribute to the Wiki directly here on GitHub!
+
 We also provide [Javadocs](http://95.85.60.226/javadoc/ "javadoc") online (This may be your best bet).
 
 ###Dependencies
@@ -41,7 +42,7 @@ We also provide [Javadocs](http://95.85.60.226/javadoc/ "javadoc") online (This 
 	- [IntelliJ IDEA](http://www.jetbrains.com/idea/ "jetbrains.com/idea/")
 
 
-###Licenece - The MIT License (MIT)
+###License - The MIT License (MIT)
 Copyright (c) 2014 Matthew 'siD' Van der Bijl
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
