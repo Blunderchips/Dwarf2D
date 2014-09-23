@@ -148,7 +148,7 @@ public final class TextureLoader {
      * @return The loaded texture
      * @throws DwarfException Indicates a failure to access the resource
      */
-    public static Texture getTexture(String resourceName) {
+    public static Texture getTexture(String resourceName) throws DwarfException {
         Texture tex = table.get(resourceName);
 
         if (tex != null) {
@@ -163,7 +163,11 @@ public final class TextureLoader {
 
         table.put(resourceName, tex);
 
-        return tex;
+        if (tex == null) {
+            throw new DwarfException("texture not loaded correctly");
+        } else {
+            return tex;
+        }
     }
 
     /**
@@ -222,7 +226,7 @@ public final class TextureLoader {
                     textureBuffer);
 
             return texture;
-        } catch (DwarfException ex) {
+        } catch (Exception ex) {
             throw new DwarfException(ex);
         }
     }
