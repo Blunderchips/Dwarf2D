@@ -18,7 +18,7 @@ Dwarf2D is currently being used in game development, but it is still considered 
 - **[Report New Issue]** (https://github.com/Blunderchips/Dwarf2D/issues/new )
 - **[View Open Issues]** (https://github.com/Blunderchips/Dwarf2D/issues )
 
-#####Everyone who's created or contributed to issues and pull requests, which make the project better!
+#####Everyone who's created or contributed to issues and pull requests have made the project better!
 
 ###Downloads
 You can download the source code right off of <a href='https://github.com/Blunderchips/Dwarf2D/archive/master.zip' title='download'>GitHub</a>, or if you prefer, off of our <a href='http://95.85.60.226/downloads.php' title='Download!'>website</a>, or you can just clone the repository:
