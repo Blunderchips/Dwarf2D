@@ -8,7 +8,13 @@ import dwarf.util.Point2D;
 
 public class Line extends dwarf.Collidable implements GameObject, Colours {
 
+    /**
+     * The start point of the <code>Line</code>.
+     */
     private Point2D pointA;
+    /**
+     * The end point of the <code>Line</code>.
+     */
     private Point2D pointB;
 
     /**
