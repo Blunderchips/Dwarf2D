@@ -29,8 +29,19 @@ import dwarf.DwarfException;
  */
 public class Line extends java.lang.Object implements Cloneable {
 
-    private Point A, B;
+    /**
+     *The start point of the <code>Line</code>.
+     */
+    private Point A;
+    /**
+     *The end point of the <code>Line</code>.
+     */
+    private Point B;
 
+
+    /**
+     * Default constructor.
+     */
     public Line() {
         this(null, null);
     }
