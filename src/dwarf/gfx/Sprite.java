@@ -250,7 +250,7 @@ public class Sprite extends dwarf.Collidable implements GameObject, Cloneable {
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
-        } else if (getClass() != obj.getClass()) {
+        } else if (super.getClass() != obj.getClass()) {
             return false;
         }
 

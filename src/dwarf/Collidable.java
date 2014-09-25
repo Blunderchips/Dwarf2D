@@ -33,7 +33,7 @@ import static dwarf.mouse.MOUSE_LEFT;
  * @see dwarf.Child
  */
 @SuppressWarnings("serial")
-public class Collidable extends java.lang.Object implements Cloneable, Serializable, Child {
+public strictfp class Collidable extends java.lang.Object implements Cloneable, Serializable, Child {
 
     private Parent parent;
 
