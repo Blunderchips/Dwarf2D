@@ -8,6 +8,7 @@ import static dwarf.util.math.TWO_PI;
 
 /**
  * A 60 sided shape with all methods overridden to return values for a circle.
+ * (A simple Circle geometry)
  *
  * <p>
  * A circle is a plane figure formed by a curved line called the circumference
@@ -150,12 +151,6 @@ public class Circle extends Shape {
     }
 
     @Override
-    @Deprecated
-    public void addPoint(Point2D point) {
-        super.addPoint(point);
-    }
-
-    @Override
     public Circle clone() throws CloneNotSupportedException {
         return new Circle(this);
     }
@@ -195,7 +190,7 @@ public class Circle extends Shape {
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
-        } else if (getClass() != obj.getClass()) {
+        } else if (super.getClass() != obj.getClass()) {
             return false;
         }
 
@@ -204,6 +199,7 @@ public class Circle extends Shape {
         if (Double.doubleToLongBits(this.radius) != Double.doubleToLongBits(other.radius)) {
             return false;
         }
+
         return true;
     }
 
