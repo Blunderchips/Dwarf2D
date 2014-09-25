@@ -332,8 +332,8 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
 
     //TODO
     /**
-     * A cyclic quadrilateral is a four-sided figure with all four vertices
-     * lying on the circumference of a circle.
+     * TODO, A cyclic quadrilateral is a four-sided figure with all four
+     * vertices lying on the circumference of a circle.
      *
      * @return true if this is a cyclic quad
      */
