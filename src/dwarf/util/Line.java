@@ -46,6 +46,18 @@ public class Line extends java.lang.Object implements Cloneable {
         this(l.getA(), l.getB());
     }
 
+    /**
+     * Create a new line based on two points.
+     *
+     * @param x1 The x coordinate of the start point
+     * @param y1 The y coordinate of the start point
+     * @param x2 The x coordinate of the end point
+     * @param y2 The y coordinate of the end point
+     */
+    public Line(float x1, float y1, float x2, float y2) {
+        this(new Point2D(x1, y1), new Point2D(x2, y2));
+    }
+
     public Point getA() {
         return this.A;
     }
