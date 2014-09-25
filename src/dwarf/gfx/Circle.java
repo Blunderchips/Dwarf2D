@@ -31,7 +31,10 @@ import static dwarf.util.math.TWO_PI;
  * @see dwarf.gfx.Polygon
  */
 public class Circle extends Shape {
-
+    
+    /**
+     * The radius of the circle.
+     */
     private double radius;
 
     /**
