@@ -138,7 +138,8 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     }
 
     /**
-     * @return all vertices as a Vector2 array of the <code>Collidable</code>.
+     * @return all vertices as a <code>Point2D</code> array of the
+     * <code>Collidable</code>.
      */
     public Point2D[] getVertices() {
         Point2D[] points = new Point2D[vertices.size()];
@@ -176,9 +177,9 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     /**
      * creates a new <code>Collidable</code> with the arrays given. This method
      * is called from within the constructor to initialize the
-     * <code>Collidable</code>. WARNING: Do NOT modify this code.
+     * <code>Collidable</code>. <b>WARNING: Do NOT modify this code.</b>
      *
-     * @param vertices an array of the Vector2 coordinates of the
+     * @param vertices an array of the <code>Point2D</code> coordinates of the
      * <code>Collidable</code>
      */
     public void setVertices(Point2D[] vertices) {
@@ -208,13 +209,15 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     /**
      * creates a new <code>Collidable</code> with the arrays given. This method
      * is called from within the constructor to initialize the
-     * <code>Collidable</code>. WARNING: Do NOT modify this code.
+     * <code>Collidable</code>. <b>WARNING: Do NOT modify this code.</b>
      *
      * @throws IllegalArgumentException if the the number of X points does not
      * equal the number of Y points or if they contain less than 3 points.
      *
-     * @param xPoints an array of the x coordinates of the polygon.
-     * @param yPoints an array of the y coordinates of the polygon.
+     * @param xPoints an array of the x coordinates of the
+     * <code>Collidable</code>
+     * @param yPoints an array of the y coordinates of the
+     * <code>Collidable</code>
      */
     public void setVertices(int[] xPoints, int[] yPoints) throws IllegalArgumentException {
         double[] xpoints = new double[xPoints.length];
@@ -231,12 +234,13 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     }
 
     /**
-     * The total number of points. The value of <code>vertices.size()</code>
-     * represents the number of valid points in this <code>Collidable</code> and
-     * might be less than the number of elements in vertices. This value can be
-     * NULL.
+     * Returns the total number of points. The value of
+     * <code>vertices.size()</code> represents the number of valid points in
+     * this <code>Collidable</code> and might be less than the number of
+     * elements in vertices. This value can be NULL.
      *
-     * @return the total number of points in the vertices ArrayList.
+     * @return the total number of points in the vertices
+     * <code>ArrayList.</code>
      */
     public int getNumVertices() {
         return this.vertices.size();
@@ -245,13 +249,13 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     /**
      * creates a new <code>Collidable</code> with the arrays given.This method
      * is called from within the constructor to initialize the
-     * <code>Collidable</code>. WARNING: Do NOT modify this code.
+     * <code>Collidable</code>. <b>WARNING: Do NOT modify this code.</b>
      *
      * @throws IllegalArgumentException if the the number of X points does not
-     * equal the number of Y points or if they contain less than 3 points.
+     * equal the number of Y points or if they contain less than 3 points
      *
-     * @param xPoints an array of the x coordinates of the polygon.
-     * @param yPoints an array of the y coordinates of the polygon.
+     * @param xPoints an array of the X coordinates of the polygon
+     * @param yPoints an array of the Y coordinates of the polygon
      */
     public void setVertices(double[] xPoints, double[] yPoints) throws IllegalArgumentException {
 //        if (x == null || y == null) {
@@ -296,8 +300,8 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * Determines whether the specified coordinates are inside this
      * <code>Collidable</code>.
      *
-     * @param xPos the specified X coordinate to be tested
-     * @param yPos the specified Y coordinate to be tested
+     * @param xPos the specified X coordinate to be tested (double)
+     * @param yPos the specified Y coordinate to be tested (double)
      *
      * @return <code>true</code> if this <code>Collidable</code> contains the
      * specified coordinates <code>(xPos; yPos)</code> <code>false</code>
@@ -380,9 +384,9 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
 
     /**
      * Translates the vertices of the <code>Collidable</code> by the inputed
-     * Vector2 (<code>delta</code>).
+     * <code>Point2D</code> (<code>delta</code>).
      *
-     * @param delta the amount to translate along the axis.
+     * @param delta the amount to translate along the axis
      */
     public void translate(Point2D delta) {
         this.getPosition().translate(new Point2D(delta.getX(), delta.getY()));
@@ -395,7 +399,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * Translates the vertices of the <code>Collidable</code> by
      * <code>deltaX</code> along the X axis.
      *
-     * @param deltaX the amount to translate along the X axis. (double)
+     * @param deltaX the amount to translate along the X axis (double)
      */
     public void translateX(double deltaX) {
         this.getPosition().translateX(deltaX);
@@ -419,10 +423,8 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
 
     /**
      * Resets this <code>Collidable</code> object to an empty
-     * <code>Collidable</code> by setting the vertices ArrayList equal to a new
-     * ArrayList of Vector2s.
-     *
-     * @see java.awt.Polygon#reset()
+     * <code>Collidable</code> by setting the vertices <code>ArrayList</code>
+     * equal to a new <code>ArrayList</code> of <code>Point2D</code>.
      */
     @SuppressWarnings("Convert2Diamond")
     public void reset() {
@@ -436,8 +438,8 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * space.
      *
      * @see java.awt.Polygon
-     * @return a new Java AWT Polygon created by the points in the vertices
-     * ArrayList
+     * @return a new AWT Polygon created by the points in the vertices
+     * <code>ArrayList</code>
      */
     public java.awt.Polygon toPolygon() {
         int[] x = new int[getNumVertices()];
@@ -471,7 +473,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     /**
      * Returns average of the width of the <code>Collidable</code>, in pixels.
      *
-     * @return average of the width, in pixels.
+     * @return average of the width, in pixels
      */
     public float getAverageWidth() {
         float result = 0;
@@ -492,9 +494,10 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     }
 
     /**
-     * Class Object is the root of the class hierarchy. Every class has Object
-     * as a superclass. All objects, including arrays, implement the methods of
-     * this class.
+     * Class Object is the root of the class hierarchy.
+     * <p>
+     * Every class has Object as a superclass. All objects, including arrays,
+     * implement the methods of this class.</p>
      *
      * @return a hash code value for this object.
      * @see java.lang.Object#equals(java.lang.Object)
@@ -509,9 +512,11 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
 
     /**
      * Returns true if the <code>this</code> is equal to the argument and false
-     * otherwise. Consequently, if both argument are null, true is returned,
-     * false is returned. Otherwise, equality is determined by using the equals
-     * method of the first argument.
+     * otherwise.
+     * <p>
+     * Consequently, if both argument are null, true is returned, false is
+     * returned. Otherwise, equality is determined by using the equals method of
+     * the first argument.</p>
      *
      * @param obj the <code>Object</code> to be tested
      * @see java.lang.Object#equals(java.lang.Object)
@@ -523,7 +528,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
-        } else if (getClass() != obj.getClass()) {
+        } else if (super.getClass() != obj.getClass()) {
             return false;
         }
 
@@ -531,17 +536,20 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
 
         if (!Objects.equals(this.getVertices(), coll.getVertices())) {
             return false;
-        } else {
-            return Objects.equals(this.getPosition(), coll.getPosition());
+        } else if (!Objects.equals(this.getPosition(), coll.getPosition())) {
+            return false;
         }
+
+        return true;
     }
 
     /**
-     * Returns a string representation of the object. In general, the toString
-     * method returns a string that "textually represents" this object. The
-     * result should be a concise but informative representation that is easy
-     * for a person to read. It is recommended that all subclasses override this
-     * method.
+     * Returns a string representation of the object.
+     * <p>
+     * In general, the toString method returns a string that "textually
+     * represents" this object. The result should be a concise but informative
+     * representation that is easy for a person to read. It is recommended that
+     * all subclasses override this method.</p>
      *
      * @return a textually representation of this object
      */
@@ -662,7 +670,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(int button) {
-        return dwarf.mouse.isMouseClicked(button) && isMouseHover();
+        return dwarf.mouse.isMouseClicked(button) && this.isMouseHover();
     }
 
     /**
@@ -688,7 +696,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * @return true if the <code>Collidable</code> is clicked on.
      */
     public boolean isClickedOn(String button) {
-        return dwarf.mouse.isMouseClicked(button) && isMouseHover();
+        return dwarf.mouse.isMouseClicked(button) && this.isMouseHover();
     }
 
     /**
