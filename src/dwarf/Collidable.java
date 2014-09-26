@@ -47,6 +47,9 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
         super();
     }
 
+    /**
+     * @param position the position of the <code>Collidable</code>
+     */
     public Collidable(Point2D position) {
         super();
 
@@ -54,11 +57,26 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
         this.vertices = new ArrayList<>();
     }
 
-    public Collidable(Point2D[] vertices) {
+    /**
+     * Construct a new <code>Collidable</code> with 3 or more points. This
+     * constructor will take the first set of points and copy them after the
+     * last set of points to create a closed shape.
+     *
+     * @param vertices An array of <code>Points2D</code> in x, y order.
+     */
+    public Collidable(Point2D[] vertices) throws IllegalArgumentException {
         super();
         this.setVertices(vertices);
     }
 
+    /**
+     * Construct a new <code>Collidable</code> with 3 or more points. This
+     * constructor will take the first set of points and copy them after the
+     * last set of points to create a closed shape.
+     *
+     * @param position the position of the <code>Collidable</code>
+     * @param vertices An array of <code>Points2D</code> in x, y order.
+     */
     public Collidable(Point2D position, Point2D[] vertices) {
         super();
 
@@ -68,11 +86,20 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
         this.vertices.addAll(Arrays.asList(vertices));
     }
 
+    /**
+     * Construct a new <code>Collidable</code> with 3 or more points. This
+     * constructor will take the first set of points and copy them after the
+     * last set of points to create a closed shape.
+     *
+     * @param xPos the X position of the <code>Collidable</code>
+     * @param yPos the Y position of the <code>Collidable</code>
+     * @param vertices An array of <code>Points2D</code> in x, y order.
+     */
     public Collidable(int xPos, int yPos, Point2D[] vertices) {
         this(new Point2D(xPos, yPos), vertices);
     }
 
-    public Collidable(double[] xPoints, double[] yPoints) {
+    public Collidable(double[] xPoints, double[] yPoints) throws IllegalArgumentException {
         super();
 
         this.position = new Point2D(0, 0);
@@ -93,6 +120,9 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
         this.setVertices(xPoints, yPoints);
     }
 
+    /**
+     * @see java.awt.Polygon
+     */
     public Collidable(Polygon p) {
         this(p.xpoints, p.ypoints);
     }
@@ -186,7 +216,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public void setVertices(int[] xPoints, int[] yPoints) {
+    public void setVertices(int[] xPoints, int[] yPoints) throws IllegalArgumentException {
         double[] xpoints = new double[xPoints.length];
         double[] ypoints = new double[yPoints.length];
 
@@ -223,7 +253,7 @@ public strictfp class Collidable extends java.lang.Object implements Cloneable, 
      * @param xPoints an array of the x coordinates of the polygon.
      * @param yPoints an array of the y coordinates of the polygon.
      */
-    public void setVertices(double[] xPoints, double[] yPoints) {
+    public void setVertices(double[] xPoints, double[] yPoints) throws IllegalArgumentException {
 //        if (x == null || y == null) {
 //            throw new NullPointerException(
 //                    "Polygon requires non-null x and y coordinates");
