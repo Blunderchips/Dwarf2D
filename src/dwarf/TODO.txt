@@ -8,7 +8,6 @@
 - collider rotation
 - FLV support
 - Ray casting
-- add more info/details to the readme
 - create a index for tests (html)
 - Graphics Interchange Format (.gif) support
 - controller support

@@ -19,7 +19,7 @@ public final class system {
         throw new UnsupportedOperationException(
                 "you can not instantiate this class.");
     }
-    
+
     /**
      * @return Operating system version
      */
@@ -149,14 +149,12 @@ public final class system {
         try {
             p = Runtime.getRuntime().exec(command);
             p.waitFor();
-            BufferedReader reader
-                    = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             String line = "";
             while ((line = reader.readLine()) != null) {
                 output.append(line).append("\n");
             }
-
         } catch (IOException | InterruptedException ex) {
             throw new DwarfException(ex);
         }
