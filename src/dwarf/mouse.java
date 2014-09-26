@@ -101,10 +101,18 @@ public final class mouse {
         );
     }
 
+    /**
+     * @return the X position of the mouse (int)
+     * @see org.lwjgl.input.Mouse#getX()
+     */
     public static int getPosX() {
         return org.lwjgl.input.Mouse.getX();
     }
 
+    /**
+     * @return the Y position of the mouse (int)
+     * @see org.lwjgl.input.Mouse#getY()
+     */
     public static int getPosY() {
         return org.lwjgl.input.Mouse.getY();
     }
@@ -156,7 +164,6 @@ public final class mouse {
     //========================================================================
     // Mouse events
     //========================================================================
-    
     /**
      * Checks whether a certain mouse button is down.
      *
