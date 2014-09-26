@@ -377,7 +377,8 @@ public class Vector2 extends java.lang.Object implements Cloneable {
     /**
      * Set the rotation of this vector. Rotation is expressed as a degree value,
      * range (0..359). Zero degrees is to the east (right-hand side of the
-     * world), and the angle increases clockwise.
+     * world), and the angle increases clockwise. <b>WARNING: Do NOT modify this
+     * code.</b>
      *
      * @param rotation The rotation in degrees.
      */

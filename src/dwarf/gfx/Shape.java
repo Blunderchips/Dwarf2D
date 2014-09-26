@@ -60,7 +60,7 @@ public class Shape extends Polygon {
 
     /**
      * This method is called from within the constructor to initialize the
-     * <code>Shape</code>. WARNING: Do NOT modify this code.
+     * <code>Shape</code>. <b>WARNING: Do NOT modify this code.</b>
      */
     protected final void init() {
 

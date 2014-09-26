@@ -81,15 +81,6 @@ public class Rectangle extends Quadrilateral {
         this.setVertices(dimensions.getX(), dimensions.getY());
     }
 
-    /**
-     * A 4 sided figure where all 4 sides are equal and both diagonals bisect
-     * each other (a lozenge/rhombus with right angles). A Square has all the
-     * properties of a parallelogram, a rectangle and a rhombus.
-     */
-    public Rectangle(double sideLength, Point2D position, int mode, Colour colour) {
-        this(sideLength, sideLength, position, mode, colour);
-    }
-
     public Rectangle(Rectangle rectangle) {
         super(null, rectangle.getPosition(), rectangle.getMode(), rectangle.getColour());
         this.setVertices(rectangle.getDimensions().getWidth(), rectangle.getDimensions().getHeight());
@@ -97,7 +88,7 @@ public class Rectangle extends Quadrilateral {
 
     /**
      * This method is called from within the constructor to initialize the
-     * <code>Rectangle</code>. WARNING: Do NOT modify this code.
+     * <code>Rectangle</code>. <b>WARNING: Do NOT modify this code.</b>
      *
      * @param width the width of the <code>Rectangle</code>.
      * @param height the height of the <code>Rectangle</code>
@@ -427,7 +418,7 @@ public class Rectangle extends Quadrilateral {
         } else if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final Rectangle rect = (Rectangle) obj;
 
         if (!Objects.equals(this.dimensions, rect.dimensions)) {

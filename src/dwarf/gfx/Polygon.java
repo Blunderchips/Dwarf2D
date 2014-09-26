@@ -26,11 +26,11 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
     public final static byte STROKE = 0x1;
 
     /**
-     * the colour of the Polygon.
+     * the colour of the <code>Polygon</code>.
      */
     private Colour colour;
     /**
-     * the mode of the Polygon. (stroke/fill)
+     * the mode of the <code>Polygon</code>. (stroke/fill)
      */
     private byte mode;
 
@@ -147,7 +147,7 @@ public class Polygon extends dwarf.Collidable implements GameObject, shapeConsta
 
     /**
      * This method is called from within the constructor to initialize the
-     * <code>Polygon</code>. WARNING: Do NOT modify this code.
+     * <code>Polygon</code>. <b>WARNING: Do NOT modify this code.</b>
      *
      * @throws DwarfException it the inputed mode in not recognised
      * @param mode the mode of the <code>Polygon</code>

@@ -48,6 +48,13 @@ public class Shader extends java.lang.Object implements Cloneable {
         GLSL.useProgram(program);
     }
 
+    /**
+     * This method is called from within the constructor to initialize the
+     * <code>Shape</code>. <b>WARNING: Do NOT modify this code.</b>
+     *
+     * @see dwarf.GLSL#VERTEX_SHADER
+     * @see dwarf.GLSL#FRAGMENT_SHADER
+     */
     public final void setType(int type) throws DwarfException {
         if (type == VERTEX_SHADER || type == FRAGMENT_SHADER) {
             this.type = type;
