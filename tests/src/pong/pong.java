@@ -38,7 +38,7 @@ public class pong {
                 this.scoreA = 0;
                 this.scoreB = 0;
 
-                this.ball = new Rectangle(25, new Point2D((Window.getWidth() / 2), (Window.getHeight() / 2)), FILL, WHITE);
+                this.ball = new Rectangle(25, 25, new Point2D((Window.getWidth() / 2), (Window.getHeight() / 2)), FILL, WHITE);
 
                 super.addGameObject(ball);
                 super.addGameObject(players[0]);
@@ -81,7 +81,7 @@ public class pong {
                     if (player.intersects(ball)) {
                         this.yvel = random.interger(25);
                         this.xvel = -xvel;
-                        
+
                         if (random.bool()) {
                             this.yvel = -yvel;
                         }
@@ -106,7 +106,7 @@ public class pong {
                 }
 
                 this.ball.translate(xvel, yvel);
-                
+
                 if (isKeyDown("space")) {
                     this.scoreA = 0;
                     this.scoreB = 0;
