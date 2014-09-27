@@ -155,6 +155,7 @@ public final class mouse {
     /**
      * returns true if the mouse has a wheel if not it will return false.
      *
+     * @see org.lwjgl.input.Mouse#hasWheel()
      * @return whether or not this mouse has wheel support
      */
     public static boolean hasWheel() {
