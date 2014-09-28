@@ -133,8 +133,8 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
 
     /**
      * initialises the <code>Game</code>.This method is called from within the
-     * constructor to initialize the <code>Shape</code>. WARNING: Do NOT modify
-     * this code.
+     * constructor to initialize the <code>Shape</code>. <b>WARNING: Do NOT
+     * modify this code.</b>
      *
      * @see dwarf.engine.core.Engine#start(int, int, java.lang.String)
      *
@@ -304,7 +304,7 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
      *
      * @see java.lang.Object#equals(java.lang.Object)
      * @param obj the <code>Object</code> to be tested
-     * 
+     *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
      */

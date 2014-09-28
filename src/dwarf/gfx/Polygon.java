@@ -22,8 +22,8 @@ import dwarf.DwarfException;
 @SuppressWarnings("serial")
 public class Polygon extends dwarf.Collidable implements GameObject, shapeConstants, Colours {
 
-    public final static byte FILL = 0x0;
-    public final static byte STROKE = 0x1;
+    public final static int FILL = 0x0;
+    public final static int STROKE = 0x1;
 
     /**
      * the colour of the <code>Polygon</code>.
