@@ -180,7 +180,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * @throws DwarfException will throw if no suitable result is
      * found
      * @return a String with the key's human readable name in it or will throw a
-     * IllegalArgumentException if the key is unnamed
+     * DwarfException if the key code is not recognised
      */
     private static short getKeyCode(String code) throws DwarfException {
         switch (code) {
@@ -429,7 +429,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
             case "app menu":
                 return KEY_APPS;
             default:
-                throw new DwarfException("illegal argument. (keycode '" + code + "' is unknown)");
+                throw new DwarfException("illegal argument. (keycode '" + code + "' is not recognised)");
         }
     }
 

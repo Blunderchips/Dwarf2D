@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package dwarf.LWJGL;
+package dwarf.lwjgl;
 
 import com.sun.media.sound.WaveFileReader;
 import java.io.BufferedInputStream;

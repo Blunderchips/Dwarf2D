@@ -2,7 +2,7 @@ package dwarf.gfx;
 
 import java.util.Arrays;
 
-import dwarf.LWJGL.Texture;
+import dwarf.lwjgl.Texture;
 import dwarf.util.Point2D;
 import dwarf.util.Vector2;
 
@@ -35,7 +35,7 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
  *
  * @author Matthew 'siD' Van der Bijl
  *
- * @see dwarf.LWJGL.Texture
+ * @see dwarf.lwjgl.Texture
  * @see dwarf.gfx.shapeConstants
  */
 public final class draw implements dwarf.gfx.shapeConstants {

@@ -7,4 +7,4 @@
  * @see dwarf.LWJGL.TextureLoader
  * @see dwarf.LWJGL.WaveData
  */
-package dwarf.LWJGL;
+package dwarf.lwjgl;

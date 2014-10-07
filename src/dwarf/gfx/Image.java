@@ -4,9 +4,9 @@ import java.awt.Dimension;
 import java.util.Objects;
 
 import dwarf.DwarfException;
-import dwarf.LWJGL.Texture;
+import dwarf.lwjgl.Texture;
 import dwarf.util.Point2D;
-import dwarf.LWJGL.TextureLoader;
+import dwarf.lwjgl.TextureLoader;
 
 /**
  * A set of functions and variables required to create a malleable class for
@@ -15,8 +15,8 @@ import dwarf.LWJGL.TextureLoader;
  *
  * @author Matthew 'siD' Van der Bijl
  *
- * @see dwarf.LWJGL.Texture
- * @see dwarf.LWJGL.TextureLoader
+ * @see dwarf.lwjgl.Texture
+ * @see dwarf.lwjgl.TextureLoader
  * @see dwarf.GameObject
  * @see dwarf.Collidable
  * @see dwarf.gfx.Rectangle
