@@ -338,11 +338,7 @@ public class WaveData extends java.lang.Object implements Cloneable {
 
     @Override
     public String toString() {
-        return "WaveData = {"
-                + "data: " + getData() + ", "
-                + "format: " + getFormat() + ", "
-                + "samplerate: " + getSamplerate() + ", "
-                + "}";
+        return "WaveData[" + "data: " + data + ", " + "format: " + format + ", " + "samplerate: " + samplerate + "]";
     }
 
     public void set(ByteBuffer data, int format, int samplerate) {
