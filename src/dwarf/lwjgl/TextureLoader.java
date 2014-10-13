@@ -144,24 +144,24 @@ public final class TextureLoader {
     /**
      * Load a texture
      *
-     * @param resourceName The location of the resource to load
+     * @param path The location of the resource to load
      * @return The loaded texture
      * @throws DwarfException Indicates a failure to access the resource
      */
-    public static Texture getTexture(String resourceName) throws DwarfException {
-        Texture tex = table.get(resourceName);
+    public static Texture getTexture(String path) throws DwarfException {
+        Texture tex = table.get(path);
 
         if (tex != null) {
             return tex;
         }
 
-        tex = getTexture(resourceName,
+        tex = getTexture(path,
                 GL_TEXTURE_2D, // target
                 GL_RGBA, // dst pixel format
                 GL_LINEAR, // min filter (unused)
                 GL_LINEAR);
 
-        table.put(resourceName, tex);
+        table.put(path, tex);
 
         if (tex == null) {
             throw new DwarfException("texture not loaded correctly");
@@ -173,7 +173,7 @@ public final class TextureLoader {
     /**
      * Load a texture into OpenGL from a image reference on disk.
      *
-     * @param resourceName The location of the resource to load
+     * @param path The location of the resource to load
      * @param target The GL target to load the texture against
      * @param dstPixelFormat The pixel format of the screen
      * @param minFilter The minimising filter
@@ -181,7 +181,7 @@ public final class TextureLoader {
      * @return The loaded texture
      * @throws DwarfException Indicates a failure to access the resource
      */
-    public static Texture getTexture(String resourceName,
+    public static Texture getTexture(String path,
             int target,
             int dstPixelFormat,
             int minFilter,
@@ -196,7 +196,7 @@ public final class TextureLoader {
             // bind this texture
             glBindTexture(target, textureID);
 
-            BufferedImage bufferedImage = loadImage(resourceName);
+            BufferedImage bufferedImage = loadImage(path);
             texture.setWidth(bufferedImage.getWidth());
             texture.setHeight(bufferedImage.getHeight());
 
