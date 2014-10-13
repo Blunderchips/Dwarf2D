@@ -27,8 +27,8 @@
 
 ### Report Issues
 
-- **[Report New Issue]** (https://github.com/Blunderchips/Dwarf2D/issues/new )
-- **[View Open Issues]** (https://github.com/Blunderchips/Dwarf2D/issues )
+- **[Report New Issue](https://github.com/Blunderchips/Dwarf2D/issues/new)**
+- **[View Open Issues](https://github.com/Blunderchips/Dwarf2D/issues)**
 
 #####Everyone who's created or contributed to issues and pull requests have made the project better!
 
