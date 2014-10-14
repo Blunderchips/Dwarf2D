@@ -97,13 +97,13 @@ public class AiffData {
      * @param path URL to file
      * @return AiffData containing data, or null if a failure occured
      */
-    public static AiffData create(URL path) throws dwarf.DwarfException {
+    public static AiffData create(URL path) throws DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(
                             new BufferedInputStream(path.openStream())));
         } catch (IOException | UnsupportedAudioFileException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -123,12 +123,12 @@ public class AiffData {
      * @param is InputStream to read from
      * @return AiffData containing data, or null if a failure occured
      */
-    public static AiffData create(InputStream is) throws dwarf.DwarfException {
+    public static AiffData create(InputStream is) throws DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(is));
         } catch (IOException | UnsupportedAudioFileException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -138,13 +138,13 @@ public class AiffData {
      * @param buffer array of bytes containing the complete Aiff file
      * @return AiffData containing data, or null if a failure occured
      */
-    public static AiffData create(byte[] buffer) throws dwarf.DwarfException {
+    public static AiffData create(byte[] buffer) throws DwarfException {
         try {
             return create(
                     AudioSystem.getAudioInputStream(
                             new BufferedInputStream(new ByteArrayInputStream(buffer))));
         } catch (IOException | UnsupportedAudioFileException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -156,7 +156,7 @@ public class AiffData {
      * @param buffer ByteBuffer containing sound file
      * @return AiffData containing data, or null if a failure occured
      */
-    public static AiffData create(ByteBuffer buffer) throws dwarf.DwarfException {
+    public static AiffData create(ByteBuffer buffer) throws DwarfException {
         try {
             byte[] bytes = null;
 
@@ -168,7 +168,7 @@ public class AiffData {
             }
             return create(bytes);
         } catch (DwarfException ex) {
-            throw new dwarf.DwarfException(ex);
+            throw new DwarfException(ex);
         }
     }
 
@@ -178,7 +178,7 @@ public class AiffData {
      * @param ais AudioInputStream to read from
      * @return AiffData containing data, or null if a failure occured
      */
-    public static AiffData create(AudioInputStream ais) throws dwarf.DwarfException {
+    public static AiffData create(AudioInputStream ais) throws DwarfException {
         //get format of data
         AudioFormat audioformat = ais.getFormat();
 
@@ -201,7 +201,7 @@ public class AiffData {
                 throw new RuntimeException("Illegal sample size");
             }
         } else {
-            throw new dwarf.DwarfException("Only mono or stereo is supported");
+            throw new DwarfException("Only mono or stereo is supported");
         }
 
         //read data into buffer
@@ -217,7 +217,7 @@ public class AiffData {
                 total += read;
             }
         } catch (IOException ioe) {
-            throw new dwarf.DwarfException(ioe);
+            throw new DwarfException(ioe);
         }
 
         //insert data into bytebuffer
@@ -231,6 +231,7 @@ public class AiffData {
         try {
             ais.close();
         } catch (IOException ioe) {
+            throw new DwarfException(ioe);
         }
 
         return Aiffdata;

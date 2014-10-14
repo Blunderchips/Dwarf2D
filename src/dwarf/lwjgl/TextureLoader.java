@@ -283,10 +283,10 @@ public final class TextureLoader {
         }
 
         // copy the source image into the produced image
-        Graphics g = texImage.getGraphics();
-        g.setColor(new Color(0f, 0f, 0f, 0f));
-        g.fillRect(0, 0, texWidth, texHeight);
-        g.drawImage(bufferedImage, 0, 0, null);
+        Graphics gfx = texImage.getGraphics();
+        gfx.setColor(new Color(0f, 0f, 0f, 0f));
+        gfx.fillRect(0, 0, texWidth, texHeight);
+        gfx.drawImage(bufferedImage, 0, 0, null);
 
         // build a byte buffer from the temporary image
         // that be used by OpenGL to produce a texture.
@@ -319,9 +319,9 @@ public final class TextureLoader {
         // images and the paint it on top of a new BufferedImage
         Image img = new ImageIcon(url).getImage();
         BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
-        Graphics g = bufferedImage.getGraphics();
-        g.drawImage(img, 0, 0, null);
-        g.dispose();
+        Graphics gfx = bufferedImage.getGraphics();
+        gfx.drawImage(img, 0, 0, null);
+        gfx.dispose();
 
         return bufferedImage;
     }

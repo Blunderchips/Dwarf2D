@@ -69,9 +69,9 @@ public class Sfx extends java.lang.Object implements Cloneable {
      * plays the sound.
      */
     public void play() {
-        if (!isMute()) {
-            alSourcePlay(source);
-        }
+        // if (!isMute()) {
+        alSourcePlay(source);
+        //   }
     }
 
     /**
