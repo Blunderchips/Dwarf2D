@@ -7,14 +7,7 @@
 
 
 ###Welcome to Dwarf2D!
-  Dwarf2D is an easy to use set of utilites wrapped around
-  
-  <a href='http://lwjgl.org/' title='lwjgl.org'>LWJGL</a> (Lightweight Java Game Library),
-  
-  <a href='http://www.opengl.org/' title='openGL.org'>OpenGL</a> (Open Graphics Library) and 
-  
-  <a href='http://OpenAl.org/' title='openAl.org'>OpenAL</a> (Open Audio Library) design
-  
+  Dwarf2D is an easy to use set of utilites wrapped around <a href='http://lwjgl.org/' title='lwjgl.org'>LWJGL</a> (Lightweight Java Game Library), <a href='http://www.opengl.org/' title='openGL.org'>OpenGL</a> (Open Graphics Library) and <a href='http://OpenAl.org/' title='openAl.org'>OpenAL</a> (Open Audio Library) design
   to make Java 2D game development easier and ultimately better for all, 
   Dwarf2D is totally free, 
   and can be used in anything from friendly, open-source hobby projects, to evil, closed-source commercial ones. 
