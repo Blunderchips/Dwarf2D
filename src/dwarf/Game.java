@@ -1,5 +1,6 @@
 package dwarf;
 
+import dwarf.engine.core.Engine;
 import java.util.Objects;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -21,7 +22,8 @@ import static java.lang.Math.abs;
  * @see dwarf.engine.core.Window
  */
 @SuppressWarnings("serial")
-public abstract class Game extends dwarf.engine.core.Engine implements Serializable {
+public abstract class Game extends dwarf.engine.core.Engine
+        implements Serializable, Runnable {
 
     public static final String PROP_GAMEOBJECTS = "PROP_GAMEOBJECTS";
     private final transient PropertyChangeSupport propertyChangeSupport;
@@ -106,6 +108,12 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
         this.propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
 
         this.init((int) dimensions.getWidth(), (int) dimensions.getHeight(), title);
+    }
+
+    @Override
+    @Deprecated
+    public void run() {
+        super.run();
     }
 
     /**
@@ -346,6 +354,16 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
         return hash;
     }
 
+    /**
+     * Returns a string representation of the object.
+     * <p>
+     * In general, the toString method returns a string that "textually
+     * represents" this object. The result should be a concise but informative
+     * representation that is easy for a person to read. It is recommended that
+     * all subclasses override this method.</p>
+     *
+     * @return a textually representation of this object
+     */
     @Override
     public String toString() {
         return "Game = {"
@@ -400,5 +418,11 @@ public abstract class Game extends dwarf.engine.core.Engine implements Serializa
 
     public int getNumGameObjects() {
         return this.gameObjects.size();
+    }
+
+    @Override
+    public void onCloseRequested() {
+        Engine.dispose();
+        System.exit(0);
     }
 }

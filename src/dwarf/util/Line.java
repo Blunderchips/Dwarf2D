@@ -30,14 +30,13 @@ import dwarf.DwarfException;
 public class Line extends java.lang.Object implements Cloneable {
 
     /**
-     *The start point of the <code>Line</code>.
+     * The start point of the <code>Line</code>.
      */
     private Point A;
     /**
-     *The end point of the <code>Line</code>.
+     * The end point of the <code>Line</code>.
      */
     private Point B;
-
 
     /**
      * Default constructor.
@@ -204,6 +203,16 @@ public class Line extends java.lang.Object implements Cloneable {
         return true;
     }
 
+    /**
+     * Returns a string representation of the object.
+     * <p>
+     * In general, the toString method returns a string that "textually
+     * represents" this object. The result should be a concise but informative
+     * representation that is easy for a person to read. It is recommended that
+     * all subclasses override this method.</p>
+     *
+     * @return a textually representation of this object
+     */
     @Override
     public String toString() {
         return "Line[" + A + ", " + B + "]";

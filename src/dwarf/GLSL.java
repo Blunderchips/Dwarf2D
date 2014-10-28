@@ -174,36 +174,4 @@ public final class GLSL {
 
         return shader;
     }
-
-    /**
-     * Load a fragment shader.
-     *
-     * @see dwarf.GLSL#createShader
-     * @see dwarf.GLSL#FRAGMENT_SHADER
-     *
-     * @param path the path to the shader file
-     *
-     * @throws DwarfException the shader wasn't able to be compiled correctly
-     *
-     * @return the fragment shader
-     */
-    public static int createFragmentShader(String path) throws DwarfException {
-        return GLSL.createShader(path, FRAGMENT_SHADER);
-    }
-
-    /**
-     * Load a vertex shader.
-     *
-     * @see dwarf.GLSL#createShader
-     * @see dwarf.GLSL#VERTEX_SHADER
-     *
-     * @param path the path to the shader file
-     *
-     * @throws DwarfException the shader wasn't able to be compiled correctly
-     *
-     * @return the vertex shader
-     */
-    public static int createVertexShader(String path) throws DwarfException {
-        return GLSL.createShader(path, VERTEX_SHADER);
-    }
 }

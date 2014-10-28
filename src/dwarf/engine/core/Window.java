@@ -38,7 +38,7 @@ public final class Window {
 
     private static boolean vSync = true;
     private static boolean resizable = false;
-    private static boolean fullscreen = false;
+    private static boolean fullscreen = true;
 
     private static java.awt.Canvas parent = null;
 
@@ -117,7 +117,11 @@ public final class Window {
      * @return Display.isCloseRequested()
      */
     public static boolean isCloseRequested() {
-        return Display.isCloseRequested();
+        try {
+            return Display.isCloseRequested();
+        } catch (IllegalStateException ise) {
+            return false;
+        }
     }
 
     /**

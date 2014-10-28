@@ -139,4 +139,5 @@ public class Quadrilateral extends Polygon {
             throw new DwarfException("illegal argument");
         }
     }
+
 }

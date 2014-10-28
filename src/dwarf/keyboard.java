@@ -183,7 +183,7 @@ public final class keyboard implements dwarf.engine.core.Keyboard {
      * DwarfException if the key code is not recognised
      */
     private static short getKeyCode(String code) throws DwarfException {
-        switch (code) {
+        switch (code.toLowerCase()) {
             case "1":
                 return KEY_1;
             case "2":

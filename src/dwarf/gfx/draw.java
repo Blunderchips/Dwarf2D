@@ -73,19 +73,19 @@ public final class draw implements dwarf.gfx.shapeConstants {
         glPopMatrix();
     }
 
-    public static void basicText(String string, Point2D position, Colour colour) {
-        basicText(string, (float) position.getX(), (float) position.getY(), colour);
+    public static void basicText(String str, Point2D position, Colour colour) {
+        basicText(str, (float) position.getX(), (float) position.getY(), colour);
     }
 
-    public static void basicText(char[] string, Point2D position, Colour colour) {
-        basicText(Arrays.toString(string), (float) position.getX(), (float) position.getY(), colour);
+    public static void basicText(char[] str, Point2D position, Colour colour) {
+        basicText(Arrays.toString(str), (float) position.getX(), (float) position.getY(), colour);
     }
 
-    public static void basicText(char[] string, float xPos, float yPos, Colour colour) {
-        basicText(Arrays.toString(string), xPos, yPos, colour);
+    public static void basicText(char[] str, float xPos, float yPos, Colour colour) {
+        basicText(Arrays.toString(str), xPos, yPos, colour);
     }
 
-    public static void basicText(String string, float xPos, float yPos, Colour colour) {
+    public static void basicText(String str, float xPos, float yPos, Colour colour) {
         float startX = xPos;
 
         glPushMatrix();
@@ -94,7 +94,7 @@ public final class draw implements dwarf.gfx.shapeConstants {
 
             glBegin(GL_POINTS);
             {
-                for (char letter : string.toLowerCase().toCharArray()) {
+                for (char letter : str.toLowerCase().toCharArray()) {
                     if (letter == 'a') {
                         for (byte i = 0; i < 8; i++) {
                             glVertex2d(xPos + 1, yPos + i);

@@ -179,6 +179,16 @@ public class Sfx extends java.lang.Object implements Cloneable {
         return true;
     }
 
+    /**
+     * Returns a string representation of the object.
+     * <p>
+     * In general, the toString method returns a string that "textually
+     * represents" this object. The result should be a concise but informative
+     * representation that is easy for a person to read. It is recommended that
+     * all subclasses override this method.</p>
+     *
+     * @return a textually representation of this object
+     */
     @Override
     public String toString() {
         return "Sound = {"

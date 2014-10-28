@@ -146,9 +146,10 @@ public interface Colours {
      * The color violet. In the default sRGB space.
      */
     public final static Colour violet = new Colour(0.309804, 0.184314, 0.309804);
-    
+
     /**
      * The color violet. In the default sRGB space.
      */
     public final static Colour VIOLET = violet;
+
 }

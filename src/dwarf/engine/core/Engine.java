@@ -20,7 +20,7 @@ public abstract class Engine extends java.lang.Object {
 
     /**
      * "Starts" the engine.
-     * 
+     *
      * @param width the width of the window to be created.
      * @param height the height of the window to be created.
      * @param title the title of the window to be created.
@@ -30,14 +30,15 @@ public abstract class Engine extends java.lang.Object {
         openGL.init();
         Input.init();
 
-        this.load();
         this.run();
     }
 
     /**
      * Main loop of the application.
      */
-    private void run() {
+    public void run() {
+        new Thread().start();
+        this.load();
         while (true) {
             long lastFPS = time.getNano();
 
@@ -51,13 +52,11 @@ public abstract class Engine extends java.lang.Object {
 
                 Input.update();
             } else {
-                Engine.dispose();
-                break;
+                this.onCloseRequested();
             }
 
             time.setDelta(lastFPS);
         }
-        System.exit(0);
     }
 
     /**
@@ -75,6 +74,8 @@ public abstract class Engine extends java.lang.Object {
      */
     public abstract void render();
 
+    public abstract void onCloseRequested();
+
     /**
      * Disposes of the Engine.
      */
@@ -83,5 +84,4 @@ public abstract class Engine extends java.lang.Object {
         Window.dispose();
         openAL.dispose();
     }
-
 }

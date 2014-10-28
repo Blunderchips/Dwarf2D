@@ -145,7 +145,7 @@ public class Shape extends Polygon {
      *
      * @param obj the <code>Object</code> to be tested
      * @see java.lang.Object#equals(java.lang.Object)
-     * 
+     *
      * @return true if the argument is equal to <code>this</code> other and
      * false otherwise
      */
@@ -231,5 +231,20 @@ public class Shape extends Polygon {
     @Deprecated
     public void setVertices(Point2D[] vertices) {
         super.setVertices(vertices);
+    }
+
+    /**
+     * Returns a string representation of the object.
+     * <p>
+     * In general, the toString method returns a string that "textually
+     * represents" this object. The result should be a concise but informative
+     * representation that is easy for a person to read. It is recommended that
+     * all subclasses override this method.</p>
+     *
+     * @return a textually representation of this object
+     */
+    @Override
+    public String toString() {
+        return "Shape[" + "numSides: " + numSides + ", lineLength: " + lineLength + "]";
     }
 }

@@ -52,8 +52,11 @@ public class Shader extends java.lang.Object implements Cloneable {
      * This method is called from within the constructor to initialize the
      * <code>Shape</code>. <b>WARNING: Do NOT modify this code.</b>
      *
+     * 
      * @see dwarf.GLSL#VERTEX_SHADER
      * @see dwarf.GLSL#FRAGMENT_SHADER
+     * 
+     * @param type
      */
     public final void setType(int type) throws DwarfException {
         if (type == VERTEX_SHADER || type == FRAGMENT_SHADER) {
@@ -106,6 +109,16 @@ public class Shader extends java.lang.Object implements Cloneable {
         return true;
     }
 
+    /**
+     * Returns a string representation of the object.
+     * <p>
+     * In general, the toString method returns a string that "textually
+     * represents" this object. The result should be a concise but informative
+     * representation that is easy for a person to read. It is recommended that
+     * all subclasses override this method.</p>
+     *
+     * @return a textually representation of this object
+     */
     @Override
     public String toString() {
         return "Shader[" + "type: " + type + ", program: " + program + "]";
