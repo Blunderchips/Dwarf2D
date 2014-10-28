@@ -39,5 +39,7 @@
  * @see <a href='http://www.lwjgl.org/'>lwjgl.org</a>
  * @see <a href='http://www.opengl.org/'>opengl.org</a>
  * @see <a href='http://www.openal.org/'>openal.org</a>
+ *
+ * @version 1.1
  */
 package dwarf;
