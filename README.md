@@ -1,12 +1,6 @@
-#Dwarf2D Readme
-=======
+# Dwarf2D Readme
 
-<a href='http://95.85.60.226'>
-  ![pixelDwarf](https://github.com/Blunderchips/Dwarf2D/blob/master/img/pixelDwarf.jpeg ".:Dwarf2D:.")
-</a>
-
-
-###Welcome to Dwarf2D!
+### Welcome to Dwarf2D!
   Dwarf2D is an easy to use set of utilites wrapped around <a href='http://lwjgl.org/' title='lwjgl.org'>LWJGL</a> (Lightweight Java Game Library), <a href='http://www.opengl.org/' title='openGL.org'>OpenGL</a> (Open Graphics Library) and <a href='http://OpenAl.org/' title='openAl.org'>OpenAL</a> (Open Audio Library) design
   to make Java 2D game development easier and ultimately better for all, 
   Dwarf2D is totally free, 
@@ -22,22 +16,22 @@
 - **[Report New Issue](https://github.com/Blunderchips/Dwarf2D/issues/new)**
 - **[View Open Issues](https://github.com/Blunderchips/Dwarf2D/issues)**
 
-#####Everyone who's created or contributed to issues and pull requests have made the project better!
+##### Everyone who's created or contributed to issues and pull requests have made the project better!
 
-###Downloads
+### Downloads
 You can download the source code right off of <a href='https://github.com/Blunderchips/Dwarf2D/archive/master.zip' 		  title='download'>GitHub</a>, or if you prefer, off of our <a href='http://95.85.60.226/downloads.php' 			  title='Download!'>website</a>, or you can just clone the repository:
 
 HTTPS: https://github.com/Blunderchips/Dwarf2D.git <br/>
 SSH: git@github.com:Blunderchips/Dwarf2D.git <br/>
 
 
-###Documentation
+### Documentation
   The [Wiki](https://github.com/Blunderchips/Dwarf2D/wiki "wiki") contains all of the information you'll need to write a 
   Dwarf2D game. You can contribute to the Wiki directly here on GitHub!
 
   We also provide [Javadocs](http://95.85.60.226/javadoc/ "javadoc") online (This may be your best bet).
 
-###Dependencies
+### Dependencies
 * LWJGL 2.9.1 or newer - You can download this from their <a href='http://lwjgl.org/download.php' title='lwjgl.org'>website</a>.
 * Java (the latest would be best) - You can also download this from their <a href='https://www.java.com/en/download/' title='java.com/en/download/'>website</a>.
 - Build Toolchain (Can be any one of the following, doesn't need to be all of them)
@@ -46,7 +40,7 @@ SSH: git@github.com:Blunderchips/Dwarf2D.git <br/>
 	- [IntelliJ IDEA](http://www.jetbrains.com/idea/ "jetbrains.com/idea/")
 
 
-###License - The MIT License (MIT)
+### License - The MIT License (MIT)
 Copyright (c) 2014 Matthew 'siD' Van der Bijl
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
